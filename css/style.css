@@ -1,0 +1,72 @@
+html {
+  height: 100%;
+}
+html body {
+  background-color: #ddd;
+  height: 100%;
+}
+
+i {
+  margin-right: 2px;
+}
+
+.container-head {
+  text-align: center;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+.container-head::before {
+  content: "";
+  background-image: url("../img/worldmap.png");
+  background-size: cover;
+  background-position: 50%;
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  left: -3px;
+  right: -3px;
+  filter: blur(3px);
+  z-index: -1;
+}
+.container-head a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.wrapper {
+  padding: 24px;
+  margin: 24px;
+  border-radius: 8px;
+  background-color: #fff;
+  border: solid 1px #ccc;
+}
+
+h2.top-icon {
+  display: flex;
+  line-height: 1em;
+}
+h2.top-icon img {
+  width: auto;
+  height: 1em;
+  margin-right: 0.4em;
+  display: inline-block;
+}
+
+.row + .row {
+  margin-top: 10px;
+}
+
+.context-sm {
+  font-size: 0.8em;
+}
+* + .context-sm {
+  margin-left: 4px;
+}/*# sourceMappingURL=style.css.map */
