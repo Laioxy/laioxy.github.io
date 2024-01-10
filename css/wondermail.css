@@ -1,0 +1,15 @@
+option[data-valid=false] {
+  background-color: #ccc;
+}
+
+option[data-gender="0"] {
+  background-color: #ccc;
+}
+
+option[data-banned=true] {
+  background-color: #ffc0cb;
+}
+
+option.allow[data-banned=true] {
+  background-color: #bfdfff !important;
+}/*# sourceMappingURL=wondermail.css.map */

@@ -1,0 +1,19 @@
+// 無効な道具
+option[data-valid="false"] {
+  background-color: #ccc;
+}
+
+// 性別無効ポケモン
+option[data-gender="0"] {
+  background-color: #ccc;
+}
+
+// 禁止ポケモン
+option[data-banned="true"] {
+  background-color: #ffc0cb;
+}
+
+// 例外許可ポケモン
+option.allow[data-banned="true"] {
+  background-color: #bfdfff !important;
+}
