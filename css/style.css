@@ -5,6 +5,9 @@ html body {
   background-color: #ddd;
   height: 100%;
 }
+html select option:disabled {
+  color: #ccc;
+}
 
 i {
   margin-right: 2px;

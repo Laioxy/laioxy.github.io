@@ -91,11 +91,11 @@
               <div class="d-flex flex-column">
                 <label class="form-label">リージョン</label>
                 <div class="btn-group text-nowrap" id="group-resion">
-                  <input class="btn-check" id="resion-jp" type="radio" name="reasion" value="jp" checked />
+                  <input class="btn-check" id="resion-jp" type="radio" name="resion" value="jp" checked />
                   <label class="btn btn-outline-primary" for="resion-jp">日本</label>
-                  <input class="btn-check" id="resion-na" type="radio" name="reasion" value="na" />
+                  <input class="btn-check" id="resion-na" type="radio" name="resion" value="na" />
                   <label class="btn btn-outline-primary" for="resion-na">北米</label>
-                  <input class="btn-check" id="resion-eu" type="radio" name="reasion" value="eu" />
+                  <input class="btn-check" id="resion-eu" type="radio" name="resion" value="eu" />
                   <label class="btn btn-outline-primary" for="resion-eu">欧州</label>
                 </div>
               </div>
@@ -107,7 +107,7 @@
 
           <div class="mb-3">
             <label class="col-12 form-label"><span>パスワード</span><span class="context-sm" id="pass-maxlength"></span></label>
-            <textarea class="form-control form-control-sm d-grid" rows="2" id="pass-area"></textarea>
+            <textarea class="form-control form-control-sm d-grid" rows="2" id="pass-area" placeholder="スペース・改行など入っても大丈夫です"></textarea>
           </div>
           <div class="mb-3">
             <label class="col-12 form-label">生成オプション</label>
@@ -258,7 +258,15 @@
               <div class="mb-3">
                 <label class="form-label">制限</label>
                 <div class="col-12">
-                  <select class="form-select" id="rest-value"></select>
+                  <div>
+                    <select class="form-select" id="rest-value"></select>
+                  </div>
+                  <div class="error-invalid-poke text-danger" style="display: none">
+                    <i class="bi bi-exclamation-circle-fill"></i>無効なポケモンが選択されています。
+                  </div>
+                  <div class="error-banned-poke text-danger" style="display: none">
+                    <i class="bi bi-exclamation-circle-fill"></i>依頼で使用できないポケモンが選択されています。
+                  </div>
                 </div>
               </div>
               <div class="mb-0">
@@ -357,8 +365,26 @@
         <h2>更新履歴</h2>
         <ul>
           <li>
+            <u>ver 1.0.1 (2024/01/11)</u><br />
+            <ul>
+              <li>パスワード入力欄に軽い説明(placeholder)を追加</li>
+              <li>別フォルムがあるポケモンにフォルム名を追加</li>
+              <li>リージョン変更時にパスワード入力欄を空にするように変更</li>
+              <li>ダンジョン「ダミー(0xAD)」を選択できないように変更（フロアデータが存在しないため）</li>
+              <li>パスワード生成時、パスワード文字数が更新されていない問題を修正</li>
+              <li>上層ダンジョンの依頼ランクが正しく反映されていない問題を修正</li>
+              <li>
+                報酬で無効なポケモン選択中に報酬タイプを道具系に変更すると、変更先の道具が有効であってもエラーメッセージが表示されたままになる問題を修正
+                (逆パターンも修正)
+              </li>
+              <li>制限のポケモンの項目にエラーメッセージが反映されていない問題を修正</li>
+            </ul>
+          </li>
+          <li>
             <u>ver 1.0.0 (2024/01/10)</u><br />
-            公開
+            <ul>
+              <li>公開</li>
+            </ul>
           </li>
         </ul>
       </div>

@@ -15,19 +15,21 @@ $(async function () {
   FloorData = await GetFloorJson();
   FixedData = await GetFixedJson();
 
-  // バージョン
-  $("input[name='version']").off("change");
-  $("input[name='version']").on("change", function () {
+  // バージョン・リージョン
+  $("input[name='version'], input[name='resion']").on("change", function () {
     let old = $("#version-old").prop("checked");
     $("#group-resion input").prop("disabled", old);
 
     if (old) $("#context-resionfree").show();
     else $("#context-resionfree").hide();
 
+    // パスワード文字更新
+    $("#pass-area").val("").trigger("keyup");
+    AppendMissionType(); // 依頼タイプ更新
+
     ToggleDisabled();
   });
   // 依頼タイプ
-  $("#mission-type").off("change");
   $("#mission-type").on("change", function () {
     let skyMTypeId = $(this).find("option:selected").data("sky");
     AppendMissionFlag(); // 依頼フラグ項目更新
@@ -78,7 +80,6 @@ $(async function () {
     CheckBannedPokemon($("#cliant"));
   });
   // 報酬タイプ
-  $("#reward-type").off("change");
   $("#reward-type").on("change", function () {
     let prev_num = $("#reward-value-number").val();
     let prev_sel = $("#reward-value-select").val();
@@ -91,6 +92,8 @@ $(async function () {
         AppendItem($("#reward-value-select"));
         $("#reward-value-select-div").show();
         $("#reward-value-number-group").hide();
+        CheckInvalidPokemon($("#reward-value-select"), true);
+        CheckBannedPokemon($("#reward-value-select"), true);
         CheckInvalidItem($("#reward-value-select"));
         $("#reward-value-select").parent().nextAll(".error-invalid-poke").hide();
         $("#reward-value-select").parent().nextAll(".error-banned-poke").hide();
@@ -99,6 +102,7 @@ $(async function () {
         AppendPokemon($("#reward-value-select"));
         $("#reward-value-select-div").show();
         $("#reward-value-number-group").hide();
+        CheckInvalidItem($("#reward-value-select"), true);
         CheckInvalidPokemon($("#reward-value-select"));
         CheckBannedPokemon($("#reward-value-select"));
         $("#reward-value-select").parent().nextAll(".error-invalid-item").hide();
@@ -127,7 +131,6 @@ $(async function () {
     AppendDungeonFloor();
   });
   // 制限タイプ
-  $("#rest-type").off("change");
   $("#rest-type").on("change", function () {
     switch (restriction[$(this).val()].id) {
       case 0: // タイプ
@@ -137,6 +140,12 @@ $(async function () {
         AppendPokemon($("#rest-value"));
         break;
     }
+    $("#rest-value").trigger("change");
+  });
+  // 制限
+  $("#rest-value").on("change", function () {
+    CheckInvalidPokemon($("#rest-value"), $("#rest-type").val() != 1);
+    CheckBannedPokemon($("#rest-value"), $("#rest-type").val() != 1);
   });
 
   // テキストボックス入力制限
@@ -152,8 +161,8 @@ $(async function () {
 
   // パスワード文字数表示
   $("input[name='version']").on("change", function () {
-    $("#pass-area").val("").trigger("keyup");
-    AppendMissionType(); // 依頼タイプ更新
+    // $("#pass-area").val("").trigger("keyup");
+    // AppendMissionType(); // 依頼タイプ更新
   });
   $("#pass-area").on("keydown keyup", function () {
     let len = ConvertToHalfPassString($("#pass-area").val()).length;
@@ -190,20 +199,17 @@ $(async function () {
     console.log("init OK");
   });
 
-  // ロード完了後、必要な項目だけイベントトリガー
-  $("#mission-type").trigger("change");
-  $("#reward-type").trigger("change");
-  $("#dungeon").trigger("change");
-  $("#rest-type").trigger("change");
+  // ロード完了後、イベントトリガー
+  $("select").trigger("change");
   $("#pass-area").trigger("keyup");
-  $("#cliant, #target-1, #target-2, #target-item").trigger("change");
-  console.log("tri OK");
+  console.log("trigger OK");
 
   $("#pass-analysis").on("click", function () {
     AnalysisPass();
   });
   $("#pass-generate").on("click", function () {
     GeneratePass();
+    $("#pass-area").trigger("keyup");
   });
   $("input, select, textarea").on("change keydown", function () {
     $("#pass-alert").fadeOut();
@@ -250,8 +256,15 @@ function SetRandomValue(elem, max, hex = true) {
 /**
  * ポケモン無効チェック
  * @param {*} elem select要素
+ * @param {*} reset 強制的に解除
  */
-function CheckInvalidPokemon(elem) {
+function CheckInvalidPokemon(elem, reset = false) {
+  if (reset) {
+    elem.removeClass("border-danger");
+    elem.parent().nextAll(".error-invalid-poke").hide();
+    return;
+  }
+
   let valid = elem.find("option:selected").data("gender");
   if (valid !== undefined) {
     if (valid == 0 && !elem.prop("disabled") && !elem.find(`option[value="${elem.val()}"]`).hasClass("allow")) {
@@ -290,8 +303,15 @@ function AllowPokemon(elem, valid, pokes = []) {
 /**
  * ポケモン禁止チェック
  * @param {*} elem select要素
+ * @param {*} reset 強制的に解除
  */
-function CheckBannedPokemon(elem) {
+function CheckBannedPokemon(elem, reset = false) {
+  if (reset) {
+    elem.removeClass("border-danger");
+    elem.parent().nextAll(".error-banned-poke").hide();
+    return;
+  }
+
   let valid = elem.find("option:selected").data("banned");
   let allow = elem.find("option:selected").hasClass("allow");
   let disabled = elem.prop("disabled");
@@ -322,8 +342,15 @@ function CheckBannedPokemon(elem) {
 /**
  * 道具無効チェック
  * @param {*} elem
+ * @param {*} reset 強制的に解除
  */
-function CheckInvalidItem(elem) {
+function CheckInvalidItem(elem, reset) {
+  if (reset) {
+    elem.removeClass("border-danger");
+    elem.parent().nextAll(".error-invalid-item").hide();
+    return;
+  }
+
   let valid = elem.find("option:selected").data("valid");
   if (valid !== undefined) {
     if (!valid && !elem.prop("disabled")) {
@@ -405,13 +432,17 @@ function AppendRewardType() {
 function AppendPokemon(elem) {
   elem.empty();
   for (let i = 0; i < PokemonData.length * 2; i++) {
+    console.log(PokemonData[i % 600]);
     if (PokemonData[i % 600].Genders[Math.floor(i / 600)] == null) break;
     let gender = PokemonData[i % 600].Genders[Math.floor(i / 600)];
     let banned = banned_poke.includes(i % 600);
+    let pokeName = PokemonData[i % 600].Name;
+    let subName = PokemonData[i % 600].SubName;
+    if (subName.length > 0 && subName != null) pokeName += ` - ${subName}`;
     elem.append(
-      `<option value="${i}" data-pokeid="${i % 600}" data-gender="${gender}" data-banned="${banned}">[${("000" + i.toString(16)).slice(-3).toUpperCase()}] ${
-        PokemonData[i % 600].Name
-      } (${poke_gender[gender].name})</option>`
+      `<option value="${i}" data-pokeid="${i % 600}" data-gender="${gender}" data-banned="${banned}">` +
+        `[${("000" + i.toString(16)).slice(-3).toUpperCase()}] ${pokeName} (${poke_gender[gender].name})` +
+        `</option>`
     );
   }
 }
@@ -438,6 +469,8 @@ function AppendDungeon() {
   for (let i = 0; i < DungeonData.length; i++) {
     $("#dungeon").append(`<option value="${i}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`);
   }
+  // ダミー(0xAD)を選択不可にする
+  $(`select#dungeon option[value="${0xad}"]`).prop("disabled", true);
 }
 /**
  * 階数をセット
@@ -446,20 +479,19 @@ function AppendDungeon() {
 function AppendDungeonFloor(keep = false) {
   let elem = $("#dungeon-floor");
   let dun = DungeonData[$("#dungeon").val()];
-  let floorCount = dun.FloorCount;
-  let prevValue = elem.val(); // 値保持用
+
+  //let prevValue = elem.val(); // 値保持用
   elem.empty();
-  for (let i = 1; i <= floorCount; i++) {
+  for (let i = dun.FloorPrev + 1; i <= dun.FloorTotal; i++) {
     if ($("#mission-type").val() != null) {
       let diff = FloorData[dun.MappaIndex][i].MissionRankId;
       if (mission_type[$("#mission-type").val()].difficult && diff < 15) diff++;
-      elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i}F : ${difficult[diff].name}(${difficult[diff].value})</option>`);
+      elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F : ${difficult[diff].name}(${difficult[diff].value})</option>`);
     } else {
-      elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i}F</option>`);
+      elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F</option>`);
     }
   }
-  if (keep && prevValue < floorCount) elem.val(prevValue);
-  else elem.val(1);
+  elem.val(dun.FloorPrev + 1);
 }
 /**
  * 固定フロアをセット

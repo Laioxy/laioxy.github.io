@@ -5,6 +5,12 @@ html {
     background-color: #ddd;
     height: 100%;
   }
+
+  select {
+    option:disabled {
+      color: #ccc;
+    }
+  }
 }
 
 i {
