@@ -432,7 +432,6 @@ function AppendRewardType() {
 function AppendPokemon(elem) {
   elem.empty();
   for (let i = 0; i < PokemonData.length * 2; i++) {
-    console.log(PokemonData[i % 600]);
     if (PokemonData[i % 600].Genders[Math.floor(i / 600)] == null) break;
     let gender = PokemonData[i % 600].Genders[Math.floor(i / 600)];
     let banned = banned_poke.includes(i % 600);
