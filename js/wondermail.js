@@ -481,7 +481,7 @@ function AppendDungeonFloor(keep = false) {
 
   //let prevValue = elem.val(); // 値保持用
   elem.empty();
-  for (let i = dun.FloorPrev + 1; i <= dun.FloorTotal; i++) {
+  for (let i = dun.FloorPrev + 1; i - dun.FloorPrev <= dun.FloorCount; i++) {
     if ($("#mission-type").val() != null) {
       let diff = FloorData[dun.MappaIndex][i].MissionRankId;
       if (mission_type[$("#mission-type").val()].difficult && diff < 15) diff++;
