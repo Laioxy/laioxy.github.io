@@ -1,5 +1,6 @@
 {% if site.google_analytics %}
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LEVRKJ54W8"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag() {
@@ -7,6 +8,6 @@
   }
   gtag("js", new Date());
 
-  gtag("config", "G-LEVRKJ54W8");
+  gtag("config", "{{ site.google_analytics }}");
 </script>
 {% endif %}
