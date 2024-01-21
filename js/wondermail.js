@@ -81,6 +81,11 @@ $(async function () {
   e_mission_flag.on("change", function () {
     ToggleDisabled();
 
+    // アジト依頼(依頼タイプ=0xA, フラグ=0x6)の場合、固定フロア有効
+    let missionType = e_mission_type.val();
+    let missionFlag = e_mission_flag.val();
+    e_fixed_floor.prop("disabled", !(missionType == 0xa && missionFlag == 0x6));
+
     //  伝説の挑戦状の場合、各種セレクトボックスにセット
     let skyMTypeId = e_mission_type.find("option:selected").data("sky");
     // 報酬
