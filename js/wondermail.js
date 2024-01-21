@@ -5,15 +5,47 @@ var DungeonData;
 var FloorData;
 var FixedData;
 
+// 要素キャッシュ
+var e_mission_type;
+var e_mission_flag;
+var e_reward_type;
+var e_reward_value_number;
+var e_reward_value_select;
+var e_cliant;
+var e_target_1;
+var e_target_2;
+
 // アドバンスモード (※未実装)
 var advance = false;
 
 $(async function () {
-  PokemonData = await GetPokemonJson();
-  ItemData = await GetItemJson();
-  DungeonData = await GetDungeonJson();
-  FloorData = await GetFloorJson();
-  FixedData = await GetFixedJson();
+  await Promise.all([GetPokemonJson(), GetItemJson(), GetDungeonJson(), GetFloorJson(), GetFixedJson()])
+    .then((results) => {
+      PokemonData = results[0];
+      ItemData = results[1];
+      DungeonData = results[2];
+      FloorData = results[3];
+      FixedData = results[4];
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+
+  e_mission_type = $("#mission-type");
+  e_mission_flag = $("#mission-flag");
+  e_reward_type = $("#reward-type");
+  e_reward_value_number = $("#reward-value-number");
+  e_reward_value_select = $("#reward-value-select");
+  e_cliant = $("#cliant");
+  e_target_1 = $("#target-1");
+  e_target_2 = $("#target-2");
+  e_tareget_item = $("#target-item");
+  e_dungeon = $("#dungeon");
+  e_dungeon_floor = $("#dungeon-floor");
+  e_fixed_floor = $("#fixed-floor");
+  e_rest_type = $("#rest-type");
+  e_rest_value = $("#rest-value");
+  e_seed = $("#seed");
 
   // バージョン・リージョン
   $("input[name='version'], input[name='resion']").on("change", function () {
@@ -30,122 +62,122 @@ $(async function () {
     ToggleDisabled();
   });
   // 依頼タイプ
-  $("#mission-type").on("change", function () {
+  e_mission_type.on("change", function () {
     let skyMTypeId = $(this).find("option:selected").data("sky");
     AppendMissionFlag(); // 依頼フラグ項目更新
     AppendDungeonFloor(true); // 階数項目更新 (依頼難易度変化の対応)
     ToggleDisabled();
 
     // 0x09 or 0x0A なら依頼主でコイルとジバコイルを許可
-    AllowPokemon($("#cliant"), skyMTypeId == 0x09 || skyMTypeId == 0x0a, [0x051, 0x1f8]);
-    CheckBannedPokemon($("#cliant")); // 依頼主更新
+    AllowPokemon(e_cliant, skyMTypeId == 0x09 || skyMTypeId == 0x0a, [0x051, 0x1f8]);
+    CheckBannedPokemon(e_cliant); // 依頼主更新
 
-    CheckInvalidPokemon($("#target-1"));
-    CheckInvalidPokemon($("#target-2"));
-    CheckBannedPokemon($("#target-1"));
-    CheckBannedPokemon($("#target-2"));
+    CheckInvalidPokemon(e_target_1);
+    CheckInvalidPokemon(e_target_2);
+    CheckBannedPokemon(e_target_1);
+    CheckBannedPokemon(e_target_2);
   });
   // 依頼フラグ
-  $("#mission-flag").on("change", function () {
+  e_mission_flag.on("change", function () {
     ToggleDisabled();
 
     //  伝説の挑戦状の場合、各種セレクトボックスにセット
-    let skyMTypeId = $("#mission-type").find("option:selected").data("sky");
+    let skyMTypeId = e_mission_type.find("option:selected").data("sky");
     // 報酬
-    AllowPokemon($("#reward-value-select"), skyMTypeId == 0x0b && $(this).val() == 1, [0x096]); // ミュウツー
-    AllowPokemon($("#reward-value-select"), skyMTypeId == 0x0b && $(this).val() == 2, [0x10f]); // エンテイ
-    AllowPokemon($("#reward-value-select"), skyMTypeId == 0x0b && $(this).val() == 3, [0x10e]); // ライコウ
-    AllowPokemon($("#reward-value-select"), skyMTypeId == 0x0b && $(this).val() == 4, [0x110]); // スイクン
-    AllowPokemon($("#reward-value-select"), skyMTypeId == 0x0b && $(this).val() == 5, [0x1a1]); // ジラーチ
+    AllowPokemon(e_reward_value_select, skyMTypeId == 0x0b && $(this).val() == 1, [0x096]); // ミュウツー
+    AllowPokemon(e_reward_value_select, skyMTypeId == 0x0b && $(this).val() == 2, [0x10f]); // エンテイ
+    AllowPokemon(e_reward_value_select, skyMTypeId == 0x0b && $(this).val() == 3, [0x10e]); // ライコウ
+    AllowPokemon(e_reward_value_select, skyMTypeId == 0x0b && $(this).val() == 4, [0x110]); // スイクン
+    AllowPokemon(e_reward_value_select, skyMTypeId == 0x0b && $(this).val() == 5, [0x1a1]); // ジラーチ
     // 依頼主
-    AllowPokemon($("#cliant"), skyMTypeId == 0x0b && $(this).val() == 1, [0x096]); // ミュウツー
-    AllowPokemon($("#cliant"), skyMTypeId == 0x0b && $(this).val() == 2, [0x10f]); // エンテイ
-    AllowPokemon($("#cliant"), skyMTypeId == 0x0b && $(this).val() == 3, [0x10e]); // ライコウ
-    AllowPokemon($("#cliant"), skyMTypeId == 0x0b && $(this).val() == 4, [0x110]); // スイクン
-    AllowPokemon($("#cliant"), skyMTypeId == 0x0b && $(this).val() == 5, [0x1a1]); // ジラーチ
+    AllowPokemon(e_cliant, skyMTypeId == 0x0b && $(this).val() == 1, [0x096]); // ミュウツー
+    AllowPokemon(e_cliant, skyMTypeId == 0x0b && $(this).val() == 2, [0x10f]); // エンテイ
+    AllowPokemon(e_cliant, skyMTypeId == 0x0b && $(this).val() == 3, [0x10e]); // ライコウ
+    AllowPokemon(e_cliant, skyMTypeId == 0x0b && $(this).val() == 4, [0x110]); // スイクン
+    AllowPokemon(e_cliant, skyMTypeId == 0x0b && $(this).val() == 5, [0x1a1]); // ジラーチ
     // 対象ポケモン
-    AllowPokemon($("#target-1"), skyMTypeId == 0x0b && $(this).val() == 1, [0x096]); // ミュウツー
-    AllowPokemon($("#target-1"), skyMTypeId == 0x0b && $(this).val() == 2, [0x10f]); // エンテイ
-    AllowPokemon($("#target-1"), skyMTypeId == 0x0b && $(this).val() == 3, [0x10e]); // ライコウ
-    AllowPokemon($("#target-1"), skyMTypeId == 0x0b && $(this).val() == 4, [0x110]); // スイクン
-    AllowPokemon($("#target-1"), skyMTypeId == 0x0b && $(this).val() == 5, [0x1a1]); // ジラーチ
+    AllowPokemon(e_target_1, skyMTypeId == 0x0b && $(this).val() == 1, [0x096]); // ミュウツー
+    AllowPokemon(e_target_1, skyMTypeId == 0x0b && $(this).val() == 2, [0x10f]); // エンテイ
+    AllowPokemon(e_target_1, skyMTypeId == 0x0b && $(this).val() == 3, [0x10e]); // ライコウ
+    AllowPokemon(e_target_1, skyMTypeId == 0x0b && $(this).val() == 4, [0x110]); // スイクン
+    AllowPokemon(e_target_1, skyMTypeId == 0x0b && $(this).val() == 5, [0x1a1]); // ジラーチ
 
-    CheckInvalidPokemon($("#reward-value-select"));
-    CheckInvalidPokemon($("#target-1"));
-    CheckInvalidPokemon($("#target-2"));
-    CheckInvalidPokemon($("#cliant"));
-    CheckBannedPokemon($("#reward-value-select"));
-    CheckBannedPokemon($("#target-1"));
-    CheckBannedPokemon($("#target-2")); // disabledケア用途
-    CheckBannedPokemon($("#cliant"));
+    CheckInvalidPokemon(e_reward_value_select);
+    CheckInvalidPokemon(e_target_1);
+    CheckInvalidPokemon(e_target_2);
+    CheckInvalidPokemon(e_cliant);
+    CheckBannedPokemon(e_reward_value_select);
+    CheckBannedPokemon(e_target_1);
+    CheckBannedPokemon(e_target_2); // disabledケア用途
+    CheckBannedPokemon(e_cliant);
   });
   // 報酬タイプ
-  $("#reward-type").on("change", function () {
-    let prev_num = $("#reward-value-number").val();
-    let prev_sel = $("#reward-value-select").val();
+  e_reward_type.on("change", function () {
+    let prev_num = e_reward_value_number.val();
+    let prev_sel = e_reward_value_select.val();
     switch (reward_type[$(this).val()].mode) {
       case 0: // 指定なし
         $("#reward-value-number-group").show();
         $("#reward-value-select-div").hide();
         break;
       case 1: // 道具
-        AppendItem($("#reward-value-select"));
+        AppendItem(e_reward_value_select);
         $("#reward-value-select-div").show();
         $("#reward-value-number-group").hide();
-        CheckInvalidPokemon($("#reward-value-select"), true);
-        CheckBannedPokemon($("#reward-value-select"), true);
-        CheckInvalidItem($("#reward-value-select"));
-        $("#reward-value-select").parent().nextAll(".error-invalid-poke").hide();
-        $("#reward-value-select").parent().nextAll(".error-banned-poke").hide();
+        CheckInvalidPokemon(e_reward_value_select, true);
+        CheckBannedPokemon(e_reward_value_select, true);
+        CheckInvalidItem(e_reward_value_select);
+        e_reward_value_select.parent().nextAll(".error-invalid-poke").hide();
+        e_reward_value_select.parent().nextAll(".error-banned-poke").hide();
         break;
       case 2: // ポケモン
-        AppendPokemon($("#reward-value-select"));
+        AppendPokemon(e_reward_value_select);
         $("#reward-value-select-div").show();
         $("#reward-value-number-group").hide();
-        CheckInvalidItem($("#reward-value-select"), true);
-        CheckInvalidPokemon($("#reward-value-select"));
-        CheckBannedPokemon($("#reward-value-select"));
-        $("#reward-value-select").parent().nextAll(".error-invalid-item").hide();
+        CheckInvalidItem(e_reward_value_select, true);
+        CheckInvalidPokemon(e_reward_value_select);
+        CheckBannedPokemon(e_reward_value_select);
+        e_reward_value_select.parent().nextAll(".error-invalid-item").hide();
         break;
     }
     ToggleDisabled();
-    $("#mission-flag").trigger("change"); // 報酬の仲間ポケモンの有効無効を更新
+    e_mission_flag.trigger("change"); // 報酬の仲間ポケモンの有効無効を更新
 
     // changeのトリガーで値が変わってしまう対策
-    if (prev_num != null) $("#reward-value-number").val(prev_num);
+    if (prev_num != null) e_reward_value_number.val(prev_num);
     if (prev_sel != null) {
       // 項目が上限を超過している場合、0に戻す
       if (prev_sel >= $("#reward-value-select option").length) prev_sel = 0;
-      $("#reward-value-select").val(prev_sel);
+      e_reward_value_select.val(prev_sel);
     }
   });
   // 依頼主
-  $("#cliant").on("change", function (e) {
+  e_cliant.on("change", function (e) {
     e;
-    if (mission_type[$("#mission-type").val()].same_cliant) {
-      $("#target-1").val($(this).val());
+    if (mission_type[e_mission_type.val()].same_cliant) {
+      e_target_1.val($(this).val());
     }
   });
   // ダンジョン
-  $("#dungeon").on("change", function () {
+  e_dungeon.on("change", function () {
     AppendDungeonFloor();
   });
   // 制限タイプ
-  $("#rest-type").on("change", function () {
+  e_rest_type.on("change", function () {
     switch (restriction[$(this).val()].id) {
       case 0: // タイプ
         AppendPokeType();
         break;
       case 1: // ポケモン
-        AppendPokemon($("#rest-value"));
+        AppendPokemon(e_rest_value);
         break;
     }
-    $("#rest-value").trigger("change");
+    e_rest_value.trigger("change");
   });
   // 制限
-  $("#rest-value").on("change", function () {
-    CheckInvalidPokemon($("#rest-value"), $("#rest-type").val() != 1);
-    CheckBannedPokemon($("#rest-value"), $("#rest-type").val() != 1);
+  e_rest_value.on("change", function () {
+    CheckInvalidPokemon(e_rest_value, e_rest_type.val() != 1);
+    CheckBannedPokemon(e_rest_value, e_rest_type.val() != 1);
   });
 
   // テキストボックス入力制限
@@ -172,10 +204,10 @@ $(async function () {
 
   // エラーメッセージ
   $("#reward-type, #reward-value-select, #cliant, #target-1, #target-2, #target-item").on("change", function () {
-    if ($(this) == $("#reward-type")) {
-      CheckInvalidPokemon($("#reward-value-select"));
-      CheckBannedPokemon($("#reward-value-select"));
-      CheckInvalidItem($("#reward-value-select"));
+    if ($(this) == e_reward_type) {
+      CheckInvalidPokemon(e_reward_value_select);
+      CheckBannedPokemon(e_reward_value_select);
+      CheckInvalidItem(e_reward_value_select);
     } else {
       CheckInvalidPokemon($(this));
       CheckBannedPokemon($(this));
@@ -189,10 +221,10 @@ $(async function () {
     AppendMissionType();
     AppendMissionFlag();
     AppendRewardType();
-    AppendPokemon($("#cliant"));
-    AppendPokemon($("#target-1"));
-    AppendPokemon($("#target-2"));
-    AppendItem($("#target-item"));
+    AppendPokemon(e_cliant);
+    AppendPokemon(e_target_1);
+    AppendPokemon(e_target_2);
+    AppendItem(e_tareget_item);
     AppendDungeon();
     AppendFixedFloor();
     AppendRestrictionType();
@@ -218,20 +250,20 @@ $(async function () {
 
 // 項目の有効無効
 function ToggleDisabled() {
-  let mission_type_val = $("#mission-type").val();
-  let mission_flag_val = $("#mission-flag").val();
+  let mission_type_val = e_mission_type.val();
+  let mission_flag_val = e_mission_flag.val();
   // 対象ポケモン1
-  $("#target-1").prop("disabled", mission_type[mission_type_val].same_cliant);
+  e_target_1.prop("disabled", mission_type[mission_type_val].same_cliant);
   // 対象ポケモン2
   let target2_d = (mission_type_val == 10 && mission_flag_val == 6) || (mission_type_val == 11 && mission_flag_val == 0);
-  $("#target-2").prop("disabled", !target2_d);
-  if (!target2_d) $("#target-2").val(0);
+  e_target_2.prop("disabled", !target2_d);
+  if (!target2_d) e_target_2.val(0);
   // 固定フロア
-  $("#fixed-floor").prop("disabled", !mission_type[mission_type_val].used_fixed);
+  e_fixed_floor.prop("disabled", !mission_type[mission_type_val].used_fixed);
 
   // 時闇に存在しない項目は非活性かつ半透明化
   // 該当: 対象ポケモン2, 固定フロア
-  let sky_only = [$("#target-2"), $("#fixed-floor")];
+  let sky_only = [e_target_2, e_fixed_floor];
   let old = $("#version-old").prop("checked");
   sky_only.forEach(function (r) {
     if (old) {
@@ -367,7 +399,7 @@ function CheckInvalidItem(elem, reset) {
  * 依頼タイプをセット
  */
 function AppendMissionType() {
-  let elem = $("#mission-type");
+  let elem = e_mission_type;
   let prev = elem.val(); // 現在選択中の依頼タイプID (保持用)
   let skyId = elem.find("option:selected").data("sky") ?? 0; // 空基準の依頼タイプID
   let mtype = mission_type;
@@ -408,7 +440,7 @@ function AppendMissionType() {
  * 依頼フラグをセット
  */
 function AppendMissionFlag() {
-  let elem = $("#mission-flag");
+  let elem = e_mission_flag;
   elem.empty();
   let flagType = mission_type[$("#mission-type option:selected").data("sky")].flag;
   for (let i = 0; i < mission_flag[flagType].length; i++) {
@@ -419,7 +451,7 @@ function AppendMissionFlag() {
  * 報酬タイプをセット
  */
 function AppendRewardType() {
-  let elem = $("#reward-type");
+  let elem = e_reward_type;
   elem.empty();
   for (let i = 0; i < reward_type.length; i++) {
     elem.append(`<option value="${i}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${reward_type[i].name}</option>`);
@@ -464,9 +496,9 @@ function AppendItem(elem) {
  * ダンジョンをセット
  */
 function AppendDungeon() {
-  $("#dungeon").empty();
+  e_dungeon.empty();
   for (let i = 0; i < DungeonData.length; i++) {
-    $("#dungeon").append(`<option value="${i}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`);
+    e_dungeon.append(`<option value="${i}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`);
   }
   // ダミー(0xAD)を選択不可にする
   $(`select#dungeon option[value="${0xad}"]`).prop("disabled", true);
@@ -476,15 +508,15 @@ function AppendDungeon() {
  * @param {*} keep
  */
 function AppendDungeonFloor(keep = false) {
-  let elem = $("#dungeon-floor");
-  let dun = DungeonData[$("#dungeon").val()];
+  let elem = e_dungeon_floor;
+  let dun = DungeonData[e_dungeon.val()];
 
   //let prevValue = elem.val(); // 値保持用
   elem.empty();
   for (let i = dun.FloorPrev + 1; i - dun.FloorPrev <= dun.FloorCount; i++) {
-    if ($("#mission-type").val() != null) {
+    if (e_mission_type.val() != null) {
       let diff = FloorData[dun.MappaIndex][i].MissionRankId;
-      if (mission_type[$("#mission-type").val()].difficult && diff < 15) diff++;
+      if (mission_type[e_mission_type.val()].difficult && diff < 15) diff++;
       elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F : ${difficult[diff].name}(${difficult[diff].value})</option>`);
     } else {
       elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F</option>`);
@@ -496,7 +528,7 @@ function AppendDungeonFloor(keep = false) {
  * 固定フロアをセット
  */
 function AppendFixedFloor() {
-  let elem = $("#fixed-floor");
+  let elem = e_fixed_floor;
   elem.empty();
   for (let i = 0; i < FixedData.length; i++) {
     elem.append(`<option value="${i}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${FixedData[i].Name}</option>`);
@@ -506,7 +538,7 @@ function AppendFixedFloor() {
  * 制限タイプをセット
  */
 function AppendRestrictionType() {
-  let elem = $("#rest-type");
+  let elem = e_rest_type;
   elem.empty();
   for (let i = 0; i < restriction.length; i++) {
     elem.append(`<option value="${i}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${restriction[i].name}</option>`);
@@ -516,7 +548,7 @@ function AppendRestrictionType() {
  * 制限にタイプをセット
  */
 function AppendPokeType() {
-  let elem = $("#rest-value");
+  let elem = e_rest_value;
   elem.empty();
   for (let i = 0; i < poke_type.length; i++) {
     elem.append(`<option value="${i}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${poke_type[i].name}</option>`);
