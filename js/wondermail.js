@@ -81,11 +81,6 @@ $(async function () {
   e_mission_flag.on("change", function () {
     ToggleDisabled();
 
-    // アジト依頼(依頼タイプ=0xA, フラグ=0x6)の場合、固定フロア有効
-    let missionType = e_mission_type.val();
-    let missionFlag = e_mission_flag.val();
-    e_fixed_floor.prop("disabled", !(missionType == 0xa && missionFlag == 0x6));
-
     //  伝説の挑戦状の場合、各種セレクトボックスにセット
     let skyMTypeId = e_mission_type.find("option:selected").data("sky");
     // 報酬
@@ -264,7 +259,17 @@ function ToggleDisabled() {
   e_target_2.prop("disabled", !target2_d);
   if (!target2_d) e_target_2.val(0);
   // 固定フロア
-  e_fixed_floor.prop("disabled", !mission_type[mission_type_val].used_fixed);
+  // アジト依頼(依頼タイプ=0xA, フラグ=0x6)の場合、固定フロア有効
+  let prevFixed = e_fixed_floor.prop("disabled");
+  console.log(`${mission_type_val} / ${mission_flag_val}`);
+  if ((mission_type_val == 0xa && mission_flag_val == 0x6) || mission_type[mission_type_val].used_fixed) {
+    e_fixed_floor.prop("disabled", false);
+  } else {
+    e_fixed_floor.prop("disabled", true);
+  }
+
+  // 固定フロアの活性状態に変更があれば値を0にする
+  if (prevFixed != e_fixed_floor.prop("disabled")) e_fixed_floor.val(0);
 
   // 時闇に存在しない項目は非活性かつ半透明化
   // 該当: 対象ポケモン2, 固定フロア
