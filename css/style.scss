@@ -82,3 +82,16 @@ h2.top-icon {
     margin-left: 4px;
   }
 }
+
+.loading {
+  background-color: #ffffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -8,7 +8,7 @@
     <meta name="twitter:site" content="@laioxy" />
     <meta name="twitter:creator" content="@laioxy" />
     <meta name="og:url" content="https://laioxy.github.io" />
-    <meta name="og:title" content="Lai-brary | ふしぎなメール生成器" />
+    <meta name="og:title" content="Lai-brary | ふしぎなメール生成機" />
     <meta name="og:image" content="https://laioxy.github.io/img/card_img.png" />
 
     <link href="favicon.ico" rel="icon" id="favicon" />
@@ -60,7 +60,7 @@
     <script src="js/wondermail_pass.js"></script>
     <script src="js/json_script.js"></script>
     <script src="js/poke_prop.js"></script>
-    <title>Lai-brary | ふしぎなメール生成器</title>
+    <title>Lai-brary | ふしぎなメール生成機</title>
   </head>
   <body>
     <div class="container-head">
@@ -70,10 +70,16 @@
       </a>
     </div>
 
+    <div class="loading">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
     <!-- <div class="container-main"> -->
-    <div class="container pb-3">
+    <div class="container-md pb-3">
       <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
-        <h1 class="m-0">ふしぎなメール 生成器</h1>
+        <h1 class="m-0">ふしぎなメール 生成機</h1>
         <hr />
         <p class="text-start">
           ポケダン<span class="text-primary">時</span>/<span class="text-danger">闇</span>/<span class="text-success">空</span
@@ -81,18 +87,34 @@
           楽に道具や仲間を集めたり、難しい依頼を作って挑戦したり、バグ技を試してみたりと、用途は様々。
         </p>
         <p>使用環境はPCを想定しているので、無効・禁止ポケモン等がスマホだと分かりにくかったりします。ご了承ください…。</p>
+        <div class="alert alert-warning">
+          <h5 class="alert-heading"><i class="bi bi-exclamation-diamond-fill"></i>時闇でパスワードを作る場合...</h5>
+          <p class="mb-0">
+            このサイトで使用している各種データは空準拠なので、時闇に無いもので生成するとゲーム側で正しく反映できない場合があります。<br />
+            <span style="font-size: 0.8em">例: シェイミ、オレソのみ、そらのいただき etc...</span>
+          </p>
+        </div>
         <div class="alert alert-danger mb-0">
-          このツールで作成したパスワードはいわゆる「捏造パス」や「改造パス」と呼ばれるものとみなします。<br />
-          各種サイト・SNS等へ掲載する際は、<u><b>これらのパスが掲載可能である場所でのみ行ってください。</b></u
-          ><br />
-          また、正規の手段で得られたパスワードとして偽って掲載することを<b>禁止</b>します。
+          <h5 class="alert-heading"><i class="bi bi-exclamation-diamond-fill"></i>必ずお読み下さい</h5>
+          <p>
+            このツールで作成したパスワードはいわゆる「捏造パス」や「改造パス」と呼ばれるものとみなします。<br />
+            各種サイト・SNS等へ掲載する際は、<u><b>これらのパスが掲載可能である場所でのみ行ってください。</b></u
+            ><br />
+            また、正規の手段で得られたパスワードとして偽って掲載することを<b>禁止</b>します。
+          </p>
           <hr />
-          組み合わせによってはセーブデータに影響を及ぼす場合があります。<b>自己責任でご利用ください。</b><br />
-          （セーブデータが消えることは無いです）
+          <p class="mb-0">
+            組み合わせによってはセーブデータに影響を及ぼす場合があります。<b>自己責任でご利用ください。</b><br />
+            （セーブデータが消えることは無いです）
+          </p>
         </div>
       </div>
 
       <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle" id="pass-form">
+        <div id="advanced-alert" class="alert advanced" style="display: none">
+          <h5>Advanced Mode!</h5>
+          <span>項目や機能が拡張され、制限が解除されます。</span>
+        </div>
         <div class="card p-3 mb-3">
           <div class="mb-3">
             <div class="d-flex flex-column flex-sm-row gap-0 gap-sm-3">
@@ -128,6 +150,19 @@
             <label class="col-12 form-label"><span>パスワード</span><span class="context-sm" id="pass-maxlength"></span></label>
             <textarea class="form-control form-control-sm d-grid" rows="2" id="pass-area" placeholder="スペース・改行など入っても大丈夫です"></textarea>
           </div>
+
+          <div class="mb-3 advanced">
+            <label class="form-label"><span>ハッシュ</span><span class="context-sm">(読み取り専用)</span></label>
+            <div class="row g-3">
+              <div class="col-lg-3 col-6">
+                <input type="text" id="hash1" class="form-control" placeholder="Hash1" readonly />
+              </div>
+              <div class="col-lg-3 col-6">
+                <input type="text" id="hash2" class="form-control" placeholder="Hash2" readonly />
+              </div>
+            </div>
+          </div>
+
           <div class="mb-3">
             <label class="col-12 form-label">生成オプション</label>
             <div class="d-flex flex-column flex-sm-row flex-wrap column-gap-3 row-gap-1">
@@ -155,6 +190,14 @@
             <div class="btn-group">
               <button class="btn btn-primary btn-lg" id="pass-analysis">パスワード展開</button>
               <button class="btn btn-danger btn-lg" id="pass-generate">パスワード生成</button>
+            </div>
+          </div>
+          <div class="advanced mt-3 mb-0">
+            <a id="mission-rawdata-collapse" class="text-black" role="button" data-bs-toggle="collapse" data-bs-target="#mission-rawdata-div">
+              <span class="form-label">生データ</span><i class="bi bi-caret-down-fill"></i>
+            </a>
+            <div id="mission-rawdata-div" class="collapse">
+              <textarea id="mission-rawdata" class="form-control form-control-sm font-monospace" rows="2" readonly></textarea>
             </div>
           </div>
 
@@ -302,7 +345,6 @@
 
       <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
         <h1>Q&A</h1>
-        <hr />
         <div class="accordion">
           <div class="accordion-item">
             <h2 class="accordion-header">
@@ -383,6 +425,29 @@
       <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
         <h2>更新履歴</h2>
         <ul>
+          <li>
+            <u>ver 1.0.6 (2024/02/01)</u><br />
+            <ul>
+              <li>ツールの名称を「生成器」→「生成機」に変更</li>
+              <li>
+                対象ポケモン1を"選択できる依頼タイプ"から"選択できない依頼タイプ"に変更時、対象ポケモン1の値が保持されているように見える表示上の問題を修正
+              </li>
+              <li>パスワード展開時、報酬値の16進数のアルファベットが小文字になっていた問題を修正</li>
+              <li>報酬値・SEEDでテンキーの0、7、8、9が入力できない問題を修正</li>
+              <li>報酬タイプを道具・ポケモン系の項目に変更時、保持された値が有効な値であるにもかかわらずエラーメッセージが表示される問題を修正</li>
+              <li>時闇の特別指令に対応（フラグ0～7）</li>
+              <li>注意事項の文言追加</li>
+              <li>
+                <a href="?advanced">アドバンスドモード</a>実装 (上級者向け・項目拡張と制限の解除)<br />
+                <ul>
+                  <li>依頼タイプ・フラグが0xFまで選択可能</li>
+                  <li>選択不可状態を強制解除</li>
+                  <li>展開したパスワードのハッシュ値表示</li>
+                  <li>展開したパスワードの生データ表示</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
           <li>
             <u>ver 1.0.5 (2024/01/29)</u><br />
             <ul>

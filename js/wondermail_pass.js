@@ -1,5 +1,4 @@
 // swap
-
 const swap_table = {
   sky: {
     jp: [
@@ -62,10 +61,61 @@ class WonderMail {
   decList = [];
   Password = "";
 
-  Decode(decode) {
-    // 展開
-    let swap = GetSwapTable();
-    this.Sky = swap.length == 34;
+  // 展開
+  Decode(sky, resion, pass = "") {
+    if (pass.length > 0) {
+      this.Password = pass;
+    }
+    let swap = GetSwapTable(sky, resion);
+
+    // Index変換
+    let idxList = new Array(this.Password.length);
+    for (let i = 0; i < this.Password.length; i++) {
+      idxList[i] = pass_str.indexOf(this.Password[i]);
+    }
+    // Swap変換
+    let swapList = new Array(this.Password.length);
+    for (let i = 0; i < this.Password.length; i++) {
+      swapList[i] = idxList[swap[i]];
+    }
+    // Bit変換
+    let bit = 0;
+    let val = 0;
+    let convList = [];
+    swapList.forEach(function (r) {
+      val |= r << bit;
+      bit += 5;
+      if (bit >= 8) {
+        convList.push(val & 0xff);
+        val >>= 8;
+        bit -= 8;
+      }
+    });
+    // Decode
+    let first = convList[0];
+    let mov = first % 2 == 0 ? -1 : 1;
+    let pos = first;
+    let rcn = (first >> 4) + (first & 0xf) + 8;
+    let decList = [];
+    convList.forEach(function (r, i) {
+      let dec = r;
+      if ((sky && i >= 4) || (!sky && i >= 1)) {
+        dec += 0xff00 - encryption[pos];
+        dec &= 0xff;
+        pos += mov;
+        pos &= 0xff;
+        rcn--;
+        if (rcn == 0) pos = first;
+      }
+      decList.push(dec);
+    });
+    this.idxList = idxList;
+    this.swapList = swapList;
+    this.convList = convList;
+    this.decList = decList;
+
+    let decode = this.decList;
+    this.Sky = sky;
     if (this.Sky) {
       this.Hash1 = decode[0] | (decode[1] << 8) | (decode[2] << 16) | (decode[3] << 24);
       this.Status = decode[4] & 0xf;
@@ -83,9 +133,9 @@ class WonderMail {
       this.Dungeon = (decode[17] >> 2) | ((decode[18] << 6) & 0xff);
       this.Floor = (decode[18] >> 2) | ((decode[19] << 6) & 0xff);
       this.Fixed = (decode[19] >> 2) | ((decode[20] << 6) & 0xff);
-      // CRC計算
+      // CRC再計算
       if (this.Hash1 < 0) this.Hash1 += 0x100000000;
-      this.Hash2 = CalcCRC32(decode);
+      this.Hash2 = this.CalcCRC32(decode);
     } else {
       this.Hash1 = decode[0];
       this.Status = decode[1] & 0xf;
@@ -101,11 +151,18 @@ class WonderMail {
       this.Seed = ((decode[9] >> 7) | (decode[10] << 1) | (decode[11] << 9) | (decode[12] << 17)) & 0xffffff;
       this.Dungeon = ((decode[12] >> 7) | (decode[13] << 1)) & 0xff;
       this.Floor = ((decode[13] >> 7) | (decode[14] << 1)) & 0xff;
+      // ハッシュ再計算
+      let hash = 0;
+      for (let i = 1; i < decode.length; i++) {
+        hash += decode[i] + i;
+        hash &= 0xff;
+      }
+      this.Hash2 = hash;
     }
   }
-  Encode() {
-    let swap = GetSwapTable();
-    this.Sky = swap.length == 34;
+  Encode(sky = true, resion = "jp") {
+    let swap = GetSwapTable(sky, resion);
+    this.Sky = sky;
     let decode;
     if (this.Sky) {
       decode = new Array(22);
@@ -128,7 +185,7 @@ class WonderMail {
       decode[20] = parseInt(this.Fixed >> 6);
       decode[21] = 0;
       // CRC化→格納
-      let crc = GetCRC32Table();
+      let crc = this.GetCRC32Table();
       let hash = 0xffffffff;
       for (let i = 4; i < decode.length - 1; i++) {
         let e = crc[(hash ^ decode[i]) & 0xff];
@@ -216,293 +273,55 @@ class WonderMail {
     console.log("生成: " + pass);
     this.Password = pass;
   }
-}
 
-/**
- * パスワード展開
- * @returns
- */
-function AnalysisPass() {
-  let swap = GetSwapTable();
-  let sky = swap.length == 34;
-  let error = "";
-  $("#pass-alert").removeClass("alert-success");
-  $("#pass-alert").removeClass("alert-danger");
-  $("#pass-alert").removeClass("alert-warning");
-
-  // パスワード取得
-  let pass = ConvertToHalfPassString($("#pass-area").val());
-  if (pass.length != swap.length) {
-    error = `パスワードの文字数が正しくありません。(${pass.length}/${swap.length})`;
-  }
-  for (let i = 0; i < pass.length; i++) {
-    if (pass_str.indexOf(String(pass[i])) == -1) {
-      error = `パスワードが間違っています。 (該当: ${i + 1}文字目)`;
-      break;
+  /**
+   * CRC32ハッシュ化
+   * @param {*} arr 対象
+   * @returns CRC32ハッシュ
+   */
+  CalcCRC32(arr) {
+    let crc = this.GetCRC32Table();
+    let pos = 0xffffffff;
+    for (let i = 4; i < arr.length; i++) {
+      let e = crc[(pos ^ arr[i]) & 0xff];
+      pos = (pos >>> 8) ^ e;
     }
+    pos = pos ^ 0xffffffff;
+    if (pos < 0) pos += 0x100000000;
+    return pos;
   }
 
-  if (error.length == 0) {
-    console.log("展開: " + pass);
-    try {
-      // Index変換
-      let idxList = new Array(pass.length);
-      for (let i = 0; i < pass.length; i++) {
-        idxList[i] = pass_str.indexOf(pass[i]);
+  /**
+   * CRC32テーブル作成
+   */
+  GetCRC32Table() {
+    let res = new Array(256);
+    for (let i = 0; i < res.length; i++) {
+      let crcVal = i;
+      for (let j = 0; j < 8; j++) {
+        if ((crcVal & 1) != 0) crcVal = 0xedb88320 ^ (crcVal >>> 1);
+        else crcVal = crcVal >>> 1;
       }
-      // Swap変換
-      let swapList = new Array(pass.length);
-      for (let i = 0; i < pass.length; i++) {
-        swapList[i] = idxList[swap[i]];
-      }
-      // Bit変換
-      let bit = 0;
-      let val = 0;
-      let convList = [];
-      swapList.forEach(function (r) {
-        val |= r << bit;
-        bit += 5;
-        if (bit >= 8) {
-          convList.push(val & 0xff);
-          val >>= 8;
-          bit -= 8;
-        }
-      });
-      // Decode
-      let first = convList[0];
-      let mov = first % 2 == 0 ? -1 : 1;
-      let pos = first;
-      let rcn = (first >> 4) + (first & 0xf) + 8;
-      let decList = [];
-      convList.forEach(function (r, i) {
-        let dec = r;
-        if ((sky && i >= 4) || (!sky && i >= 1)) {
-          dec += 0xff00 - encryption[pos];
-          dec &= 0xff;
-          pos += mov;
-          pos &= 0xff;
-          rcn--;
-          if (rcn == 0) pos = first;
-        }
-        decList.push(dec);
-      });
-
-      let mission = new WonderMail();
-      mission.Sky = sky;
-      mission.Password = pass;
-      mission.Decode(decList);
-      mission.idxList = idxList;
-      mission.swapList = swapList;
-      mission.convList = convList;
-      mission.decList = decList;
-
-      // コンボボックスにセット
-      $("#mission-type").val(mission.MissionType).change();
-      $("#mission-flag").val(mission.MissionFlag).change();
-      $("#reward-type").val(mission.RewardType).change();
-      $("#reward-value-number").val(mission.RewardValue.toString(16)).change();
-      $("#reward-value-select").val(mission.RewardValue).change();
-      $("#cliant").val(mission.Cliant).change();
-      $("#target-1").val(mission.Target1).change();
-      $("#target-2").val(mission.Target2).change();
-      $("#target-item").val(mission.TargetItem).change();
-      $("#dungeon").val(mission.Dungeon).change();
-      $("#dungeon-floor").val(mission.Floor).change();
-      $("#fixed-floor").val(mission.Fixed).change();
-      $("#rest-type").val(mission.RestType).change();
-      $("#rest-value").val(mission.RestValue).change();
-      $("#seed").val(mission.Seed.toString(16).toUpperCase()).change();
-
-      // メッセージ
-      $("#pass-alert").hide();
-
-      if (mission.Hash1 == mission.Hash2 || !mission.Sky) {
-        $("#pass-alert").html("パスワードを展開しました！");
-        $("#pass-alert").addClass("alert-success");
-      } else {
-        $("#pass-alert").html(`パスワードを展開しましたが、CRCが一致しません。<br>CRC1: ${mission.Hash1.toString(16)} / CRC2: ${mission.Hash2.toString(16)}`);
-        $("#pass-alert").addClass("alert-warning");
-      }
-      $("#pass-alert").fadeIn();
-    } catch (e) {
-      error = "処理エラー (" + e + ")";
-      $("#pass-alert").hide();
-      $("#pass-alert").text(error);
-      $("#pass-alert").addClass("alert-danger");
-      $("#pass-alert").fadeIn();
+      res[i] = crcVal;
     }
-  } else {
-    $("#pass-alert").hide();
-    $("#pass-alert").text("\n" + error);
-    $("#pass-alert").addClass("alert-danger");
-    $("#pass-alert").fadeIn();
+    return res;
   }
 }
 
-/**
- * パスワード文字列半角化
- * @param {*} str
- * @returns
- */
-function ConvertToHalfPassString(str) {
-  let res = "";
-  res = str
-    .toUpperCase()
-    .replace(/[\0\r\n\t 　]/g, "")
-    .replace(/♯/g, "#")
-    .replace(/[−―‐―ー—⁻₋]/g, "-")
-    .replace(/[Ａ-Ｚａ-ｚ０-９＋－＝＆％＠＃]/g, function (s) {
-      return String.fromCharCode(s.charCodeAt(0) - 0xfee0);
-    });
-  return res;
-}
-
-/**
- * パスワード文字列全角化
- * @param {*} str
- * @returns
- */
-function ConvertToMultiPassString(str) {
-  let res = "";
-  res = str
-    .toUpperCase()
-    .replace(/[\0\r\n\t 　]/g, "")
-    .replace(/[A-Za-z0-9+-=&%@#]/g, function (s) {
-      return String.fromCharCode(s.charCodeAt(0) + 0xfee0);
-    });
-  return res;
-}
-
-function GetSwapTable() {
-  let swap = [];
-  // スワップテーブルセット
-  if ($("#version-sky").prop("checked")) {
-    // Sky
-    if ($("#resion-jp").prop("checked")) swap = swap_table.sky.jp;
-    else if ($("#resion-na").prop("checked")) swap = swap_table.sky.na;
-    else if ($("#resion-eu").prop("checked")) swap = swap_table.sky.eu;
-  } else {
-    // Old
-    swap = swap_table.old;
-  }
-  return swap;
-}
-
-/**
- * パスワード作成
- */
-function GeneratePass() {
-  $("#pass-alert").hide();
-  $("#pass-alert").removeClass("alert-success");
-  $("#pass-alert").removeClass("alert-danger");
-  $("#pass-alert").removeClass("alert-warning");
-
-  let mission = new WonderMail();
-  mission.Status = 4;
-  mission.MissionType = $("#mission-type").val() ?? 0;
-  mission.MissionFlag = $("#mission-flag").val() ?? 0;
-  mission.RewardType = $("#reward-type").val() ?? 0;
-  mission.RewardValue = reward_type[$("#reward-type").val()].mode == 0 ? parseInt($("#reward-value-number").val(), 16) : $("#reward-value-select").val();
-  mission.Cliant = $("#cliant").val() ?? 0;
-  mission.Target1 = !$("#target-1").prop("disabled") ? $("#target-1").val() ?? 0 : $("#cliant").val() ?? 0;
-  mission.Target2 = !$("#target-2").prop("disabled") ? $("#target-2").val() ?? 0 : 0;
-  mission.TargetItem = $("#target-item").val() ?? 0;
-  mission.Dungeon = $("#dungeon").val() ?? 0;
-  mission.Floor = $("#dungeon-floor").val() ?? 0;
-  mission.Fixed = !$("#fixed-floor").prop("disabled") ? $("#fixed-floor").val() : 0;
-  mission.RestType = $("#rest-type").val() ?? 0;
-  mission.RestValue = $("#rest-value").val() ?? 0;
-  mission.Seed = parseInt($("#seed").val(), 16) ?? 0;
-  mission.Encode();
-
-  if (mission.Password.length == GetSwapTable().length) {
-    let result = mission.Password.concat();
-    // 全角化
-    if ($("#option-multibyte").prop("checked")) {
-      result = ConvertToMultiPassString(result); // 全角化
+function GetSwapTable(sky = true, resion = "JP") {
+  let res = [];
+  if (sky) {
+    switch (resion.toUpperCase()) {
+      case "JP":
+        res = swap_table.sky.jp;
+        break;
+      case "NA":
+        res = swap_table.sky.na;
+        break;
+      case "EU":
+        res = swap_table.sky.eu;
+        break;
     }
-    // スペース追加
-    if ($("#option-space").prop("checked")) {
-      let space = $("#option-multibyte").prop("checked") ? `　` : ` `;
-      if (mission.Sky) {
-        // 空 => 5/7/5で空白追加
-        result =
-          result.slice(0, 5) +
-          space +
-          result.slice(5, 12) +
-          space +
-          result.slice(12, 17) +
-          space +
-          result.slice(17, 22) +
-          space +
-          result.slice(22, 29) +
-          space +
-          result.slice(29, 34);
-      } else {
-        // 時闇 => 4/4/4で空白追加
-        result =
-          result.slice(0, 4) +
-          space +
-          result.slice(4, 8) +
-          space +
-          result.slice(8, 12) +
-          space +
-          result.slice(12, 16) +
-          space +
-          result.slice(16, 20) +
-          space +
-          result.slice(20, 24);
-      }
-    }
-    // 改行
-    if ($("#option-line").prop("checked")) {
-      let half = result.length / 2;
-      let space = result.charAt(half) == " " || result.charAt(half) == "　";
-      result = result.slice(0, half) + "\r\n" + result.slice(half + (space ? 1 : 0), result.length);
-    }
-
-    $("#pass-area").animate({ backgroundColor: "#000" }, 0).animate({ backgroundColor: "#fff" }, 500);
-    $("#pass-area").val(result);
-
-    $("#pass-alert").addClass("alert-success");
-    $("#pass-alert").html("パスワードを生成しました！");
-    $("#pass-alert").fadeIn();
-  } else {
-    $("#pass-alert").addClass("alert-danger");
-    $("#pass-alert").text("パスワードの生成に失敗しました。");
-    $("#pass-alert").fadeIn();
-  }
-}
-
-/**
- * CRC32ハッシュ化
- * @param {*} arr 対象
- * @returns CRC32ハッシュ
- */
-function CalcCRC32(arr) {
-  let crc = GetCRC32Table();
-  let pos = 0xffffffff;
-  for (let i = 4; i < arr.length; i++) {
-    let e = crc[(pos ^ arr[i]) & 0xff];
-    pos = (pos >>> 8) ^ e;
-  }
-  pos = pos ^ 0xffffffff;
-  if (pos < 0) pos += 0x100000000;
-  return pos;
-}
-
-/**
- * CRC32テーブル作成
- */
-function GetCRC32Table() {
-  let res = new Array(256);
-  for (let i = 0; i < res.length; i++) {
-    let crcVal = i;
-    for (let j = 0; j < 8; j++) {
-      if ((crcVal & 1) != 0) crcVal = 0xedb88320 ^ (crcVal >>> 1);
-      else crcVal = crcVal >>> 1;
-    }
-    res[i] = crcVal;
-  }
+  } else res = swap_table.old;
   return res;
 }

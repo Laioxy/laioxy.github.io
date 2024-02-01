@@ -72,4 +72,17 @@ h2.top-icon img {
 }
 * + .context-sm {
   margin-left: 4px;
-}/*# sourceMappingURL=style.css.map */
+}
+
+.loading {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

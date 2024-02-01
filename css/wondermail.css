@@ -12,4 +12,29 @@ option[data-banned=true] {
 
 option.allow[data-banned=true] {
   background-color: #bfdfff !important;
-}/*# sourceMappingURL=wondermail.css.map */
+}
+
+#advanced-alert {
+  border-color: rebeccapurple;
+  background: rebeccapurple;
+  color: white;
+}
+
+#mission-rawdata {
+  height: 300px;
+}
+
+#mission-rawdata-collapse {
+  text-decoration: none;
+}
+#mission-rawdata-collapse i {
+  display: inline-block;
+  margin-left: 2px;
+  transition-duration: 0.3s;
+}
+#mission-rawdata-collapse[aria-expanded=true] i {
+  transform: rotate(180deg);
+}
+#mission-rawdata-collapse[aria-expanded=false] i {
+  transform: rotate(0deg);
+}
