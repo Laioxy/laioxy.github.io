@@ -54,7 +54,12 @@
       integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
       crossorigin="anonymous"
     ></script>
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
+    <script src="js/common.js"></script>
     <script src="js/wondermail.js"></script>
     <script src="js/wondermail_data.js"></script>
     <script src="js/wondermail_pass.js"></script>
@@ -64,10 +69,7 @@
   </head>
   <body>
     <div class="container-head">
-      <a href="index.html">
-        <!-- <img src="img/banner.png" /> -->
-        Lai-brary
-      </a>
+      <a href="index.html">Lai-brary</a>
     </div>
 
     <div class="loading">
@@ -76,7 +78,6 @@
       </div>
     </div>
 
-    <!-- <div class="container-main"> -->
     <div class="container-md pb-3">
       <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
         <h1 class="m-0">ふしぎなメール 生成機</h1>
@@ -115,226 +116,220 @@
           <h5>Advanced Mode!</h5>
           <span>項目や機能が拡張され、制限が解除されます。</span>
         </div>
-        <div class="card p-3 mb-3">
-          <div class="mb-3">
-            <div class="d-flex flex-column flex-sm-row gap-0 gap-sm-3">
-              <div class="d-flex flex-column">
-                <label class="form-label">
-                  <span>バージョン</span>
-                </label>
-                <div class="btn-group text-nowrap mb-3 mb-sm-0">
-                  <input class="btn-check" id="version-sky" type="radio" name="version" value="sky" checked />
-                  <label class="btn btn-outline-primary" for="version-sky">空</label>
-                  <input class="btn-check" id="version-old" type="radio" name="version" value="old" />
-                  <label class="btn btn-outline-primary" for="version-old">時/闇</label>
-                </div>
-              </div>
-              <div class="d-flex flex-column">
-                <label class="form-label">リージョン</label>
-                <div class="btn-group text-nowrap" id="group-resion">
-                  <input class="btn-check" id="resion-jp" type="radio" name="resion" value="jp" checked />
-                  <label class="btn btn-outline-primary" for="resion-jp">日本</label>
-                  <input class="btn-check" id="resion-na" type="radio" name="resion" value="na" />
-                  <label class="btn btn-outline-primary" for="resion-na">北米</label>
-                  <input class="btn-check" id="resion-eu" type="radio" name="resion" value="eu" />
-                  <label class="btn btn-outline-primary" for="resion-eu">欧州</label>
-                </div>
+        <div class="mb-3">
+          <div class="d-flex flex-column flex-sm-row gap-0 gap-sm-3">
+            <div class="d-flex flex-column">
+              <label class="form-label">
+                <span>バージョン</span>
+              </label>
+              <div class="btn-group text-nowrap mb-3 mb-sm-0">
+                <input class="btn-check" id="version-sky" type="radio" name="version" value="sky" checked />
+                <label class="btn btn-outline-primary" for="version-sky">空</label>
+                <input class="btn-check" id="version-old" type="radio" name="version" value="old" />
+                <label class="btn btn-outline-primary" for="version-old">時/闇</label>
               </div>
             </div>
-            <div class="text-primary mt-1" id="context-resionfree" style="display: none">
-              <i class="bi bi-info-circle-fill"></i>時/闇のパスワードはリージョンフリーなので指定は不要です。
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label class="col-12 form-label"><span>パスワード</span><span class="context-sm" id="pass-maxlength"></span></label>
-            <textarea class="form-control form-control-sm d-grid" rows="2" id="pass-area" placeholder="スペース・改行など入っても大丈夫です"></textarea>
-          </div>
-
-          <div class="mb-3 advanced">
-            <label class="form-label"><span>ハッシュ</span><span class="context-sm">(読み取り専用)</span></label>
-            <div class="row g-3">
-              <div class="col-lg-3 col-6">
-                <input type="text" id="hash1" class="form-control" placeholder="Hash1" readonly />
-              </div>
-              <div class="col-lg-3 col-6">
-                <input type="text" id="hash2" class="form-control" placeholder="Hash2" readonly />
+            <div class="d-flex flex-column">
+              <label class="form-label">リージョン</label>
+              <div class="btn-group text-nowrap" id="group-resion">
+                <input class="btn-check" id="resion-jp" type="radio" name="resion" value="jp" checked />
+                <label class="btn btn-outline-primary" for="resion-jp">日本</label>
+                <input class="btn-check" id="resion-na" type="radio" name="resion" value="na" />
+                <label class="btn btn-outline-primary" for="resion-na">北米</label>
+                <input class="btn-check" id="resion-eu" type="radio" name="resion" value="eu" />
+                <label class="btn btn-outline-primary" for="resion-eu">欧州</label>
               </div>
             </div>
           </div>
-
-          <div class="mb-3">
-            <label class="col-12 form-label">生成オプション</label>
-            <div class="d-flex flex-column flex-sm-row flex-wrap column-gap-3 row-gap-1">
-              <div class="btn-group mb-1 g-3 text-nowrap">
-                <input class="btn-check" id="option-multibyte" type="radio" name="option-multibyte" value="multi" checked />
-                <label class="btn btn-outline-primary" for="option-multibyte">全角</label>
-                <input class="btn-check" id="option-singlebyte" type="radio" name="option-multibyte" value="single" />
-                <label class="btn btn-outline-primary" for="option-singlebyte">半角</label>
-              </div>
-              <div class="btn-group mb-1 g-3 text-nowrap">
-                <input class="btn-check" id="option-space" type="radio" name="option-space" checked />
-                <label class="btn btn-outline-primary" for="option-space">スペースあり</label>
-                <input class="btn-check" id="option-nospace" type="radio" name="option-space" />
-                <label class="btn btn-outline-primary" for="option-nospace">スペースなし</label>
-              </div>
-              <div class="btn-group mb-1 text-nowrap">
-                <input class="btn-check" id="option-line" type="radio" name="option-line" checked />
-                <label class="btn btn-outline-primary" for="option-line">改行あり</label>
-                <input class="btn-check" id="option-noline" type="radio" name="option-line" />
-                <label class="btn btn-outline-primary" for="option-noline">改行なし</label>
-              </div>
-            </div>
+          <div class="text-primary mt-1" id="context-resionfree" style="display: none">
+            <i class="bi bi-info-circle-fill"></i>時/闇のパスワードはリージョンフリーなので指定は不要です。
           </div>
-          <div class="d-grid mb-0">
-            <div class="btn-group">
-              <button class="btn btn-primary btn-lg" id="pass-analysis">パスワード展開</button>
-              <button class="btn btn-danger btn-lg" id="pass-generate">パスワード生成</button>
-            </div>
-          </div>
-          <div class="advanced mt-3 mb-0">
-            <a id="mission-rawdata-collapse" class="text-black" role="button" data-bs-toggle="collapse" data-bs-target="#mission-rawdata-div">
-              <span class="form-label">生データ</span><i class="bi bi-caret-down-fill"></i>
-            </a>
-            <div id="mission-rawdata-div" class="collapse">
-              <textarea id="mission-rawdata" class="form-control form-control-sm font-monospace" rows="2" readonly></textarea>
-            </div>
-          </div>
-
-          <div id="pass-alert" class="mt-3 mb-0 alert" role="alert" style="display: none"></div>
         </div>
 
-        <div class="row my-0">
-          <div class="col-lg-6 mt-0 mb-3">
-            <div class="card p-3 h-100 mb-3">
-              <div class="mb-3">
-                <label class="form-label">依頼タイプ</label>
-                <div class="col-12">
-                  <select class="form-select" id="mission-type"></select>
+        <div class="mb-3">
+          <label class="col-12 form-label"><span>パスワード</span><span class="context-sm" id="pass-maxlength"></span></label>
+          <textarea class="form-control form-control-sm d-grid" rows="2" id="pass-area" placeholder="スペース・改行など入っても大丈夫です"></textarea>
+        </div>
+
+        <div class="mb-3 advanced">
+          <label class="form-label"><span>ハッシュ</span><span class="context-sm">(読み取り専用)</span></label>
+          <div class="row g-3">
+            <div class="col-lg-3 col-6">
+              <input type="text" id="hash1" class="form-control" placeholder="Hash1" readonly />
+            </div>
+            <div class="col-lg-3 col-6">
+              <input type="text" id="hash2" class="form-control" placeholder="Hash2" readonly />
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="col-12 form-label">生成オプション</label>
+          <div class="d-flex flex-column flex-sm-row flex-wrap column-gap-3 row-gap-1">
+            <div class="btn-group mb-1 g-3 text-nowrap">
+              <input class="btn-check" id="option-multibyte" type="radio" name="option-multibyte" value="multi" checked />
+              <label class="btn btn-outline-primary" for="option-multibyte">全角</label>
+              <input class="btn-check" id="option-singlebyte" type="radio" name="option-multibyte" value="single" />
+              <label class="btn btn-outline-primary" for="option-singlebyte">半角</label>
+            </div>
+            <div class="btn-group mb-1 g-3 text-nowrap">
+              <input class="btn-check" id="option-space" type="radio" name="option-space" checked />
+              <label class="btn btn-outline-primary" for="option-space">スペースあり</label>
+              <input class="btn-check" id="option-nospace" type="radio" name="option-space" />
+              <label class="btn btn-outline-primary" for="option-nospace">スペースなし</label>
+            </div>
+            <div class="btn-group mb-1 text-nowrap">
+              <input class="btn-check" id="option-line" type="radio" name="option-line" checked />
+              <label class="btn btn-outline-primary" for="option-line">改行あり</label>
+              <input class="btn-check" id="option-noline" type="radio" name="option-line" />
+              <label class="btn btn-outline-primary" for="option-noline">改行なし</label>
+            </div>
+          </div>
+        </div>
+        <div class="d-grid mb-0">
+          <div class="btn-group">
+            <button class="btn btn-primary btn-lg" id="pass-analysis">パスワード展開</button>
+            <button class="btn btn-danger btn-lg" id="pass-generate">パスワード生成</button>
+          </div>
+        </div>
+        <div class="advanced mt-3 mb-0">
+          <a id="mission-rawdata-collapse" class="text-black" role="button" data-bs-toggle="collapse" data-bs-target="#mission-rawdata-div">
+            <span class="form-label">生データ</span><i class="bi bi-caret-down-fill"></i>
+          </a>
+          <div id="mission-rawdata-div" class="collapse">
+            <textarea id="mission-rawdata" class="form-control form-control-sm font-monospace" rows="2" readonly></textarea>
+          </div>
+        </div>
+
+        <div id="pass-alert" class="mt-3 mb-0 alert" role="alert" style="display: none"></div>
+
+        <hr class="mt-5" />
+
+        <div class="d-flex flex-column gap-4">
+          <div>
+            <p class="fs-5 mb-1">依頼の内容</p>
+            <div class="row g-2">
+              <div class="item col-md-6">
+                <div class="form-floating">
+                  <select id="mission-type" class="form-select"></select>
+                  <label for="mission-type">依頼タイプ</label>
                 </div>
               </div>
-              <div class="mb-3">
-                <label class="form-label">フラグ</label>
-                <div class="col-12">
-                  <select class="form-select" id="mission-flag"></select>
+              <div class="item col-md-6">
+                <div class="form-floating">
+                  <select id="mission-flag" class="form-select"></select>
+                  <label for="mission-flag">フラグ</label>
                 </div>
               </div>
-              <div class="mb-3">
-                <label class="form-label">報酬タイプ</label>
-                <div class="col-12">
-                  <select class="form-select" id="reward-type"></select>
+            </div>
+            <div class="row g-2 mt-0">
+              <div class="item col-md-4">
+                <div class="form-floating">
+                  <select id="reward-type" class="form-select"></select>
+                  <label for="reward-type">報酬タイプ</label>
                 </div>
               </div>
-              <div class="mb-0">
-                <label class="form-label"><span>報酬</span><span class="context-sm">(16進数, 最大:0x7FF)</span></label>
-                <div class="col-12 btn-group" role="group" id="reward-value-number-group">
-                  <input class="form-control" type="text" id="reward-value-number" value="0" maxlength="3" data-maxvalue="7FF" />
+              <div class="item col-md-6" id="reward-value-number-group">
+                <div class="input-group">
+                  <div class="form-floating">
+                    <input class="form-control" type="text" id="reward-value-number" value="0" maxlength="3" data-maxvalue="7FF" />
+                    <label for="reward-value-number">報酬値 (max: 0x7FF)</label>
+                  </div>
                   <button class="btn btn-primary text-nowrap" type="button" onclick="SetRandomValue($('#reward-value-number'), 0x7FF, true)">ランダム</button>
                 </div>
-                <div class="col-12" id="reward-value-select-div" style="display: none">
-                  <div><select class="form-select" id="reward-value-select"></select></div>
-                  <div class="error-invalid-poke text-danger" style="display: none">
-                    <i class="bi bi-exclamation-circle-fill"></i>無効なポケモンが選択されています。
-                  </div>
-                  <div class="error-banned-poke text-danger" style="display: none">
-                    <i class="bi bi-exclamation-circle-fill"></i>依頼で使用できないポケモンが選択されています。
-                  </div>
-                  <div class="error-invalid-item text-danger" style="display: none">
-                    <i class="bi bi-exclamation-circle-fill"></i>無効な道具が選択されています。
-                  </div>
+              </div>
+              <div class="item col-md-6" id="reward-value-select-div" style="display: none">
+                <div class="form-floating">
+                  <select class="form-select" id="reward-value-select"></select>
+                  <label for="reward-value-select">報酬</label>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-6 mt-0 mb-3">
-            <div class="card p-3 h-100 mb-3">
-              <div class="mb-3">
-                <label class="form-label" for="cliant">依頼主</label>
-                <div class="col-12">
-                  <select class="form-select" id="cliant"></select>
-                </div>
-                <div class="error-invalid-poke text-danger" style="display: none">
-                  <i class="bi bi-exclamation-circle-fill"></i>無効なポケモンが選択されています。
-                </div>
-                <div class="error-banned-poke text-danger" style="display: none">
-                  <i class="bi bi-exclamation-circle-fill"></i>依頼で使用できないポケモンが選択されています。
-                </div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">対象ポケモン</label>
-                <div class="col-12">
-                  <select class="form-select mb-1" id="target-1"></select>
-                  <select class="form-select" id="target-2"></select>
-                </div>
-                <div class="error-invalid-poke text-danger" style="display: none">
-                  <i class="bi bi-exclamation-circle-fill"></i>無効なポケモンが選択されています。
-                </div>
-                <div class="error-banned-poke text-danger" style="display: none">
-                  <i class="bi bi-exclamation-circle-fill"></i>依頼で使用できないポケモンが選択されています。
-                </div>
-              </div>
-              <div class="mb-0">
-                <label class="form-label">対象の道具</label>
-                <div class="col-12">
-                  <select class="form-select" id="target-item"></select>
-                </div>
-                <div class="error-invalid-item text-danger" style="display: none">
-                  <i class="bi bi-exclamation-circle-fill"></i>無効な道具が選択されています。
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="row my-0">
-          <div class="col-lg-6 mt-0 mb-3">
-            <div class="card p-3 h-100 mb-3">
-              <div class="mb-3">
-                <label class="form-label">ダンジョン</label>
-                <div class="col-12">
-                  <select class="form-select" id="dungeon"></select>
+          <div>
+            <p class="fs-5 mb-1">依頼の対象</p>
+            <div class="row g-2">
+              <div class="item col-md-6">
+                <div class="form-floating">
+                  <select id="cliant" class="form-select"></select>
+                  <label for="cliant">依頼主</label>
                 </div>
               </div>
-              <div class="mb-3">
-                <label class="form-label">階数</label>
-                <div class="col-12">
-                  <select class="form-select" id="dungeon-floor"></select>
+            </div>
+            <div class="row g-2 mt-0">
+              <div class="item col-md">
+                <div class="form-floating">
+                  <select class="form-select" id="target-1"></select>
+                  <label class="form-label">対象ポケモン1</label>
                 </div>
               </div>
-              <div class="mb-0">
-                <label class="form-label">固定フロア</label>
-                <div class="col-12">
-                  <select class="form-select" id="fixed-floor"></select>
+              <div class="item col-md">
+                <div class="form-floating">
+                  <select class="form-select" id="target-2"></select>
+                  <label for="target-2">対象ポケモン2</label>
+                </div>
+              </div>
+            </div>
+            <div class="row g-2 mt-0">
+              <div class="item col-md-6">
+                <div class="form-floating">
+                  <select class="form-select" id="target-item"></select>
+                  <label for="target-item">対象の道具</label>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-6 mt-0 mb-3">
-            <div class="card p-3 h-100 mb-3">
-              <div class="mb-3">
-                <label class="form-label">制限タイプ</label>
-                <div class="col-12">
-                  <select class="form-select" id="rest-type"></select>
+
+          <div>
+            <p class="fs-5 mb-1">ダンジョン</p>
+            <div class="row g-2">
+              <div class="item col-md-6">
+                <div class="form-floating">
+                  <select id="dungeon" class="form-select"></select>
+                  <label for="dungeon">ダンジョン</label>
                 </div>
               </div>
-              <div class="mb-3">
-                <label class="form-label">制限</label>
-                <div class="col-12">
-                  <div>
-                    <select class="form-select" id="rest-value"></select>
-                  </div>
-                  <div class="error-invalid-poke text-danger" style="display: none">
-                    <i class="bi bi-exclamation-circle-fill"></i>無効なポケモンが選択されています。
-                  </div>
-                  <div class="error-banned-poke text-danger" style="display: none">
-                    <i class="bi bi-exclamation-circle-fill"></i>依頼で使用できないポケモンが選択されています。
-                  </div>
+              <div class="item col-md-4">
+                <div class="form-floating">
+                  <select id="dungeon-floor" class="form-select"></select>
+                  <label for="dungeon-floor">階数</label>
                 </div>
               </div>
-              <div class="mb-0">
-                <label class="form-label"><span>SEED</span><span class="context-sm">(16進数, 最大6桁)</span></label>
-                <div class="col-12 btn-group">
-                  <input class="form-control" type="text" id="seed" value="0" maxlength="6" data-maxvalue="FFFFFF" />
+            </div>
+            <div class="row g-2 mt-0">
+              <div class="item col-md">
+                <div class="form-floating">
+                  <select id="fixed-floor" class="form-select"></select>
+                  <label for="fixed-floor">固定フロア</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p class="fs-5 mb-1">その他</p>
+            <div class="row g-2">
+              <div class="item col-md-4">
+                <div class="form-floating">
+                  <select id="rest-type" class="form-select"></select>
+                  <label for="rest-type">制限タイプ</label>
+                </div>
+              </div>
+              <div class="item col-md-6">
+                <div class="form-floating">
+                  <select id="rest-value" class="form-select"></select>
+                  <label for="rest-value">制限</label>
+                </div>
+              </div>
+            </div>
+            <div class="row g-2 mt-0">
+              <div class="item col-md-6">
+                <div class="input-group">
+                  <div class="form-floating">
+                    <input id="seed" class="form-control" type="text" value="0" maxlength="6" data-maxvalue="FFFFFF" />
+                    <label for="seed">Seed (max: 0xFFFFFF)</label>
+                  </div>
                   <button class="btn btn-primary text-nowrap" type="button" onclick="SetRandomValue($('#seed'), 0xFFFFFF, true)">ランダム</button>
                 </div>
               </div>
@@ -425,6 +420,15 @@
       <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
         <h2>更新履歴</h2>
         <ul>
+          <li>
+            <u>ver 1.0.7 (2024/02/15)</u><br />
+            <ul>
+              <li>ツール全体のUIを変更</li>
+              <li>ポケモン・道具・ダンジョンの検索機能を実装</li>
+              <li>エラーメッセージを動的に表示するように変更</li>
+              <li>一部の細かい処理の最適化・変更</li>
+            </ul>
+          </li>
           <li>
             <u>ver 1.0.6 (2024/02/01)</u><br />
             <ul>

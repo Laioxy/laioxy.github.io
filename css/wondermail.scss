@@ -1,20 +1,19 @@
-// 無効な道具
-option[data-valid="false"] {
-  background-color: #ccc;
-}
-
-// 性別無効ポケモン
-option[data-gender="0"] {
+// 無効ポケモン, 無効道具
+option[data-gender="0"],
+option[data-valid="false"],
+li:has(span.invalid) {
   background-color: #ccc;
 }
 
 // 禁止ポケモン
-option[data-banned="true"] {
+option[data-banned="true"],
+li:has(span.banned) {
   background-color: #ffc0cb;
 }
 
 // 例外許可ポケモン
-option.allow[data-banned="true"] {
+option.allow[data-banned="true"],
+li:has(span.allow) {
   background-color: #bfdfff !important;
 }
 
@@ -41,4 +40,5 @@ option.allow[data-banned="true"] {
   &[aria-expanded="false"] i {
     transform: rotate(0deg);
   }
+  border: var(--bs-border-width) solid var(--bs-border-color);
 }

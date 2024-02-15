@@ -86,3 +86,11 @@ h2.top-icon img {
   justify-content: center;
   align-items: center;
 }
+
+.form-floating span.select2.select2-container span.selection .select2-selection {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+  min-height: calc(3.5rem + var(--bs-border-width) * 2);
+  border-radius: var(--bs-border-radius);
+  border: var(--bs-border-width) solid var(--bs-border-color);
+}
