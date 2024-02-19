@@ -39,6 +39,70 @@ function HiraToKana(str) {
 }
 
 /**
+ * パスワード文字列半角化
+ * @param {*} str
+ * @returns
+ */
+function ConvertToHalfPassString(str) {
+  let res = "";
+  res = str
+    .toUpperCase()
+    .replace(/[\0\r\n\t 　]/g, "")
+    .replace(/♯/g, "#")
+    .replace(/oOｏＯ/g, "0")
+    .replace(/iIｉＩ/g, "1")
+    .replace(/[−―‐―ー—⁻₋]/g, "-")
+    .replace(/[Ａ-Ｚａ-ｚ０-９＋－＝＆％＠＃]/g, function (s) {
+      return String.fromCharCode(s.charCodeAt(0) - 0xfee0);
+    });
+  return res;
+}
+
+/**
+ * パスワード文字列全角フォーマット
+ * @param {string} str パスワード文字列(半角)
+ * @param {number} sec1 区切り1文字数
+ * @param {number} sec2 区切り2文字数
+ * @param {number} sec3 区切り3文字数
+ * @returns
+ */
+function ConvertToMultiFormat(str, sec1, sec2, sec3) {
+  let res = "";
+  let replace;
+  replace = str
+    .toUpperCase()
+    .replace(/[\0\r\n\t 　]/g, "")
+    .replace(/[A-Za-z0-9+-=&%@#]/g, function (s) {
+      return String.fromCharCode(s.charCodeAt(0) + 0xfee0);
+    });
+  
+  if (sec1 == undefined || sec2 == undefined || sec3 == undefined) {
+    alert("プログラムエラー");
+    return false;
+  }
+
+  let i = 0;
+  while (true) {
+    // セクション1
+    res += replace.slice(i, i + sec1);
+    res += "　";
+    i += sec1;
+    // セクション2
+    res += replace.slice(i, i + sec2);
+    res += "　";
+    i += sec2;
+    // セクション3
+    res += replace.slice(i, i + sec3);
+    i += sec3;
+    // 改行
+    if (i >= str.length) break;
+    else res += "\n";
+  }
+
+  return res;
+}
+
+/**
  * [Select2] カスタム検索
  * IDや性別は含まず、項目の名称だけで検索できるようにするもの
  *
