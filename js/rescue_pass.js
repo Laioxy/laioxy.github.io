@@ -55,13 +55,13 @@ class Rescue {
   Floor = 0; // 救助フロア
   DungeonSeed = 0; // ダンジョンシード
   SOSTeamId = 0; // [たすけて] 救助待ちチームID
-  SOSHash = 0; // [たすけて] チェックサム
+  SOSCheckSum = 0; // [たすけて] チェックサム
   Resion = 0; // リージョン？ (0=日本(0000), 8=米国(1000) bitで管理？)
   TeamName = ""; // チーム名称
   NotSOStmp1 = 0; // ? (個数？)
   NotSOStmp2 = 0; // お礼の道具？
   AOKTeamId = 0; // [ふっかつ] 救助したチームID
-  AOKHash = 0; // [ふっかつ] チェックサム
+  AOKCheckSum = 0; // [ふっかつ] チェックサム
   Version = 0; // 時=0, 闇=1, 空=2,3
 
   idxList = [];
@@ -142,7 +142,7 @@ class Rescue {
       // 救助待ちチームID (32bit)
       this.SOSTeamId = BytesToNum(decList, 50, 32);
       // たすけてメールチェックサム (32bit)
-      this.SOSHash = BytesToNum(decList, 82, 32);
+      this.SOSCheckSum = BytesToNum(decList, 82, 32);
       // リージョン？ (4bit)
       this.Resion = BytesToNum(decList, 114, 4);
       // チーム名 (80bit)
@@ -150,7 +150,7 @@ class Rescue {
       // 救助側チームID (32bit)
       this.AOKTeamId = BytesToNum(decList, 198, 32);
       // ふっかつメールチェックサム (32bit)
-      this.AOKHash = BytesToNum(decList, 230, 32);
+      this.AOKCheckSum = BytesToNum(decList, 230, 32);
       // バージョン (2bit)
       this.Version = BytesToNum(decList, 262, 2);
     }
@@ -160,13 +160,13 @@ class Rescue {
       else if (this.RescueType == 5) console.log("おれいのメール");
 
       this.SOSTeamId = BytesToNum(decList, 26, 32);
-      this.SOSHash = BytesToNum(decList, 58, 32);
+      this.SOSCheckSum = BytesToNum(decList, 58, 32);
       this.Resion = BytesToNum(decList, 90, 4);
       this.TeamName = GetCharString(BytesToBits(decList, 94, 80));
       this.NotSOStmp1 = BytesToNum(decList, 174, 10);
       this.NotSOStmp2 = BytesToNum(decList, 184, 10);
       this.AOKTeamId = BytesToNum(decList, 194, 32);
-      this.AOKHash = BytesToNum(decList, 226, 32);
+      this.AOKCheckSum = BytesToNum(decList, 226, 32);
       this.Version = BytesToNum(decList, 258, 2);
     }
 
@@ -195,11 +195,11 @@ class Rescue {
       decode[7] = parseInt(this.SOSTeamId >>> 6);
       decode[8] = parseInt(this.SOSTeamId >>> 14);
       decode[9] = parseInt(this.SOSTeamId >>> 22);
-      decode[10] = parseInt(this.SOSHash << 2) | parseInt(this.SOSTeamId >>> 30);
-      decode[11] = parseInt(this.SOSHash >>> 6);
-      decode[12] = parseInt(this.SOSHash >>> 14);
-      decode[13] = parseInt(this.SOSHash >>> 22);
-      decode[14] = parseInt(teamNameArr[0] << 6) | parseInt(this.Resion << 2) | parseInt(this.SOSHash >>> 30);
+      decode[10] = parseInt(this.SOSCheckSum << 2) | parseInt(this.SOSTeamId >>> 30);
+      decode[11] = parseInt(this.SOSCheckSum >>> 6);
+      decode[12] = parseInt(this.SOSCheckSum >>> 14);
+      decode[13] = parseInt(this.SOSCheckSum >>> 22);
+      decode[14] = parseInt(teamNameArr[0] << 6) | parseInt(this.Resion << 2) | parseInt(this.SOSCheckSum >>> 30);
       decode[15] = parseInt(teamNameArr[1] << 6) | parseInt(teamNameArr[0] >> 2);
       decode[16] = parseInt(teamNameArr[2] << 6) | parseInt(teamNameArr[1] >> 2);
       decode[17] = parseInt(teamNameArr[3] << 6) | parseInt(teamNameArr[2] >> 2);
@@ -213,11 +213,11 @@ class Rescue {
       decode[25] = parseInt(this.AOKTeamId >>> 2);
       decode[26] = parseInt(this.AOKTeamId >>> 10);
       decode[27] = parseInt(this.AOKTeamId >>> 18);
-      decode[28] = parseInt(this.AOKHash << 6) | parseInt(this.AOKTeamId >>> 26);
-      decode[29] = parseInt(this.AOKHash >>> 2);
-      decode[30] = parseInt(this.AOKHash >>> 10);
-      decode[31] = parseInt(this.AOKHash >>> 18);
-      decode[32] = parseInt(this.Version << 6) | parseInt(this.AOKHash >>> 26);
+      decode[28] = parseInt(this.AOKCheckSum << 6) | parseInt(this.AOKTeamId >>> 26);
+      decode[29] = parseInt(this.AOKCheckSum >>> 2);
+      decode[30] = parseInt(this.AOKCheckSum >>> 10);
+      decode[31] = parseInt(this.AOKCheckSum >>> 18);
+      decode[32] = parseInt(this.Version << 6) | parseInt(this.AOKCheckSum >>> 26);
     } else {
       decode = new Array(33);
       decode[1] = parseInt(this.Dungeon << 4) | parseInt(status & 0xf);
@@ -226,11 +226,11 @@ class Rescue {
       decode[4] = parseInt(this.SOSTeamId >>> 6);
       decode[5] = parseInt(this.SOSTeamId >>> 14);
       decode[6] = parseInt(this.SOSTeamId >>> 22);
-      decode[7] = parseInt(this.SOSHash << 2) | parseInt(this.SOSTeamId >>> 30);
-      decode[8] = parseInt(this.SOSHash >>> 6);
-      decode[9] = parseInt(this.SOSHash >>> 14);
-      decode[10] = parseInt(this.SOSHash >>> 22);
-      decode[11] = parseInt(teamNameArr[0] << 6) | parseInt(this.Resion << 2) | parseInt(this.SOSHash >>> 30);
+      decode[7] = parseInt(this.SOSCheckSum << 2) | parseInt(this.SOSTeamId >>> 30);
+      decode[8] = parseInt(this.SOSCheckSum >>> 6);
+      decode[9] = parseInt(this.SOSCheckSum >>> 14);
+      decode[10] = parseInt(this.SOSCheckSum >>> 22);
+      decode[11] = parseInt(teamNameArr[0] << 6) | parseInt(this.Resion << 2) | parseInt(this.SOSCheckSum >>> 30);
       decode[12] = parseInt(teamNameArr[1] << 6) | parseInt(teamNameArr[0] >> 2);
       decode[13] = parseInt(teamNameArr[2] << 6) | parseInt(teamNameArr[1] >> 2);
       decode[14] = parseInt(teamNameArr[3] << 6) | parseInt(teamNameArr[2] >> 2);
@@ -247,11 +247,11 @@ class Rescue {
       decode[25] = parseInt(this.AOKTeamId >>> 6);
       decode[26] = parseInt(this.AOKTeamId >>> 14);
       decode[27] = parseInt(this.AOKTeamId >>> 22);
-      decode[28] = parseInt(this.AOKHash << 2) | parseInt(this.AOKTeamId >>> 30);
-      decode[29] = parseInt(this.AOKHash >>> 6);
-      decode[30] = parseInt(this.AOKHash >>> 14);
-      decode[31] = parseInt(this.AOKHash >>> 22);
-      decode[32] = parseInt(this.Version << 2) | parseInt(this.AOKHash >>> 30);
+      decode[28] = parseInt(this.AOKCheckSum << 2) | parseInt(this.AOKTeamId >>> 30);
+      decode[29] = parseInt(this.AOKCheckSum >>> 6);
+      decode[30] = parseInt(this.AOKCheckSum >>> 14);
+      decode[31] = parseInt(this.AOKCheckSum >>> 22);
+      decode[32] = parseInt(this.Version << 2) | parseInt(this.AOKCheckSum >>> 30);
     }
     // ハッシュ化
     let hash = 0;
@@ -324,16 +324,16 @@ class Rescue {
     res.Dungeon = this.Dungeon;
     res.Floor = this.Floor;
     res.DungeonSeed = this.DungeonSeed;
-    res.SOSHashBit = this.SOSHashBit;
+    res.SOSCheckSumBit = this.SOSCheckSumBit;
     res.SOSTeamId = this.SOSTeamId;
-    res.SOSHash = this.SOSHash;
+    res.SOSCheckSum = this.SOSCheckSum;
     res.Resion = this.Resion;
     res.TeamName = this.TeamName;
     res.NotSOStmp1 = this.NotSOStmp1;
     res.NotSOStmp2 = this.NotSOStmp2;
-    res.AOKHashBit = this.AOKHashBit;
+    res.AOKCheckSumBit = this.AOKCheckSumBit;
     res.AOKTeamId = this.AOKTeamId;
-    res.AOKHash = this.AOKHash;
+    res.AOKCheckSum = this.AOKCheckSum;
     res.Version = this.Version;
     return res;
   }

@@ -6909,7 +6909,7 @@
     "EscapeAllEnemiesDefeat": true,
     "Padding": 0,
     "Id": 27,
-    "Name": ""
+    "Name": "(未使用) 空部屋"
   },
   {
     "Width": 15,
@@ -10161,7 +10161,7 @@
     "EscapeAllEnemiesDefeat": true,
     "Padding": 0,
     "Id": 42,
-    "Name": ""
+    "Name": "ほしのどうくつ おくち (ギルド集合)"
   },
   {
     "Width": 14,
@@ -10371,7 +10371,7 @@
     "EscapeAllEnemiesDefeat": true,
     "Padding": 0,
     "Id": 43,
-    "Name": ""
+    "Name": "再:こかつのたに さいおうぶ"
   },
   {
     "Width": 0,
@@ -11126,7 +11126,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 63,
-    "Name": ""
+    "Name": "(未使用) TEST"
   },
   {
     "Width": 10,
@@ -11234,7 +11234,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 64,
-    "Name": ""
+    "Name": "(未使用) 空部屋"
   },
   {
     "Width": 14,
@@ -22632,7 +22632,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 104,
-    "Name": ""
+    "Name": "(未使用) あんやのもり B25F - コピー"
   },
   {
     "Width": 0,
@@ -23407,7 +23407,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 111,
-    "Name": ""
+    "Name": "おうごんのま"
   },
   {
     "Width": 18,
@@ -23635,7 +23635,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 112,
-    "Name": ""
+    "Name": "ひみつのバザー"
   },
   {
     "Width": 14,
@@ -23971,7 +23971,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 113,
-    "Name": ""
+    "Name": "ひみつのへや"
   },
   {
     "Width": 13,
@@ -24565,7 +24565,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 115,
-    "Name": ""
+    "Name": "おたからメモ 1"
   },
   {
     "Width": 21,
@@ -25033,7 +25033,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 116,
-    "Name": ""
+    "Name": "おたからメモ 2"
   },
   {
     "Width": 21,
@@ -25369,7 +25369,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 117,
-    "Name": ""
+    "Name": "おたからメモ 3"
   },
   {
     "Width": 22,
@@ -26179,7 +26179,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 118,
-    "Name": ""
+    "Name": "おたからメモ 4"
   },
   {
     "Width": 22,
@@ -26863,7 +26863,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 119,
-    "Name": ""
+    "Name": "おたからメモ 5"
   },
   {
     "Width": 22,
@@ -27709,7 +27709,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 120,
-    "Name": ""
+    "Name": "おたからメモ 6"
   },
   {
     "Width": 21,
@@ -28099,7 +28099,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 121,
-    "Name": ""
+    "Name": "おたからメモ 7"
   },
   {
     "Width": 21,
@@ -28699,7 +28699,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 122,
-    "Name": ""
+    "Name": "おたからメモ 8"
   },
   {
     "Width": 21,
@@ -29095,7 +29095,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 123,
-    "Name": ""
+    "Name": "おたからメモ 9"
   },
   {
     "Width": 22,
@@ -30199,7 +30199,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 124,
-    "Name": ""
+    "Name": "おたからメモ 10"
   },
   {
     "Width": 22,
@@ -31303,7 +31303,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 125,
-    "Name": ""
+    "Name": "おたからメモ 11"
   },
   {
     "Width": 22,
@@ -32089,7 +32089,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 126,
-    "Name": ""
+    "Name": "おたからメモ 12"
   },
   {
     "Width": 22,
@@ -32749,7 +32749,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 127,
-    "Name": ""
+    "Name": "おたからメモ 13"
   },
   {
     "Width": 22,
@@ -33601,7 +33601,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 128,
-    "Name": ""
+    "Name": "おたからメモ 14"
   },
   {
     "Width": 22,
@@ -34447,7 +34447,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 129,
-    "Name": ""
+    "Name": "おたからメモ 15"
   },
   {
     "Width": 21,
@@ -35371,7 +35371,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 130,
-    "Name": ""
+    "Name": "おたからメモ 16"
   },
   {
     "Width": 22,
@@ -35839,7 +35839,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 131,
-    "Name": ""
+    "Name": "おたからメモ 17"
   },
   {
     "Width": 22,
@@ -36451,7 +36451,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 132,
-    "Name": ""
+    "Name": "おたからメモ 18"
   },
   {
     "Width": 23,
@@ -37369,7 +37369,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 133,
-    "Name": ""
+    "Name": "おたからメモ 19"
   },
   {
     "Width": 26,
@@ -38137,7 +38137,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 134,
-    "Name": ""
+    "Name": "おたからメモ 20"
   },
   {
     "Width": 32,
@@ -39145,7 +39145,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 135,
-    "Name": ""
+    "Name": "おたからメモ 21"
   },
   {
     "Width": 32,
@@ -39961,7 +39961,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 136,
-    "Name": ""
+    "Name": "おたからメモ 22"
   },
   {
     "Width": 32,
@@ -40705,7 +40705,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 137,
-    "Name": ""
+    "Name": "おたからメモ 23"
   },
   {
     "Width": 24,
@@ -41503,7 +41503,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 138,
-    "Name": ""
+    "Name": "おたからメモ 24"
   },
   {
     "Width": 21,
@@ -41983,7 +41983,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 139,
-    "Name": ""
+    "Name": "おたからメモ 25"
   },
   {
     "Width": 21,
@@ -42595,7 +42595,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 140,
-    "Name": ""
+    "Name": "おたからメモ 26"
   },
   {
     "Width": 21,
@@ -43099,7 +43099,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 141,
-    "Name": ""
+    "Name": "おたからメモ 27"
   },
   {
     "Width": 22,
@@ -44257,7 +44257,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 142,
-    "Name": ""
+    "Name": "おたからメモ 28"
   },
   {
     "Width": 21,
@@ -45073,7 +45073,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 143,
-    "Name": ""
+    "Name": "おたからメモ 29"
   },
   {
     "Width": 22,
@@ -45853,7 +45853,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 144,
-    "Name": ""
+    "Name": "おたからメモ 30"
   },
   {
     "Width": 22,
@@ -46525,7 +46525,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 145,
-    "Name": ""
+    "Name": "挑戦状 ミュウツー"
   },
   {
     "Width": 22,
@@ -47281,7 +47281,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 146,
-    "Name": ""
+    "Name": "挑戦状 エンテイ"
   },
   {
     "Width": 22,
@@ -48043,7 +48043,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 147,
-    "Name": ""
+    "Name": "挑戦状 ライコウ"
   },
   {
     "Width": 22,
@@ -48481,7 +48481,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 148,
-    "Name": ""
+    "Name": "挑戦状 スイクン"
   },
   {
     "Width": 16,
@@ -48661,7 +48661,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 149,
-    "Name": ""
+    "Name": "挑戦状 ジラーチ"
   },
   {
     "Width": 16,
@@ -48961,7 +48961,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 150,
-    "Name": ""
+    "Name": "挑戦状 1"
   },
   {
     "Width": 11,
@@ -49381,7 +49381,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 151,
-    "Name": ""
+    "Name": "挑戦状 2"
   },
   {
     "Width": 22,
@@ -49717,7 +49717,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 152,
-    "Name": ""
+    "Name": "挑戦状 3"
   },
   {
     "Width": 22,
@@ -50233,7 +50233,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 153,
-    "Name": ""
+    "Name": "挑戦状 4"
   },
   {
     "Width": 21,
@@ -50749,7 +50749,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 154,
-    "Name": ""
+    "Name": "挑戦状 5"
   },
   {
     "Width": 0,
@@ -51398,7 +51398,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 160,
-    "Name": ""
+    "Name": "アジト 1"
   },
   {
     "Width": 22,
@@ -51890,7 +51890,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 161,
-    "Name": ""
+    "Name": "アジト 2"
   },
   {
     "Width": 22,
@@ -52286,7 +52286,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 162,
-    "Name": ""
+    "Name": "アジト 3"
   },
   {
     "Width": 16,
@@ -52712,7 +52712,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 163,
-    "Name": ""
+    "Name": "アジト 4"
   },
   {
     "Width": 22,
@@ -53264,7 +53264,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 164,
-    "Name": ""
+    "Name": "アジト 5"
   },
   {
     "Width": 8,
@@ -53450,7 +53450,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 165,
-    "Name": ""
+    "Name": "あかずのま"
   },
   {
     "Width": 0,
@@ -55318,7 +55318,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 187,
-    "Name": ""
+    "Name": "(未使用) カギ部屋 - ふしぎなグミ×1"
   },
   {
     "Width": 7,
@@ -55582,7 +55582,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 189,
-    "Name": ""
+    "Name": "(未使用) カギ部屋 - ふしぎなグミ×2 しあわせのタネ×4"
   },
   {
     "Width": 5,
@@ -55666,7 +55666,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 190,
-    "Name": ""
+    "Name": "(未使用) カギ部屋 - ワンダーチェスト×1"
   },
   {
     "Width": 5,
@@ -56500,7 +56500,7 @@
     "EscapeAllEnemiesDefeat": false,
     "Padding": 0,
     "Id": 197,
-    "Name": ""
+    "Name": "(未使用) カギ部屋(カギ無し)"
   },
   {
     "Width": 0,

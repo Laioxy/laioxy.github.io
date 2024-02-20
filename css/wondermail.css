@@ -26,7 +26,6 @@ li:has(span.allow) {
 
 #mission-rawdata-collapse {
   text-decoration: none;
-  border: var(--bs-border-width) solid var(--bs-border-color);
 }
 #mission-rawdata-collapse i {
   display: inline-block;

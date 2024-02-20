@@ -40,5 +40,4 @@ li:has(span.allow) {
   &[aria-expanded="false"] i {
     transform: rotate(0deg);
   }
-  border: var(--bs-border-width) solid var(--bs-border-color);
 }

@@ -75,7 +75,7 @@ function ConvertToMultiFormat(str, sec1, sec2, sec3) {
     .replace(/[A-Za-z0-9+-=&%@#]/g, function (s) {
       return String.fromCharCode(s.charCodeAt(0) + 0xfee0);
     });
-  
+
   if (sec1 == undefined || sec2 == undefined || sec3 == undefined) {
     alert("プログラムエラー");
     return false;
@@ -162,6 +162,7 @@ function Select2FormatState(state) {
   let banned = $(state.element).data("banned") ?? false;
   let nogender = $(state.element).data("gender") == 0;
   let invalid = $(state.element).data("valid") != undefined ? !$(state.element).data("valid") : undefined;
+  let allow = $(state.element).data("allow") != undefined ? $(state.element).data("allow") : undefined;
 
   if (banned) {
     // 禁止ポケモン

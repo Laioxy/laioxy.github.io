@@ -132,7 +132,7 @@ var mission_type = [
   },
   {
     id: 13,
-    name: "イベント用 (未使用)",
+    name: "(未使用)",
     flag: 0,
     difficult: false,
     same_cliant: false,
@@ -142,7 +142,7 @@ var mission_type = [
   },
   {
     id: 14,
-    name: "特別指令",
+    name: "その他 特別指令など",
     flag: 7,
     difficult: false,
     same_cliant: false,

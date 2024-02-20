@@ -33,6 +33,9 @@ $(async function () {
   var e_rest_value = $("#rest-value");
   var e_seed = $("#seed");
 
+  // ボタン要素
+  var e_target_item_rand = $("#target-item-rand");
+
   // アドバンスドモード (上級者向け)
   // 有効にするとdisabledを無効化、項目を一部拡張
   var advanced = new URL(document.location).searchParams.get("advanced") != null;
@@ -99,6 +102,29 @@ $(async function () {
   // 依頼フラグ
   e_mission_flag.on("change", function () {
     ToggleDisabled();
+
+    // 「依頼主と探検」の時、固定フロア値を変更
+    if (!advanced && CheckVersionSky() && e_mission_type.val() == 0x3) {
+      // あかずのま
+      if (e_mission_flag.val() == 0x1) e_fixed_floor.val(0xa5).change();
+      // おうごんのま
+      else if (e_mission_flag.val() == 0x2) e_fixed_floor.val(0x6f).change();
+      // それ以外
+      else e_fixed_floor.val(0).change();
+    }
+    // 伝説の挑戦状の時、固定フロア値を変更
+    else if (!advanced && CheckVersionSky() && e_mission_type.val() == 0xb) {
+      // ミュウツー
+      if (e_mission_flag.val() == 0x1) e_fixed_floor.val(0x91).change();
+      // エンテイ
+      else if (e_mission_flag.val() == 0x1) e_fixed_floor.val(0x92).change();
+      // ライコウ
+      else if (e_mission_flag.val() == 0x1) e_fixed_floor.val(0x93).change();
+      // スイクン
+      else if (e_mission_flag.val() == 0x1) e_fixed_floor.val(0x94).change();
+      // ジラーチ
+      else if (e_mission_flag.val() == 0x1) e_fixed_floor.val(0x95).change();
+    }
 
     //  伝説の挑戦状の場合、各種セレクトボックスにセット
     let skyMTypeId = e_mission_type.find("option:selected").data("sky");
@@ -175,6 +201,24 @@ $(async function () {
   e_cliant.on("change", function () {
     if (mission_type[e_mission_type.val()].same_cliant) {
       e_target_1.val(e_cliant.val()).change();
+    }
+  });
+  // 対象の道具 ランダムボタン
+  // 本来の依頼では "きのみタネ飲料", "ふしぎだま" のみ？
+  e_target_item_rand.on("click", function () {
+    if (ItemData != undefined) {
+      let rand = 0;
+      while (true) {
+        // 0x16Aを上限にランダム取得
+        rand = Math.floor(Math.random() * (0x16a + 1));
+        // [時闇] 時闇に無い道具を除外
+        if (e_version_old.prop("checked") && !ItemData[rand].IsTokiYami) continue;
+        // ふしぎなタマゴを除外
+        if (rand == 0xb2) continue;
+        // 無効な道具を除外
+        if (ItemData[rand].IsValid) break;
+      }
+      e_target_item.val(rand).change();
     }
   });
   // ダンジョン
@@ -274,6 +318,11 @@ $(async function () {
     AppendDungeon(e_dungeon);
     AppendFixedFloor();
     AppendRestrictionType();
+
+    // 初期値
+    e_cliant.val(1).change();
+    e_target_item.val(0x46).change();
+    e_dungeon.val(1).change();
   });
 
   console.log("init OK");
@@ -344,7 +393,7 @@ $(async function () {
     }
 
     let valid = elem.find("option:selected").data("gender");
-    let allow = elem.find("option:selected").hasClass("allow");
+    let allow = elem.find("option:selected").data("allow");
     if (!elem.prop("disabled") && valid != undefined) {
       if (valid == 0 && !allow) {
         // 無効エラー
@@ -365,19 +414,20 @@ $(async function () {
   /**
    * 禁止ポケモンを例外的に許可
    * @param {*} elem select要素
-   * @param {*} valid true=許可, false=禁止
-   * @param {*} where true=項目を絞り込む, false=絞り込まない
+   * @param {*} allow true=許可, false=禁止
    * @param {*} pokes ポケモンID配列
    */
-  function AllowPokemon(elem, valid, pokes = []) {
+  function AllowPokemon(elem, allow, pokes = []) {
     if (pokes.length > 0) {
       // 配列の1つ目のIDをセット
-      if (valid) elem.val(pokes[0]).change();
+      if (allow) elem.val(pokes[0]).change();
 
       // 有効クラス(allow)切替
       pokes.forEach(function (r) {
-        if (valid) elem.find(`option[value="${r}"]`).addClass("allow");
-        else elem.find(`option[value="${r}"]`).removeClass("allow");
+        if (allow) elem.find(`option[value="${r}"]`).data("allow", true);
+        else elem.find(`option[value="${r}"]`).data("allow", false);
+
+        //console.log(allow + " -> " + r + " : " + elem.find(`option[value="${r}"]`).data("allow"));
       });
     }
   }
@@ -401,7 +451,7 @@ $(async function () {
     }
 
     let valid = elem.find("option:selected").data("banned");
-    let allow = elem.find("option:selected").hasClass("allow");
+    let allow = elem.find("option:selected").data("allow");
     let disabled = elem.prop("disabled");
 
     if (valid != undefined) {

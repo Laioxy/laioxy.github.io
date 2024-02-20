@@ -94,3 +94,7 @@ h2.top-icon img {
   border-radius: var(--bs-border-radius);
   border: var(--bs-border-width) solid var(--bs-border-color);
 }
+
+.input-group > .form-floating > .select2 > .selection > .select2-selection {
+  border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius) !important;
+}

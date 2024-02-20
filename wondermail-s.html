@@ -59,6 +59,10 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet" />
+
     <script src="js/common.js"></script>
     <script src="js/wondermail.js"></script>
     <script src="js/wondermail_data.js"></script>
@@ -273,9 +277,12 @@
             </div>
             <div class="row g-2 mt-0">
               <div class="item col-md-6">
-                <div class="form-floating">
-                  <select class="form-select" id="target-item"></select>
-                  <label for="target-item">対象の道具</label>
+                <div class="input-group">
+                  <div class="form-floating">
+                    <select class="form-select" id="target-item"></select>
+                    <label for="target-item">対象の道具</label>
+                  </div>
+                  <button id="target-item-rand" class="btn btn-primary text-nowrap" type="button">ランダム</button>
                 </div>
               </div>
             </div>
@@ -421,6 +428,34 @@
         <h2>更新履歴</h2>
         <ul>
           <li>
+            <u>ver 1.0.8 (2024/02/20)</u><br />
+            <ul>
+              <li>
+                対象の道具にランダムボタンを追加<br />
+                <ul>
+                  <li><code>[16A]れんけつばこ</code>までの有効な道具の中からランダムで選択します</li>
+                  <li>時闇の場合、時闇に存在する道具のみ抽選されます</li>
+                  <li>試験的な機能なのでパスワードが弾かれたら教えて下さい</li>
+                </ul>
+              </li>
+              <li>
+                項目の一部に初期値を設定
+                <ul>
+                  <li>依頼主・対象ポケモン: <code>[001]フシギダネ (オス)</code></li>
+                  <li>対象の道具: <code>[046]オレンのみ</code></li>
+                  <li>ダンジョン: <code>[01]かいがんのどうくつ</code></li>
+                </ul>
+              </li>
+              <li>
+                あかずのま・おうごんのま選択時、対応した固定フロアが設定されるように変更
+                <ul>
+                  <li>原則上ゲーム側で生成される依頼に合わせて設定しているだけで、別の固定フロアで設定しても変化は無い</li>
+                </ul>
+              </li>
+              <li>固定フロア名称更新</li>
+            </ul>
+          </li>
+          <li>
             <u>ver 1.0.7 (2024/02/15)</u><br />
             <ul>
               <li>ツール全体のUIを変更</li>
@@ -455,20 +490,23 @@
           <li>
             <u>ver 1.0.5 (2024/01/29)</u><br />
             <ul>
-              <li>依頼タイプ「[0B]挑戦状を受ける」の依頼パスワードを展開した時、固定フロアが選択できない問題を修正</li>
+              <li>依頼タイプ<code>[0B]挑戦状を受ける</code>の依頼パスワードを展開した時、固定フロアが選択できない問題を修正</li>
             </ul>
           </li>
           <li>
             <u>ver 1.0.4 (2024/01/21)</u><br />
             <ul>
               <li>ページ読込速度の改善</li>
-              <li>依頼タイプ「[0A]お尋ね者を捕まえる」とフラグ「[06]アジトで戦う」選択時、固定フロアが選択できない問題を修正</li>
+              <li>依頼タイプ<code>[0A]お尋ね者を捕まえる</code>とフラグ<code>[06]アジトで戦う</code>選択時、固定フロアが選択できない問題を修正</li>
             </ul>
           </li>
           <li>
             <u>ver 1.0.3 (2024/01/18)</u><br />
             <ul>
-              <li>ほんじつのきゃー解禁に対応 (詳細: <a href="https://youtu.be/UyCLOumHyn8" target="_blank" rel="noopener noreferrer">動画</a>)</li>
+              <li>
+                ほんじつのきゃー解禁に対応 (詳細:
+                <a href="https://youtu.be/UyCLOumHyn8" target="_blank" rel="noopener noreferrer">動画</a>)
+              </li>
             </ul>
           </li>
           <li>
@@ -483,7 +521,7 @@
               <li>パスワード入力欄に軽い説明(placeholder)を追加</li>
               <li>別フォルムがあるポケモンにフォルム名を追加</li>
               <li>リージョン変更時にパスワード入力欄を空にするように変更</li>
-              <li>ダンジョン「ダミー(0xAD)」を選択できないように変更（フロアデータが存在しないため）</li>
+              <li>ダンジョン<code>[AD]ダミー</code>を選択できないように変更（フロアデータが存在しないため）</li>
               <li>パスワード生成時、パスワード文字数が更新されていない問題を修正</li>
               <li>上層ダンジョンの依頼ランクが正しく反映されていない問題を修正</li>
               <li>
