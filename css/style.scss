@@ -1,30 +1,32 @@
 html {
   height: 100%;
-
   body {
     background-color: #ddd;
     height: 100%;
   }
-
   select {
     option:disabled {
       color: #ccc;
     }
   }
+  i {
+    margin-right: 2px;
+  }
+  .context-sm {
+    font-size: 0.8em;
+    * + & {
+      margin-left: 4px;
+    }
+  }
 }
 
-i {
-  margin-right: 2px;
-}
-
+// ヘッダー
 .container-head {
   text-align: center;
   height: 150px;
-  // background-color: #f0a60d;
   position: relative;
   overflow: hidden;
   z-index: 0;
-
   &::before {
     content: "";
     background-image: url("../img/worldmap.png");
@@ -38,7 +40,6 @@ i {
     filter: blur(3px);
     z-index: -1;
   }
-
   a {
     color: #fff;
     text-decoration: none;
@@ -51,40 +52,26 @@ i {
   }
 }
 
-.wrapper {
-  padding: 24px;
-  margin: 24px;
-  border-radius: 8px;
-  background-color: #fff;
-  border: solid 1px #ccc;
-}
-
-h2.top-icon {
-  display: flex;
-
-  line-height: 1em;
-
-  img {
-    width: auto;
-    height: 1em;
-    margin-right: 0.4em;
-    display: inline-block;
+// トップページ
+.top-contents {
+  ul {
+    margin: 0;
+  }
+  h2.top-icon {
+    display: flex;
+    line-height: 1em;
+    img {
+      width: auto;
+      height: 1em;
+      margin-right: 0.4em;
+      display: inline-block;
+    }
   }
 }
 
-.row + .row {
-  margin-top: 10px;
-}
-
-.context-sm {
-  font-size: 0.8em;
-  * + & {
-    margin-left: 4px;
-  }
-}
-
+// ローディング
 .loading {
-  background-color: #ffffffff;
+  background-color: #ffffffbf;
   position: fixed;
   top: 0;
   left: 0;

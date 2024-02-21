@@ -8,9 +8,14 @@ html body {
 html select option:disabled {
   color: #ccc;
 }
-
-i {
+html i {
   margin-right: 2px;
+}
+html .context-sm {
+  font-size: 0.8em;
+}
+* + html .context-sm {
+  margin-left: 4px;
 }
 
 .container-head {
@@ -44,38 +49,22 @@ i {
   font-weight: bold;
 }
 
-.wrapper {
-  padding: 24px;
-  margin: 24px;
-  border-radius: 8px;
-  background-color: #fff;
-  border: solid 1px #ccc;
+.top-contents ul {
+  margin: 0;
 }
-
-h2.top-icon {
+.top-contents h2.top-icon {
   display: flex;
   line-height: 1em;
 }
-h2.top-icon img {
+.top-contents h2.top-icon img {
   width: auto;
   height: 1em;
   margin-right: 0.4em;
   display: inline-block;
 }
 
-.row + .row {
-  margin-top: 10px;
-}
-
-.context-sm {
-  font-size: 0.8em;
-}
-* + .context-sm {
-  margin-left: 4px;
-}
-
 .loading {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.7490196078);
   position: fixed;
   top: 0;
   left: 0;
