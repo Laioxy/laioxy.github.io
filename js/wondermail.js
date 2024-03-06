@@ -117,13 +117,13 @@ $(async function () {
       // ミュウツー
       if (e_mission_flag.val() == 0x1) e_fixed_floor.val(0x91).change();
       // エンテイ
-      else if (e_mission_flag.val() == 0x1) e_fixed_floor.val(0x92).change();
+      else if (e_mission_flag.val() == 0x2) e_fixed_floor.val(0x92).change();
       // ライコウ
-      else if (e_mission_flag.val() == 0x1) e_fixed_floor.val(0x93).change();
+      else if (e_mission_flag.val() == 0x3) e_fixed_floor.val(0x93).change();
       // スイクン
-      else if (e_mission_flag.val() == 0x1) e_fixed_floor.val(0x94).change();
+      else if (e_mission_flag.val() == 0x4) e_fixed_floor.val(0x94).change();
       // ジラーチ
-      else if (e_mission_flag.val() == 0x1) e_fixed_floor.val(0x95).change();
+      else if (e_mission_flag.val() == 0x5) e_fixed_floor.val(0x95).change();
     }
 
     //  伝説の挑戦状の場合、各種セレクトボックスにセット
