@@ -14,12 +14,11 @@ $(async function () {
   // 公開日まで蓋をしておく
   let now = new Date();
   let pub = new Date(2024, 2, 15, 18, 0, 0);
-  console.log(now);
-  console.log(pub);
   if (now < pub) {
     let m = $("#main-container");
     m.empty();
     m.append(`<div class="card my-3"><div class="card-body">もう少し待って（公開予定: 2024/3/15 18:00）</div></div>`);
+    return;
   }
 
   // JSON取得
