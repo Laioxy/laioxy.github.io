@@ -676,11 +676,21 @@ $(async function () {
     let dun = DungeonData[e_dungeon.val()];
 
     elem.empty();
-    for (let i = dun.FloorPrev + 1; i - dun.FloorPrev <= dun.FloorCount; i++) {
+    let start = !advanced ? dun.FloorPrev + 1 : dun.FloorPrev;
+    for (let i = start; (!advanced && i - dun.FloorPrev <= dun.FloorCount) || (advanced && i <= start + 0xff); i++) {
       if (e_mission_type.val() != null) {
-        let diff = FloorData[dun.MappaIndex][i].MissionRankId;
-        if (mission_type[e_mission_type.val()].difficult && diff < 15) diff++;
-        elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F : ${difficult[diff].name}(${difficult[diff].value})</option>`);
+        let diff = -1;
+
+        // 難易度セット
+        if (FloorData[dun.MappaIndex][i] != undefined) diff = FloorData[dun.MappaIndex][i].MissionRankId;
+
+        if (diff != -1) {
+          // 難易度が上がる依頼タイプの場合、難易度を上げる
+          if (mission_type[e_mission_type.val()].difficult && diff < 15) diff++;
+          elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F : ${difficult[diff].name}(${difficult[diff].value})</option>`);
+        } else {
+          elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F</option>`);
+        }
       } else {
         elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F</option>`);
       }
