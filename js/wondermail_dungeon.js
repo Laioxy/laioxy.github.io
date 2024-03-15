@@ -13,7 +13,7 @@ $(async function () {
 
   // 公開日まで蓋をしておく
   let now = new Date();
-  let pub = new Date(2024, 2, 15, 18, 0, 0);
+  let pub = new Date(2024, 2, 15, 22, 0, 0);
   if (now < pub) {
     let m = $("#main-container");
     m.empty();
