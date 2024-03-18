@@ -94,7 +94,7 @@
         <p>一応スマホにも対応していますが、使用環境は基本的にPCを想定しています。</p>
         <div class="alert alert-warning">
           <h5 class="alert-heading"><i class="bi bi-exclamation-diamond-fill"></i>時闇でパスワードを作る場合...</h5>
-          <p class="mb-0">
+          <p>
             このサイトで使用している各種データは空準拠なので、時闇に無いもので生成するとゲーム側で正しく反映できない場合があります。<br />
             <span style="font-size: 0.8em">例: シェイミ、オレソのみ、そらのいただき etc...</span>
           </p>
@@ -108,9 +108,9 @@
             また、正規の手段で得られたパスワードとして偽って掲載することを<b>禁止</b>します。
           </p>
           <hr />
-          <p class="mb-0">
-            組み合わせによってはセーブデータに影響を及ぼす場合があります。<b>自己責任でご利用ください。</b><br />
-            （セーブデータが消えることは無いです）
+          <p>
+            組み合わせによってはセーブデータに影響を及ぼしたり、破損・フリーズを引き起こす場合があります。<br />
+            <b>自己責任でご利用ください。</b>
           </p>
         </div>
       </div>
@@ -211,7 +211,7 @@
         <hr class="mt-5" />
 
         <div class="d-flex flex-column gap-4">
-          <div>
+          <div class="area-mission">
             <p class="fs-5 mb-1">依頼の内容</p>
             <div class="row g-2">
               <div class="item col-md-6">
@@ -228,7 +228,7 @@
               </div>
             </div>
             <div class="row g-2 mt-0">
-              <div class="item col-md-4">
+              <div class="item col-md-6">
                 <div class="form-floating">
                   <select id="reward-type" class="form-select"></select>
                   <label for="reward-type">報酬タイプ</label>
@@ -250,9 +250,10 @@
                 </div>
               </div>
             </div>
+            <div id="mission-alert" class="mt-3 mb-0 alert" role="alert" style="display: none"></div>
           </div>
 
-          <div>
+          <div class="area-pokemon">
             <p class="fs-5 mb-1">依頼の対象</p>
             <div class="row g-2">
               <div class="item col-md-6">
@@ -289,7 +290,7 @@
             </div>
           </div>
 
-          <div>
+          <div class="area-dungeon">
             <p class="fs-5 mb-1">ダンジョン</p>
             <div class="row g-2">
               <div class="item col-md-6">
@@ -298,7 +299,7 @@
                   <label for="dungeon">ダンジョン</label>
                 </div>
               </div>
-              <div class="item col-md-4">
+              <div class="item col-md-6">
                 <div class="form-floating">
                   <select id="dungeon-floor" class="form-select"></select>
                   <label for="dungeon-floor">階数</label>
@@ -315,10 +316,10 @@
             </div>
           </div>
 
-          <div>
+          <div class="area-other">
             <p class="fs-5 mb-1">その他</p>
             <div class="row g-2">
-              <div class="item col-md-4">
+              <div class="item col-md-6">
                 <div class="form-floating">
                   <select id="rest-type" class="form-select"></select>
                   <label for="rest-type">制限タイプ</label>
@@ -360,10 +361,11 @@
                   ゲーム上ではありえないような組み合わせの依頼を、パスワードを自作することで作ることが出来てしまいます。<br />
                   ポケダンを破壊する要素の一つ。
                 </p>
-                <p class="m-0">
-                  時闇の場合、変な依頼をクリアするとマナフィを仲間にするイベントが発生しなくなるバグがあるらしいが真偽は不明。<br />
-                  不安であればとりあえず先に仲間にしておけば問題ないです。
+                <p>
+                  時闇の場合、捏造依頼をクリアするとマナフィを仲間にするイベントが発生しなくなるバグがあるらしいが真偽は不明。<br />
+                  というのも、マナフィはダークライ撃破後<u>3回依頼をこなす</u>ことでイベントが発生するため、これを忘れているだけの可能性が高いです。<br />
                 </p>
+                <p>不安であればとりあえず先に仲間にしておけば問題ないです。</p>
               </div>
             </div>
           </div>
@@ -376,7 +378,7 @@
             </h2>
             <div id="question-2" class="accordion-collapse collapse">
               <div class="accordion-body">
-                <p class="m-0">
+                <p>
                   依頼で使用できないポケモンが「<b>依頼主</b>」や「<b>対象ポケモン</b>」として使用されていたり、「<b>対象の道具</b>」や「<b>報酬</b>」に無効な道具が使用されているものは、パスワードが作成できてもゲーム側で弾かれてしまいます。
                 </p>
               </div>
@@ -389,7 +391,7 @@
             </h2>
             <div id="question-3" class="accordion-collapse collapse">
               <div class="accordion-body">
-                <p class="m-0">
+                <p>
                   パスワードが間違っている可能性大。<br />
                   一文字も間違えていないのに展開できない場合は<a href="https://twitter.com/Laioxy" target="_blank" rel="noopener noreferrer">Twitter</a
                   >で教えてください。<br />
@@ -407,17 +409,57 @@
             </h2>
             <div id="question-4" class="accordion-collapse collapse">
               <div class="accordion-body">
-                <p class="mb-3">
+                <p>
                   無効なポケモンとは性別値が「無効(0)」であるポケモンを指します。<br />
                   各ポケモンには性別が2種類あり、第一性別がオス(1)のポケモンがほとんどです。<br />
                   この第一性別がメス(2)・もしくは性別不明(3)である場合、第二性別は無効(0)に設定されます。<br />
                   この性別のポケモンは依頼主等のポケモンに設定してパスワードを作成しても、ゲーム側から弾かれてしまいます。
                 </p>
-                <p class="mb-0">
+                <p>
                   無効な道具は通常の道具として扱えないものを指します。<br />
                   道具データには「有効な道具」を表す値があり、それが無効とされているものが「無効な道具」です。<br />
                   主に未使用・没データとして残された道具が該当します。<br />
                   これもポケモン同様、報酬や対象の道具として設定しても弾かれてしまいます。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-5">
+                パス入力時のフリーズについて
+              </button>
+            </h2>
+            <div id="question-5" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <p>現在、以下のパターンで本来の依頼主・対象ポケモンの組み合わせが異なる時にフリーズすることを確認しています。</p>
+                <ul>
+                  <li>依頼タイプ<code>[01]対象を救助する</code>、依頼フラグ<code>[01]親子系</code></li>
+                  <li>依頼タイプ<code>[01]対象を救助する</code>、依頼フラグ<code>[02]親友系</code></li>
+                  <li>依頼タイプ<code>[01]対象を救助する</code>、依頼フラグ<code>[03]恋人/ライバル/兄弟系</code></li>
+                  <li>依頼タイプ<code>[0A]お尋ね者を捕まえる</code>、依頼フラグ<code>[01]大悪党系</code></li>
+                  <li>依頼タイプ<code>[0A]お尋ね者を捕まえる</code>、依頼フラグ<code>[02]ペテン師系</code></li>
+                  <li>依頼タイプ<code>[0A]お尋ね者を捕まえる</code>、依頼フラグ<code>[03]かわいい系</code></li>
+                  <li>依頼タイプ<code>[0A]お尋ね者を捕まえる</code>、依頼フラグ<code>[06]アジトで戦う</code></li>
+                  <li>依頼タイプ<code>[0B]挑戦状を受ける</code>、依頼フラグ<code>[00]通常の挑戦状</code></li>
+                </ul>
+                <p>
+                  また、依頼タイプ<code>[0C]おたからメモ</code>で対応していないダンジョンのパスを入力した際にもフリーズすることを確認しています。<br />
+                  （こちらはv1.0.11の更新で通常モード時は選択できないようにしたので誤ってフリーズさせてしまう危険性は減りました）
+                </p>
+                <p>
+                  これらは各ポケモンの組み合わせから依頼文を設定しているため、本来とは異なる組み合わせで作成したパスを入力すると<b>無効な依頼文</b>が呼び出され、DS版のみフリーズしてしまいます（VC版・エミュは問題なし）。<br />
+                  基本的には入力時にフリーズを起こしますが、稀にフリーズせずにパスが通ってしまうことがあります。
+                  その場合、依頼リストを開くたびにフリーズを起こし<b class="text-danger">セーブデータを削除しない限り元に戻らない</b>という報告を受けています。
+                </p>
+                <p>
+                  これらの依頼タイプ・フラグで依頼を作成する際は、<b>本来存在する組み合わせと同じポケモンを設定</b>するようお願いします。<br />
+                  （ツール側で入力制限するのも視野に入れましたが、パターンの解析ができていないうえに展開という機能がある以上自由度を下げたくないので…）
+                </p>
+                <p>
+                  本ツールはページの始めにもあるように、<b class="text-danger">自己責任</b
+                  >で使用することを前提としています。<br />このツールで起きた問題について私は一切の責任を負いません。
                 </p>
               </div>
             </div>
@@ -428,6 +470,22 @@
       <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
         <h2>更新履歴</h2>
         <ul>
+          <li>
+            <u>ver 1.0.11 (2024/03/18)</u><br />
+            <ul>
+              <li>
+                応急処置としてチェリム(ポジ)を禁止ポケモンに追加
+                <ul>
+                  <li>厳密には禁止ポケモンではないが、仕様上弾かれる</li>
+                </ul>
+              </li>
+              <li>通常モード時かつ依頼タイプ<code>[0C]おたからメモ</code>選択時、正しく依頼を生成できるダンジョンのみに絞り込むように変更</li>
+              <li>通常モード時、おたからメモ対象外のダンジョンが設定されたおたからメモ依頼のパスワードを展開できないように変更</li>
+              <li>依頼タイプ<code>[01]対象を救助する</code>選択時のフラグの項目名を修正</li>
+              <li>フリーズする可能性がある組み合わせの依頼タイプ・フラグ選択時に警告メッセージを表示</li>
+              <li>レイアウト調整</li>
+            </ul>
+          </li>
           <li>
             <u>ver 1.0.10 (2024/03/13)</u><br />
             <ul>

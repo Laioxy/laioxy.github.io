@@ -17,6 +17,9 @@ html .context-sm {
 * + html .context-sm {
   margin-left: 4px;
 }
+html p:last-child {
+  margin-bottom: 0;
+}
 
 .container-head {
   text-align: center;
@@ -80,6 +83,9 @@ html .context-sm {
   align-items: center;
 }
 
+.form-floating .select2-container--bootstrap-5 {
+  width: auto !important;
+}
 .form-floating span.select2.select2-container span.selection .select2-selection {
   padding-top: 1.625rem;
   padding-bottom: 0.625rem;
@@ -90,4 +96,9 @@ html .context-sm {
 
 .input-group > .form-floating > .select2 > .selection > .select2-selection {
   border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius) !important;
-}/*# sourceMappingURL=style.css.map */
+}
+
+.select2-results__option--disabled {
+  background-color: #ccc !important;
+  display: none;
+}

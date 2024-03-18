@@ -18,6 +18,9 @@ html {
       margin-left: 4px;
     }
   }
+  p:last-child {
+    margin-bottom: 0; // 最後の<p>だけmargin消す
+  }
 }
 
 // ヘッダー
@@ -90,6 +93,9 @@ html {
 
 // Select2 フローティングデザイン統一
 .form-floating {
+  .select2-container--bootstrap-5 {
+    width: auto !important;
+  }
   span.select2.select2-container span.selection .select2-selection {
     padding-top: 1.625rem;
     padding-bottom: 0.625rem;
@@ -100,4 +106,9 @@ html {
 }
 .input-group > .form-floating > .select2 > .selection > .select2-selection {
   border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius) !important;
+}
+// Select2 disabled項目
+.select2-results__option--disabled {
+  background-color: #ccc !important;
+  display: none;
 }

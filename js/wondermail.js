@@ -8,7 +8,6 @@ $(async function () {
 
   // 要素キャッシュ
   var e_pass_area = $("#pass-area");
-  var e_pass_alert = $("#pass-alert");
   var e_version_sky = $("#version-sky");
   var e_version_old = $("#version-old");
   var e_resion_jp = $("#resion-jp");
@@ -35,6 +34,10 @@ $(async function () {
 
   // ボタン要素
   var e_target_item_rand = $("#target-item-rand");
+
+  // アラート要素
+  var e_pass_alert = $("#pass-alert");
+  var e_mission_alert = $("#mission-alert");
 
   // アドバンスドモード (上級者向け)
   // 有効にするとdisabledを無効化、項目を一部拡張
@@ -64,7 +67,6 @@ $(async function () {
   e_target_item.select2(select2Config);
   e_dungeon.select2(select2Config);
   e_rest_value.select2(select2Config);
-  $(".select2-container").css("width", "auto"); // レスポンシブ対応
 
   // バージョン・リージョン
   $("input[name='version'], input[name='resion']").on("change", function () {
@@ -98,6 +100,12 @@ $(async function () {
 
     // 対象ポケモン1が選択できない場合、依頼主と同じ値にする
     if (e_target_1.prop("disabled")) e_target_1.val(e_cliant.val()).change();
+
+    // (おたからメモ用) ダンジョン項目制御
+    if (!advanced) NarrowTreasureMemoDungeon();
+
+    // 依頼内容警告メッセージ
+    if (!advanced) AlertMissionTypeAndFlag();
   });
   // 依頼フラグ
   e_mission_flag.on("change", function () {
@@ -155,6 +163,9 @@ $(async function () {
     CheckBannedPokemon(e_target_1);
     CheckBannedPokemon(e_target_2); // disabledケア用途
     CheckBannedPokemon(e_cliant);
+
+    // 依頼内容警告メッセージ
+    if (!advanced) AlertMissionTypeAndFlag();
   });
   // 報酬タイプ
   e_reward_type.on("change", function () {
@@ -515,6 +526,51 @@ $(async function () {
     }
   }
 
+  /**
+   * (おたからメモ用) 許可ダンジョン絞り込み
+   */
+  function NarrowTreasureMemoDungeon() {
+    if (CheckVersionSky() && e_mission_type.val() == 0xc) {
+      // 許可ダンジョン以外を選択中の場合、最初の項目にセット
+      if (allow_treasure_memo_dun.indexOf(Number(e_dungeon.val())) == -1) {
+        e_dungeon.val(allow_treasure_memo_dun[0]).change();
+      }
+      // 許可ダンジョン以外を選択不可にする
+      e_dungeon.find("option").each(function () {
+        if (allow_treasure_memo_dun.indexOf(Number($(this).val())) == -1) {
+          $(this).prop("disabled", true);
+        }
+      });
+    } else {
+      e_dungeon.find("option").each(function () {
+        $(this).prop("disabled", false);
+      });
+    }
+  }
+
+  /**
+   * 依頼タイプ・フラグの組み合わせで警告文表示
+   */
+  function AlertMissionTypeAndFlag() {
+    if (
+      CheckVersionSky() &&
+      ((e_mission_type.val() == 0x1 && e_mission_flag.val() != 0x0) ||
+        (e_mission_type.val() == 0xa && ((e_mission_flag.val() >= 0x1 && e_mission_flag.val() <= 0x3) || e_mission_flag.val() == 0x6)) ||
+        (e_mission_type.val() == 0xb && e_mission_flag.val() == 0x0))
+    ) {
+      let msg =
+        `<p>` +
+        `組み合わせによってはフリーズのおそれがあるため、非推奨です。<br>` +
+        `別の依頼タイプ・フラグに変更するか、使用する場合は必ずポケモンの組み合わせを適切に設定してください。` +
+        `</p>`;
+      e_mission_alert.addClass("alert-danger");
+      e_mission_alert.html(msg);
+      e_mission_alert.fadeIn();
+    } else {
+      e_mission_alert.fadeOut();
+    }
+  }
+
   /********************************************************************/
 
   /**
@@ -617,7 +673,9 @@ $(async function () {
       // 性別
       let gender = PokemonData[i % 600].Genders[Math.floor(i / 600)];
       // 禁止ポケモン (禁止リスト or シェイミ(0x216)以降)
-      let banned = banned_poke.includes(i % 600) || i % 600 >= 0x216;
+      let banned = banned_poke.includes(i % 600) || i % 600 >= 0x216 || i % 600 == 0x1cd;
+
+      // ※応急処置※ チェリム(ポジ)禁止
 
       let pokeName = PokemonData[i % 600].Name;
       let subName = PokemonData[i % 600].SubName;
@@ -658,12 +716,14 @@ $(async function () {
     let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
     for (let i = 0; i < DungeonData.length; i++) {
+      // 追加
       elem.append(
         `<option value="${i}" data-search="${DungeonData[i].Name}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`
       );
     }
     // ダミー(0xAD)を選択不可にする
     if (!advanced) $(`select#dungeon option[value="${0xad}"]`).prop("disabled", true);
+
     // 値を再度セット
     if (prev >= elem.children().length || prev == undefined) prev = 0;
     elem.val(prev);
@@ -771,6 +831,17 @@ $(async function () {
         let mission = new WonderMail();
         mission.Decode(sky, resion, pass);
 
+        // 依頼タイプがおたからメモかつ対象ダンジョン以外の時は除外
+        if (!advanced && CheckVersionSky() && mission.MissionType == 0xc && allow_treasure_memo_dun.indexOf(Number(mission.Dungeon)) == -1) {
+          let msg =
+            `<p>展開可能なパスワードですが、おたからメモ対象外のダンジョンが含まれています。<br>` +
+            `<a href="?advanced">アドバンスドモード</a>で読み込むことができます。</p>`;
+          e_pass_alert.html(msg);
+          e_pass_alert.addClass("alert-warning");
+          e_pass_alert.fadeIn();
+          return mission;
+        }
+
         // コンボボックスにセット
         e_mission_type.val(mission.MissionType).change();
         e_mission_flag.val(mission.MissionFlag).change();
@@ -808,7 +879,7 @@ $(async function () {
           let msg =
             `<p>パスワードを展開しましたが、ハッシュ値が一致しません。` +
             `<br>Hash1: ${mission.Hash1.toString(16).toUpperCase()} / Hash2: ${mission.Hash2.toString(16).toUpperCase()}</p>` +
-            `<p class="mb-0">このまま生成することで正しいハッシュ値のパスワードに修正して生成できます。</p>`;
+            `<p>このまま生成することで正しいハッシュ値のパスワードに修正して生成できます。</p>`;
           e_pass_alert.html(msg);
           e_pass_alert.addClass("alert-warning");
         }
@@ -971,6 +1042,12 @@ $(async function () {
     if (e_resion_jp.prop("checked")) res = "JP";
     else if (e_resion_na.prop("checked")) res = "NA";
     else if (e_resion_eu.prop("checked")) res = "EU";
+    return res;
+  }
+
+  function GetBaseForm(val) {
+    let res = val;
+
     return res;
   }
 });
