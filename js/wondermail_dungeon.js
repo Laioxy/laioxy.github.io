@@ -12,14 +12,14 @@ $(async function () {
   var e_pass_generate = $("#pass-generate");
 
   // 公開日まで蓋をしておく
-  let now = new Date();
-  let pub = new Date(2024, 2, 15, 22, 0, 0);
-  if (now < pub) {
-    let m = $("#main-container");
-    m.empty();
-    m.append(`<div class="card my-3"><div class="card-body">もう少し待って（公開予定: 2024/3/15 18:00）</div></div>`);
-    return;
-  }
+  // let now = new Date();
+  // let pub = new Date(2024, 2, 15, 22, 0, 0);
+  // if (now < pub) {
+  //   let m = $("#main-container");
+  //   m.empty();
+  //   m.append(`<div class="card my-3"><div class="card-body">もう少し待って（公開予定: 2024/3/15 18:00）</div></div>`);
+  //   return;
+  // }
 
   // JSON取得
   await Promise.all([GetDungeonJson(), GetFloorJson()])
@@ -54,13 +54,20 @@ $(async function () {
   function AppendDungeon(elem = e_dungeon) {
     let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
-    for (let i = 0; i < DungeonData.length; i++) {
+    for (let i = 0; i < DungeonData.length && i < 0xb4; i++) {
+      // 続きダンジョン除外 (ダミー5以外)
+      if (DungeonData[i].FloorPrev > 0 && i != 0xad) continue;
+      // スペシャルエピソード除外
+      if (i >= 0x7b && i <= 0xa4) continue;
+      // シェイミのさと除外
+      if (i == 0xaf) continue;
+
       elem.append(
         `<option value="${i}" data-search="${DungeonData[i].Name}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`
       );
     }
     // ダミー(0xAD)を選択不可にする
-    $(`select#dungeon option[value="${0xad}"]`).prop("disabled", true);
+    //$(`select#dungeon option[value="${0xad}"]`).prop("disabled", true);
     // 値を再度セット
     if (prev >= elem.children().length || prev == undefined) prev = 0;
     elem.val(prev);
@@ -89,15 +96,15 @@ $(async function () {
     let mission = new WonderMail();
 
     // 報酬値ランダム
-    let randomRewordVal = Math.floor(Math.random() * 0x7ff);
+    //let randomRewordVal = Math.floor(Math.random() * 0x7ff);
     // SEEDランダム
     let randomSeedVal = Math.floor(Math.random() * 0xffffff);
 
     mission.Status = 4;
     mission.MissionType = 0xb;
     mission.MissionFlag = 0x5;
-    mission.RewardType = 0x0;
-    mission.RewardValue = randomRewordVal;
+    mission.RewardType = 0x6;
+    mission.RewardValue = 0x1a1;
     mission.Cliant = 0x1a1;
     mission.Target1 = 0x1a1;
     mission.Target2 = 0x000;

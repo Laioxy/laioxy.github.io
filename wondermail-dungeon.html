@@ -82,23 +82,28 @@
           ポケダン空のダンジョン強制解禁バグ用のパスワードを作成するツール。<br />
           最低限の機能だけ実装した簡易版です。
         </p>
-        <p>生成する依頼は以下の内容です。<br /></p>
 
-        <ul>
-          <li>依頼タイプ: <code>[0B]挑戦状を受ける</code></li>
-          <li>フラグ: <code>[05]ジラーチ用</code></li>
-          <li>報酬タイプ: <code>[00]ポケ</code></li>
-          <li>報酬値: <code class="text-primary">ランダム(0x000～0x7FF)</code></li>
-          <li>依頼主: <code>[1A1]ジラーチ</code></li>
-          <li>対象ポケモン1: <code>[1A1]ジラーチ</code></li>
-          <li>対象ポケモン2: <code>[000]なにものか</code></li>
-          <li>ダンジョン: <code class="text-primary">(選択)</code></li>
-          <li>フロア: <code class="text-primary">(選択)</code></li>
-          <li>制限タイプ: <code>[00]タイプ</code></li>
-          <li>制限値: <code>[00]なし</code></li>
-          <li>SEED: <code class="text-primary">ランダム(0x000000～0xFFFFFF)</code></li>
-        </ul>
-        <p class="mb-0">通常のふしぎなメール生成機は<a href="./wondermail-s.html">こちら</a></p>
+        <iframe
+          class="mb-3"
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/6DGqGHER4vM?si=vFMr4xoa2orVX88h"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+
+        <p>
+          パスワード入力後、依頼を実行するだけでダンジョンが解禁されます。<br />
+          ストーリー系ダンジョンを強制解禁すると<b>ゲームの進行に影響を及ぼします。</b><br />
+          解禁後にセーブしてしまうと<b class="text-danger">元の状態には戻せない</b>のでよく考えて使うこと！
+        </p>
+        <p>
+          この簡易ツールでは解禁できない・解禁してはいけないダンジョンを除外しています。<br />
+          制限なく作成したい方は通常のツールをご使用下さい。<br />
+          通常のふしぎなメール生成機は<a href="./wondermail-s.html">こちら</a>
+        </p>
       </div>
 
       <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle" id="pass-form">
@@ -146,6 +151,25 @@
             <textarea class="form-control form-control-sm d-grid" rows="2" id="pass-area" placeholder="" readonly></textarea>
           </div>
         </div>
+      </div>
+
+      <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
+        <h4>生成内容</h4>
+        <ul class="m-0">
+          <li>依頼タイプ: <code>[0B]挑戦状を受ける</code></li>
+          <li>フラグ: <code>[05]ジラーチ用</code></li>
+          <li>報酬タイプ: <code>[06]仲間になる</code></li>
+          <li>報酬値: <code>[1A1]ジラーチ</code></li>
+          <li>依頼主: <code>[1A1]ジラーチ</code></li>
+          <li>対象ポケモン1: <code>[1A1]ジラーチ</code></li>
+          <li>対象ポケモン2: <code>[000]なにものか</code></li>
+          <li>対象の道具: <code>[046]オレンのみ</code></li>
+          <li>ダンジョン: <code class="text-primary">(選択)</code></li>
+          <li>フロア: <code class="text-primary">(選択)</code></li>
+          <li>制限タイプ: <code>[00]タイプ</code></li>
+          <li>制限値: <code>[00]なし</code></li>
+          <li>SEED: <code class="text-primary">ランダム(0x000000～0xFFFFFF)</code></li>
+        </ul>
       </div>
     </div>
   </body>
