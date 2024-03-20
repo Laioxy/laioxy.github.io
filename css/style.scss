@@ -112,3 +112,14 @@ html {
   background-color: #ccc !important;
   display: none;
 }
+
+// YouYubeレスポンシブ対応
+.youtube {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  iframe {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+  }
+}

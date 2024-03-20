@@ -102,3 +102,13 @@ html p:last-child {
   background-color: #ccc !important;
   display: none;
 }
+
+.youtube {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+.youtube iframe {
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+}
