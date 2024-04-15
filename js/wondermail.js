@@ -1,3 +1,5 @@
+import { WonderMail, GetSwapTable } from "./wondermail_pass.js";
+
 $(async function () {
   // JSONデータ格納用変数
   var PokemonData;
@@ -7,21 +9,25 @@ $(async function () {
   var FixedData;
 
   // 要素キャッシュ
+  var e_loading = $(".loading");
+  var e_advanced = $(".advanced");
+  var e_progress_worker_bar = $("#progress-worker-bar");
+  var e_progress_wrap = $("#progress-wrap");
   var e_pass_area = $("#pass-area");
   var e_version_sky = $("#version-sky");
   var e_version_old = $("#version-old");
   var e_resion_jp = $("#resion-jp");
   var e_resion_na = $("#resion-na");
   var e_resion_eu = $("#resion-eu");
-  var e_hash_1 = $("#hash1");
-  var e_hash_2 = $("#hash2");
+  var e_checksum_1 = $("#hash1");
+  var e_checksum_2 = $("#hash2");
 
   var e_mission_type = $("#mission-type");
   var e_mission_flag = $("#mission-flag");
   var e_reward_type = $("#reward-type");
   var e_reward_value_number = $("#reward-value-number");
   var e_reward_value_select = $("#reward-value-select");
-  var e_cliant = $("#cliant");
+  var e_client = $("#client");
   var e_target_1 = $("#target-1");
   var e_target_2 = $("#target-2");
   var e_target_item = $("#target-item");
@@ -31,6 +37,13 @@ $(async function () {
   var e_rest_type = $("#rest-type");
   var e_rest_value = $("#rest-value");
   var e_seed = $("#seed");
+
+  var e_mode_consecutive = $("#mode-consecutive");
+  var e_consecutive_max = $("#consecutive-max");
+  var e_consecutive_rand_reward_value = $("#consecutive-random-reward-value");
+  var e_consecutive_rand_pokemon = $("#consecutive-random-pokemon");
+  var e_consecutive_rand_target_item = $("#consecutive-random-target-item");
+  var e_consecutive_rand_seed = $("#consecutive-random-seed");
 
   // ボタン要素
   var e_target_item_rand = $("#target-item-rand");
@@ -43,9 +56,12 @@ $(async function () {
   // 有効にするとdisabledを無効化、項目を一部拡張
   var advanced = new URL(document.location).searchParams.get("advanced") != null;
 
+  // Worker
+  var worker = null;
+
   // アドバンスドモード表示
-  if (advanced) $(".advanced").show();
-  else $(".advanced").hide();
+  if (advanced) e_advanced.show();
+  else e_advanced.hide();
 
   await Promise.all([GetPokemonJson(), GetItemJson(), GetDungeonJson(), GetFloorJson(), GetFixedJson()])
     .then((results) => {
@@ -61,7 +77,7 @@ $(async function () {
 
   // Select2
   e_reward_value_select.select2(select2Config);
-  e_cliant.select2(select2Config);
+  e_client.select2(select2Config);
   e_target_1.select2(select2Config);
   e_target_2.select2(select2Config);
   e_target_item.select2(select2Config);
@@ -90,8 +106,8 @@ $(async function () {
     ToggleDisabled();
 
     // 0x09 or 0x0A なら依頼主でコイルとジバコイルを許可
-    AllowPokemon(e_cliant, skyMTypeId == 0x09 || skyMTypeId == 0x0a, [0x051, 0x1f8]);
-    CheckBannedPokemon(e_cliant); // 依頼主更新
+    AllowPokemon(e_client, skyMTypeId == 0x09 || skyMTypeId == 0x0a, [0x051, 0x1f8]);
+    CheckBannedPokemon(e_client); // 依頼主更新
 
     CheckInvalidPokemon(e_target_1);
     CheckInvalidPokemon(e_target_2);
@@ -99,7 +115,7 @@ $(async function () {
     CheckBannedPokemon(e_target_2);
 
     // 対象ポケモン1が選択できない場合、依頼主と同じ値にする
-    if (e_target_1.prop("disabled")) e_target_1.val(e_cliant.val()).change();
+    if (e_target_1.prop("disabled")) e_target_1.val(e_client.val()).change();
 
     // (おたからメモ用) ダンジョン項目制御
     if (!advanced) NarrowTreasureMemoDungeon();
@@ -143,11 +159,11 @@ $(async function () {
     AllowPokemon(e_reward_value_select, skyMTypeId == 0x0b && e_mission_flag.val() == 4, [0x110]); // スイクン
     AllowPokemon(e_reward_value_select, skyMTypeId == 0x0b && e_mission_flag.val() == 5, [0x1a1]); // ジラーチ
     // 依頼主
-    AllowPokemon(e_cliant, skyMTypeId == 0x0b && e_mission_flag.val() == 1, [0x096]); // ミュウツー
-    AllowPokemon(e_cliant, skyMTypeId == 0x0b && e_mission_flag.val() == 2, [0x10f]); // エンテイ
-    AllowPokemon(e_cliant, skyMTypeId == 0x0b && e_mission_flag.val() == 3, [0x10e]); // ライコウ
-    AllowPokemon(e_cliant, skyMTypeId == 0x0b && e_mission_flag.val() == 4, [0x110]); // スイクン
-    AllowPokemon(e_cliant, skyMTypeId == 0x0b && e_mission_flag.val() == 5, [0x1a1]); // ジラーチ
+    AllowPokemon(e_client, skyMTypeId == 0x0b && e_mission_flag.val() == 1, [0x096]); // ミュウツー
+    AllowPokemon(e_client, skyMTypeId == 0x0b && e_mission_flag.val() == 2, [0x10f]); // エンテイ
+    AllowPokemon(e_client, skyMTypeId == 0x0b && e_mission_flag.val() == 3, [0x10e]); // ライコウ
+    AllowPokemon(e_client, skyMTypeId == 0x0b && e_mission_flag.val() == 4, [0x110]); // スイクン
+    AllowPokemon(e_client, skyMTypeId == 0x0b && e_mission_flag.val() == 5, [0x1a1]); // ジラーチ
     // 対象ポケモン
     AllowPokemon(e_target_1, skyMTypeId == 0x0b && e_mission_flag.val() == 1, [0x096]); // ミュウツー
     AllowPokemon(e_target_1, skyMTypeId == 0x0b && e_mission_flag.val() == 2, [0x10f]); // エンテイ
@@ -158,11 +174,11 @@ $(async function () {
     CheckInvalidPokemon(e_reward_value_select);
     CheckInvalidPokemon(e_target_1);
     CheckInvalidPokemon(e_target_2);
-    CheckInvalidPokemon(e_cliant);
+    CheckInvalidPokemon(e_client);
     CheckBannedPokemon(e_reward_value_select);
     CheckBannedPokemon(e_target_1);
     CheckBannedPokemon(e_target_2); // disabledケア用途
-    CheckBannedPokemon(e_cliant);
+    CheckBannedPokemon(e_client);
 
     // 依頼内容警告メッセージ
     if (!advanced) AlertMissionTypeAndFlag();
@@ -209,28 +225,15 @@ $(async function () {
     }
   });
   // 依頼主
-  e_cliant.on("change", function () {
-    if (mission_type[e_mission_type.val()].same_cliant) {
-      e_target_1.val(e_cliant.val()).change();
+  e_client.on("change", function () {
+    if (mission_type[e_mission_type.val()].same_client) {
+      e_target_1.val(e_client.val()).change();
     }
   });
   // 対象の道具 ランダムボタン
   // 本来の依頼では "きのみタネ飲料", "ふしぎだま" のみ？
   e_target_item_rand.on("click", function () {
-    if (ItemData != undefined) {
-      let rand = 0;
-      while (true) {
-        // 0x16Aを上限にランダム取得
-        rand = Math.floor(Math.random() * (0x16a + 1));
-        // [時闇] 時闇に無い道具を除外
-        if (e_version_old.prop("checked") && !ItemData[rand].IsTokiYami) continue;
-        // ふしぎなタマゴを除外
-        if (rand == 0xb2) continue;
-        // 無効な道具を除外
-        if (ItemData[rand].IsValid) break;
-      }
-      e_target_item.val(rand).change();
-    }
+    e_target_item.val(GetRandomTargetItemId()).change();
   });
   // ダンジョン
   e_dungeon.on("change", function () {
@@ -271,11 +274,16 @@ $(async function () {
     if (parseInt($(this).val(), 16) > parseInt($(this).data("maxvalue"), 16)) $(this).val(parseInt($(this).data("maxvalue"), 16).toString(16).toUpperCase());
   });
 
-  // パスワード文字数表示
+  // バージョン変更時、無効/禁止ポケモン表示更新
   $("input[name='version']").on("change", function () {
-    // e_pass_area.val("").trigger("keyup");
-    // AppendMissionType(e_mission_type); // 依頼タイプ更新
+    CheckInvalidPokemon(e_client);
+    CheckInvalidPokemon(e_target_1);
+    CheckInvalidPokemon(e_target_2);
+    CheckBannedPokemon(e_client);
+    CheckBannedPokemon(e_target_1);
+    CheckBannedPokemon(e_target_2);
   });
+  // パスワード文字数表示
   e_pass_area.on("keydown keyup", function () {
     let sky = CheckVersionSky();
     let resion = GetResion();
@@ -285,7 +293,7 @@ $(async function () {
   });
 
   // エラーメッセージ
-  $("#reward-type, #reward-value-select, #cliant, #target-1, #target-2, #target-item").on("change", function () {
+  $("#reward-type, #reward-value-select, #client, #target-1, #target-2, #target-item").on("change", function () {
     if ($(this) == e_reward_type) {
       CheckInvalidPokemon(e_reward_value_select);
       CheckBannedPokemon(e_reward_value_select);
@@ -310,9 +318,24 @@ $(async function () {
     e_pass_area.trigger("keyup");
   });
 
+  // 連続文字検索モード
+  e_mode_consecutive.on("change", function () {
+    if (e_mode_consecutive.prop("checked")) $(".mode-consecutive").show();
+    else $(".mode-consecutive").hide();
+  });
+
   // キー入力時、パスワードのアラート非表示
   $("input, select, textarea").on("change keydown", function () {
     $("#pass-alert").fadeOut();
+  });
+
+  // [Advanced] Workerキャンセルボタン
+  $("#cancel-btn").on("click", function () {
+    if (worker != null) {
+      worker.terminate();
+      e_loading.hide();
+      e_progress_worker_bar.css({ width: `0%` });
+    }
   });
 
   console.log("event OK");
@@ -322,7 +345,7 @@ $(async function () {
     AppendMissionType(e_mission_type);
     AppendMissionFlag(e_mission_flag);
     AppendRewardType(e_reward_type);
-    AppendPokemon(e_cliant);
+    AppendPokemon(e_client);
     AppendPokemon(e_target_1);
     AppendPokemon(e_target_2);
     AppendItem(e_target_item);
@@ -331,7 +354,7 @@ $(async function () {
     AppendRestrictionType();
 
     // 初期値
-    e_cliant.val(1).change();
+    e_client.val(1).change();
     e_target_item.val(0x46).change();
     e_dungeon.val(1).change();
   });
@@ -342,14 +365,14 @@ $(async function () {
   e_pass_area.trigger("keyup");
   console.log("trigger OK");
   // ローディング解除
-  $(".loading").fadeOut(200);
+  e_loading.fadeOut(200);
 
   // 項目の有効無効
   function ToggleDisabled() {
     let mission_type_val = e_mission_type.val();
     let mission_flag_val = e_mission_flag.val();
     // 対象ポケモン1
-    if (!advanced) e_target_1.prop("disabled", mission_type[mission_type_val].same_cliant);
+    if (!advanced) e_target_1.prop("disabled", mission_type[mission_type_val].same_client);
     else e_target_1.prop("disabled", false);
     CheckBannedPokemon(e_target_1, e_target_1.prop("disabled"));
     CheckInvalidPokemon(e_target_1, e_target_1.prop("disabled"));
@@ -378,10 +401,11 @@ $(async function () {
     let sky_only = [e_target_2, e_fixed_floor];
     let old = e_version_old.prop("checked");
     sky_only.forEach(function (r) {
+      let item = r.parents(".item");
       if (old) {
         r.prop("disabled", old); // 強制的に非活性
-        r.addClass("opacity-50");
-      } else r.removeClass("opacity-50");
+        item.addClass("opacity-50");
+      } else item.removeClass("opacity-50");
     });
   }
 
@@ -405,8 +429,9 @@ $(async function () {
 
     let valid = elem.find("option:selected").data("gender");
     let allow = elem.find("option:selected").data("allow");
-    if (!elem.prop("disabled") && valid != undefined) {
-      if (valid == 0 && !allow) {
+    let disabled = elem.prop("disabled");
+    if (valid != undefined) {
+      if (valid == 0 && !allow && !disabled) {
         // 無効エラー
         elem.addClass("border-danger");
         elem.nextAll(".select2").find(".select2-selection").addClass("border-danger");
@@ -556,7 +581,8 @@ $(async function () {
       CheckVersionSky() &&
       ((e_mission_type.val() == 0x1 && e_mission_flag.val() != 0x0) ||
         (e_mission_type.val() == 0xa && ((e_mission_flag.val() >= 0x1 && e_mission_flag.val() <= 0x3) || e_mission_flag.val() == 0x6)) ||
-        (e_mission_type.val() == 0xb && e_mission_flag.val() == 0x0))
+        (e_mission_type.val() == 0xb && e_mission_flag.val() == 0x0) ||
+        (e_mission_type.val() == 0xe && e_mission_flag.val() == 0x0))
     ) {
       let msg =
         `<p>` +
@@ -673,9 +699,8 @@ $(async function () {
       // 性別
       let gender = PokemonData[i % 600].Genders[Math.floor(i / 600)];
       // 禁止ポケモン (禁止リスト or シェイミ(0x216)以降)
-      let banned = banned_poke.includes(i % 600) || i % 600 >= 0x216 || i % 600 == 0x1cd;
-
-      // ※応急処置※ チェリム(ポジ)禁止
+      //let banned = banned_poke.includes(i % 600) || i % 600 >= 0x216 || i % 600 == 0x1cd;
+      let banned = IsBannedPokemon(i) > 0;
 
       let pokeName = PokemonData[i % 600].Name;
       let subName = PokemonData[i % 600].SubName;
@@ -819,14 +844,14 @@ $(async function () {
       error = `パスワードの文字数が正しくありません。(${pass.length}/${swap.length})`;
     }
     for (let i = 0; i < pass.length; i++) {
-      if (pass_str.indexOf(String(pass[i])) == -1) {
+      if (pass.indexOf(String(pass[i])) == -1) {
         error = `パスワードが間違っています。 (該当: ${i + 1}文字目)`;
         break;
       }
     }
 
     if (error.length == 0) {
-      console.log("展開: " + pass);
+      //console.log("展開: " + pass);
       try {
         let mission = new WonderMail();
         mission.Decode(sky, resion, pass);
@@ -848,7 +873,7 @@ $(async function () {
         e_reward_type.val(mission.RewardType).change();
         e_reward_value_number.val(mission.RewardValue.toString(16).toUpperCase()).change();
         e_reward_value_select.val(mission.RewardValue).change();
-        e_cliant.val(mission.Cliant).change();
+        e_client.val(mission.Client).change();
         e_target_1.val(mission.Target1).change();
         e_target_2.val(mission.Target2).change();
         e_target_item.val(mission.TargetItem).change();
@@ -859,27 +884,27 @@ $(async function () {
         e_rest_value.val(mission.RestValue).change();
         e_seed.val(mission.Seed.toString(16).toUpperCase()).change();
 
-        // ハッシュ値セット
-        e_hash_1.removeClass("is-valid");
-        e_hash_2.removeClass("is-valid");
-        e_hash_1.val(mission.Hash1.toString(16).toUpperCase());
-        e_hash_2.val(mission.Hash2.toString(16).toUpperCase());
-        if (mission.Hash1 == mission.Hash2) {
-          e_hash_1.addClass("is-valid");
-          e_hash_2.addClass("is-valid");
+        // チェックサムセット
+        e_checksum_1.removeClass("is-valid");
+        e_checksum_2.removeClass("is-valid");
+        e_checksum_1.val(mission.Checksum1.toString(16).toUpperCase());
+        e_checksum_2.val(mission.Checksum2.toString(16).toUpperCase());
+        if (mission.Checksum1 == mission.Checksum2) {
+          e_checksum_1.addClass("is-valid");
+          e_checksum_2.addClass("is-valid");
         }
 
         // メッセージ
         e_pass_alert.hide();
 
-        if (mission.Hash1 == mission.Hash2) {
+        if (mission.Checksum1 == mission.Checksum2) {
           e_pass_alert.html("パスワードを展開しました！");
           e_pass_alert.addClass("alert-success");
         } else {
           let msg =
-            `<p>パスワードを展開しましたが、ハッシュ値が一致しません。` +
-            `<br>Hash1: ${mission.Hash1.toString(16).toUpperCase()} / Hash2: ${mission.Hash2.toString(16).toUpperCase()}</p>` +
-            `<p>このまま生成することで正しいハッシュ値のパスワードに修正して生成できます。</p>`;
+            `<p>パスワードを展開しましたが、チェックサムが一致しません。` +
+            `<br>Hash1: ${mission.Checksum1.toString(16).toUpperCase()} / Hash2: ${mission.Checksum2.toString(16).toUpperCase()}</p>` +
+            `<p>このまま生成することで正しいチェックサムのパスワードに修正して生成できます。<br>(但し、正しく使用できる依頼であるかは保証しません)</p>`;
           e_pass_alert.html(msg);
           e_pass_alert.addClass("alert-warning");
         }
@@ -905,7 +930,7 @@ $(async function () {
   /**
    * パスワード作成
    */
-  function GeneratePass() {
+  async function GeneratePass() {
     e_pass_alert.hide();
     e_pass_alert.removeClass("alert-success");
     e_pass_alert.removeClass("alert-danger");
@@ -920,8 +945,8 @@ $(async function () {
     mission.MissionFlag = e_mission_flag.val() ?? 0;
     mission.RewardType = e_reward_type.val() ?? 0;
     mission.RewardValue = reward_type[e_reward_type.val()].mode == 0 ? parseInt(e_reward_value_number.val(), 16) : e_reward_value_select.val();
-    mission.Cliant = e_cliant.val() ?? 0;
-    mission.Target1 = !e_target_1.prop("disabled") ? e_target_1.val() ?? 0 : e_cliant.val() ?? 0;
+    mission.Client = e_client.val() ?? 0;
+    mission.Target1 = !e_target_1.prop("disabled") ? e_target_1.val() ?? 0 : e_client.val() ?? 0;
     mission.Target2 = !e_target_2.prop("disabled") ? e_target_2.val() ?? 0 : 0;
     mission.TargetItem = e_target_item.val() ?? 0;
     mission.Dungeon = e_dungeon.val() ?? 0;
@@ -930,10 +955,75 @@ $(async function () {
     mission.RestType = e_rest_type.val() ?? 0;
     mission.RestValue = e_rest_value.val() ?? 0;
     mission.Seed = parseInt(e_seed.val(), 16) ?? 0;
-    mission.Encode(sky, resion);
 
-    if (mission.Password.length == GetSwapTable(sky, resion).length) {
-      let result = mission.Password.concat();
+    let passstr = "";
+    if (e_mode_consecutive.prop("checked")) {
+      if (!advanced) {
+        alert("アドバンスドモード限定の機能なので使用できません。");
+        return false;
+      }
+
+      // Worker用データの準備
+      e_progress_wrap.show();
+      e_loading.show();
+      e_progress_worker_bar.css({ width: `0%` });
+      let max = Number(e_consecutive_max.val());
+      let data = {
+        maxFind: max,
+        randRewardValue: e_consecutive_rand_reward_value.prop("checked"),
+        randPokemon: e_consecutive_rand_pokemon.prop("checked"),
+        randTargetItem: e_consecutive_rand_target_item.prop("checked"),
+        randSeed: e_consecutive_rand_seed.prop("checked"),
+        isSky: sky,
+        resion: resion,
+        mission: mission,
+        allowedPokemon: GetAllowedPokemonArray(),
+        allowedTargetItem: GetAllowedTargetItemArray(),
+      };
+      let progUpdateCount = 0;
+      const threshold = 10; // 何%ごとにプログレスバーを更新するか
+
+      // Worker処理
+      worker = new Worker("./js/wondermail_worker.js", { type: "module" });
+      let workerMsg = new Promise((resolve, reject) => {
+        worker.onmessage = (e) => {
+          if (e.data.type == "progress") {
+            // 進行
+            let value = (e.data.count / max) * 100;
+            let scale = (progUpdateCount + 1) * threshold;
+            if (value >= scale && progUpdateCount < 100 / threshold) {
+              e_progress_worker_bar.css({ width: `${scale}%` });
+              progUpdateCount++;
+            }
+          } else if (e.data.type == "complete") {
+            // 完了
+            resolve(e.data);
+            passstr = e.data.passes[0].password;
+            e_loading.hide();
+            e_progress_worker_bar.css({ width: `0%` });
+          }
+        };
+        worker.onerror = (err) => {
+          reject(err);
+        };
+      });
+      worker.postMessage(data);
+
+      try {
+        await workerMsg;
+      } catch (err) {
+        console.error("Worker Error: ", err);
+      } finally {
+        worker.terminate();
+      }
+    } else {
+      mission.Encode(sky, resion);
+      passstr = mission.Password;
+      //console.log("生成: " + mission.Password);
+    }
+
+    if (passstr.length == GetSwapTable(sky, resion).length) {
+      let result = passstr.concat();
       // 全角化
       if ($("#option-multibyte").prop("checked")) {
         result = ConvertToMultiPassString(result); // 全角化
@@ -941,7 +1031,7 @@ $(async function () {
       // スペース追加
       if ($("#option-space").prop("checked")) {
         let space = $("#option-multibyte").prop("checked") ? `　` : ` `;
-        if (mission.Sky) {
+        if (sky) {
           // 空 => 5/7/5で空白追加
           result =
             result.slice(0, 5) +
@@ -1045,9 +1135,115 @@ $(async function () {
     return res;
   }
 
-  function GetBaseForm(val) {
-    let res = val;
+  /**
+   * フォルムチェンジ元のポケモンID取得
+   * (GetBaseForm - JP: 0x205435C)
+   * @param {*} id
+   * @returns
+   */
+  function GetBaseForm(id) {
+    if (id == 0x17b || id == 0x17c || id == 0x17d || id == 0x17e) return 0x17b;
+    if (id == 0x1a3 || id == 0x1a4 || id == 0x1a5) return 0x17b;
+    if (id == 0x3d4 || id == 0x3d5) return 0x3d3;
+    if (id >= 0xca && id <= 0xe4) return 0xc9;
+    if (id == 0x3d6) return 0x3d3;
+    if (id == 0x424) return 0x424;
+    if (id == 0x425) return 0x424;
+    if (id == 0x1cd) return 0x1cc;
+    if (id == 0x1cd) return 0x1cc;
+    return id;
+  }
 
+  /**
+   * 禁止ポケモンチェック
+   * @param {*} x
+   * @returns 0=許可, 1=禁止ポケモン対象, 2=その他
+   */
+  function IsBannedPokemon(x) {
+    var species = GetBaseForm(x);
+    if (species != x) {
+      return 2;
+    }
+    if (species >= 0x482 || species == 0) return 2;
+    if (species >= 0x216 && species <= 0x257) return 2;
+    if (species >= 0x216 + 600 && species <= 0x257 + 600) return 2;
+
+    for (var i = 0; i < banned_poke.length; i++) {
+      if (species % 600 == banned_poke[i]) return 1;
+    }
+    return 0;
+  }
+
+  /**
+   * ポケモンをランダムに取得
+   * @returns ポケモンID
+   */
+  function GetRandomPokemonId() {
+    let res = 0;
+    if (PokemonData != undefined) {
+      while (true) {
+        res = Math.floor(Math.random() * PokemonData.length);
+        if (!IsBannedPokemon(res)) break;
+      }
+    }
+    return res;
+  }
+
+  /**
+   * 対象の道具をランダムに取得
+   * @returns 道具ID
+   */
+  function GetRandomTargetItemId() {
+    let res = 0;
+    if (ItemData != undefined) {
+      while (true) {
+        // 0x16Aを上限にランダム取得
+        res = Math.floor(Math.random() * (0x16a + 1));
+        // [時闇] 時闇に無い道具を除外
+        if (e_version_old.prop("checked") && !ItemData[res].IsTokiYami) continue;
+        // ふしぎなタマゴを除外
+        if (res == 0xb2) continue;
+        // 無効な道具を除外
+        if (ItemData[res].IsValid) break;
+      }
+    }
+    return res;
+  }
+
+  /**
+   * 許可されたポケモンを配列で取得
+   * @returns
+   */
+  function GetAllowedPokemonArray() {
+    let res = [];
+    if (PokemonData != undefined) {
+      for (let i = 0; i < 0x482; i++) {
+        let allow = 0;
+        if (PokemonData[i % 600].Genders[Math.floor(i / 600)] > 0 && !IsBannedPokemon(i % 600)) {
+          allow = 1;
+        }
+        res.push(allow);
+      }
+    }
+    return res;
+  }
+
+  /**
+   * 使用可能な対象の道具を配列で取得
+   * @returns
+   */
+  function GetAllowedTargetItemArray() {
+    let res = [];
+    if (ItemData != undefined) {
+      for (let i = 0; i < 0x16b; i++) {
+        let allow = 0;
+        let isSky = CheckVersionSky();
+        if ((isSky || (!isSky && ItemData[i].IsTokiYami)) && i != 0xb2 && ItemData[i].IsValid) {
+          allow = 1;
+        }
+        res.push(allow);
+      }
+    }
     return res;
   }
 });

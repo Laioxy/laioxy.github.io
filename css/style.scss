@@ -79,7 +79,7 @@ html {
 
 // ローディング
 .loading {
-  background-color: #ffffffbf;
+  background-color: #ffffffcf;
   position: fixed;
   top: 0;
   left: 0;
@@ -87,8 +87,25 @@ html {
   height: 100%;
   width: 100%;
   display: flex;
+  gap: 20px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  #progress-wrap {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+    #progress-worker {
+      width: 100%;
+    }
+    #cancel-btn {
+      width: fit-content;
+    }
+  }
 }
 
 // Select2 フローティングデザイン統一

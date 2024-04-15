@@ -1,3 +1,5 @@
+export { WonderMail, GetSwapTable };
+
 // swap
 const swap_table = {
   sky: {
@@ -38,14 +40,14 @@ const pass_str = "&67NPR89F0+#STXY45MCHJ-K12=%3Q@W";
  */
 class WonderMail {
   Sky = true;
-  Hash1 = 0; // パスに含まれるCRC
-  Hash2 = 0; // 依頼内容から生成したCRC
+  Checksum1 = 0; // パスに含まれるCRC
+  Checksum2 = 0; // 依頼内容から生成したCRC
   Status = 4; // 依頼状態値 (4=保留 ※4で固定)
   MissionType = 0;
   MissionFlag = 0;
   RewardType = 0;
   RewardValue = 0;
-  Cliant = 0;
+  Client = 0;
   Target1 = 0;
   Target2 = 0;
   TargetItem = 0;
@@ -117,11 +119,11 @@ class WonderMail {
     let decode = this.decList;
     this.Sky = sky;
     if (this.Sky) {
-      this.Hash1 = decode[0] | (decode[1] << 8) | (decode[2] << 16) | (decode[3] << 24);
+      this.Checksum1 = decode[0] | (decode[1] << 8) | (decode[2] << 16) | (decode[3] << 24);
       this.Status = decode[4] & 0xf;
       this.MissionType = decode[4] >> 4;
       this.MissionFlag = decode[5] & 0xf;
-      this.Cliant = (decode[5] >> 4) | ((decode[6] << 4) & 0x7ff);
+      this.Client = (decode[5] >> 4) | ((decode[6] << 4) & 0x7ff);
       this.Target1 = (decode[6] >> 7) | (decode[7] << 1) | ((decode[8] << 9) & 0x7ff);
       this.Target2 = (decode[8] >> 2) | ((decode[9] << 6) & 0x7ff);
       this.TargetItem = (decode[9] >> 5) | ((decode[10] << 3) & 0x3ff);
@@ -134,14 +136,14 @@ class WonderMail {
       this.Floor = (decode[18] >> 2) | ((decode[19] << 6) & 0xff);
       this.Fixed = (decode[19] >> 2) | ((decode[20] << 6) & 0xff);
       // CRC再計算
-      if (this.Hash1 < 0) this.Hash1 += 0x100000000;
-      this.Hash2 = this.CalcCRC32(decode);
+      if (this.Checksum1 < 0) this.Checksum1 += 0x100000000;
+      this.Checksum2 = this.CalcCRC32(decode);
     } else {
-      this.Hash1 = decode[0];
+      this.Checksum1 = decode[0];
       this.Status = decode[1] & 0xf;
       this.MissionType = decode[1] >> 4;
       this.MissionFlag = decode[2] & 0xf;
-      this.Cliant = ((decode[2] >> 4) | (decode[3] << 4)) & 0x7ff;
+      this.Client = ((decode[2] >> 4) | (decode[3] << 4)) & 0x7ff;
       this.Target1 = ((decode[3] >> 7) | (decode[4] << 1) | (decode[5] << 9)) & 0x7ff;
       this.TargetItem = ((decode[5] >> 2) | (decode[6] << 6)) & 0x3ff;
       this.RewardType = decode[6] >> 4;
@@ -157,7 +159,7 @@ class WonderMail {
         hash += decode[i] + i;
         hash &= 0xff;
       }
-      this.Hash2 = hash;
+      this.Checksum2 = hash;
     }
   }
   Encode(sky = true, resion = "jp") {
@@ -167,8 +169,8 @@ class WonderMail {
     if (this.Sky) {
       decode = new Array(22);
       decode[4] = parseInt(this.MissionType << 4) | parseInt(this.Status);
-      decode[5] = parseInt(this.Cliant << 4) | parseInt(this.MissionFlag);
-      decode[6] = parseInt(this.Target1 << 7) | parseInt(this.Cliant >> 4);
+      decode[5] = parseInt(this.Client << 4) | parseInt(this.MissionFlag);
+      decode[6] = parseInt(this.Target1 << 7) | parseInt(this.Client >> 4);
       decode[7] = parseInt(this.Target1 >> 1);
       decode[8] = parseInt(this.Target2 << 2) | parseInt(this.Target1 >> 9);
       decode[9] = parseInt(this.TargetItem << 5) | parseInt(this.Target2 >> 6);
@@ -199,8 +201,8 @@ class WonderMail {
     } else {
       decode = new Array(16);
       decode[1] = parseInt(this.MissionType << 4) | parseInt(this.Status);
-      decode[2] = parseInt(this.Cliant << 4) | parseInt(this.MissionFlag);
-      decode[3] = parseInt(this.Target1 << 7) | parseInt(this.Cliant >> 4);
+      decode[2] = parseInt(this.Client << 4) | parseInt(this.MissionFlag);
+      decode[3] = parseInt(this.Target1 << 7) | parseInt(this.Client >> 4);
       decode[4] = parseInt(this.Target1 >> 1);
       decode[5] = parseInt(this.TargetItem << 2) | (this.Target1 >> 9);
       decode[6] = parseInt(this.RewardType << 4) | (this.TargetItem >> 6);
@@ -270,7 +272,7 @@ class WonderMail {
     // パスワード化
     let pass = "";
     for (let i = 0; i < swap.length; i++) pass += pass_str.charAt(idx[i]);
-    console.log("生成: " + pass);
+
     this.Password = pass;
   }
 

@@ -71,7 +71,7 @@ html p:last-child {
 }
 
 .loading {
-  background-color: rgba(255, 255, 255, 0.7490196078);
+  background-color: rgba(255, 255, 255, 0.8117647059);
   position: fixed;
   top: 0;
   left: 0;
@@ -79,8 +79,24 @@ html p:last-child {
   height: 100%;
   width: 100%;
   display: flex;
+  gap: 20px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.loading #progress-wrap {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.loading #progress-wrap #progress-worker {
+  width: 100%;
+}
+.loading #progress-wrap #cancel-btn {
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .form-floating .select2-container--bootstrap-5 {

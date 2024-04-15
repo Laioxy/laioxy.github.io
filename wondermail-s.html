@@ -64,9 +64,8 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet" />
 
     <script src="js/common.js"></script>
-    <script src="js/wondermail.js"></script>
     <script src="js/wondermail_data.js"></script>
-    <script src="js/wondermail_pass.js"></script>
+    <script src="js/wondermail.js" type="module"></script>
     <script src="js/json_script.js"></script>
     <script src="js/poke_prop.js"></script>
     <title>Lai-brary | ふしぎなメール生成機</title>
@@ -79,6 +78,20 @@
     <div class="loading">
       <div class="spinner-border" role="status">
         <span class="visually-hidden">Loading...</span>
+      </div>
+      <div id="progress-wrap" style="display: none">
+        <div
+          id="progress-worker"
+          class="progress"
+          role="progressbar"
+          aria-label="Animated striped example"
+          aria-valuenow="0"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <div id="progress-worker-bar" class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%"></div>
+        </div>
+        <button id="cancel-btn" type="button" class="btn btn-primary advanced">Cancel</button>
       </div>
     </div>
 
@@ -157,13 +170,13 @@
         </div>
 
         <div class="mb-3 advanced">
-          <label class="form-label"><span>ハッシュ</span><span class="context-sm">(読み取り専用)</span></label>
+          <label class="form-label"><span>チェックサム</span><span class="context-sm">(読み取り専用)</span></label>
           <div class="row g-3">
             <div class="col-lg-3 col-6">
-              <input type="text" id="hash1" class="form-control" placeholder="Hash1" readonly />
+              <input type="text" id="hash1" class="form-control" placeholder="checksum1" readonly />
             </div>
             <div class="col-lg-3 col-6">
-              <input type="text" id="hash2" class="form-control" placeholder="Hash2" readonly />
+              <input type="text" id="hash2" class="form-control" placeholder="checksum2" readonly />
             </div>
           </div>
         </div>
@@ -191,6 +204,50 @@
             </div>
           </div>
         </div>
+
+        <div class="advanced mb-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="mode-consecutive" />
+            <label class="form-check-label" for="mode-consecutive">連続文字検索モード (試験的機能)</label>
+          </div>
+          <div class="mode-consecutive" style="display: none">
+            <div class="d-flex flex-column gap-2 mt-2">
+              <div class="card">
+                <div class="card-header">検索オプション</div>
+                <div class="card-body">
+                  <div class="input-group">
+                    <span class="input-group-text">最大検索数</span>
+                    <input class="form-control" type="number" id="consecutive-max" value="100000" />
+                  </div>
+                  <span class="form-text">多くても1000000ぐらい推奨、多い程時間がかかります</span>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header"><span>ランダム項目</span></div>
+                <div class="card-body">
+                  <span class="form-text">チェックを入れた項目は入力内容にかかわらずランダム化して生成します</span>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="consecutive-random-reward-value" />
+                    <label class="form-check-label" for="consecutive-random-reward-value">報酬値</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="consecutive-random-pokemon" />
+                    <label class="form-check-label" for="consecutive-random-pokemon">依頼主・対象ポケモン</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="consecutive-random-target-item" />
+                    <label class="form-check-label" for="consecutive-random-target-item">対象の道具</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="consecutive-random-seed" checked />
+                    <label class="form-check-label" for="consecutive-random-seed">Seed</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="d-grid mb-0">
           <div class="btn-group">
             <button class="btn btn-primary btn-lg" id="pass-analysis">パスワード展開</button>
@@ -258,8 +315,8 @@
             <div class="row g-2">
               <div class="item col-md-6">
                 <div class="form-floating">
-                  <select id="cliant" class="form-select"></select>
-                  <label for="cliant">依頼主</label>
+                  <select id="client" class="form-select"></select>
+                  <label for="client">依頼主</label>
                 </div>
               </div>
             </div>
@@ -471,6 +528,22 @@
         <h2>更新履歴</h2>
         <ul>
           <li>
+            <u>ver 1.1.0 (2024/04/15)</u><br />
+            <ul>
+              <li>
+                アドバンスドモード: 連続文字検索モード追加
+                <ul>
+                  <li>同じ文字が連続しているパスワードを検索します</li>
+                  <li>最大検索数の分だけランダムに検索し、文字が連続している数が最も多いパスワードを生成します</li>
+                  <li>検索数が多い分時間がかかるので、多くても1000000程度で検索してください</li>
+                </ul>
+              </li>
+              <li>禁止ポケモン処理をゲーム内と同じ仕組みに変更</li>
+              <li>バージョンを空→時闇に変更時、無効/禁止ポケモンのエラー表示が残り続ける問題を修正</li>
+              <li>その他内部的な変更諸々</li>
+            </ul>
+          </li>
+          <li>
             <u>ver 1.0.11 (2024/03/18)</u><br />
             <ul>
               <li>
@@ -554,7 +627,7 @@
                 <ul>
                   <li>依頼タイプ・フラグが0xFまで選択可能</li>
                   <li>選択不可状態を強制解除</li>
-                  <li>展開したパスワードのハッシュ値表示</li>
+                  <li>展開したパスワードのチェックサム表示</li>
                   <li>展開したパスワードの生データ表示</li>
                 </ul>
               </li>

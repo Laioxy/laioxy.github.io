@@ -1,3 +1,5 @@
+import { WonderMail } from "./wondermail_pass.js";
+
 $(async function () {
   var DungeonData;
   var FloorData;
@@ -105,7 +107,7 @@ $(async function () {
     mission.MissionFlag = 0x5;
     mission.RewardType = 0x6;
     mission.RewardValue = 0x1a1;
-    mission.Cliant = 0x1a1;
+    mission.Client = 0x1a1;
     mission.Target1 = 0x1a1;
     mission.Target2 = 0x000;
     mission.TargetItem = 0x046;

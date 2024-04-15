@@ -5,7 +5,7 @@ var mission_type = [
     name: "依頼主を救助する",
     flag: 0,
     difficult: false,
-    same_cliant: true,
+    same_client: true,
     used_item: false,
     used_fixed: false,
     sky_only: false,
@@ -15,7 +15,7 @@ var mission_type = [
     name: "対象を救助する",
     flag: 1,
     difficult: false,
-    same_cliant: false,
+    same_client: false,
     used_item: false,
     used_fixed: false,
     sky_only: false,
@@ -25,7 +25,7 @@ var mission_type = [
     name: "依頼主を対象の所へ連れていく",
     flag: 0,
     difficult: true,
-    same_cliant: false,
+    same_client: false,
     used_item: false,
     used_fixed: false,
     sky_only: false,
@@ -35,7 +35,7 @@ var mission_type = [
     name: "依頼主と探検",
     flag: 2,
     difficult: true,
-    same_cliant: true,
+    same_client: true,
     used_item: true,
     used_fixed: true,
     sky_only: false,
@@ -45,7 +45,7 @@ var mission_type = [
     name: "依頼主と宝探し",
     flag: 0,
     difficult: true,
-    same_cliant: true,
+    same_client: true,
     used_item: true,
     used_fixed: false,
     sky_only: false,
@@ -55,7 +55,7 @@ var mission_type = [
     name: "依頼主を案内する",
     flag: 0,
     difficult: true,
-    same_cliant: true,
+    same_client: true,
     used_item: false,
     used_fixed: false,
     sky_only: false,
@@ -65,7 +65,7 @@ var mission_type = [
     name: "道具を探す",
     flag: 3,
     difficult: false,
-    same_cliant: true,
+    same_client: true,
     used_item: true,
     used_fixed: false,
     sky_only: false,
@@ -75,7 +75,7 @@ var mission_type = [
     name: "道具を届ける",
     flag: 0,
     difficult: false,
-    same_cliant: true,
+    same_client: true,
     used_item: true,
     used_fixed: false,
     sky_only: false,
@@ -85,7 +85,7 @@ var mission_type = [
     name: "対象を探す",
     flag: 0,
     difficult: false,
-    same_cliant: false,
+    same_client: false,
     used_item: true,
     used_fixed: false,
     sky_only: false,
@@ -95,7 +95,7 @@ var mission_type = [
     name: "お尋ね者を探して取り返す",
     flag: 4,
     difficult: true,
-    same_cliant: false,
+    same_client: false,
     used_item: true,
     used_fixed: false,
     sky_only: false,
@@ -105,7 +105,7 @@ var mission_type = [
     name: "お尋ね者を捕まえる",
     flag: 5,
     difficult: true,
-    same_cliant: false,
+    same_client: false,
     used_item: false,
     used_fixed: false,
     sky_only: false,
@@ -115,7 +115,7 @@ var mission_type = [
     name: "挑戦状を受ける",
     flag: 6,
     difficult: false,
-    same_cliant: false,
+    same_client: false,
     used_item: false,
     used_fixed: true,
     sky_only: true,
@@ -125,7 +125,7 @@ var mission_type = [
     name: "おたからメモ",
     flag: 0,
     difficult: false,
-    same_cliant: true,
+    same_client: true,
     used_item: true,
     used_fixed: true,
     sky_only: true,
@@ -135,7 +135,7 @@ var mission_type = [
     name: "(未使用)",
     flag: 0,
     difficult: false,
-    same_cliant: false,
+    same_client: false,
     used_item: false,
     used_fixed: false,
     sky_only: false,
@@ -145,7 +145,7 @@ var mission_type = [
     name: "その他 特別指令など",
     flag: 7,
     difficult: false,
-    same_cliant: false,
+    same_client: false,
     used_item: false,
     used_fixed: false,
     sky_only: false,
@@ -326,11 +326,34 @@ var allow_treasure_memo_dun = [
   0x6e, // れっかのどうくつ
 ];
 
-// 挑戦状組み合わせリスト (仮)
+// 挑戦状組み合わせリスト
 var poke_pattern_challenge = [
   [0x006, 0x003, 0x009], // リザードン, フシギバナ, カメックス
   [0x022, 0x01e, 0x021], // ニドキング, ニドリーナ, ニドリーノ
   [0x03a, 0x039, 0x053], // ガーディ, オコリザル, カモネギ
   [0x065, 0x066, 0x064], // マルマイン, タマタマ, ビリリダマ
-  [],
+  [0x080, 0x07f, 0x198], // ケンタロス, カイロス, メタグロス
+  [0x08e, 0x1be, 0x1bc], // プテラ, トリデプス, ラムパルド
+  [0x08f, 0x1b1, 0x1b5], // カビゴン, ムクホーク, コロトック
+  [0x0eb, 0x05e, 0x0ff], // ハガネール, ゲンガー, デルビル
+  [0x0f6, 0x1d0, 0x1d0], // マグカルゴ, トリトドン東, トリトドン東
+  [0x103, 0x0c3, 0x168], // ドンファン, ヌオー, ノクタス
+  [0x108, 0x06b, 0x06a], // カポエラー, エビワラー, サワムラー
+  [0x12c, 0x166, 0x14d], // ルンパッパ, フライゴン, コドラ
+  [0x138, 0x0e6, 0x105], // アメモース, キリンリキ, オドシシ
+  [0x143, 0x06e, 0x058], // バクオング, マタドガス, ベトベター
+  [0x144, 0x209, 0x1fe], // マクノシタ, ロトム, トゲキッス
+  [0x152, 0x153, 0x154], // ライボルト, プラスル, マイナン
+  [0x15d, 0x17a, 0x18d], // ホエルオー, ミロカロス, トドゼルガ
+  [0x162, 0x050, 0x050], // ブーピッグ, ヤドラン, ヤドラン
+  [0x168, 0x1f1, 0x047], // ノクタス, マスキッパ, ウツボット
+  [0x16a, 0x1d4, 0x1fe], // チルタリス, フワライド, トゲキッス
+  [0x170, 0x172, 0x0ba], // ナマズン, シザリガー, ニョロトノ
+  [0x182, 0x1db, 0x174], // ジュペッタ, リーシャン, ネンドール
+  [0x185, 0x09a, 0x067], // トロピウス, メガニウム, ナッシー
+  [0x198, 0x1f0, 0x12f], // メタグロス, ドクロッグ, ダーテング
+  [0x1c2, 0x1c3, 0x1c4], // ミノマダム砂, ミノマダム草, ミノマダムゴミ
+  [0x1d8, 0x0ab, 0x1e7], // ドンカラス, ランターン, ガブリアス
+  [0x1ea, 0x187, 0x041], // ルカリオ, アブソル, フーディン
+  [0x1fd, 0x0f5, 0x15f], // ブーバーン, マグマッグ, バクーダ
 ];
