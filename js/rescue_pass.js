@@ -339,23 +339,6 @@ class Rescue {
   }
 
   /**
-   * CRC32ハッシュ化
-   * @param {*} arr 対象
-   * @returns CRC32ハッシュ
-   */
-  CalcCRC32(arr) {
-    let crc = this.GetCRC32Table();
-    let pos = 0xffffffff;
-    for (let i = 4; i < arr.length; i++) {
-      let e = crc[(pos ^ arr[i]) & 0xff];
-      pos = (pos >>> 8) ^ e;
-    }
-    pos = pos ^ 0xffffffff;
-    if (pos < 0) pos += 0x100000000;
-    return pos;
-  }
-
-  /**
    * CRC32テーブル作成
    */
   GetCRC32Table() {
