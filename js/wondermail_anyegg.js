@@ -15,16 +15,19 @@ $(async function () {
   var e_context_resionfree = $("#context-resionfree");
 
   var e_caution = $(".caution");
+  var e_text_wrap = $(".text-wrap");
+  var e_fix_wrap = $(".fix-wrap");
+  var e_fix_text = $(".fix-text");
 
   // 公開日まで蓋をしておく
-  let now = new Date();
-  let pub = new Date(2024, 3, 18, 18, 0, 0); // 月は0～11
-  if (now < pub) {
-    let m = $("#main-container");
-    m.empty();
-    window.location.href = "index.html";
-    return;
-  }
+  // let now = new Date();
+  // let pub = new Date(2024, 3, 18, 18, 0, 0); // 月は0～11
+  // if (now < pub) {
+  //   let m = $("#main-container");
+  //   m.empty();
+  //   window.location.href = "index.html";
+  //   return;
+  // }
 
   // JSON取得
   await Promise.all([GetPokemonJson(), GetFloorJson()])
@@ -49,6 +52,9 @@ $(async function () {
     e_resion_na.prop("disabled", disabled);
     e_resion_eu.prop("disabled", disabled);
 
+    // チェック処理
+    CheckPokemonSelection();
+
     if (disabled) {
       e_context_resionfree.show();
     } else {
@@ -57,13 +63,35 @@ $(async function () {
   });
   // ポケモン
   e_pokemon.on("change", function () {
+    // チェック処理
+    CheckPokemonSelection();
+  });
+
+  let init = new Promise(async function () {
+    AppendPokemon(e_pokemon);
+    e_pokemon.val(1).change();
+  });
+
+  $(".fix-pokemon").on("click", function() {
+    let id = e_pokemon.val() % 600;
+    e_pokemon.val(id).change();
+    console.log(id);
+  });
+
+  /**
+   * ポケモンチェック処理
+   */
+  function CheckPokemonSelection() {
     let msg = "";
+    let fix = "";
+    let pokemonIdx = e_pokemon.val() % 600;
+    let genderIdx = Math.floor(e_pokemon.val() / 600);
     if (e_pokemon.val() == 0) {
       msg = `
       「なにものか」が選択されています。<br>
       依頼を受けることは可能ですが、タマゴを受け取っても消えてしまいます。
       `;
-    } else if (e_pokemon.val() % 600 >= 0x245 && e_pokemon.val() % 600 <= 0x257) {
+    } else if (pokemonIdx >= 0x245 && pokemonIdx <= 0x257) {
       msg = `
       空きデータの「リザーブ」が選択されています。<br>
       タマゴを孵すことは可能ですが、ダンジョンに連れて行くとフリーズするので注意してください。
@@ -73,20 +101,35 @@ $(async function () {
       第二性別の「なにものか」が選択されています。<br>
       タマゴを孵すことは可能ですが、ダンジョンに連れて行くとフリーズするので注意してください。
       `;
+    } else if ((PokemonData[pokemonIdx].Genders[genderIdx] == 0 || PokemonData[pokemonIdx].Genders[genderIdx] == 3) && genderIdx == 1) {
+      msg = `
+      本来存在しない第二性別のポケモンが選択されています。<br>
+      技を覚えていない・技がバグる・喋らない等といった本来とは異なる挙動を起こす場合があるため非推奨です。
+      `;
+      fix = `[${("000" + pokemonIdx.toString(16)).slice(-3).toUpperCase()}] ${PokemonData[pokemonIdx].Name} (${poke_gender[PokemonData[pokemonIdx].Genders[0]].name})`;      
+    } else if (e_version_old.prop("checked") && pokemonIdx >= 0x229 && pokemonIdx <= 0x257) {
+      msg = `
+      バージョン「時闇」で技を習得できないポケモンが選択されています。<br>
+      時闇の場合、ソフトロックや技関連のバグの要因になるため、非推奨です。
+      `;
     }
 
+    // MSG
     if (msg.length > 0) {
-      e_caution.html(msg);
+      e_text_wrap.html(msg);
       e_caution.fadeIn();
     } else {
       e_caution.fadeOut();
     }
-  });
 
-  let init = new Promise(async function () {
-    AppendPokemon(e_pokemon);
-    e_pokemon.val(1).change();
-  });
+    // FIX
+    if (fix.length > 0) {
+      e_fix_text.html(fix);
+      e_fix_wrap.show();
+    } else {
+      e_fix_wrap.hide();
+    }
+  }
 
   /**
    * ポケモンをセット (要素指定)
