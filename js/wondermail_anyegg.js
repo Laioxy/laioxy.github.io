@@ -75,7 +75,6 @@ $(async function () {
   $(".fix-pokemon").on("click", function() {
     let id = e_pokemon.val() % 600;
     e_pokemon.val(id).change();
-    console.log(id);
   });
 
   /**
