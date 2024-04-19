@@ -100,18 +100,18 @@ $(async function () {
       第二性別の「なにものか」が選択されています。<br>
       タマゴを孵すことは可能ですが、ダンジョンに連れて行くとフリーズするので注意してください。
       `;
+    } else if (e_version_old.prop("checked") && pokemonIdx >= 0x229 && pokemonIdx <= 0x257) {
+      msg = `
+      バージョン「時闇」で技を習得できないポケモンが選択されています。<br>
+      時闇の場合、ソフトロックや技関連のバグの要因になるため、非推奨です。
+      `;
     } else if ((PokemonData[pokemonIdx].Genders[genderIdx] == 0 || PokemonData[pokemonIdx].Genders[genderIdx] == 3) && genderIdx == 1) {
       msg = `
       本来存在しない第二性別のポケモンが選択されています。<br>
       技を覚えていない・技がバグる・喋らない等といった本来とは異なる挙動を起こす場合があるため非推奨です。
       `;
       fix = `[${("000" + pokemonIdx.toString(16)).slice(-3).toUpperCase()}] ${PokemonData[pokemonIdx].Name} (${poke_gender[PokemonData[pokemonIdx].Genders[0]].name})`;      
-    } else if (e_version_old.prop("checked") && pokemonIdx >= 0x229 && pokemonIdx <= 0x257) {
-      msg = `
-      バージョン「時闇」で技を習得できないポケモンが選択されています。<br>
-      時闇の場合、ソフトロックや技関連のバグの要因になるため、非推奨です。
-      `;
-    }
+    } 
 
     // MSG
     if (msg.length > 0) {
