@@ -305,6 +305,14 @@ $(async function () {
     }
   });
 
+  // ランダム処理
+  $("#random-btn-reward-value").on("click", function() {
+    SetRandomValue(e_reward_value_number, 0x7FF, true);
+  });
+  $("#random-btn-seed").on("click", function() {
+    SetRandomValue(e_seed, 0xFFFFFF, true);
+  });
+
   // パスワード展開
   $("#pass-analysis").on("click", async function () {
     let mission = AnalysisPass();
@@ -1246,16 +1254,16 @@ $(async function () {
     }
     return res;
   }
-});
 
-/**
- * ランダムな数値をセット
- * @param {*} elem 要素
- * @param {*} max 最大値
- * @param {*} hex true=16進数でセット
- */
-function SetRandomValue(elem, max, hex = true) {
-  let res = Math.floor(Math.random() * max);
-  if (hex) res = res.toString(16).toUpperCase();
-  elem.val(res).change();
-}
+  /**
+   * ランダムな数値をセット
+   * @param {*} elem 要素
+   * @param {*} max 最大値
+   * @param {*} hex true=16進数でセット
+   */
+  function SetRandomValue(elem, max, hex = true) {
+    let res = Math.floor(Math.random() * max);
+    if (hex) res = res.toString(16).toUpperCase();
+    elem.val(res).change();
+  }
+});

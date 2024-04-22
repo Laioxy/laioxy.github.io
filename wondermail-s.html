@@ -297,7 +297,7 @@
                     <input class="form-control" type="text" id="reward-value-number" value="0" maxlength="3" data-maxvalue="7FF" />
                     <label for="reward-value-number">報酬値 (max: 0x7FF)</label>
                   </div>
-                  <button class="btn btn-primary text-nowrap" type="button" onclick="SetRandomValue($('#reward-value-number'), 0x7FF, true)">ランダム</button>
+                  <button id="random-btn-reward-value" class="btn btn-primary text-nowrap" type="button">ランダム</button>
                 </div>
               </div>
               <div class="item col-md-6" id="reward-value-select-div" style="display: none">
@@ -396,7 +396,7 @@
                     <input id="seed" class="form-control" type="text" value="0" maxlength="6" data-maxvalue="FFFFFF" />
                     <label for="seed">Seed (max: 0xFFFFFF)</label>
                   </div>
-                  <button class="btn btn-primary text-nowrap" type="button" onclick="SetRandomValue($('#seed'), 0xFFFFFF, true)">ランダム</button>
+                  <button id="random-btn-seed" class="btn btn-primary text-nowrap" type="button">ランダム</button>
                 </div>
               </div>
             </div>
@@ -527,6 +527,12 @@
       <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
         <h2>更新履歴</h2>
         <ul>
+          <li>
+            <u>ver 1.1.1 (2024/04/23)</u><br />
+            <ul>
+              <li>報酬値・SEEDのランダム処理が機能していない問題を修正</li>
+            </ul>
+          </li>
           <li>
             <u>ver 1.1.0 (2024/04/15)</u><br />
             <ul>
