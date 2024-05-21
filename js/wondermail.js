@@ -306,11 +306,11 @@ $(async function () {
   });
 
   // ランダム処理
-  $("#random-btn-reward-value").on("click", function() {
-    SetRandomValue(e_reward_value_number, 0x7FF, true);
+  $("#random-btn-reward-value").on("click", function () {
+    SetRandomValue(e_reward_value_number, 0x7ff, true);
   });
-  $("#random-btn-seed").on("click", function() {
-    SetRandomValue(e_seed, 0xFFFFFF, true);
+  $("#random-btn-seed").on("click", function () {
+    SetRandomValue(e_seed, 0xffffff, true);
   });
 
   // パスワード展開
@@ -588,7 +588,7 @@ $(async function () {
     if (
       CheckVersionSky() &&
       ((e_mission_type.val() == 0x1 && e_mission_flag.val() != 0x0) ||
-        (e_mission_type.val() == 0xa && ((e_mission_flag.val() >= 0x1 && e_mission_flag.val() <= 0x3) || e_mission_flag.val() == 0x6)) ||
+        e_mission_type.val() == 0xa ||
         (e_mission_type.val() == 0xb && e_mission_flag.val() == 0x0) ||
         (e_mission_type.val() == 0xe && e_mission_flag.val() == 0x0))
     ) {

@@ -137,9 +137,7 @@ function Select2CustomMatcher(params, data) {
     if (hira.indexOf(params.term) > -1 || kana.indexOf(params.term) > -1) {
       var modifiedData = $.extend({}, data, true);
       return modifiedData;
-    }
-  } else {
-    if (data.text.indexOf(params.term) > -1) {
+    } else if (data.text.indexOf(params.term) > -1) {
       var modifiedData = $.extend({}, data, true);
       return modifiedData;
     }
