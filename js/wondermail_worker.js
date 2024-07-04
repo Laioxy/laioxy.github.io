@@ -45,13 +45,19 @@ self.addEventListener("message", (e) => {
   // 重複は考慮していないので効率が良いかは微妙
   // アプデするなら、項目ごとに乱数の範囲が指定できるようにすると良い？
 
+  let consecutiveMax = 0;
+  let countMax = 0;
   while (true) {
     let t_reward_value = rand_reward_value ? Math.floor(Math.random() * 0x800) : mission.RewardValue;
     let t_client = rand_pokemon ? GetRandomAllowValue(e.data.allowedPokemon) : mission.Client ?? 0;
-    let t_target = rand_pokemon ? GetRandomAllowValue(e.data.allowedPokemon) : mission.Target1 ?? 0;
+    let t_target_1 = rand_pokemon ? GetRandomAllowValue(e.data.allowedPokemon) : mission.Target1 ?? 0;
+    let t_target_2 =
+      rand_pokemon && ((mission.MissionType == 10 && mission.MissionFlag == 6) || (mission.MissionType == 11 && mission.MissionFlag == 0))
+        ? GetRandomAllowValue(e.data.allowedPokemon)
+        : mission.Target2 ?? 0;
 
     // 依頼主と同じポケモンを使用する
-    if (sameClient) t_target = t_client;
+    if (sameClient) t_target_1 = t_client;
 
     let t_item = rand_target_item ? GetRandomAllowValue(e.data.allowedTargetItem) : mission.TargetItem ?? 0;
     let t_seed = rand_seed ? Math.floor(Math.random() * 0x1000000) : mission.Seed;
@@ -64,8 +70,8 @@ self.addEventListener("message", (e) => {
     tmp.RewardType = mission.RewardType ?? 0;
     tmp.RewardValue = t_reward_value;
     tmp.Client = t_client;
-    tmp.Target1 = t_target;
-    tmp.Target2 = mission.Target2 ?? 0;
+    tmp.Target1 = t_target_1;
+    tmp.Target2 = t_target_2;
     tmp.TargetItem = t_item;
     tmp.Dungeon = mission.Dungeon ?? 0;
     tmp.Floor = mission.Floor ?? 0;
@@ -78,12 +84,30 @@ self.addEventListener("message", (e) => {
     let consecutive = CountConsecutiveChar(tmp.Password);
     let count = CountLongestConsecutiveCharacter(tmp.Password);
 
-    passwords.push({
+    // 追加
+    let add = {
       password: tmp.Password,
       consecutive: consecutive,
       count: count,
-    });
+    };
 
+    // 最大値を更新
+    let updateMax = false;
+    if (consecutive > consecutiveMax) {
+      consecutiveMax = consecutive;
+      updateMax = true;
+    }
+    if (count > countMax) {
+      countMax = count;
+      updateMax = true;
+    }
+
+    // 2回目以降は最大値が更新された場合のみ追加する
+    if (passwords.length >= 10) {
+      if (updateMax) passwords.push(add);
+    } else {
+      passwords.push(add);
+    }
     cnt++;
 
     //if (cnt >= maxrand) break;

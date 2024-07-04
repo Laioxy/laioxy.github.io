@@ -912,7 +912,7 @@ $(async function () {
           let msg =
             `<p>パスワードを展開しましたが、チェックサムが一致しません。` +
             `<br>Hash1: ${mission.Checksum1.toString(16).toUpperCase()} / Hash2: ${mission.Checksum2.toString(16).toUpperCase()}</p>` +
-            `<p>このまま生成することで正しいチェックサムのパスワードに修正して生成できます。<br>(但し、正しく使用できる依頼であるかは保証しません)</p>`;
+            `<p>このまま生成することで正しいチェックサムのパスワードに修正して生成できます。<br>(ただし、正しく使用できる依頼であるかは保証しません)</p>`;
           e_pass_alert.html(msg);
           e_pass_alert.addClass("alert-warning");
         }
@@ -1005,6 +1005,7 @@ $(async function () {
             }
           } else if (e.data.type == "complete") {
             // 完了
+            console.log(e.data.passes);
             resolve(e.data);
             passstr = e.data.passes[0].password;
             e_loading.hide();
@@ -1211,6 +1212,8 @@ $(async function () {
         if (e_version_old.prop("checked") && !ItemData[res].IsTokiYami) continue;
         // ふしぎなタマゴを除外
         if (res == 0xb2) continue;
+        // しようごマシンを除外
+        if (res == 0xbb) continue;
         // 無効な道具を除外
         if (ItemData[res].IsValid) break;
       }
@@ -1246,7 +1249,7 @@ $(async function () {
       for (let i = 0; i < 0x16b; i++) {
         let allow = 0;
         let isSky = CheckVersionSky();
-        if ((isSky || (!isSky && ItemData[i].IsTokiYami)) && i != 0xb2 && ItemData[i].IsValid) {
+        if ((isSky || (!isSky && ItemData[i].IsTokiYami)) && i != 0xb2 && i != 0xbb && ItemData[i].IsValid) {
           allow = 1;
         }
         res.push(allow);
