@@ -1212,6 +1212,8 @@ $(async function () {
         if (e_version_old.prop("checked") && !ItemData[res].IsTokiYami) continue;
         // ふしぎなタマゴを除外
         if (res == 0xb2) continue;
+        // ポケを除外
+        if (res == 0xb7) continue;
         // しようごマシンを除外
         if (res == 0xbb) continue;
         // 無効な道具を除外
@@ -1249,7 +1251,7 @@ $(async function () {
       for (let i = 0; i < 0x16b; i++) {
         let allow = 0;
         let isSky = CheckVersionSky();
-        if ((isSky || (!isSky && ItemData[i].IsTokiYami)) && i != 0xb2 && i != 0xbb && ItemData[i].IsValid) {
+        if ((isSky || (!isSky && ItemData[i].IsTokiYami)) && i != 0xb2 && i != 0xbb && i != 0xb7 && ItemData[i].IsValid) {
           allow = 1;
         }
         res.push(allow);
