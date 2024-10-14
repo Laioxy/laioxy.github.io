@@ -1,5 +1,6 @@
-import { WonderMail } from "./wondermail_pass.js";
+import { WonderMail } from "/wondermail/js/password.js";
 
+console.log("a");
 $(async function () {
   var PokemonData;
 
@@ -72,7 +73,7 @@ $(async function () {
     e_pokemon.val(1).change();
   });
 
-  $(".fix-pokemon").on("click", function() {
+  $(".fix-pokemon").on("click", function () {
     let id = e_pokemon.val() % 600;
     e_pokemon.val(id).change();
   });
@@ -110,8 +111,10 @@ $(async function () {
       本来存在しない第二性別のポケモンが選択されています。<br>
       技を覚えていない・技がバグる・喋らない等といった本来とは異なる挙動を起こす場合があるため非推奨です。
       `;
-      fix = `[${("000" + pokemonIdx.toString(16)).slice(-3).toUpperCase()}] ${PokemonData[pokemonIdx].Name} (${poke_gender[PokemonData[pokemonIdx].Genders[0]].name})`;      
-    } 
+      fix = `[${("000" + pokemonIdx.toString(16)).slice(-3).toUpperCase()}] ${PokemonData[pokemonIdx].Name} (${
+        poke_gender[PokemonData[pokemonIdx].Genders[0]].name
+      })`;
+    }
 
     // MSG
     if (msg.length > 0) {

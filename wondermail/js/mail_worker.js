@@ -1,4 +1,4 @@
-import { WonderMail } from "./wondermail_pass.js";
+import { WonderMail } from "/wondermail/js/password.js";
 self.addEventListener("message", (e) => {
   let mission = new WonderMail();
   mission.Status = e.data.mission.Status;

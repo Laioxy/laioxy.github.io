@@ -1,0 +1,76 @@
+---
+layout: default
+title: "救助依頼複製ツール"
+permalink: /rescue/duplicate/
+---
+
+<script src="/rescue/js/password.js"></script>
+<script src="/rescue/js/duplicate.js"></script>
+<div id="main-container" class="container-md pb-3">
+  <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
+    <h1 class="m-0">救助依頼複製ツール</h1>
+    <hr />
+    <p class="text-start m-0">
+      救助依頼を中身そのまんま別の救助依頼として複製するツール。<br />
+      パスワードを入力してボタンをクリックするだけ。約42億通り作れるので被ることはまず無いです。<br />
+      有用な救助保存を何度もこなしたい時にどうぞ。
+    </p>
+  </div>
+
+  <div>
+    <div class="d-flex flex-column gap-3">
+      <div class="d-flex flex-md-row flex-column gap-3">
+        <div class="card card-body col-md border border-secondary-subtle">
+          <h4>パスワード入力</h4>
+          <div class="row d-flex flex-column gap-3">
+            <div>
+              <textarea
+                class="form-control form-control-sm d-grid"
+                rows="3"
+                id="pass-area"
+                placeholder="たすけてメールのパスワードを入力 (スペース・改行可)"
+              ></textarea>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-lg" id="pass-duplicate">パスワード複製</button>
+              <p class="form-text mb-0">押下する度にランダム生成します</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex flex-md-row flex-column gap-3">
+        <div class="card card-body col-md">
+          <h4>生成したパスワード</h4>
+          <div class="d-flex flex-column gap-3">
+            <div>
+              <textarea id="pass-sos" class="form-control form-control-sm d-grid" rows="3" readonly></textarea>
+            </div>
+            <div>
+              <div class="row">
+                <div class="col">
+                  <label class="form-label">生成元チェックサム</label>
+                </div>
+                <div class="col-1"></div>
+                <div class="col">
+                  <label class="form-label">生成後チェックサム</label>
+                </div>
+              </div>
+              <div class="row mt-0">
+                <div class="col">
+                  <input id="base-checksum" type="text" class="form-control" readonly />
+                </div>
+                <div class="col-1 d-flex justify-content-center align-items-center">
+                  <i class="bi bi-arrow-right"></i>
+                </div>
+                <div class="col">
+                  <input id="new-checksum" type="text" class="form-control" readonly />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

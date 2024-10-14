@@ -57,6 +57,7 @@ class WonderMail {
   RestType = 0;
   RestValue = 0;
   Seed = 0;
+  NullByte = 0;
   idxList = [];
   swapList = [];
   convList = [];
@@ -135,6 +136,7 @@ class WonderMail {
       this.Dungeon = (decode[17] >> 2) | ((decode[18] << 6) & 0xff);
       this.Floor = (decode[18] >> 2) | ((decode[19] << 6) & 0xff);
       this.Fixed = (decode[19] >> 2) | ((decode[20] << 6) & 0xff);
+      this.NullByte = decode[20] >> 2;
       // CRC再計算
       if (this.Checksum1 < 0) this.Checksum1 += 0x100000000;
       this.Checksum2 = this.CalcCRC32(decode);

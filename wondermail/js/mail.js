@@ -1,4 +1,4 @@
-import { WonderMail, GetSwapTable } from "./wondermail_pass.js";
+import { WonderMail, GetSwapTable } from "/wondermail/js/password.js";
 
 $(async function () {
   // JSONデータ格納用変数
@@ -63,6 +63,7 @@ $(async function () {
   if (advanced) e_advanced.show();
   else e_advanced.hide();
 
+  console.log("Promise Start");
   await Promise.all([GetPokemonJson(), GetItemJson(), GetDungeonJson(), GetFloorJson(), GetFixedJson()])
     .then((results) => {
       PokemonData = results[0];
@@ -74,6 +75,7 @@ $(async function () {
     .catch((e) => {
       console.error(e);
     });
+  console.log("Promise End");
 
   // Select2
   e_reward_value_select.select2(select2Config);
@@ -904,6 +906,7 @@ $(async function () {
 
         // メッセージ
         e_pass_alert.hide();
+        console.log(mission);
 
         if (mission.Checksum1 == mission.Checksum2) {
           e_pass_alert.html("パスワードを展開しました！");
@@ -992,7 +995,7 @@ $(async function () {
       const threshold = 10; // 何%ごとにプログレスバーを更新するか
 
       // Worker処理
-      worker = new Worker("./js/wondermail_worker.js", { type: "module" });
+      worker = new Worker("/wondermail/js/mail_worker.js", { type: "module" });
       let workerMsg = new Promise((resolve, reject) => {
         worker.onmessage = (e) => {
           if (e.data.type == "progress") {

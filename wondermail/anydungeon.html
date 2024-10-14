@@ -1,0 +1,108 @@
+---
+layout: default
+title: "ダンジョン強制解禁バグ"
+permalink: /wondermail/anydungeon/
+---
+
+<script src="/assets/js/json_script.js"></script>
+<script src="/wondermail/js/anydungeon.js" type="module"></script>
+<div id="main-container" class="container-md pb-3">
+  <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
+    <h1 class="m-0">ダンジョン強制解禁バグ用生成機</h1>
+    <hr />
+    <p>
+      「ポケモン不思議のダンジョン 空の探検隊」のダンジョン強制解禁バグ用のパスワードを作成するツール。<br />
+      最低限の機能だけ実装した簡易版です。
+    </p>
+
+    <div class="youtube mb-3">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/6DGqGHER4vM?si=vFMr4xoa2orVX88h"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <p>
+      パスワード入力後、依頼を実行するだけでダンジョンが解禁されます。<br />
+      ストーリー系ダンジョンを強制解禁すると<b>ゲームの進行に影響を及ぼします。</b><br />
+      解禁後にセーブしてしまうと<b class="text-danger">元の状態には戻せない</b>のでよく考えて使うこと！
+    </p>
+    <p>
+      この簡易ツールでは解禁できない・解禁してはいけないダンジョンを除外しています。<br />
+      制限なく作成したい方は通常のツールをご使用下さい。<br />
+      通常のふしぎなメール生成機は<a href="/wondermail/">こちら</a>
+    </p>
+  </div>
+
+  <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle" id="pass-form">
+    <div class="d-flex flex-column gap-3">
+      <div>
+        <div class="d-flex flex-column">
+          <p class="fs-5 mb-1">リージョン</p>
+          <div class="btn-group text-nowrap" id="group-resion">
+            <input class="btn-check" id="resion-jp" type="radio" name="resion" value="jp" checked />
+            <label class="btn btn-outline-primary" for="resion-jp">日本</label>
+            <input class="btn-check" id="resion-na" type="radio" name="resion" value="na" />
+            <label class="btn btn-outline-primary" for="resion-na">北米</label>
+            <input class="btn-check" id="resion-eu" type="radio" name="resion" value="eu" />
+            <label class="btn btn-outline-primary" for="resion-eu">欧州</label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="fs-5 mb-1">ダンジョン</p>
+        <div class="row g-2">
+          <div class="item col-md-6">
+            <div class="form-floating">
+              <select id="dungeon" class="form-select"></select>
+              <label for="dungeon">ダンジョン</label>
+            </div>
+          </div>
+          <div class="item col-md-6">
+            <div class="form-floating">
+              <select id="dungeon-floor" class="form-select"></select>
+              <label for="dungeon-floor">階数</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="d-grid mb-0">
+          <button class="btn btn-primary btn-lg" id="pass-generate">パスワード生成</button>
+        </div>
+      </div>
+
+      <div>
+        <p class="fs-5 mb-1">パスワード</p>
+        <textarea class="form-control form-control-sm d-grid" rows="2" id="pass-area" placeholder="" readonly></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
+    <h4>生成内容</h4>
+    <ul class="m-0">
+      <li>依頼タイプ: <code>[0B]挑戦状を受ける</code></li>
+      <li>フラグ: <code>[05]ジラーチ用</code></li>
+      <li>報酬タイプ: <code>[06]仲間になる</code></li>
+      <li>報酬値: <code>[1A1]ジラーチ</code></li>
+      <li>依頼主: <code>[1A1]ジラーチ</code></li>
+      <li>対象ポケモン1: <code>[1A1]ジラーチ</code></li>
+      <li>対象ポケモン2: <code>[000]-</code></li>
+      <li>対象の道具: <code>[046]オレンのみ</code></li>
+      <li>ダンジョン: <code class="text-primary">(選択)</code></li>
+      <li>フロア: <code class="text-primary">(選択)</code></li>
+      <li>固定フロア: [95]挑戦状 ジラーチ</li>
+      <li>制限タイプ: <code>[00]タイプ</code></li>
+      <li>制限値: <code>[00]なし</code></li>
+      <li>SEED: <code class="text-primary">ランダム(0x000000～0xFFFFFF)</code></li>
+    </ul>
+  </div>
+</div>

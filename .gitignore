@@ -1,2 +1,6 @@
-/.vscode
+.vscode/
+_site/
+.jekyll-cache/
+Gemfile
+Gemfile.lock
 .prettierignore
