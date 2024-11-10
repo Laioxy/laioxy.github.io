@@ -40,7 +40,7 @@ html {
     bottom: -3px;
     left: -3px;
     right: -3px;
-    filter: blur(3px);
+    filter: blur(2px);
     z-index: -1;
   }
   a {
@@ -53,17 +53,29 @@ html {
     font-size: 36px;
     font-weight: bold;
   }
+  @media (max-width: 768px) {
+    height: 70px;
+    a {
+      font-size: 24px;
+    }
+  }
 }
 
 // メインコンテナ
 #main-container {
-  max-width: 1000px;
+  max-width: 1200px;
 }
 
 // トップページ
 .top-contents {
   ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     margin: 0;
+    li p.link_context {
+      font-size: 0.8em;
+    }
   }
   h2.top-icon {
     display: flex;
