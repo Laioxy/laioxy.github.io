@@ -1,5 +1,5 @@
 // タイプ
-var poke_type = [
+const poke_type = [
   { id: 0, name: "なし" },
   { id: 1, name: "ノーマル" },
   { id: 2, name: "ほのお" },
@@ -21,7 +21,7 @@ var poke_type = [
 ];
 
 // 性別
-var poke_gender = [
+const poke_gender = [
   { id: 0, name: "無効" },
   { id: 1, name: "オス" },
   { id: 2, name: "メス" },
