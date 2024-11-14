@@ -31,7 +31,7 @@ $(async function () {
   // }
 
   // JSON取得
-  await Promise.all([GetPokemonJson(), GetFloorJson()])
+  await Promise.all([getJsonData("pokemon"), getJsonData("floor")])
     .then((results) => {
       PokemonData = results[0];
     })

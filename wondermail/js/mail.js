@@ -64,7 +64,7 @@ $(async function () {
   else e_advanced.hide();
 
   console.log("Promise Start");
-  await Promise.all([GetPokemonJson(), GetItemJson(), GetDungeonJson(), GetFloorJson(), GetFixedJson()])
+  await Promise.all([getJsonData("pokemon"), getJsonData("item"), getJsonData("dungeon"), getJsonData("floor"), getJsonData("fixed")])
     .then((results) => {
       PokemonData = results[0];
       ItemData = results[1];

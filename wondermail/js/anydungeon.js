@@ -24,7 +24,7 @@ $(async function () {
   // }
 
   // JSON取得
-  await Promise.all([GetDungeonJson(), GetFloorJson()])
+  await Promise.all([getJsonData("dungeon"), getJsonData("floor")])
     .then((results) => {
       DungeonData = results[0];
       FloorData = results[1];
