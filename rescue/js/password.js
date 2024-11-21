@@ -47,6 +47,7 @@ const char_str = [
  * Class: Rescue
  * 友達救助クラス
  */
+// 構造体は0x205BDB0の関数内で構成？
 class Rescue {
   Hash1 = 0;
   Hash2 = 0;
@@ -54,15 +55,31 @@ class Rescue {
   Dungeon = 0; // ダンジョン
   Floor = 0; // 救助フロア
   DungeonSeed = 0; // ダンジョンシード
-  SOSTeamId = 0; // [たすけて] 救助待ちチームID
+  SOSTeamId = 0; // [たすけて] 救助待ちMACアドレス末尾8桁
   SOSCheckKey = 0; // [たすけて] キー値
   Resion = 0; // リージョン (0=日本(0000), 8=米国(1000) bitで管理)
   TeamName = ""; // チーム名称
   GiftItemCount = 0; // 贈る道具の個数
   GiftItemId = 0; // 贈る道具
-  AOKTeamId = 0; // [ふっかつ] 救助したチームID
-  AOKCheckKey = 0; // [ふっかつ] キー値
-  Version = 0; // 時=0, 闇=1, 空=2or3
+
+  // [ふっかつ] 救助側MACアドレス末尾8桁
+  // DSのMACアドレス末尾32bitがそのまま入る
+  // 不整合チェックをしている可能性あり？
+  // ※おれいのメールはこの値がふっかつ側と一致している必要あり
+  AOKTeamId = 0;
+
+  // [ふっかつ] キー値
+  // セーブファイル0x28-0x2Bの値を使用 (＝セーブデータ依存の値)
+  // この値は単純な32bitRNGであり、性格診断が一通り終わって
+  // 主人公が決まるタイミングでセットされる
+  // ※おれいのメールはこの値がふっかつ側と一致している必要あり
+  AOKCheckKey = 0;
+
+  // バージョン値
+  // 時=0, 闇=1, 空=2or3
+  // 0x205BE5C で[0～1のランダムな値 OR 2]されているので2か3はランダム？
+  Version = 0;
+
   GiftItemFlag = 0; // 贈る道具フラグ (道具ID > 0x400 = 2)
 
   idxList = [];
@@ -140,7 +157,7 @@ class Rescue {
       console.log("たすけてメール");
       // Seed1 (24bit)
       this.DungeonSeed = BytesToNum(decList, 26, 24);
-      // 救助待ちチームID (32bit)
+      // 救助待ちMACアドレス末尾8桁 (32bit)
       this.SOSTeamId = BytesToNum(decList, 50, 32);
       // たすけてメールキー値 (32bit)
       this.SOSCheckKey = BytesToNum(decList, 82, 32);
