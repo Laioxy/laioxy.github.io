@@ -27,3 +27,33 @@ const poke_gender = [
   { id: 2, name: "メス" },
   { id: 3, name: "不明" },
 ];
+
+// 移動タイプ
+const poke_movetype = [
+  { id: 0, name: "通常" },
+  { id: 1, name: "? (不明)" },
+  { id: 2, name: "空中" },
+  { id: 3, name: "通過" },
+  { id: 4, name: "マグマ" },
+  { id: 5, name: "水上" },
+];
+
+// かしこさグループ
+const poke_iqgroup = [
+  { id: 0, name: "A" },
+  { id: 1, name: "B" },
+  { id: 2, name: "C" },
+  { id: 3, name: "D" },
+  { id: 4, name: "E" },
+  { id: 5, name: "F" },
+  { id: 6, name: "G" },
+  { id: 7, name: "H" },
+  { id: 8, name: "未使用" },
+  { id: 9, name: "未使用" },
+  { id: 10, name: "I" },
+  { id: 11, name: "J" },
+  { id: 12, name: "未使用" },
+  { id: 13, name: "未使用" },
+  { id: 14, name: "未使用" },
+  { id: 15, name: "無効" },
+];
