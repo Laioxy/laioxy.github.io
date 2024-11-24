@@ -26,15 +26,15 @@ $(function () {
     if (rescue.RescueType == 1) {
       let rand = 0;
       do rand = Math.floor(Math.random() * 0x100000000);
-      while (rescue.SOSCheckSum == rand);
+      while (rescue.SOSCheckKey == rand);
 
       let newRescue = rescue.Clone();
-      newRescue.SOSCheckSum = rand;
+      newRescue.SOSCheckKey = rand;
       newRescue.Encode();
 
       e_pass_sos.val(ConvertToMultiFormat(newRescue.Password, 6, 6, 6));
-      e_base_checksum.val(ToHex32(rescue.SOSCheckSum).toUpperCase());
-      e_new_checksum.val(ToHex32(newRescue.SOSCheckSum).toUpperCase());
+      e_base_checksum.val(ToHex32(rescue.SOSCheckKey).toUpperCase());
+      e_new_checksum.val(ToHex32(newRescue.SOSCheckKey).toUpperCase());
     } else {
       alert("たすけてメールのパスワードではありません。");
     }
