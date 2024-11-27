@@ -1,91 +1,97 @@
 html {
   height: 100%;
-}
-html body {
-  background-color: #ddd;
-  height: 100%;
-}
-html select option:disabled {
-  color: #ccc;
-}
-html i {
-  margin-right: 2px;
-}
-html .context-sm {
-  font-size: 0.8em;
-}
-* + html .context-sm {
-  margin-left: 4px;
-}
-html p:last-child {
-  margin-bottom: 0;
+  body {
+    background-color: #ddd;
+    height: 100%;
+  }
+  select {
+    option:disabled {
+      color: #ccc;
+    }
+  }
+  i {
+    margin-right: 2px;
+  }
+  .context-sm {
+    font-size: 0.8em;
+    * + & {
+      margin-left: 4px;
+    }
+  }
+  p:last-child {
+    margin-bottom: 0; /* 最後の<p>だけmargin消す */
+  }
 }
 
+/* ヘッダー */
 .container-head {
   text-align: center;
   height: 150px;
   position: relative;
   overflow: hidden;
   z-index: 0;
-}
-.container-head::before {
-  content: "";
-  background-image: url("../img/worldmap.png");
-  background-size: cover;
-  background-position: 50%;
-  position: absolute;
-  top: -3px;
-  bottom: -3px;
-  left: -3px;
-  right: -3px;
-  filter: blur(2px);
-  z-index: -1;
-}
-.container-head a {
-  color: #fff;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  font-size: 36px;
-  font-weight: bold;
-}
-@media (max-width: 768px) {
-  .container-head {
-    height: 70px;
+  &::before {
+    content: "";
+    background-image: url("../img/worldmap.png");
+    background-size: cover;
+    background-position: 50%;
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    left: -3px;
+    right: -3px;
+    filter: blur(2px);
+    z-index: -1;
   }
-  .container-head a {
-    font-size: 24px;
+  a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 36px;
+    font-weight: bold;
+  }
+  @media (max-width: 768px) {
+    height: 70px;
+    a {
+      font-size: 24px;
+    }
   }
 }
 
+/* メインコンテナ */
 #main-container {
   max-width: 1200px;
 }
 
-.top-contents ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin: 0;
-}
-.top-contents ul li p.link_context {
-  font-size: 0.8em;
-}
-.top-contents h2.top-icon {
-  display: flex;
-  line-height: 1em;
-}
-.top-contents h2.top-icon img {
-  width: auto;
-  height: 1em;
-  margin-right: 0.4em;
-  display: inline-block;
+/* トップページ */
+.top-contents {
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+    li p.link_context {
+      font-size: 0.8em;
+    }
+  }
+  h2.top-icon {
+    display: flex;
+    line-height: 1em;
+    img {
+      width: auto;
+      height: 1em;
+      margin-right: 0.4em;
+      display: inline-block;
+    }
+  }
 }
 
+/* ローディング */
 .loading {
-  background-color: rgba(255, 255, 255, 0.8117647059);
+  background-color: #ffffffcf;
   position: fixed;
   top: 0;
   left: 0;
@@ -97,47 +103,52 @@ html p:last-child {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.loading #progress-wrap {
-  width: 70%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
-}
-.loading #progress-wrap #progress-worker {
-  width: 100%;
-}
-.loading #progress-wrap #cancel-btn {
-  width: -moz-fit-content;
-  width: fit-content;
+
+  #progress-wrap {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+    #progress-worker {
+      width: 100%;
+    }
+    #cancel-btn {
+      width: fit-content;
+    }
+  }
 }
 
-.form-floating .select2-container--bootstrap-5 {
-  width: auto !important;
+/* Select2 フローティングデザイン統一 */
+.form-floating {
+  .select2-container--bootstrap-5 {
+    width: auto !important;
+  }
+  span.select2.select2-container span.selection .select2-selection {
+    padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
+    min-height: calc(3.5rem + calc(var(--bs-border-width) * 2));
+    border-radius: var(--bs-border-radius);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+  }
 }
-.form-floating span.select2.select2-container span.selection .select2-selection {
-  padding-top: 1.625rem;
-  padding-bottom: 0.625rem;
-  min-height: calc(3.5rem + var(--bs-border-width) * 2);
-  border-radius: var(--bs-border-radius);
-  border: var(--bs-border-width) solid var(--bs-border-color);
-}
-
 .input-group > .form-floating > .select2 > .selection > .select2-selection {
   border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius) !important;
 }
-
+/* Select2 disabled項目 */
 .select2-results__option--disabled {
   background-color: #ccc !important;
   display: none;
 }
 
+/* YouYubeレスポンシブ対応 */
 .youtube {
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
+  iframe {
+    width: 100%;
+    height: 100%;
+    /* max-width: 600px; */
+  }
 }
-.youtube iframe {
-  width: 100%;
-  height: 100%;
-}/*# sourceMappingURL=style.css.map */
