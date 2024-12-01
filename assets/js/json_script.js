@@ -8,6 +8,7 @@ const jsonPathsArray = {
   floor: "/assets/data/floor_data.min.json",
   fixed: "/assets/data/fixed_data.min.json",
   message: "/assets/data/message_data.min.json",
+  type: "/assets/data/type_data.min.json",
 };
 
 /**
