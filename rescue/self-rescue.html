@@ -1,0 +1,109 @@
+---
+layout: default
+title: "自演救助ツール"
+permalink: /rescue/self-rescue/
+---
+
+<script>
+  const ItemData = {{ site.data.item | jsonify }};
+</script>
+<script src="/rescue/js/password.js"></script>
+<script src="/rescue/js/self-rescue.js"></script>
+
+<div id="main-container" class="container-md pb-3">
+  <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
+    <h1 class="m-0">自演救助ツール</h1>
+    <hr />
+
+    <p class="text-start">
+      「ポケモン不思議のダンジョン 時の探検隊/闇の探検隊/空の探検隊」の自演救助ツール。<br />
+      たすけてメールのパスワードを入力するだけで即救助できます。ついでに道具も貰うことができます。<br />
+      <b>救助を待つ必要は無し、そして人情も無し！</b><br />
+    </p>
+
+    <div class="youtube mb-3">
+      <iframe
+        width=""
+        height=""
+        src="https://www.youtube.com/embed/tGXggH7mlaI"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <p>
+      ちなみに、ふっかつメールのパスワードを打ち込むとおれいのメールも生成できます。<br />
+      お礼を貰いたくて仕方がない図々しい方は是非。
+    </p>
+    <p>全バージョン(時/闇/空)、全リージョン(日本/北米/欧州)対応。</p>
+  </div>
+
+  <div>
+    <div class="d-flex flex-column gap-3">
+      <div class="d-flex flex-md-row flex-column gap-3">
+        <div class="card card-body col-md">
+          <h4>パスワード入力</h4>
+          <div class="row d-flex flex-column gap-3">
+            <div>
+              <textarea
+                class="form-control d-grid"
+                rows="3"
+                id="pass-area"
+                placeholder="たすけてメール・ふっかつメールのパスワードを入力 (スペース・改行可)"
+              ></textarea>
+            </div>
+
+            <div>
+              <div class="form-floating">
+                <select id="gift-item" class="form-select"></select>
+                <label for="gift-item">贈ってもらう道具</label>
+              </div>
+            </div>
+
+            <div id="gift-item-count-wrap">
+              <div class="form-floating">
+                <input id="gift-item-count" class="form-control" type="number" value="1" min="0" max="99" />
+                <label for="gift-item-count">道具の個数</label>
+              </div>
+            </div>
+            <div id="gift-item-inner-wrap">
+              <div class="form-floating">
+                <select id="gift-item-inner" class="form-select"></select>
+                <label for="gift-item-inner">中身</label>
+              </div>
+            </div>
+
+            <div class="d-grid">
+              <button class="btn btn-primary btn-lg" id="pass-analysis">ふっかつ/おれいのメール作成</button>
+            </div>
+
+            <div id="caution">
+              <!-- エラーメッセージ -->
+              <div id="error-box" class="caution alert alert-danger" style="display: none">
+                <div id="error-text" class="text-wrap"></div>
+              </div>
+              <!-- 警告メッセージ -->
+              <div id="warning-box" class="caution alert alert-warning" style="display: none">
+                <div id="warning-text" class="text-wrap"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex flex-md-row flex-column gap-3">
+        <div class="card card-body col-md">
+          <h4>生成した救助パスワード</h4>
+          <div class="d-flex flex-column gap-3">
+            <div>
+              <textarea id="pass-result" class="form-control d-grid" rows="3" readonly></textarea>
+              <label id="pass-result-label" class="form-label form-text" style="display: none"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

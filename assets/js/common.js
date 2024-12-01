@@ -103,6 +103,15 @@ function ConvertToMultiFormat(str, sec1, sec2, sec3) {
 }
 
 /**
+ * 文字列タグの削除
+ * @param {*} str
+ * @returns
+ */
+function formatRemoveTagString(str) {
+  return str.replace(/\[+[^\[*\]]*\]+/g, "");
+}
+
+/**
  * [Select2] カスタム検索
  * IDや性別は含まず、項目の名称だけで検索できるようにするもの
  *
