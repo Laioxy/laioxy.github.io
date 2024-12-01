@@ -64,14 +64,14 @@ class Rescue {
 
   // [ふっかつ] 救助側MACアドレス末尾8桁
   // DSのMACアドレス末尾32bitがそのまま入る
-  // 不整合チェックをしている可能性あり？
   // ※おれいのメールはこの値がふっかつ側と一致している必要あり
   AOKTeamId = 0;
 
   // [ふっかつ] キー値
   // セーブファイル0x28-0x2Bの値を使用 (＝セーブデータ依存の値)
   // この値は単純な32bitRNGであり、性格診断が一通り終わって
-  // 主人公が決まるタイミングでセットされる
+  // 主人公が決まるタイミングでセットされる (0x22AC67C)
+  // 不整合チェックをしている可能性あり？
   // ※おれいのメールはこの値がふっかつ側と一致している必要あり
   AOKCheckKey = 0;
 
@@ -80,7 +80,9 @@ class Rescue {
   // 0x205BE5C で[0～1のランダムな値 OR 2]されているので2か3はランダム？
   Version = 0;
 
-  GiftItemFlag = 0; // 贈る道具フラグ (道具ID > 0x400 = 2)
+  // [ふっかつ] 贈る道具フラグ
+  // 道具IDが0x400を超える場合、道具IDから0x400を引いてこの値を0x2にする
+  GiftItemFlag = 0;
 
   idxList = [];
   swapList = [];
@@ -346,14 +348,12 @@ class Rescue {
     res.Dungeon = this.Dungeon;
     res.Floor = this.Floor;
     res.DungeonSeed = this.DungeonSeed;
-    res.SOSCheckSumBit = this.SOSCheckSumBit;
     res.SOSTeamId = this.SOSTeamId;
     res.SOSCheckKey = this.SOSCheckKey;
     res.Resion = this.Resion;
     res.TeamName = this.TeamName;
     res.GiftItemCount = this.GiftItemCount;
     res.GiftItemId = this.GiftItemId;
-    res.AOKCheckSumBit = this.AOKCheckSumBit;
     res.AOKTeamId = this.AOKTeamId;
     res.AOKCheckKey = this.AOKCheckKey;
     res.Version = this.Version;
