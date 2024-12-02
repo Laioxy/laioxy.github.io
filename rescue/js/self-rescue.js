@@ -1,13 +1,13 @@
 $(async function () {
   // 公開日まで蓋をしておく
-  const now = new Date();
-  const pub = new Date(2024, 12, 2, 18, 0, 0);
-  if (now < pub) {
-    const m = $("#main-container");
-    m.empty();
-    m.append(`<div class="card my-3"><div class="card-body">工事中</div></div>`);
-    return;
-  }
+  // const now = new Date();
+  // const pub = new Date(2024, 12, 2, 18, 0, 0);
+  // if (now < pub) {
+  //   const m = $("#main-container");
+  //   m.empty();
+  //   m.append(`<div class="card my-3"><div class="card-body">工事中</div></div>`);
+  //   return;
+  // }
 
   var e_pass_area = $("#pass-area");
   var e_pass_result = $("#pass-result");
