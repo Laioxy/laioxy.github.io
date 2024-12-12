@@ -1,15 +1,18 @@
+/* 無効ポケモン, 無効道具 */
 option[data-gender="0"],
-option[data-valid=false],
+option[data-valid="false"],
 li:has(span.invalid) {
   background-color: #ccc;
 }
 
-option[data-banned=true],
+/* 禁止ポケモン */
+option[data-banned="true"],
 li:has(span.banned) {
   background-color: #ffc0cb;
 }
 
-option.allow[data-banned=true],
+/* 例外許可ポケモン */
+option.allow[data-banned="true"],
 li:has(span.allow) {
   background-color: #bfdfff !important;
 }
@@ -26,15 +29,15 @@ li:has(span.allow) {
 
 #mission-rawdata-collapse {
   text-decoration: none;
+  i {
+    display: inline-block;
+    margin-left: 2px;
+    transition-duration: 0.3s;
+  }
+  &[aria-expanded="true"] i {
+    transform: rotate(180deg);
+  }
+  &[aria-expanded="false"] i {
+    transform: rotate(0deg);
+  }
 }
-#mission-rawdata-collapse i {
-  display: inline-block;
-  margin-left: 2px;
-  transition-duration: 0.3s;
-}
-#mission-rawdata-collapse[aria-expanded=true] i {
-  transform: rotate(180deg);
-}
-#mission-rawdata-collapse[aria-expanded=false] i {
-  transform: rotate(0deg);
-}/*# sourceMappingURL=wondermail.css.map */
