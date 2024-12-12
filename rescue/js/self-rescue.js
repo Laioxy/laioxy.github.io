@@ -1,7 +1,7 @@
 $(async function () {
-  // 公開日まで蓋をしておく
+  // 蓋 (Dateの第二引数は0～11で指定すること)
   // const now = new Date();
-  // const pub = new Date(2024, 12, 2, 18, 0, 0);
+  // const pub = new Date(2024, 12 - 1, 2, 18, 0, 0);
   // if (now < pub) {
   //   const m = $("#main-container");
   //   m.empty();
@@ -20,6 +20,15 @@ $(async function () {
   var e_error_text = $("#error-text");
   var e_warning = $("#warning-box");
   var e_warning_text = $("#warning-text");
+  var e_btn_analysis = $("#pass-analysis");
+
+  // アドバンスドモード (エラー無視して生成)
+  var advanced = new URL(document.location).searchParams.get("advanced") != null;
+  if (advanced) {
+    e_btn_analysis.css("background-color", "#6610f2");
+    e_btn_analysis.css("border-color", "#6f42c1");
+    e_btn_analysis.text(e_btn_analysis.text() + " (advanced)");
+  }
 
   // 贈ってもらう道具セット
   AppendItem(e_gift_item);
@@ -100,7 +109,7 @@ $(async function () {
   /**
    * ふっかつ/おれいのメール作成ボタン押下
    */
-  $("#pass-analysis").on("click", function () {
+  e_btn_analysis.on("click", function () {
     let msg = "";
     let input = ConvertToHalfPassString(e_pass_area.val());
 
@@ -120,19 +129,19 @@ $(async function () {
     console.log(rescue);
 
     // [ERROR] ハッシュ値不整合
-    if (rescue.Hash1 != rescue.Hash2) {
+    if (!advanced && rescue.Hash1 != rescue.Hash2) {
       msg = `パスワードが間違っています。(ハッシュ値不整合)`;
       ViewMsgError(msg);
       return false;
     }
     // [ERROR] たすけて、ふっかつ、おれいのメール以外
-    else if (![1, 4, 5].includes(Number(rescue.RescueType))) {
+    if (![1, 4, 5].includes(Number(rescue.RescueType))) {
       msg = `パスワードが間違っています。(救助依頼タイプ範囲外)`;
       ViewMsgError(msg);
       return false;
     }
     // [ERROR] おれいのメール
-    else if (rescue.RescueType == 5) {
+    if (rescue.RescueType == 5) {
       msg = `おれいのメールのパスワードは使用できません。`;
       ViewMsgError(msg);
       return false;
