@@ -19,10 +19,11 @@ const encryption = [
   0x72, 0x07, 0x50, 0xad, 0xf3, 0x2e, 0x5c, 0x43, 0xff, 0xc3, 0xb3, 0x32, 0x7a, 0x3e, 0x9c, 0xa3, 0xc2, 0xab, 0x10, 0x60, 0x99, 0xfb, 0x08, 0x8a, 0x90, 0x57,
   0x8a, 0x7f, 0x61, 0x90, 0x21, 0x88, 0x55, 0xe8, 0xfc, 0x4b, 0x0d, 0x4a, 0x7a, 0x48, 0xc9, 0xb0, 0xc7, 0xa6, 0xd0, 0x04, 0x7e, 0x05,
 ];
+
 // パスワード文字列
 const pass_str = "&67NPR89F0+#STXY45MCHJ-K12=%3Q@W";
 
-// 文字列
+// 文字データ
 // prettier-ignore
 const char_str = [
   '\0', '－', '　', '！', '＃', '＄', '％', '＆', '（', '）', '＊', '．', '／', '：', '；', '？', // 00-0F
@@ -49,25 +50,54 @@ const char_str = [
  */
 // 構造体は0x205BDB0の関数内で構成？
 class Rescue {
-  Hash1 = 0;
-  Hash2 = 0;
+  Checksum1 = 0; // チェックサム1
+  Checksum2 = 0; // チェックサム2 (確認用)
   RescueType = 0; // 救助依頼タイプ (1=たすけて, 4=ふっかつ, 5=おれい)
   Dungeon = 0; // ダンジョン
   Floor = 0; // 救助フロア
-  DungeonSeed = 0; // ダンジョンシード
-  SOSTeamId = 0; // [たすけて] 救助待ちMACアドレス末尾8桁
-  SOSCheckKey = 0; // [たすけて] キー値
-  Resion = 0; // リージョン (0=日本(0000), 8=米国(1000) bitで管理)
-  TeamName = ""; // チーム名称
-  GiftItemCount = 0; // 贈る道具の個数
-  GiftItemId = 0; // 贈る道具
 
-  // [ふっかつ] 救助側MACアドレス末尾8桁
+  // [たすけて] ダンジョンSeed (～0xFFFFFF)
+  DungeonSeed = 0;
+
+  // [たすけて] 救助待ちMACアドレス末尾8桁
+  // 救助待ち状態に移行した時点で使用しているDSのMACアドレスから参照される
+  // 多分Wi-Fi救助の名残？
+  SOSTeamId = 0;
+
+  // [たすけて] キー値
+  // 倒れて救助待ち状態になる度に生成
+  // この値がたすけてとふっかつ間で一致している必要がある
+  // おそらく単純な32bitRNG
+  SOSCheckKey = 0;
+
+  // リージョン (0=日本(0000), 8=米国(1000) bitで管理)
+  // チーム名の制御に使用される
+  // ゲームのリージョンと一致している時に対応した文字で表示
+  // 異なる場合は固定チーム名で表示 (日本:ポケモンズ)
+  Resion = 0;
+
+  // チーム名称 (最大10文字)
+  // 日本版の場合5文字まで、超える場合は弾かれる
+  TeamName = "";
+
+  // 贈る道具の個数
+  // ふっかつ・おれいのメールに使用される
+  // スタック不可の道具の場合は0で固定
+  // スタック可能の道具で0、もしくは100以上の時は弾かれる
+  GiftItemCount = 0;
+
+  // 贈る道具ID
+  // ふっかつ・おれいのメールに使用される
+  // 0x400以上になる場合GiftItemFlagの値を2にし、この値は0x400で割った余りの値になる
+  // ※生成処理で制御してるのでそのままセットしてOK
+  GiftItemId = 0;
+
+  // [ふっかつ/おれい] 救助側MACアドレス末尾8桁
   // DSのMACアドレス末尾32bitがそのまま入る
   // ※おれいのメールはこの値がふっかつ側と一致している必要あり
   AOKTeamId = 0;
 
-  // [ふっかつ] キー値
+  // [ふっかつ/おれい] キー値
   // セーブファイル0x28-0x2Bの値を使用 (＝セーブデータ依存の値)
   // この値は単純な32bitRNGであり、性格診断が一通り終わって
   // 主人公が決まるタイミングでセットされる (0x22AC67C)
@@ -80,7 +110,7 @@ class Rescue {
   // 0x205BE5C で[0～1のランダムな値 OR 2]されているので2か3はランダム？
   Version = 0;
 
-  // [ふっかつ] 贈る道具フラグ
+  // [ふっかつ/おれい] 贈る道具フラグ
   // 道具IDが0x400を超える場合、道具IDから0x400を引いてこの値を0x2にする
   GiftItemFlag = 0;
 
@@ -94,51 +124,22 @@ class Rescue {
   Decode(pass = "") {
     if (pass.length > 0) this.Password = pass;
 
-    // Index変換
-    const idxList = new Array(this.Password.length);
-    for (let i = 0; i < this.Password.length; i++) {
-      idxList[i] = pass_str.indexOf(this.Password[i]);
-    }
-    // Swap変換
-    const swapList = new Array(idxList.length);
-    for (let i = 0; i < idxList.length; i++) {
-      swapList[i] = idxList[swap_table[i]];
-    }
-    // Bit変換
-    let bit = 0;
-    let val = 0;
-    const convList = [];
-    for (let i = 0; i < swapList.length; i++) {
-      val |= swapList[i] << bit;
-      bit += 5;
-      if (bit >= 8) {
-        convList.push(val & 0xff);
-        val >>= 8;
-        bit -= 8;
-      }
-    }
-    // Decode
-    const first = convList[0];
-    // チェックサムの上位4ビットと下位4ビットの和 + 8 = カウント値
-    const count = (first >> 4) + (first & 0xf) + 8;
-    const mov = first & 0x01 ? 1 : -1;
-    const decList = [];
-    decList.push(convList[0]); // チェックサムはそのまま入れる
-    let pos = 0;
-    for (let i = 1; i < convList.length; i++) {
-      const j = (pos * mov + first) & 0xff;
-      const dec = (convList[i] - encryption[j]) & 0xff;
-      decList.push(dec);
-      pos = (pos + 1) % count;
-    }
+    // Password => Idx
+    const idxList = decPasswordToIdx(this.Password);
+    // Idx => Swap
+    const swapList = decIdxToSwap(idxList);
+    // Swap => Bit
+    const convList = decSwapToBit(swapList);
+    // Bit => Decode
+    const decList = decBitToDec(convList);
 
     this.idxList = idxList;
     this.swapList = swapList;
     this.convList = convList;
     this.decList = decList;
 
-    // ハッシュ (8bit)
-    this.Hash1 = BytesToNum(decList, 0, 8);
+    // チェックサム (8bit)
+    this.Checksum1 = BytesToNum(decList, 0, 8);
     // 救助タイプ (4bit)
     this.RescueType = BytesToNum(decList, 8, 4);
     // ダンジョン (7bit)
@@ -146,188 +147,166 @@ class Rescue {
     // フロア (7bit)
     this.Floor = BytesToNum(decList, 19, 7);
 
-    // タイプ1 => たすけてメール
-    // ふっかつメール・おれいのメールと連携させるには
-    // チームIDとチェックサムが一致している必要がある
+    // 1 => たすけてメール
+    // ふっかつ・おれいのメールと連携させるには
+    // 互いのメールでSOSTeamIdとSOSCheckKeyが一致している必要あり
     if (this.RescueType == 1) {
       console.log("たすけてメール");
-      // Seed1 (24bit)
+      // ダンジョンSeed (24bit)
       this.DungeonSeed = BytesToNum(decList, 26, 24);
-      // 救助待ちMACアドレス末尾8桁 (32bit)
+      // 救助待ちMACアドレス (32bit)
       this.SOSTeamId = BytesToNum(decList, 50, 32);
-      // たすけてメールキー値 (32bit)
+      // 救助待ちキー値 (32bit)
       this.SOSCheckKey = BytesToNum(decList, 82, 32);
       // リージョン (4bit)
       this.Resion = BytesToNum(decList, 114, 4);
       // チーム名 (80bit)
       this.TeamName = GetCharString(BytesToBits(decList, 118, 80));
-      // 救助側チームID (32bit)
+      // 救助MACアドレス (32bit)
       this.AOKTeamId = BytesToNum(decList, 198, 32);
       // ふっかつメールキー値 (32bit)
       this.AOKCheckKey = BytesToNum(decList, 230, 32);
       // バージョン (2bit)
       this.Version = BytesToNum(decList, 262, 2);
     }
-    // タイプ4 => ふっかつメール
+    // 4, 5 => ふっかつメール, おれいのメール
     else if (this.RescueType > 1) {
       if (this.RescueType == 4) console.log("ふっかつメール");
       else if (this.RescueType == 5) console.log("おれいのメール");
 
+      // 救助待ちMACアドレス (32bit)
       this.SOSTeamId = BytesToNum(decList, 26, 32);
+      // 救助待ちキー値 (32bit)
       this.SOSCheckKey = BytesToNum(decList, 58, 32);
+      // リージョン (4bit)
       this.Resion = BytesToNum(decList, 90, 4);
+      // チーム名 (80bit)
       this.TeamName = GetCharString(BytesToBits(decList, 94, 80));
+      // 贈る道具個数 (10bit)
       this.GiftItemCount = BytesToNum(decList, 174, 10);
+      // 贈る道具ID (10bit)
       this.GiftItemId = BytesToNum(decList, 184, 10);
+      // 救助MACアドレス (32bit)
       this.AOKTeamId = BytesToNum(decList, 194, 32);
+      // 救助キー値 (32bit)
       this.AOKCheckKey = BytesToNum(decList, 226, 32);
+      // バージョン (2bit)
       this.Version = BytesToNum(decList, 258, 2);
+      // 道具フラグ (4bit)
       this.GiftItemFlag = BytesToNum(decList, 260, 4);
     }
 
-    // ハッシュ再計算
-    let hash = 0;
-    for (let i = 1; i < decList.length; i++) {
-      hash += decList[i] + i;
-      hash &= 0xff;
-    }
-    this.Hash2 = hash;
+    // チェックサム再計算
+    const checksum = generateChecksum(decList);
+    this.Checksum2 = checksum;
 
     console.log("展開: " + this.Password);
   }
   Encode(status = 1) {
-    let swap = swap_table;
-    let decode;
-    let teamNameArr = ConvertCharToArr(this.TeamName);
+    const decList = new Array(33);
+    const teamNameArr = ConvertCharToArr(this.TeamName);
 
     if (status == 1) {
-      decode = new Array(33);
-      decode[1] = parseInt(this.Dungeon << 4) | parseInt(status & 0xf);
-      decode[2] = parseInt(this.Floor << 3) | parseInt(this.Dungeon >> 4);
-      decode[3] = parseInt(this.DungeonSeed << 2) | parseInt(this.Floor >> 5);
-      decode[4] = parseInt(this.DungeonSeed >>> 6);
-      decode[5] = parseInt(this.DungeonSeed >>> 14);
-      decode[6] = parseInt(this.SOSTeamId << 2) | parseInt(this.DungeonSeed >>> 22);
-      decode[7] = parseInt(this.SOSTeamId >>> 6);
-      decode[8] = parseInt(this.SOSTeamId >>> 14);
-      decode[9] = parseInt(this.SOSTeamId >>> 22);
-      decode[10] = parseInt(this.SOSCheckKey << 2) | parseInt(this.SOSTeamId >>> 30);
-      decode[11] = parseInt(this.SOSCheckKey >>> 6);
-      decode[12] = parseInt(this.SOSCheckKey >>> 14);
-      decode[13] = parseInt(this.SOSCheckKey >>> 22);
-      decode[14] = parseInt(teamNameArr[0] << 6) | parseInt(this.Resion << 2) | parseInt(this.SOSCheckKey >>> 30);
-      decode[15] = parseInt(teamNameArr[1] << 6) | parseInt(teamNameArr[0] >> 2);
-      decode[16] = parseInt(teamNameArr[2] << 6) | parseInt(teamNameArr[1] >> 2);
-      decode[17] = parseInt(teamNameArr[3] << 6) | parseInt(teamNameArr[2] >> 2);
-      decode[18] = parseInt(teamNameArr[4] << 6) | parseInt(teamNameArr[3] >> 2);
-      decode[19] = parseInt(teamNameArr[5] << 6) | parseInt(teamNameArr[4] >> 2);
-      decode[20] = parseInt(teamNameArr[6] << 6) | parseInt(teamNameArr[5] >> 2);
-      decode[21] = parseInt(teamNameArr[7] << 6) | parseInt(teamNameArr[6] >> 2);
-      decode[22] = parseInt(teamNameArr[8] << 6) | parseInt(teamNameArr[7] >> 2);
-      decode[23] = parseInt(teamNameArr[9] << 6) | parseInt(teamNameArr[8] >> 2);
-      decode[24] = parseInt(this.AOKTeamId << 6) | parseInt(teamNameArr[9] >> 2);
-      decode[25] = parseInt(this.AOKTeamId >>> 2);
-      decode[26] = parseInt(this.AOKTeamId >>> 10);
-      decode[27] = parseInt(this.AOKTeamId >>> 18);
-      decode[28] = parseInt(this.AOKCheckKey << 6) | parseInt(this.AOKTeamId >>> 26);
-      decode[29] = parseInt(this.AOKCheckKey >>> 2);
-      decode[30] = parseInt(this.AOKCheckKey >>> 10);
-      decode[31] = parseInt(this.AOKCheckKey >>> 18);
-      decode[32] = parseInt(this.Version << 6) | parseInt(this.AOKCheckKey >>> 26);
+      // たすけてメール
+      decList[1] = parseInt(this.Dungeon << 4) | parseInt(status & 0xf);
+      decList[2] = parseInt(this.Floor << 3) | parseInt(this.Dungeon >> 4);
+      decList[3] = parseInt(this.DungeonSeed << 2) | parseInt(this.Floor >> 5);
+      decList[4] = parseInt(this.DungeonSeed >>> 6);
+      decList[5] = parseInt(this.DungeonSeed >>> 14);
+      decList[6] = parseInt(this.SOSTeamId << 2) | parseInt(this.DungeonSeed >>> 22);
+      decList[7] = parseInt(this.SOSTeamId >>> 6);
+      decList[8] = parseInt(this.SOSTeamId >>> 14);
+      decList[9] = parseInt(this.SOSTeamId >>> 22);
+      decList[10] = parseInt(this.SOSCheckKey << 2) | parseInt(this.SOSTeamId >>> 30);
+      decList[11] = parseInt(this.SOSCheckKey >>> 6);
+      decList[12] = parseInt(this.SOSCheckKey >>> 14);
+      decList[13] = parseInt(this.SOSCheckKey >>> 22);
+      decList[14] = parseInt(teamNameArr[0] << 6) | parseInt(this.Resion << 2) | parseInt(this.SOSCheckKey >>> 30);
+      decList[15] = parseInt(teamNameArr[1] << 6) | parseInt(teamNameArr[0] >> 2);
+      decList[16] = parseInt(teamNameArr[2] << 6) | parseInt(teamNameArr[1] >> 2);
+      decList[17] = parseInt(teamNameArr[3] << 6) | parseInt(teamNameArr[2] >> 2);
+      decList[18] = parseInt(teamNameArr[4] << 6) | parseInt(teamNameArr[3] >> 2);
+      decList[19] = parseInt(teamNameArr[5] << 6) | parseInt(teamNameArr[4] >> 2);
+      decList[20] = parseInt(teamNameArr[6] << 6) | parseInt(teamNameArr[5] >> 2);
+      decList[21] = parseInt(teamNameArr[7] << 6) | parseInt(teamNameArr[6] >> 2);
+      decList[22] = parseInt(teamNameArr[8] << 6) | parseInt(teamNameArr[7] >> 2);
+      decList[23] = parseInt(teamNameArr[9] << 6) | parseInt(teamNameArr[8] >> 2);
+      decList[24] = parseInt(this.AOKTeamId << 6) | parseInt(teamNameArr[9] >> 2);
+      decList[25] = parseInt(this.AOKTeamId >>> 2);
+      decList[26] = parseInt(this.AOKTeamId >>> 10);
+      decList[27] = parseInt(this.AOKTeamId >>> 18);
+      decList[28] = parseInt(this.AOKCheckKey << 6) | parseInt(this.AOKTeamId >>> 26);
+      decList[29] = parseInt(this.AOKCheckKey >>> 2);
+      decList[30] = parseInt(this.AOKCheckKey >>> 10);
+      decList[31] = parseInt(this.AOKCheckKey >>> 18);
+      decList[32] = parseInt(this.Version << 6) | parseInt(this.AOKCheckKey >>> 26);
     } else {
+      // ふっかつ or おれいのメール
+      // 贈る道具IDが0x400を超えている場合、フラグを2にして道具ID % 0x400
       this.GiftItemFlag = this.GiftItemId >= 0x400 ? 2 : 0;
       this.GiftItemId = this.GiftItemId % 0x400;
-      decode = new Array(33);
-      decode[1] = parseInt(this.Dungeon << 4) | parseInt(status & 0xf);
-      decode[2] = parseInt(this.Floor << 3) | parseInt(this.Dungeon >> 4);
-      decode[3] = parseInt(this.SOSTeamId << 2) | parseInt(this.Floor >> 5);
-      decode[4] = parseInt(this.SOSTeamId >>> 6);
-      decode[5] = parseInt(this.SOSTeamId >>> 14);
-      decode[6] = parseInt(this.SOSTeamId >>> 22);
-      decode[7] = parseInt(this.SOSCheckKey << 2) | parseInt(this.SOSTeamId >>> 30);
-      decode[8] = parseInt(this.SOSCheckKey >>> 6);
-      decode[9] = parseInt(this.SOSCheckKey >>> 14);
-      decode[10] = parseInt(this.SOSCheckKey >>> 22);
-      decode[11] = parseInt(teamNameArr[0] << 6) | parseInt(this.Resion << 2) | parseInt(this.SOSCheckKey >>> 30);
-      decode[12] = parseInt(teamNameArr[1] << 6) | parseInt(teamNameArr[0] >> 2);
-      decode[13] = parseInt(teamNameArr[2] << 6) | parseInt(teamNameArr[1] >> 2);
-      decode[14] = parseInt(teamNameArr[3] << 6) | parseInt(teamNameArr[2] >> 2);
-      decode[15] = parseInt(teamNameArr[4] << 6) | parseInt(teamNameArr[3] >> 2);
-      decode[16] = parseInt(teamNameArr[5] << 6) | parseInt(teamNameArr[4] >> 2);
-      decode[17] = parseInt(teamNameArr[6] << 6) | parseInt(teamNameArr[5] >> 2);
-      decode[18] = parseInt(teamNameArr[7] << 6) | parseInt(teamNameArr[6] >> 2);
-      decode[19] = parseInt(teamNameArr[8] << 6) | parseInt(teamNameArr[7] >> 2);
-      decode[20] = parseInt(teamNameArr[9] << 6) | parseInt(teamNameArr[8] >> 2);
-      decode[21] = parseInt(this.GiftItemCount << 6) | parseInt(teamNameArr[9] >> 2);
-      decode[22] = parseInt(this.GiftItemCount >> 2);
-      decode[23] = parseInt(this.GiftItemId);
-      decode[24] = parseInt(this.AOKTeamId << 2) | parseInt(this.GiftItemId >> 8);
-      decode[25] = parseInt(this.AOKTeamId >>> 6);
-      decode[26] = parseInt(this.AOKTeamId >>> 14);
-      decode[27] = parseInt(this.AOKTeamId >>> 22);
-      decode[28] = parseInt(this.AOKCheckKey << 2) | parseInt(this.AOKTeamId >>> 30);
-      decode[29] = parseInt(this.AOKCheckKey >>> 6);
-      decode[30] = parseInt(this.AOKCheckKey >>> 14);
-      decode[31] = parseInt(this.AOKCheckKey >>> 22);
-      decode[32] = parseInt(this.GiftItemFlag << 4) | parseInt(this.Version << 2) | parseInt(this.AOKCheckKey >>> 30);
+
+      decList[1] = parseInt(this.Dungeon << 4) | parseInt(status & 0xf);
+      decList[2] = parseInt(this.Floor << 3) | parseInt(this.Dungeon >> 4);
+      decList[3] = parseInt(this.SOSTeamId << 2) | parseInt(this.Floor >> 5);
+      decList[4] = parseInt(this.SOSTeamId >>> 6);
+      decList[5] = parseInt(this.SOSTeamId >>> 14);
+      decList[6] = parseInt(this.SOSTeamId >>> 22);
+      decList[7] = parseInt(this.SOSCheckKey << 2) | parseInt(this.SOSTeamId >>> 30);
+      decList[8] = parseInt(this.SOSCheckKey >>> 6);
+      decList[9] = parseInt(this.SOSCheckKey >>> 14);
+      decList[10] = parseInt(this.SOSCheckKey >>> 22);
+      decList[11] = parseInt(teamNameArr[0] << 6) | parseInt(this.Resion << 2) | parseInt(this.SOSCheckKey >>> 30);
+      decList[12] = parseInt(teamNameArr[1] << 6) | parseInt(teamNameArr[0] >> 2);
+      decList[13] = parseInt(teamNameArr[2] << 6) | parseInt(teamNameArr[1] >> 2);
+      decList[14] = parseInt(teamNameArr[3] << 6) | parseInt(teamNameArr[2] >> 2);
+      decList[15] = parseInt(teamNameArr[4] << 6) | parseInt(teamNameArr[3] >> 2);
+      decList[16] = parseInt(teamNameArr[5] << 6) | parseInt(teamNameArr[4] >> 2);
+      decList[17] = parseInt(teamNameArr[6] << 6) | parseInt(teamNameArr[5] >> 2);
+      decList[18] = parseInt(teamNameArr[7] << 6) | parseInt(teamNameArr[6] >> 2);
+      decList[19] = parseInt(teamNameArr[8] << 6) | parseInt(teamNameArr[7] >> 2);
+      decList[20] = parseInt(teamNameArr[9] << 6) | parseInt(teamNameArr[8] >> 2);
+      decList[21] = parseInt(this.GiftItemCount << 6) | parseInt(teamNameArr[9] >> 2);
+      decList[22] = parseInt(this.GiftItemCount >> 2);
+      decList[23] = parseInt(this.GiftItemId);
+      decList[24] = parseInt(this.AOKTeamId << 2) | parseInt(this.GiftItemId >> 8);
+      decList[25] = parseInt(this.AOKTeamId >>> 6);
+      decList[26] = parseInt(this.AOKTeamId >>> 14);
+      decList[27] = parseInt(this.AOKTeamId >>> 22);
+      decList[28] = parseInt(this.AOKCheckKey << 2) | parseInt(this.AOKTeamId >>> 30);
+      decList[29] = parseInt(this.AOKCheckKey >>> 6);
+      decList[30] = parseInt(this.AOKCheckKey >>> 14);
+      decList[31] = parseInt(this.AOKCheckKey >>> 22);
+      decList[32] = parseInt(this.GiftItemFlag << 4) | parseInt(this.Version << 2) | parseInt(this.AOKCheckKey >>> 30);
     }
-    // ハッシュ化
-    let hash = 0;
-    for (let i = 1; i < decode.length; i++) {
-      hash += decode[i] + i;
-      hash &= 0xff;
-    }
-    decode[0] = hash;
-    this.Hash1 = hash;
+    // チェックサム計算
+    const checksum = generateChecksum(decList);
+    decList[0] = checksum;
+    this.Checksum1 = checksum;
 
     // 8bitにトリミング
-    for (let i = 0; i < decode.length; i++) decode[i] &= 0xff;
-    this.decList = decode.concat();
+    for (let i = 0; i < decList.length; i++) decList[i] &= 0xff;
 
-    // decode => bit
-    let t = decode[0];
-    const mov = (t & 0x01) == 1 ? 1 : -1;
-    let count = (t >> 4) + (t & 0xf) + 8;
-    for (let i = 1; i < decode.length; i++) {
-      decode[i] = (decode[i] + encryption[t]) & 0xff;
-      t = (t + mov) & 0xff;
-      count--;
-      if (count == 0) {
-        t = decode[0];
-      }
-    }
-    this.convList = decode.concat();
+    // Decode => Bit
+    const convList = encDecToBit(decList);
+    // Bit => Swap
+    const swapList = encBitToSwap(convList);
+    // Swap => Idx
+    const idxList = encSwapToIdx(swapList);
+    // Idx => Password
+    const pass = encIdxToPassword(idxList);
 
-    // bit => swap
-    let sw = new Array(swap.length);
-    let bits = 0;
-    let aidx = 0;
-    for (let i = 0; i < sw.length; i++) {
-      sw[i] = decode[aidx] >> bits;
-      if (bits > 2) sw[i] |= decode[aidx + 1] << (8 - bits);
-      bits += 5;
-      if (bits > 7) {
-        aidx++;
-        bits %= 8;
-      }
-    }
-    for (let i = 0; i < sw.length; i++) sw[i] &= pass_str.length - 1;
-    this.swapList = sw.concat();
-
-    // swap => idx
-    let idx = new Array(swap.length);
-    for (let i = 0; i < swap.length; i++) idx[swap[i]] = sw[i] & (pass_str.length - 1);
-    this.idxList = idx.concat();
-
-    // パスワード化
-    let pass = "";
-    for (let i = 0; i < swap.length; i++) pass += pass_str.charAt(idx[i]);
+    this.decList = decList.concat();
+    this.convList = convList.concat();
+    this.swapList = swapList.concat();
+    this.idxList = idxList.concat();
     this.Password = pass;
+
     console.log("生成: " + this.Password);
     return this;
   }
   Clone() {
-    let res = new Rescue();
+    const res = new Rescue();
     res.RescueType = this.RescueType;
     res.Dungeon = this.Dungeon;
     res.Floor = this.Floor;
@@ -342,22 +321,6 @@ class Rescue {
     res.AOKCheckKey = this.AOKCheckKey;
     res.Version = this.Version;
     // over200は不要
-    return res;
-  }
-
-  /**
-   * CRC32テーブル作成
-   */
-  GetCRC32Table() {
-    let res = new Array(256);
-    for (let i = 0; i < res.length; i++) {
-      let crcVal = i;
-      for (let j = 0; j < 8; j++) {
-        if ((crcVal & 1) != 0) crcVal = 0xedb88320 ^ (crcVal >>> 1);
-        else crcVal = crcVal >>> 1;
-      }
-      res[i] = crcVal;
-    }
     return res;
   }
 }
@@ -423,6 +386,163 @@ function ConvertCharToArr(str) {
     let indexof = char_str.indexOf(str[i]);
     if (indexof < 0) indexof = 0xf;
     res[i] = indexof;
+  }
+  return res;
+}
+
+/**
+ * チェックサム計算
+ * @param {number[]} decList
+ * @returns {number} チェックサム
+ */
+function generateChecksum(decList) {
+  let res = 0;
+  for (let i = 1; i < decList.length; i++) {
+    res += decList[i] + i;
+  }
+  res &= 0xff;
+  return res;
+}
+
+/**
+ * [Decode] パスワード -> Idx 変換
+ * @param {string} passStr
+ * @returns {number[]}
+ */
+function decPasswordToIdx(passStr) {
+  const res = new Array(passStr.length);
+  for (let i = 0; i < passStr.length; i++) {
+    res[i] = pass_str.indexOf(passStr[i]);
+  }
+  return res;
+}
+
+/**
+ * [Decode] Idx -> Swap 変換
+ * @param {number[]} idxList
+ * @returns {number[]}
+ */
+function decIdxToSwap(idxList) {
+  const res = new Array(idxList.length);
+  for (let i = 0; i < idxList.length; i++) {
+    res[i] = idxList[swap_table[i]];
+  }
+  return res;
+}
+
+/**
+ * [Decode] Swap -> Bit 変換
+ * @param {number[]} swapList
+ * @returns {number[]}
+ */
+function decSwapToBit(swapList) {
+  let bit = 0;
+  let val = 0;
+  const res = [];
+  for (let i = 0; i < swapList.length; i++) {
+    val |= swapList[i] << bit;
+    bit += 5;
+    if (bit >= 8) {
+      res.push(val & 0xff);
+      val >>= 8;
+      bit -= 8;
+    }
+  }
+  return res;
+}
+
+/**
+ * [Decode] Bit -> Dec 変換
+ * @param {number[]} convList
+ * @returns {number[]}
+ */
+function decBitToDec(convList) {
+  const first = convList[0];
+
+  // 最初の値の上位4ビットと下位4ビットの和に8を足す
+  const count = (first >> 4) + (first & 0xf) + 8;
+  const mov = first & 0x01 ? 1 : -1;
+
+  const res = [];
+  res.push(convList[0]); // チェックサムはそのまま入れる
+
+  let pos = 0;
+  for (let i = 1; i < convList.length; i++) {
+    const j = (pos * mov + first) & 0xff;
+    const dec = (convList[i] - encryption[j]) & 0xff;
+    res.push(dec);
+    pos = (pos + 1) % count;
+  }
+  return res;
+}
+
+/**
+ * [Encode] Dec -> Bit 変換
+ * @param {number[]} decList
+ * @returns {number[]}
+ */
+function encDecToBit(decList) {
+  let t = decList[0];
+  const mov = (t & 0x01) == 1 ? 1 : -1;
+  let count = (t >> 4) + (t & 0xf) + 8;
+  const res = [];
+  res.push(decList[0]);
+  for (let i = 1; i < decList.length; i++) {
+    const val = (decList[i] + encryption[t]) & 0xff;
+    res.push(val);
+    t = (t + mov) & 0xff;
+    count--;
+    if (count == 0) {
+      t = decList[0];
+    }
+  }
+  return res;
+}
+
+/**
+ * [Encode] Bit -> Swap 変換
+ * @param {number[]} convList
+ * @returns {number[]}
+ */
+function encBitToSwap(convList) {
+  const res = new Array(swap_table.length);
+  let bits = 0;
+  let aidx = 0;
+  for (let i = 0; i < res.length; i++) {
+    res[i] = convList[aidx] >> bits;
+    if (bits > 2) res[i] |= convList[aidx + 1] << (8 - bits);
+    bits += 5;
+    if (bits > 7) {
+      aidx++;
+      bits %= 8;
+    }
+  }
+  for (let i = 0; i < res.length; i++) res[i] &= pass_str.length - 1;
+  return res;
+}
+
+/**
+ * [Encode] Swap -> Idx 変換
+ * @param {number[]} swapList
+ * @returns {number[]}
+ */
+function encSwapToIdx(swapList) {
+  const res = new Array(swap_table.length);
+  for (let i = 0; i < swap_table.length; i++) {
+    res[swap_table[i]] = swapList[i] & (pass_str.length - 1);
+  }
+  return res;
+}
+
+/**
+ * [Encode] Idx -> パスワード 変換
+ * @param {number[]} idxList
+ * @returns {string}
+ */
+function encIdxToPassword(idxList) {
+  let res = "";
+  for (let i = 0; i < swap_table.length; i++) {
+    res += pass_str.charAt(idxList[i]);
   }
   return res;
 }
