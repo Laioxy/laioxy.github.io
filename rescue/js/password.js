@@ -92,52 +92,46 @@ class Rescue {
 
   // 展開
   Decode(pass = "") {
-    if (pass.length > 0) {
-      this.Password = pass;
-    }
-    let swap = swap_table;
+    if (pass.length > 0) this.Password = pass;
 
     // Index変換
-    let idxList = new Array(this.Password.length);
+    const idxList = new Array(this.Password.length);
     for (let i = 0; i < this.Password.length; i++) {
       idxList[i] = pass_str.indexOf(this.Password[i]);
     }
     // Swap変換
-    let swapList = new Array(this.Password.length);
-    for (let i = 0; i < this.Password.length; i++) {
-      swapList[i] = idxList[swap[i]];
+    const swapList = new Array(idxList.length);
+    for (let i = 0; i < idxList.length; i++) {
+      swapList[i] = idxList[swap_table[i]];
     }
     // Bit変換
     let bit = 0;
     let val = 0;
-    let convList = [];
-    swapList.forEach(function (r) {
-      val |= r << bit;
+    const convList = [];
+    for (let i = 0; i < swapList.length; i++) {
+      val |= swapList[i] << bit;
       bit += 5;
       if (bit >= 8) {
         convList.push(val & 0xff);
         val >>= 8;
         bit -= 8;
       }
-    });
+    }
     // Decode
-    let first = convList[0];
-    let mov = first % 2 == 0 ? -1 : 1;
-    let pos = first;
-    let rcn = (first >> 4) + (first & 0xf) + 8;
-    let decList = [];
-    convList.forEach(function (r, i) {
-      let dec = r;
-      if (i >= 1) {
-        dec += 0xff00 - encryption[pos];
-        dec &= 0xff;
-        pos += mov;
-        pos &= 0xff;
-        rcn--;
-        if (rcn == 0) pos = first;
-      }
+    const first = convList[0];
+    // チェックサムの上位4ビットと下位4ビットの和 + 8 = カウント値
+    const count = (first >> 4) + (first & 0xf) + 8;
+    const mov = first & 0x01 ? 1 : -1;
+    const decList = [];
+    decList.push(convList[0]); // チェックサムはそのまま入れる
+    let pos = 0;
+    for (let i = 1; i < convList.length; i++) {
+      const j = (pos * mov + first) & 0xff;
+      const dec = (convList[i] - encryption[j]) & 0xff;
       decList.push(dec);
-    });
+      pos = (pos + 1) % count;
+    }
+
     this.idxList = idxList;
     this.swapList = swapList;
     this.convList = convList;
@@ -292,24 +286,14 @@ class Rescue {
 
     // decode => bit
     let t = decode[0];
-    let r = decode[0];
-    let num = (t & 0x01) == 1 ? 1 : -1;
-    //let rByte = (t >> 4) + 8 + (t & 0x0f);
-    //if (rByte > 16) rByte = -1;
-    //let count = rByte;
-    let count = t >> 4;
-    count += t & 0xf;
-    count += 0x08;
+    const mov = (t & 0x01) == 1 ? 1 : -1;
+    let count = (t >> 4) + (t & 0xf) + 8;
     for (let i = 1; i < decode.length; i++) {
-      decode[i] += encryption[t];
-      t += num;
-      decode[i] &= 0xff;
-      t &= 0xff;
+      decode[i] = (decode[i] + encryption[t]) & 0xff;
+      t = (t + mov) & 0xff;
       count--;
       if (count == 0) {
         t = decode[0];
-        // t = r;
-        // count = rByte;
       }
     }
     this.convList = decode.concat();
