@@ -129,7 +129,7 @@ $(async function () {
     console.log(rescue);
 
     // [ERROR] ハッシュ値不整合
-    if (!advanced && rescue.Hash1 != rescue.Hash2) {
+    if (!advanced && rescue.Checksum1 != rescue.Checksum2) {
       msg = `パスワードが間違っています。(ハッシュ値不整合)`;
       ViewMsgError(msg);
       return false;

@@ -19,8 +19,8 @@ $(async function () {
   var e_resion_jp = $("#resion-jp");
   var e_resion_na = $("#resion-na");
   var e_resion_eu = $("#resion-eu");
-  var e_checksum_1 = $("#hash1");
-  var e_checksum_2 = $("#hash2");
+  var e_checksum_1 = $("#checksum1");
+  var e_checksum_2 = $("#checksum2");
 
   var e_mission_type = $("#mission-type");
   var e_mission_flag = $("#mission-flag");
@@ -914,7 +914,7 @@ $(async function () {
         } else {
           let msg =
             `<p>パスワードを展開しましたが、チェックサムが一致しません。` +
-            `<br>Hash1: ${mission.Checksum1.toString(16).toUpperCase()} / Hash2: ${mission.Checksum2.toString(16).toUpperCase()}</p>` +
+            `<br>Checksum1: ${mission.Checksum1.toString(16).toUpperCase()} / Checksum2: ${mission.Checksum2.toString(16).toUpperCase()}</p>` +
             `<p>このまま生成することで正しいチェックサムのパスワードに修正して生成できます。<br>(ただし、正しく使用できる依頼であるかは保証しません)</p>`;
           e_pass_alert.html(msg);
           e_pass_alert.addClass("alert-warning");
