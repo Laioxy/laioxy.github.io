@@ -128,9 +128,9 @@ $(async function () {
     rescue.Decode(input);
     console.log(rescue);
 
-    // [ERROR] ハッシュ値不整合
+    // [ERROR] チェックサムエラー
     if (!advanced && rescue.Checksum1 != rescue.Checksum2) {
-      msg = `パスワードが間違っています。(ハッシュ値不整合)`;
+      msg = `パスワードが間違っています。(チェックサムエラー)`;
       ViewMsgError(msg);
       return false;
     }
