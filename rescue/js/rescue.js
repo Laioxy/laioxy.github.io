@@ -22,7 +22,7 @@ $(async function () {
   var e_dungeon_seed = $("#dungeon-seed");
   var e_sos_teamid = $("#sos-teamid");
   var e_sos_checksum = $("#sos-checksum");
-  var e_resion = $("#resion");
+  var e_region = $("#region");
   var e_team_name = $("#team-name");
   var e_notsos_value_1 = $("#notsos-value-1");
   var e_gift_item = $("#gift-item");
@@ -79,7 +79,7 @@ $(async function () {
     e_dungeon_seed.val(ToHex32(rescue.DungeonSeed).toUpperCase()).change();
     e_sos_teamid.val(ToHex32(rescue.SOSTeamId).toUpperCase()).change();
     e_sos_checksum.val(ToHex32(rescue.SOSCheckSum).toUpperCase()).change();
-    e_resion.val(rescue.Resion).change();
+    e_region.val(rescue.Region).change();
     e_team_name.val(rescue.TeamName).change();
     e_notsos_value_1.val(rescue.NotSOStmp1).change();
     e_gift_item.val(rescue.NotSOStmp2).change();

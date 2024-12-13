@@ -6,9 +6,9 @@ $(async function () {
 
   // 要素キャッシュ
   var e_pass_area = $("#pass-area");
-  var e_resion_jp = $("#resion-jp");
-  var e_resion_na = $("#resion-na");
-  var e_resion_eu = $("#resion-eu");
+  var e_region_jp = $("#region-jp");
+  var e_region_na = $("#region-na");
+  var e_region_eu = $("#region-eu");
   var e_dungeon = $("#dungeon");
   var e_dungeon_floor = $("#dungeon-floor");
   var e_pass_generate = $("#pass-generate");
@@ -94,7 +94,7 @@ $(async function () {
    * パスワード生成
    */
   function GeneratePass() {
-    let resion = GetResion();
+    let region = GetRegion();
     let mission = new WonderMail();
 
     // 報酬値ランダム
@@ -117,7 +117,7 @@ $(async function () {
     mission.RestType = 0x00;
     mission.RestValue = 0x00;
     mission.Seed = randomSeedVal;
-    mission.Encode(true, resion);
+    mission.Encode(true, region);
 
     e_pass_area.val(ConvertToMultiFormat(mission.Password, 5, 7, 5));
   }
@@ -125,11 +125,11 @@ $(async function () {
    * リージョン取得
    * @returns
    */
-  function GetResion() {
+  function GetRegion() {
     let res = "";
-    if (e_resion_jp.prop("checked")) res = "JP";
-    else if (e_resion_na.prop("checked")) res = "NA";
-    else if (e_resion_eu.prop("checked")) res = "EU";
+    if (e_region_jp.prop("checked")) res = "JP";
+    else if (e_region_na.prop("checked")) res = "NA";
+    else if (e_region_eu.prop("checked")) res = "EU";
     return res;
   }
 });

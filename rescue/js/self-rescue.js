@@ -150,7 +150,7 @@ $(async function () {
 
     const item = ItemData[e_gift_item.val()]; // 贈ってもらう道具
     const result = rescue.Clone();
-    result.Resion = 0;
+    result.Region = 0;
 
     // 投擲物の個数をセット
     if (item.Category == 0 || item.Category == 1) {

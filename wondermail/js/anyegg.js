@@ -8,12 +8,12 @@ $(async function () {
   var e_pass_area = $("#pass-area");
   var e_version_sky = $("#version-sky");
   var e_version_old = $("#version-old");
-  var e_resion_jp = $("#resion-jp");
-  var e_resion_na = $("#resion-na");
-  var e_resion_eu = $("#resion-eu");
+  var e_region_jp = $("#region-jp");
+  var e_region_na = $("#region-na");
+  var e_region_eu = $("#region-eu");
   var e_pokemon = $("#pokemon");
   var e_pass_generate = $("#pass-generate");
-  var e_context_resionfree = $("#context-resionfree");
+  var e_context_regionfree = $("#context-regionfree");
 
   var e_caution = $(".caution");
   var e_text_wrap = $(".text-wrap");
@@ -49,17 +49,17 @@ $(async function () {
   // バージョン
   $("input[name='version']").on("change", function () {
     let disabled = e_version_old.prop("checked");
-    e_resion_jp.prop("disabled", disabled);
-    e_resion_na.prop("disabled", disabled);
-    e_resion_eu.prop("disabled", disabled);
+    e_region_jp.prop("disabled", disabled);
+    e_region_na.prop("disabled", disabled);
+    e_region_eu.prop("disabled", disabled);
 
     // チェック処理
     CheckPokemonSelection();
 
     if (disabled) {
-      e_context_resionfree.show();
+      e_context_regionfree.show();
     } else {
-      e_context_resionfree.hide();
+      e_context_regionfree.hide();
     }
   });
   // ポケモン
@@ -165,7 +165,7 @@ $(async function () {
    */
   function GeneratePass() {
     let sky = e_version_sky.prop("checked");
-    let resion = GetResion();
+    let region = GetRegion();
     let mission = new WonderMail();
 
     // SEEDランダム
@@ -186,7 +186,7 @@ $(async function () {
     mission.RestType = 0x00;
     mission.RestValue = 0x00;
     mission.Seed = randomSeedVal;
-    mission.Encode(sky, resion);
+    mission.Encode(sky, region);
 
     let res = "";
     if (sky) {
@@ -200,11 +200,11 @@ $(async function () {
    * リージョン取得
    * @returns
    */
-  function GetResion() {
+  function GetRegion() {
     let res = "";
-    if (e_resion_jp.prop("checked")) res = "JP";
-    else if (e_resion_na.prop("checked")) res = "NA";
-    else if (e_resion_eu.prop("checked")) res = "EU";
+    if (e_region_jp.prop("checked")) res = "JP";
+    else if (e_region_na.prop("checked")) res = "NA";
+    else if (e_region_eu.prop("checked")) res = "EU";
     return res;
   }
 });

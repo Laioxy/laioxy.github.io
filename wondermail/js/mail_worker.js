@@ -20,7 +20,7 @@ self.addEventListener("message", (e) => {
   // 連続文字検索モード
   let max = e.data.maxFind;
   let sky = e.data.isSky;
-  let resion = e.data.resion;
+  let region = e.data.region;
   let rand_reward_value = e.data.randRewardValue;
   let rand_pokemon = e.data.randPokemon;
   let rand_target_item = e.data.randTargetItem;
@@ -79,7 +79,7 @@ self.addEventListener("message", (e) => {
     tmp.RestType = mission.RestType ?? 0;
     tmp.RestValue = mission.RestValue ?? 0;
     tmp.Seed = t_seed;
-    tmp.Encode(sky, resion);
+    tmp.Encode(sky, region);
 
     let consecutive = CountConsecutiveChar(tmp.Password);
     let count = CountLongestConsecutiveCharacter(tmp.Password);

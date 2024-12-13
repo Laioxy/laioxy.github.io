@@ -65,11 +65,11 @@ class WonderMail {
   Password = "";
 
   // 展開
-  Decode(sky, resion, pass = "") {
+  Decode(sky, region, pass = "") {
     if (pass.length > 0) {
       this.Password = pass;
     }
-    let swap = GetSwapTable(sky, resion);
+    let swap = GetSwapTable(sky, region);
 
     // Index変換
     let idxList = new Array(this.Password.length);
@@ -164,8 +164,8 @@ class WonderMail {
       this.Checksum2 = hash;
     }
   }
-  Encode(sky = true, resion = "jp") {
-    let swap = GetSwapTable(sky, resion);
+  Encode(sky = true, region = "jp") {
+    let swap = GetSwapTable(sky, region);
     this.Sky = sky;
     let decode;
     if (this.Sky) {
@@ -312,10 +312,10 @@ class WonderMail {
   }
 }
 
-function GetSwapTable(sky = true, resion = "JP") {
+function GetSwapTable(sky = true, region = "JP") {
   let res = [];
   if (sky) {
-    switch (resion.toUpperCase()) {
+    switch (region.toUpperCase()) {
       case "JP":
         res = swap_table.sky.jp;
         break;

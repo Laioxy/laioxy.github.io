@@ -74,7 +74,7 @@ class Rescue {
   // チーム名の制御に使用される
   // ゲームのリージョンと一致している時に対応した文字で表示
   // 異なる場合は固定チーム名で表示 (日本:ポケモンズ)
-  Resion = 0;
+  Region = 0;
 
   // チーム名称 (最大10文字)
   // 日本版の場合5文字まで、超える場合は弾かれる
@@ -159,7 +159,7 @@ class Rescue {
       // 救助待ちキー値 (32bit)
       this.SOSCheckKey = BytesToNum(decList, 82, 32);
       // リージョン (4bit)
-      this.Resion = BytesToNum(decList, 114, 4);
+      this.Region = BytesToNum(decList, 114, 4);
       // チーム名 (80bit)
       this.TeamName = GetCharString(BytesToBits(decList, 118, 80));
       // 救助MACアドレス (32bit)
@@ -179,7 +179,7 @@ class Rescue {
       // 救助待ちキー値 (32bit)
       this.SOSCheckKey = BytesToNum(decList, 58, 32);
       // リージョン (4bit)
-      this.Resion = BytesToNum(decList, 90, 4);
+      this.Region = BytesToNum(decList, 90, 4);
       // チーム名 (80bit)
       this.TeamName = GetCharString(BytesToBits(decList, 94, 80));
       // 贈る道具個数 (10bit)
@@ -221,7 +221,7 @@ class Rescue {
       decList[11] = parseInt(this.SOSCheckKey >>> 6);
       decList[12] = parseInt(this.SOSCheckKey >>> 14);
       decList[13] = parseInt(this.SOSCheckKey >>> 22);
-      decList[14] = parseInt(teamNameArr[0] << 6) | parseInt(this.Resion << 2) | parseInt(this.SOSCheckKey >>> 30);
+      decList[14] = parseInt(teamNameArr[0] << 6) | parseInt(this.Region << 2) | parseInt(this.SOSCheckKey >>> 30);
       decList[15] = parseInt(teamNameArr[1] << 6) | parseInt(teamNameArr[0] >> 2);
       decList[16] = parseInt(teamNameArr[2] << 6) | parseInt(teamNameArr[1] >> 2);
       decList[17] = parseInt(teamNameArr[3] << 6) | parseInt(teamNameArr[2] >> 2);
@@ -256,7 +256,7 @@ class Rescue {
       decList[8] = parseInt(this.SOSCheckKey >>> 6);
       decList[9] = parseInt(this.SOSCheckKey >>> 14);
       decList[10] = parseInt(this.SOSCheckKey >>> 22);
-      decList[11] = parseInt(teamNameArr[0] << 6) | parseInt(this.Resion << 2) | parseInt(this.SOSCheckKey >>> 30);
+      decList[11] = parseInt(teamNameArr[0] << 6) | parseInt(this.Region << 2) | parseInt(this.SOSCheckKey >>> 30);
       decList[12] = parseInt(teamNameArr[1] << 6) | parseInt(teamNameArr[0] >> 2);
       decList[13] = parseInt(teamNameArr[2] << 6) | parseInt(teamNameArr[1] >> 2);
       decList[14] = parseInt(teamNameArr[3] << 6) | parseInt(teamNameArr[2] >> 2);
@@ -313,7 +313,7 @@ class Rescue {
     res.DungeonSeed = this.DungeonSeed;
     res.SOSTeamId = this.SOSTeamId;
     res.SOSCheckKey = this.SOSCheckKey;
-    res.Resion = this.Resion;
+    res.Region = this.Region;
     res.TeamName = this.TeamName;
     res.GiftItemCount = this.GiftItemCount;
     res.GiftItemId = this.GiftItemId;

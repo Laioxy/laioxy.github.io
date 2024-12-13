@@ -16,9 +16,9 @@ $(async function () {
   var e_pass_area = $("#pass-area");
   var e_version_sky = $("#version-sky");
   var e_version_old = $("#version-old");
-  var e_resion_jp = $("#resion-jp");
-  var e_resion_na = $("#resion-na");
-  var e_resion_eu = $("#resion-eu");
+  var e_region_jp = $("#region-jp");
+  var e_region_na = $("#region-na");
+  var e_region_eu = $("#region-eu");
   var e_checksum_1 = $("#checksum1");
   var e_checksum_2 = $("#checksum2");
 
@@ -87,12 +87,12 @@ $(async function () {
   e_rest_value.select2(select2Config);
 
   // バージョン・リージョン
-  $("input[name='version'], input[name='resion']").on("change", function () {
+  $("input[name='version'], input[name='region']").on("change", function () {
     let old = e_version_old.prop("checked");
-    $("#group-resion input").prop("disabled", old);
+    $("#group-region input").prop("disabled", old);
 
-    if (old) $("#context-resionfree").show();
-    else $("#context-resionfree").hide();
+    if (old) $("#context-regionfree").show();
+    else $("#context-regionfree").hide();
 
     // パスワード文字更新
     e_pass_area.val("").trigger("keyup");
@@ -288,9 +288,9 @@ $(async function () {
   // パスワード文字数表示
   e_pass_area.on("keydown keyup", function () {
     let sky = CheckVersionSky();
-    let resion = GetResion();
+    let region = GetRegion();
     let len = ConvertToHalfPassString(e_pass_area.val()).length;
-    let max = GetSwapTable(sky, resion).length;
+    let max = GetSwapTable(sky, region).length;
     $("#pass-maxlength").text(`(${len}/${max}文字)`);
   });
 
@@ -841,8 +841,8 @@ $(async function () {
    */
   function AnalysisPass() {
     let sky = CheckVersionSky();
-    let resion = GetResion();
-    let swap = GetSwapTable(sky, resion);
+    let region = GetRegion();
+    let swap = GetSwapTable(sky, region);
     let error = "";
     e_pass_alert.removeClass("alert-success");
     e_pass_alert.removeClass("alert-danger");
@@ -864,7 +864,7 @@ $(async function () {
       //console.log("展開: " + pass);
       try {
         let mission = new WonderMail();
-        mission.Decode(sky, resion, pass);
+        mission.Decode(sky, region, pass);
 
         // 依頼タイプがおたからメモかつ対象ダンジョン以外の時は除外
         if (!advanced && CheckVersionSky() && mission.MissionType == 0xc && allow_treasure_memo_dun.indexOf(Number(mission.Dungeon)) == -1) {
@@ -948,7 +948,7 @@ $(async function () {
     e_pass_alert.removeClass("alert-warning");
 
     let sky = CheckVersionSky();
-    let resion = GetResion();
+    let region = GetRegion();
 
     let mission = new WonderMail();
     mission.Status = 4;
@@ -986,7 +986,7 @@ $(async function () {
         randTargetItem: e_consecutive_rand_target_item.prop("checked"),
         randSeed: e_consecutive_rand_seed.prop("checked"),
         isSky: sky,
-        resion: resion,
+        region: region,
         mission: mission,
         allowedPokemon: GetAllowedPokemonArray(),
         allowedTargetItem: GetAllowedTargetItemArray(),
@@ -1029,12 +1029,12 @@ $(async function () {
         worker.terminate();
       }
     } else {
-      mission.Encode(sky, resion);
+      mission.Encode(sky, region);
       passstr = mission.Password;
       //console.log("生成: " + mission.Password);
     }
 
-    if (passstr.length == GetSwapTable(sky, resion).length) {
+    if (passstr.length == GetSwapTable(sky, region).length) {
       let result = passstr.concat();
       // 全角化
       if ($("#option-multibyte").prop("checked")) {
@@ -1139,11 +1139,11 @@ $(async function () {
    * リージョン取得
    * @returns
    */
-  function GetResion() {
+  function GetRegion() {
     let res = "";
-    if (e_resion_jp.prop("checked")) res = "JP";
-    else if (e_resion_na.prop("checked")) res = "NA";
-    else if (e_resion_eu.prop("checked")) res = "EU";
+    if (e_region_jp.prop("checked")) res = "JP";
+    else if (e_region_na.prop("checked")) res = "NA";
+    else if (e_region_eu.prop("checked")) res = "EU";
     return res;
   }
 
