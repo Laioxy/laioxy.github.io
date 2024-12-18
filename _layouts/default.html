@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-bs-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -61,7 +61,11 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="preload"
+      as="style"
+    />
 
     <link href="/assets/favicon.ico" rel="icon" id="favicon" />
     <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
@@ -73,10 +77,54 @@
     <title>Lai-brary</title>
     {% endif %}
   </head>
-  <body>
-    <div class="container-head">
-      <a href="/">Lai-brary</a>
-    </div>
+  <body class="bg-body">
+    <nav class="navbar bg-body-tertiary fixed-top" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="/">
+          <img src="/assets/img/icon_img.png" alt="Lai-brary" class="drop-shadow d-inline-block align-text-top" />
+          Lai-brary
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Lai-brary</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link" href="/wondermail">ふしぎなメール生成機</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/wondermail/anydungeon">ダンジョン強制解禁</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/wondermail/anyegg">任意タマゴ孵化</a>
+              </li>
+            </ul>
+
+            <hr />
+
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link" href="/rescue/duplicate">救助依頼複製ツール</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/rescue/self-rescue">自演救助ツール</a>
+              </li>
+            </ul>
+
+            <hr />
+
+            <a href="https://twitter.com/Laioxy" target="_blank" rel="noopener noreferrer" class="nav-link fs-4"><i class="bi bi-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </nav>
     {{ content }}
   </body>
 </html>
