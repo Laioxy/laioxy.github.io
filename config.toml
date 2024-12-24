@@ -1,0 +1,4 @@
+baseURL = 'https://laioxy.github.io/'
+languageCode = 'ja'
+title = 'Lai-brary'
+disableKinds = ["taxonomy","taxonomyTerm"]

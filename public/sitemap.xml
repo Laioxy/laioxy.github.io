@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:1313/</loc>
+  </url><url>
+    <loc>http://localhost:1313/rescue-duplicate.html</loc>
+  </url><url>
+    <loc>http://localhost:1313/wondermail-anyegg.html</loc>
+  </url><url>
+    <loc>http://localhost:1313/wondermail-dungeon.html</loc>
+  </url><url>
+    <loc>http://localhost:1313/wondermail-s.html</loc>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+  </url><url>
+    <loc>http://localhost:1313/rescue/</loc>
+  </url><url>
+    <loc>http://localhost:1313/wondermail/</loc>
+  </url><url>
+    <loc>http://localhost:1313/rescue/duplicate/</loc>
+  </url><url>
+    <loc>http://localhost:1313/rescue/self-rescue/</loc>
+  </url>
+</urlset>
