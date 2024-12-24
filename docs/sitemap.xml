@@ -2,24 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://laioxy.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
   </url><url>
-    <loc>https://laioxy.github.io/rescue-duplicate.html</loc>
+    <loc>http://localhost:1313/rescue-duplicate.html</loc>
   </url><url>
-    <loc>https://laioxy.github.io/wondermail-anyegg.html</loc>
+    <loc>http://localhost:1313/</loc>
   </url><url>
-    <loc>https://laioxy.github.io/wondermail-dungeon.html</loc>
+    <loc>http://localhost:1313/rescue/</loc>
   </url><url>
-    <loc>https://laioxy.github.io/wondermail-s.html</loc>
+    <loc>http://localhost:1313/wondermail/</loc>
   </url><url>
-    <loc>https://laioxy.github.io/</loc>
+    <loc>http://localhost:1313/wondermail/anydungeon/</loc>
   </url><url>
-    <loc>https://laioxy.github.io/rescue/</loc>
+    <loc>http://localhost:1313/wondermail/</loc>
   </url><url>
-    <loc>https://laioxy.github.io/wondermail/</loc>
+    <loc>http://localhost:1313/wondermail/anyegg/</loc>
   </url><url>
-    <loc>https://laioxy.github.io/rescue/duplicate/</loc>
+    <loc>http://localhost:1313/rescue/duplicate/</loc>
   </url><url>
-    <loc>https://laioxy.github.io/rescue/self-rescue/</loc>
+    <loc>http://localhost:1313/rescue/self-rescue/</loc>
   </url>
 </urlset>

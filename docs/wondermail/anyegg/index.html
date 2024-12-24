@@ -14,7 +14,7 @@
     />
 
     
-    <meta name="og:title" content="Lai-brary | 自演救助ツール" />
+    <meta name="og:title" content="Lai-brary | 任意タマゴ孵化" />
     
 
     
@@ -83,7 +83,7 @@
     <script src="/js/common.js"></script>
 
     
-    <title>Lai-brary | 自演救助ツール</title>
+    <title>Lai-brary | 任意タマゴ孵化</title>
     
   </head>
   <body class="bg-body">
@@ -169,30 +169,28 @@
     </nav>
     
     
+<script src="/js/poke_param.js"></script>
 <script src="/js/json_script.js"></script>
-<script src="/rescue/js/password.js"></script>
-<script src="/rescue/js/self-rescue.js"></script>
-
+<script src="/wondermail/js/anyegg.js" type="module"></script>
 <div id="main-container" class="container-md pb-3">
   <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
-    <h1 class="m-0">自演救助ツール</h1>
+    <h1 class="m-0">任意タマゴ孵化バグ用生成機</h1>
     <hr />
-
-    <p class="text-start">
+    <p>
       「ポケモン不思議のダンジョン
-      時の探検隊/闇の探検隊/空の探検隊」の自演救助ツール。
+      時の探検隊・闇の探検隊・空の探検隊」の任意ポケモン孵化用のパスワードを作成するツール。
       <br />
-      たすけてメールのパスワードを入力するだけで即救助できます。ついでに道具も貰うことができます。
-      <br />
-      <b>救助を待つ必要は無し、そして人情も無し！</b>
-      <br />
+      最低限の機能だけ実装した簡易版です。
+    </p>
+    <p>
+      このページに書かれている内容はポケダン空を準拠としているので、シェイミ等時闇に存在しないポケモンは一部データが異なる場合があります。
     </p>
 
     <div class="youtube mb-3">
       <iframe
         width=""
         height=""
-        src="https://www.youtube.com/embed/DKzW5EaVlNE"
+        src="https://www.youtube.com/embed/OfSTtRYuSis"
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -200,105 +198,197 @@
       ></iframe>
     </div>
 
+    <p>実行前に以下の事項を確認してください。</p>
+    <ul>
+      <li>トレジャーバッグに「ガバイトのウロコ」が入っていない</li>
+      <li>おせわやラッキーにタマゴを預けていない状態にする</li>
+      <li>
+        「めいきゅうのどうくつ」を解禁している
+        <ul>
+          <li>遠征終了（Chapter-10 ヨノワール）まで進めて公式依頼を実行</li>
+          <li>空の探検隊の場合、カフェに来るトゲチックの依頼でも可</li>
+        </ul>
+      </li>
+    </ul>
     <p>
-      ちなみに、ふっかつメールのパスワードを打ち込むとおれいのメールも生成できます。
-      <br />
-      お礼を貰いたくて仕方がない図々しい方は是非。
+      パスワード入力後、「めいきゅうのどうくつ」をクリアすると依頼の報酬で貰えるタマゴを孵すことで、任意のポケモンが仲間になります。
     </p>
-    <p>全バージョン(時/闇/空)、全リージョン(日本/北米/欧州)対応。</p>
+    <p>
+      通常のふしぎなメール生成機は
+      <a href="/wondermail/">こちら</a>
+    </p>
   </div>
 
-  <div>
+  <div
+    class="card p-sm-4 p-3 my-3 border border-secondary-subtle"
+    id="pass-form"
+  >
     <div class="d-flex flex-column gap-3">
-      <div class="d-flex flex-md-row flex-column gap-3">
-        <div class="card card-body col-md">
-          <h4>パスワード入力</h4>
-          <div class="row d-flex flex-column gap-3">
-            <div>
-              <textarea
-                class="form-control d-grid"
-                rows="3"
-                id="pass-area"
-                placeholder="たすけてメール・ふっかつメールのパスワードを入力 (スペース・改行可)"
-              ></textarea>
-            </div>
+      <div class="d-flex flex-column">
+        <p class="fs-5 mb-1">バージョン</p>
+        <div class="btn-group text-nowrap mb-3 mb-sm-0">
+          <input
+            class="btn-check"
+            id="version-sky"
+            type="radio"
+            name="version"
+            value="sky"
+            checked
+          />
+          <label class="btn btn-outline-primary" for="version-sky">空</label>
+          <input
+            class="btn-check"
+            id="version-old"
+            type="radio"
+            name="version"
+            value="old"
+          />
+          <label class="btn btn-outline-primary" for="version-old">時/闇</label>
+        </div>
+      </div>
 
-            <div>
-              <div class="form-floating">
-                <select id="gift-item" class="form-select"></select>
-                <label for="gift-item">贈ってもらう道具</label>
-              </div>
-            </div>
+      <div class="d-flex flex-column">
+        <p class="fs-5 mb-1">リージョン</p>
+        <div class="btn-group text-nowrap" id="group-region">
+          <input
+            class="btn-check"
+            id="region-jp"
+            type="radio"
+            name="region"
+            value="jp"
+            checked
+          />
+          <label class="btn btn-outline-primary" for="region-jp">日本</label>
+          <input
+            class="btn-check"
+            id="region-na"
+            type="radio"
+            name="region"
+            value="na"
+          />
+          <label class="btn btn-outline-primary" for="region-na">北米</label>
+          <input
+            class="btn-check"
+            id="region-eu"
+            type="radio"
+            name="region"
+            value="eu"
+          />
+          <label class="btn btn-outline-primary" for="region-eu">欧州</label>
+        </div>
+        <div
+          class="text-primary mt-1"
+          id="context-regionfree"
+          style="display: none"
+        >
+          <i class="bi bi-info-circle-fill"></i>
+          時/闇のパスワードはリージョンフリーなので指定は不要です。
+        </div>
+      </div>
 
-            <div id="gift-item-count-wrap">
-              <div class="form-floating">
-                <input
-                  id="gift-item-count"
-                  class="form-control"
-                  type="number"
-                  value="1"
-                  min="0"
-                  max="99"
-                />
-                <label for="gift-item-count">道具の個数</label>
-              </div>
-            </div>
-            <div id="gift-item-inner-wrap">
-              <div class="form-floating">
-                <select id="gift-item-inner" class="form-select"></select>
-                <label for="gift-item-inner">中身</label>
-              </div>
-            </div>
-
-            <div class="d-grid">
-              <button class="btn btn-primary btn-lg" id="pass-analysis">
-                ふっかつ/おれいのメール作成
-              </button>
-            </div>
-
-            <div id="caution">
-              <!-- エラーメッセージ -->
-              <div
-                id="error-box"
-                class="caution alert alert-danger"
-                style="display: none"
-              >
-                <div id="error-text" class="text-wrap"></div>
-              </div>
-              <!-- 警告メッセージ -->
-              <div
-                id="warning-box"
-                class="caution alert alert-warning"
-                style="display: none"
-              >
-                <div id="warning-text" class="text-wrap"></div>
-              </div>
+      <div>
+        <p class="fs-5 mb-1">欲しいポケモン</p>
+        <div class="row g-2">
+          <div class="item col-md-12">
+            <div class="form-floating">
+              <select id="pokemon" class="form-select"></select>
+              <label for="pokemon">ポケモン</label>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="d-flex flex-md-row flex-column gap-3">
-        <div class="card card-body col-md">
-          <h4>生成した救助パスワード</h4>
-          <div class="d-flex flex-column gap-3">
-            <div>
-              <textarea
-                id="pass-result"
-                class="form-control d-grid"
-                rows="3"
-                readonly
-              ></textarea>
-              <label
-                id="pass-result-label"
-                class="form-label form-text"
-                style="display: none"
-              ></label>
-            </div>
-          </div>
+      <div>
+        <div class="d-grid mb-0">
+          <button class="btn btn-primary btn-lg" id="pass-generate">
+            パスワード生成
+          </button>
         </div>
+      </div>
+
+      <div class="caution alert alert-warning" style="display: none">
+        <div class="text-wrap"></div>
+        <div class="fix-wrap" style="display: none">
+          <hr />
+          こちらの個体を推奨します:
+          <span class="fix-text"></span>
+          <div class="btn btn-sm btn-danger fix-pokemon">変更</div>
+        </div>
+      </div>
+
+      <div>
+        <p class="fs-5 mb-1">パスワード</p>
+        <textarea
+          class="form-control form-control-sm d-grid"
+          rows="2"
+          id="pass-area"
+          placeholder=""
+          readonly
+        ></textarea>
       </div>
     </div>
+  </div>
+
+  <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
+    <h4>生成内容</h4>
+    <ul class="m-0">
+      <li>
+        依頼タイプ:
+        <code>[06]道具を探す</code>
+      </li>
+      <li>
+        フラグ:
+        <code>[00]通常</code>
+      </li>
+      <li>
+        報酬タイプ:
+        <code>[05]タマゴ</code>
+      </li>
+      <li>
+        報酬値:
+        <code class="text-primary">(選択)</code>
+      </li>
+      <li>
+        依頼主:
+        <code>[11E]ミズゴロウ</code>
+      </li>
+      <li>
+        対象ポケモン1:
+        <code>[11E]ミズゴロウ</code>
+      </li>
+      <li>
+        対象ポケモン2:
+        <code>[000]-</code>
+      </li>
+      <li>
+        対象の道具:
+        <code>[05C]ガバイトのウロコ</code>
+      </li>
+      <li>
+        ダンジョン:
+        <code>[5B]めいきゅうのどうくつ</code>
+      </li>
+      <li>
+        フロア:
+        <code>B0F</code>
+      </li>
+      <li>
+        固定フロア:
+        <code>[00]-</code>
+      </li>
+      <li>
+        制限タイプ:
+        <code>[00]タイプ</code>
+      </li>
+      <li>
+        制限値:
+        <code>[00]なし</code>
+      </li>
+      <li>
+        SEED:
+        <code class="text-primary">ランダム(0x000000～0xFFFFFF)</code>
+      </li>
+    </ul>
   </div>
 </div>
 
