@@ -3,7 +3,7 @@ html {
   body {
     height: 100%;
     padding-top: 60px;
-    font-family: "Ubuntu", "Roboto", "メイリオ", "M PLUS 2",
+    font-family: Verdana, "Droid Sans", "メイリオ", Meiryo,
       var(--bs-body-font-family);
   }
   select {
