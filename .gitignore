@@ -1,3 +1,4 @@
 .vscode/
 .prettierignore
 public/
+node_modules/
