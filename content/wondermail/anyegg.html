@@ -6,7 +6,7 @@ url: /wondermail/anyegg/
 <script src="/js/poke_param.js"></script>
 <script src="/js/json_script.js"></script>
 <script src="/wondermail/js/anyegg.js" type="module"></script>
-<div id="main-container" class="container-md pb-3">
+<div class="container-md pb-3">
   <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
     <h1 class="m-0">任意タマゴ孵化バグ用生成機</h1>
     <hr />
@@ -28,8 +28,7 @@ url: /wondermail/anyegg/
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
+        allowfullscreen></iframe>
     </div>
 
     <p>実行前に以下の事項を確認してください。</p>
@@ -55,8 +54,7 @@ url: /wondermail/anyegg/
 
   <div
     class="card p-sm-4 p-3 my-3 border border-secondary-subtle"
-    id="pass-form"
-  >
+    id="pass-form">
     <div class="d-flex flex-column gap-3">
       <div class="d-flex flex-column">
         <p class="fs-5 mb-1">バージョン</p>
@@ -67,16 +65,14 @@ url: /wondermail/anyegg/
             type="radio"
             name="version"
             value="sky"
-            checked
-          />
+            checked />
           <label class="btn btn-outline-primary" for="version-sky">空</label>
           <input
             class="btn-check"
             id="version-old"
             type="radio"
             name="version"
-            value="old"
-          />
+            value="old" />
           <label class="btn btn-outline-primary" for="version-old">時/闇</label>
         </div>
       </div>
@@ -90,31 +86,27 @@ url: /wondermail/anyegg/
             type="radio"
             name="region"
             value="jp"
-            checked
-          />
+            checked />
           <label class="btn btn-outline-primary" for="region-jp">日本</label>
           <input
             class="btn-check"
             id="region-na"
             type="radio"
             name="region"
-            value="na"
-          />
+            value="na" />
           <label class="btn btn-outline-primary" for="region-na">北米</label>
           <input
             class="btn-check"
             id="region-eu"
             type="radio"
             name="region"
-            value="eu"
-          />
+            value="eu" />
           <label class="btn btn-outline-primary" for="region-eu">欧州</label>
         </div>
         <div
           class="text-primary mt-1"
           id="context-regionfree"
-          style="display: none"
-        >
+          style="display: none">
           <i class="bi bi-info-circle-fill"></i>
           時/闇のパスワードはリージョンフリーなので指定は不要です。
         </div>
@@ -157,8 +149,7 @@ url: /wondermail/anyegg/
           rows="2"
           id="pass-area"
           placeholder=""
-          readonly
-        ></textarea>
+          readonly></textarea>
       </div>
     </div>
   </div>

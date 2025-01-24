@@ -21,13 +21,11 @@ url: /wondermail/
       aria-label="Animated striped example"
       aria-valuenow="0"
       aria-valuemin="0"
-      aria-valuemax="100"
-    >
+      aria-valuemax="100">
       <div
         id="progress-worker-bar"
         class="progress-bar progress-bar-striped progress-bar-animated"
-        style="width: 0%"
-      ></div>
+        style="width: 0%"></div>
     </div>
     <button id="cancel-btn" type="button" class="btn btn-primary advanced">
       Cancel
@@ -35,7 +33,7 @@ url: /wondermail/
   </div>
 </div>
 
-<div id="main-container" class="container-md pb-3">
+<div class="container-md pb-3">
   <div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
     <h1 class="m-0">ふしぎなメール 生成機</h1>
 
@@ -106,8 +104,7 @@ url: /wondermail/
 
   <div
     class="card p-sm-4 p-3 my-3 border border-secondary-subtle"
-    id="pass-form"
-  >
+    id="pass-form">
     <div id="advanced-alert" class="alert advanced" style="display: none">
       <h5>Advanced Mode!</h5>
       <span>項目や機能が拡張され、制限が解除されます。</span>
@@ -126,16 +123,14 @@ url: /wondermail/
               type="radio"
               name="version"
               value="sky"
-              checked
-            />
+              checked />
             <label class="btn btn-outline-primary" for="version-sky">空</label>
             <input
               class="btn-check"
               id="version-old"
               type="radio"
               name="version"
-              value="old"
-            />
+              value="old" />
             <label class="btn btn-outline-primary" for="version-old">
               時/闇
             </label>
@@ -150,24 +145,21 @@ url: /wondermail/
               type="radio"
               name="region"
               value="jp"
-              checked
-            />
+              checked />
             <label class="btn btn-outline-primary" for="region-jp">日本</label>
             <input
               class="btn-check"
               id="region-na"
               type="radio"
               name="region"
-              value="na"
-            />
+              value="na" />
             <label class="btn btn-outline-primary" for="region-na">北米</label>
             <input
               class="btn-check"
               id="region-eu"
               type="radio"
               name="region"
-              value="eu"
-            />
+              value="eu" />
             <label class="btn btn-outline-primary" for="region-eu">欧州</label>
           </div>
         </div>
@@ -175,8 +167,7 @@ url: /wondermail/
       <div
         class="text-primary mt-1"
         id="context-regionfree"
-        style="display: none"
-      >
+        style="display: none">
         <i class="bi bi-info-circle-fill"></i>
         時/闇のパスワードはリージョンフリーなので指定は不要です。
       </div>
@@ -191,8 +182,7 @@ url: /wondermail/
         class="form-control form-control-sm d-grid"
         rows="2"
         id="pass-area"
-        placeholder="スペース・改行など入っても大丈夫です"
-      ></textarea>
+        placeholder="スペース・改行など入っても大丈夫です"></textarea>
     </div>
 
     <div class="mb-3 advanced">
@@ -207,8 +197,7 @@ url: /wondermail/
             id="checksum1"
             class="form-control"
             placeholder="checksum1"
-            readonly
-          />
+            readonly />
         </div>
         <div class="col-lg-3 col-6">
           <input
@@ -216,8 +205,7 @@ url: /wondermail/
             id="checksum2"
             class="form-control"
             placeholder="checksum2"
-            readonly
-          />
+            readonly />
         </div>
       </div>
     </div>
@@ -225,8 +213,7 @@ url: /wondermail/
     <div class="mb-3">
       <label class="col-12 form-label">生成オプション</label>
       <div
-        class="d-flex flex-column flex-sm-row flex-wrap column-gap-3 row-gap-1"
-      >
+        class="d-flex flex-column flex-sm-row flex-wrap column-gap-3 row-gap-1">
         <div class="btn-group mb-1 g-3 text-nowrap">
           <input
             class="btn-check"
@@ -234,8 +221,7 @@ url: /wondermail/
             type="radio"
             name="option-multibyte"
             value="multi"
-            checked
-          />
+            checked />
           <label class="btn btn-outline-primary" for="option-multibyte">
             全角
           </label>
@@ -244,8 +230,7 @@ url: /wondermail/
             id="option-singlebyte"
             type="radio"
             name="option-multibyte"
-            value="single"
-          />
+            value="single" />
           <label class="btn btn-outline-primary" for="option-singlebyte">
             半角
           </label>
@@ -256,8 +241,7 @@ url: /wondermail/
             id="option-space"
             type="radio"
             name="option-space"
-            checked
-          />
+            checked />
           <label class="btn btn-outline-primary" for="option-space">
             スペースあり
           </label>
@@ -265,8 +249,7 @@ url: /wondermail/
             class="btn-check"
             id="option-nospace"
             type="radio"
-            name="option-space"
-          />
+            name="option-space" />
           <label class="btn btn-outline-primary" for="option-nospace">
             スペースなし
           </label>
@@ -277,8 +260,7 @@ url: /wondermail/
             id="option-line"
             type="radio"
             name="option-line"
-            checked
-          />
+            checked />
           <label class="btn btn-outline-primary" for="option-line">
             改行あり
           </label>
@@ -286,8 +268,7 @@ url: /wondermail/
             class="btn-check"
             id="option-noline"
             type="radio"
-            name="option-line"
-          />
+            name="option-line" />
           <label class="btn btn-outline-primary" for="option-noline">
             改行なし
           </label>
@@ -313,8 +294,7 @@ url: /wondermail/
                   class="form-control"
                   type="number"
                   id="consecutive-max"
-                  value="100000"
-                />
+                  value="100000" />
               </div>
               <span class="form-text">
                 多くても1000000ぐらい推奨、多い程時間がかかります
@@ -331,12 +311,10 @@ url: /wondermail/
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  id="consecutive-random-reward-value"
-                />
+                  id="consecutive-random-reward-value" />
                 <label
                   class="form-check-label"
-                  for="consecutive-random-reward-value"
-                >
+                  for="consecutive-random-reward-value">
                   報酬値
                 </label>
               </div>
@@ -344,12 +322,10 @@ url: /wondermail/
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  id="consecutive-random-pokemon"
-                />
+                  id="consecutive-random-pokemon" />
                 <label
                   class="form-check-label"
-                  for="consecutive-random-pokemon"
-                >
+                  for="consecutive-random-pokemon">
                   依頼主・対象ポケモン
                 </label>
               </div>
@@ -357,12 +333,10 @@ url: /wondermail/
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  id="consecutive-random-target-item"
-                />
+                  id="consecutive-random-target-item" />
                 <label
                   class="form-check-label"
-                  for="consecutive-random-target-item"
-                >
+                  for="consecutive-random-target-item">
                   対象の道具
                 </label>
               </div>
@@ -371,8 +345,7 @@ url: /wondermail/
                   class="form-check-input"
                   type="checkbox"
                   id="consecutive-random-seed"
-                  checked
-                />
+                  checked />
                 <label class="form-check-label" for="consecutive-random-seed">
                   Seed
                 </label>
@@ -399,8 +372,7 @@ url: /wondermail/
         class="text-black"
         role="button"
         data-bs-toggle="collapse"
-        data-bs-target="#mission-rawdata-div"
-      >
+        data-bs-target="#mission-rawdata-div">
         <span class="form-label">生データ</span>
         <i class="bi bi-caret-down-fill"></i>
       </a>
@@ -409,8 +381,7 @@ url: /wondermail/
           id="mission-rawdata"
           class="form-control form-control-sm font-monospace"
           rows="2"
-          readonly
-        ></textarea>
+          readonly></textarea>
       </div>
     </div>
 
@@ -418,8 +389,7 @@ url: /wondermail/
       id="pass-alert"
       class="mt-3 mb-0 alert"
       role="alert"
-      style="display: none"
-    ></div>
+      style="display: none"></div>
 
     <hr class="mt-5" />
 
@@ -456,15 +426,13 @@ url: /wondermail/
                   id="reward-value-number"
                   value="0"
                   maxlength="3"
-                  data-maxvalue="7FF"
-                />
+                  data-maxvalue="7FF" />
                 <label for="reward-value-number">報酬値 (max: 0x7FF)</label>
               </div>
               <button
                 id="random-btn-reward-value"
                 class="btn btn-primary text-nowrap"
-                type="button"
-              >
+                type="button">
                 ランダム
               </button>
             </div>
@@ -472,8 +440,7 @@ url: /wondermail/
           <div
             class="item col-md-6"
             id="reward-value-select-div"
-            style="display: none"
-          >
+            style="display: none">
             <div class="form-floating">
               <select class="form-select" id="reward-value-select"></select>
               <label for="reward-value-select">報酬</label>
@@ -484,8 +451,7 @@ url: /wondermail/
           id="mission-alert"
           class="mt-3 mb-0 alert"
           role="alert"
-          style="display: none"
-        ></div>
+          style="display: none"></div>
       </div>
 
       <div class="area-pokemon">
@@ -522,8 +488,7 @@ url: /wondermail/
               <button
                 id="target-item-rand"
                 class="btn btn-primary text-nowrap"
-                type="button"
-              >
+                type="button">
                 ランダム
               </button>
             </div>
@@ -583,15 +548,13 @@ url: /wondermail/
                   type="text"
                   value="0"
                   maxlength="6"
-                  data-maxvalue="FFFFFF"
-                />
+                  data-maxvalue="FFFFFF" />
                 <label for="seed">Seed (max: 0xFFFFFF)</label>
               </div>
               <button
                 id="random-btn-seed"
                 class="btn btn-primary text-nowrap"
-                type="button"
-              >
+                type="button">
                 ランダム
               </button>
             </div>
@@ -610,8 +573,7 @@ url: /wondermail/
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#question-1"
-          >
+            data-bs-target="#question-1">
             「捏造パス」って何？
           </button>
         </h2>
@@ -648,8 +610,7 @@ url: /wondermail/
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#question-2"
-          >
+            data-bs-target="#question-2">
             パスワードを生成したが、ゲームで入力しても「パスワードが間違っている」と表示される
           </button>
         </h2>
@@ -676,8 +637,7 @@ url: /wondermail/
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#question-3"
-          >
+            data-bs-target="#question-3">
             パスワード展開に失敗する
           </button>
         </h2>
@@ -690,8 +650,7 @@ url: /wondermail/
               <a
                 href="https://twitter.com/Laioxy"
                 target="_blank"
-                rel="noopener noreferrer"
-              >
+                rel="noopener noreferrer">
                 Twitter
               </a>
               で教えてください。
@@ -708,8 +667,7 @@ url: /wondermail/
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#question-4"
-          >
+            data-bs-target="#question-4">
             無効なポケモン・無効な道具とは？
           </button>
         </h2>
@@ -743,8 +701,7 @@ url: /wondermail/
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#question-5"
-          >
+            data-bs-target="#question-5">
             パス入力時のフリーズについて
           </button>
         </h2>
@@ -1078,8 +1035,7 @@ url: /wondermail/
             <a
               href="https://youtu.be/UyCLOumHyn8"
               target="_blank"
-              rel="noopener noreferrer"
-            >
+              rel="noopener noreferrer">
               動画
             </a>
             )
