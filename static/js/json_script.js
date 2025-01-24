@@ -2,13 +2,13 @@
  * getJsonDataの引数に入れるキー名とJSONファイルのパス
  */
 const jsonPathsArray = {
-  pokemon: "/data/pokemon_data.min.json",
-  item: "/data/item_data.min.json",
-  dungeon: "/data/dungeon_data.min.json",
-  floor: "/data/floor_data.min.json",
-  fixed: "/data/fixed_data.min.json",
-  message: "/data/message_data.min.json",
-  type: "/data/type_data.min.json",
+  pokemon: '/data/pokemon.min.json',
+  item: '/data/item.min.json',
+  dungeon: '/data/dungeon.min.json',
+  floor: '/data/floor.min.json',
+  fixed: '/data/fixed.min.json',
+  message: '/data/message.min.json',
+  type: '/data/type.min.json',
 };
 
 /**
@@ -21,7 +21,7 @@ async function getJsonData(key) {
     const res = await $.getJSON(jsonPathsArray[key]);
     return res;
   } catch (e) {
-    console.error("getJsonData Failed: ", e);
+    console.error('getJsonData Failed: ', e);
     return null;
   }
 }
