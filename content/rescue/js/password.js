@@ -482,19 +482,17 @@ function decBitToDec(convList) {
  * @returns {number[]}
  */
 function encDecToBit(decList) {
-  let t = decList[0];
+  const t = decList[0];
   const mov = (t & 0x01) == 1 ? 1 : -1;
-  let count = (t >> 4) + (t & 0xf) + 8;
+  const count = (t >> 4) + (t & 0xf) + 8;
   const res = [];
   res.push(decList[0]);
+  let position = 0;
   for (let i = 1; i < decList.length; i++) {
-    const val = (decList[i] + encryption[t]) & 0xff;
+    const j = (position * mov + t) & 0xff;
+    const val = (decList[i] + encryption[j]) & 0xff;
     res.push(val);
-    t = (t + mov) & 0xff;
-    count--;
-    if (count == 0) {
-      t = decList[0];
-    }
+    position = (position + 1) % count;
   }
   return res;
 }
