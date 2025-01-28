@@ -1,4 +1,4 @@
-import { WonderMail, GetSwapTable } from "/wondermail/js/password.js";
+import { WonderMail, GetSwapTable } from '/js/wondermail/password.js';
 
 $(async function () {
   // JSONデータ格納用変数
@@ -9,52 +9,52 @@ $(async function () {
   var FixedData;
 
   // 要素キャッシュ
-  var e_loading = $(".loading");
-  var e_advanced = $(".advanced");
-  var e_progress_worker_bar = $("#progress-worker-bar");
-  var e_progress_wrap = $("#progress-wrap");
-  var e_pass_area = $("#pass-area");
-  var e_version_sky = $("#version-sky");
-  var e_version_old = $("#version-old");
-  var e_region_jp = $("#region-jp");
-  var e_region_na = $("#region-na");
-  var e_region_eu = $("#region-eu");
-  var e_checksum_1 = $("#checksum1");
-  var e_checksum_2 = $("#checksum2");
+  var e_loading = $('.loading');
+  var e_advanced = $('.advanced');
+  var e_progress_worker_bar = $('#progress-worker-bar');
+  var e_progress_wrap = $('#progress-wrap');
+  var e_pass_area = $('#pass-area');
+  var e_version_sky = $('#version-sky');
+  var e_version_old = $('#version-old');
+  var e_region_jp = $('#region-jp');
+  var e_region_na = $('#region-na');
+  var e_region_eu = $('#region-eu');
+  var e_checksum_1 = $('#checksum1');
+  var e_checksum_2 = $('#checksum2');
 
-  var e_mission_type = $("#mission-type");
-  var e_mission_flag = $("#mission-flag");
-  var e_reward_type = $("#reward-type");
-  var e_reward_value_number = $("#reward-value-number");
-  var e_reward_value_select = $("#reward-value-select");
-  var e_client = $("#client");
-  var e_target_1 = $("#target-1");
-  var e_target_2 = $("#target-2");
-  var e_target_item = $("#target-item");
-  var e_dungeon = $("#dungeon");
-  var e_dungeon_floor = $("#dungeon-floor");
-  var e_fixed_floor = $("#fixed-floor");
-  var e_rest_type = $("#rest-type");
-  var e_rest_value = $("#rest-value");
-  var e_seed = $("#seed");
+  var e_mission_type = $('#mission-type');
+  var e_mission_flag = $('#mission-flag');
+  var e_reward_type = $('#reward-type');
+  var e_reward_value_number = $('#reward-value-number');
+  var e_reward_value_select = $('#reward-value-select');
+  var e_client = $('#client');
+  var e_target_1 = $('#target-1');
+  var e_target_2 = $('#target-2');
+  var e_target_item = $('#target-item');
+  var e_dungeon = $('#dungeon');
+  var e_dungeon_floor = $('#dungeon-floor');
+  var e_fixed_floor = $('#fixed-floor');
+  var e_rest_type = $('#rest-type');
+  var e_rest_value = $('#rest-value');
+  var e_seed = $('#seed');
 
-  var e_mode_consecutive = $("#mode-consecutive");
-  var e_consecutive_max = $("#consecutive-max");
-  var e_consecutive_rand_reward_value = $("#consecutive-random-reward-value");
-  var e_consecutive_rand_pokemon = $("#consecutive-random-pokemon");
-  var e_consecutive_rand_target_item = $("#consecutive-random-target-item");
-  var e_consecutive_rand_seed = $("#consecutive-random-seed");
+  var e_mode_consecutive = $('#mode-consecutive');
+  var e_consecutive_max = $('#consecutive-max');
+  var e_consecutive_rand_reward_value = $('#consecutive-random-reward-value');
+  var e_consecutive_rand_pokemon = $('#consecutive-random-pokemon');
+  var e_consecutive_rand_target_item = $('#consecutive-random-target-item');
+  var e_consecutive_rand_seed = $('#consecutive-random-seed');
 
   // ボタン要素
-  var e_target_item_rand = $("#target-item-rand");
+  var e_target_item_rand = $('#target-item-rand');
 
   // アラート要素
-  var e_pass_alert = $("#pass-alert");
-  var e_mission_alert = $("#mission-alert");
+  var e_pass_alert = $('#pass-alert');
+  var e_mission_alert = $('#mission-alert');
 
   // アドバンスドモード (上級者向け)
   // 有効にするとdisabledを無効化、項目を一部拡張
-  var advanced = new URL(document.location).searchParams.get("advanced") != null;
+  var advanced = new URL(document.location).searchParams.get('advanced') != null;
 
   // Worker
   var worker = null;
@@ -63,8 +63,14 @@ $(async function () {
   if (advanced) e_advanced.show();
   else e_advanced.hide();
 
-  console.log("Promise Start");
-  await Promise.all([getJsonData("pokemon"), getJsonData("item"), getJsonData("dungeon"), getJsonData("floor"), getJsonData("fixed")])
+  console.log('Promise Start');
+  await Promise.all([
+    getJsonData('pokemon'),
+    getJsonData('item'),
+    getJsonData('dungeon'),
+    getJsonData('floor'),
+    getJsonData('fixed'),
+  ])
     .then((results) => {
       PokemonData = results[0];
       ItemData = results[1];
@@ -75,7 +81,7 @@ $(async function () {
     .catch((e) => {
       console.error(e);
     });
-  console.log("Promise End");
+  console.log('Promise End');
 
   // Select2
   e_reward_value_select.select2(select2Config);
@@ -87,22 +93,22 @@ $(async function () {
   e_rest_value.select2(select2Config);
 
   // バージョン・リージョン
-  $("input[name='version'], input[name='region']").on("change", function () {
-    let old = e_version_old.prop("checked");
-    $("#group-region input").prop("disabled", old);
+  $("input[name='version'], input[name='region']").on('change', function () {
+    let old = e_version_old.prop('checked');
+    $('#group-region input').prop('disabled', old);
 
-    if (old) $("#context-regionfree").show();
-    else $("#context-regionfree").hide();
+    if (old) $('#context-regionfree').show();
+    else $('#context-regionfree').hide();
 
     // パスワード文字更新
-    e_pass_area.val("").trigger("keyup");
+    e_pass_area.val('').trigger('keyup');
     AppendMissionType(e_mission_type); // 依頼タイプ項目更新
     AppendMissionFlag(e_mission_flag); // 依頼フラグ項目更新
     ToggleDisabled();
   });
   // 依頼タイプ
-  e_mission_type.on("change", function () {
-    let skyMTypeId = e_mission_type.find("option:selected").data("sky");
+  e_mission_type.on('change', function () {
+    let skyMTypeId = e_mission_type.find('option:selected').data('sky');
     AppendMissionFlag(e_mission_flag); // 依頼フラグ項目更新
     AppendDungeonFloor(e_dungeon_floor, true); // 階数項目更新 (依頼難易度変化の対応)
     ToggleDisabled();
@@ -117,7 +123,7 @@ $(async function () {
     CheckBannedPokemon(e_target_2);
 
     // 対象ポケモン1が選択できない場合、依頼主と同じ値にする
-    if (e_target_1.prop("disabled")) e_target_1.val(e_client.val()).change();
+    if (e_target_1.prop('disabled')) e_target_1.val(e_client.val()).change();
 
     // (おたからメモ用) ダンジョン項目制御
     if (!advanced) NarrowTreasureMemoDungeon();
@@ -126,7 +132,7 @@ $(async function () {
     if (!advanced) AlertMissionTypeAndFlag();
   });
   // 依頼フラグ
-  e_mission_flag.on("change", function () {
+  e_mission_flag.on('change', function () {
     ToggleDisabled();
 
     // 「依頼主と探検」の時、固定フロア値を変更
@@ -153,7 +159,7 @@ $(async function () {
     }
 
     //  伝説の挑戦状の場合、各種セレクトボックスにセット
-    let skyMTypeId = e_mission_type.find("option:selected").data("sky");
+    let skyMTypeId = e_mission_type.find('option:selected').data('sky');
     // 報酬
     AllowPokemon(e_reward_value_select, skyMTypeId == 0x0b && e_mission_flag.val() == 1, [0x096]); // ミュウツー
     AllowPokemon(e_reward_value_select, skyMTypeId == 0x0b && e_mission_flag.val() == 2, [0x10f]); // エンテイ
@@ -186,63 +192,63 @@ $(async function () {
     if (!advanced) AlertMissionTypeAndFlag();
   });
   // 報酬タイプ
-  e_reward_type.on("change", function () {
+  e_reward_type.on('change', function () {
     let prev_num = e_reward_value_number.val();
     let prev_sel = e_reward_value_select.val();
 
     switch (reward_type[$(this).val()].mode) {
       case 0: // 指定なし
-        $("#reward-value-number-group").show();
-        $("#reward-value-select-div").hide();
+        $('#reward-value-number-group').show();
+        $('#reward-value-select-div').hide();
         break;
       case 1: // 道具
         AppendItem(e_reward_value_select);
-        $("#reward-value-select-div").show();
-        $("#reward-value-number-group").hide();
+        $('#reward-value-select-div').show();
+        $('#reward-value-number-group').hide();
         CheckInvalidPokemon(e_reward_value_select, true);
         CheckBannedPokemon(e_reward_value_select, true);
         CheckInvalidItem(e_reward_value_select);
-        e_reward_value_select.parent().nextAll(".error-invalid-poke").hide();
-        e_reward_value_select.parent().nextAll(".error-banned-poke").hide();
+        e_reward_value_select.parent().nextAll('.error-invalid-poke').hide();
+        e_reward_value_select.parent().nextAll('.error-banned-poke').hide();
         break;
       case 2: // ポケモン
         AppendPokemon(e_reward_value_select);
-        $("#reward-value-select-div").show();
-        $("#reward-value-number-group").hide();
+        $('#reward-value-select-div').show();
+        $('#reward-value-number-group').hide();
         CheckInvalidItem(e_reward_value_select, true);
         CheckInvalidPokemon(e_reward_value_select);
         CheckBannedPokemon(e_reward_value_select);
-        e_reward_value_select.parent().nextAll(".error-invalid-item").hide();
+        e_reward_value_select.parent().nextAll('.error-invalid-item').hide();
         break;
     }
     ToggleDisabled();
-    e_mission_flag.trigger("change"); // 報酬の仲間ポケモンの有効無効を更新
+    e_mission_flag.trigger('change'); // 報酬の仲間ポケモンの有効無効を更新
 
     // changeのトリガーで値が変わってしまう対策
     if (prev_num != null) e_reward_value_number.val(prev_num);
     if (prev_sel != null) {
       // 項目が上限を超過している場合、0に戻す
-      if (prev_sel >= $("#reward-value-select option").length) prev_sel = 0;
+      if (prev_sel >= $('#reward-value-select option').length) prev_sel = 0;
       e_reward_value_select.val(prev_sel);
     }
   });
   // 依頼主
-  e_client.on("change", function () {
+  e_client.on('change', function () {
     if (mission_type[e_mission_type.val()].same_client) {
       e_target_1.val(e_client.val()).change();
     }
   });
   // 対象の道具 ランダムボタン
   // 本来の依頼では "きのみタネ飲料", "ふしぎだま" のみ？
-  e_target_item_rand.on("click", function () {
+  e_target_item_rand.on('click', function () {
     e_target_item.val(GetRandomTargetItemId()).change();
   });
   // ダンジョン
-  e_dungeon.on("change", function () {
+  e_dungeon.on('change', function () {
     AppendDungeonFloor(e_dungeon_floor);
   });
   // 制限タイプ
-  e_rest_type.on("change", function () {
+  e_rest_type.on('change', function () {
     switch (restriction[e_rest_type.val()].id) {
       case 0: // タイプ
         AppendPokeType();
@@ -251,16 +257,16 @@ $(async function () {
         AppendPokemon(e_rest_value);
         break;
     }
-    e_rest_value.trigger("change");
+    e_rest_value.trigger('change');
   });
   // 制限
-  e_rest_value.on("change", function () {
+  e_rest_value.on('change', function () {
     CheckInvalidPokemon(e_rest_value, e_rest_type.val() != 1);
     CheckBannedPokemon(e_rest_value, e_rest_type.val() != 1);
   });
 
   // テキストボックス入力制限
-  $("#pass-form input[type='text']").on("keydown", function (e) {
+  $("#pass-form input[type='text']").on('keydown', function (e) {
     let k = e.keyCode;
     let s = String.fromCharCode(k);
 
@@ -268,16 +274,27 @@ $(async function () {
     // 46 ... Delete
     // 96-105  ... テンキー[0-9]
     // 112-123 ... ファンクションキー
-    if (!(s.match(/[0-9a-fA-F]/) || (37 <= k && k <= 40) || (96 <= k && k <= 105) || (112 <= k && k <= 123) || k === 8 || k === 46)) return false;
+    if (
+      !(
+        s.match(/[0-9a-fA-F]/) ||
+        (37 <= k && k <= 40) ||
+        (96 <= k && k <= 105) ||
+        (112 <= k && k <= 123) ||
+        k === 8 ||
+        k === 46
+      )
+    )
+      return false;
   });
   // テキストボックス大文字化
-  $("#pass-form input[type='text']").on("keyup blur", function (e) {
-    this.value = this.value.replace(/[^0-9a-fA-F]+/i, "").toUpperCase();
-    if (parseInt($(this).val(), 16) > parseInt($(this).data("maxvalue"), 16)) $(this).val(parseInt($(this).data("maxvalue"), 16).toString(16).toUpperCase());
+  $("#pass-form input[type='text']").on('keyup blur', function (e) {
+    this.value = this.value.replace(/[^0-9a-fA-F]+/i, '').toUpperCase();
+    if (parseInt($(this).val(), 16) > parseInt($(this).data('maxvalue'), 16))
+      $(this).val(parseInt($(this).data('maxvalue'), 16).toString(16).toUpperCase());
   });
 
   // バージョン変更時、無効/禁止ポケモン表示更新
-  $("input[name='version']").on("change", function () {
+  $("input[name='version']").on('change', function () {
     CheckInvalidPokemon(e_client);
     CheckInvalidPokemon(e_target_1);
     CheckInvalidPokemon(e_target_2);
@@ -286,16 +303,16 @@ $(async function () {
     CheckBannedPokemon(e_target_2);
   });
   // パスワード文字数表示
-  e_pass_area.on("keydown keyup", function () {
+  e_pass_area.on('keydown keyup', function () {
     let sky = CheckVersionSky();
     let region = GetRegion();
     let len = ConvertToHalfPassString(e_pass_area.val()).length;
     let max = GetSwapTable(sky, region).length;
-    $("#pass-maxlength").text(`(${len}/${max}文字)`);
+    $('#pass-maxlength').text(`(${len}/${max}文字)`);
   });
 
   // エラーメッセージ
-  $("#reward-type, #reward-value-select, #client, #target-1, #target-2, #target-item").on("change", function () {
+  $('#reward-type, #reward-value-select, #client, #target-1, #target-2, #target-item').on('change', function () {
     if ($(this) == e_reward_type) {
       CheckInvalidPokemon(e_reward_value_select);
       CheckBannedPokemon(e_reward_value_select);
@@ -308,39 +325,39 @@ $(async function () {
   });
 
   // ランダム処理
-  $("#random-btn-reward-value").on("click", function () {
+  $('#random-btn-reward-value').on('click', function () {
     SetRandomValue(e_reward_value_number, 0x7ff, true);
   });
-  $("#random-btn-seed").on("click", function () {
+  $('#random-btn-seed').on('click', function () {
     SetRandomValue(e_seed, 0xffffff, true);
   });
 
   // パスワード展開
-  $("#pass-analysis").on("click", async function () {
+  $('#pass-analysis').on('click', async function () {
     let mission = AnalysisPass();
-    if (mission == undefined) mission = "";
-    $("#mission-rawdata").text(JSON.stringify(mission, null, "    "));
+    if (mission == undefined) mission = '';
+    $('#mission-rawdata').text(JSON.stringify(mission, null, '    '));
   });
 
   // パスワード生成
-  $("#pass-generate").on("click", function () {
+  $('#pass-generate').on('click', function () {
     GeneratePass();
-    e_pass_area.trigger("keyup");
+    e_pass_area.trigger('keyup');
   });
 
   // 連続文字検索モード
-  e_mode_consecutive.on("change", function () {
-    if (e_mode_consecutive.prop("checked")) $(".mode-consecutive").show();
-    else $(".mode-consecutive").hide();
+  e_mode_consecutive.on('change', function () {
+    if (e_mode_consecutive.prop('checked')) $('.mode-consecutive').show();
+    else $('.mode-consecutive').hide();
   });
 
   // キー入力時、パスワードのアラート非表示
-  $("input, select, textarea").on("change keydown", function () {
-    $("#pass-alert").fadeOut();
+  $('input, select, textarea').on('change keydown', function () {
+    $('#pass-alert').fadeOut();
   });
 
   // [Advanced] Workerキャンセルボタン
-  $("#cancel-btn").on("click", function () {
+  $('#cancel-btn').on('click', function () {
     if (worker != null) {
       worker.terminate();
       e_loading.hide();
@@ -348,7 +365,7 @@ $(async function () {
     }
   });
 
-  console.log("event OK");
+  console.log('event OK');
 
   // 初期化
   let init = new Promise(async function () {
@@ -369,11 +386,11 @@ $(async function () {
     e_dungeon.val(1).change();
   });
 
-  console.log("init OK");
+  console.log('init OK');
   // ロード完了後、イベントトリガー
-  $("select").trigger("change");
-  e_pass_area.trigger("keyup");
-  console.log("trigger OK");
+  $('select').trigger('change');
+  e_pass_area.trigger('keyup');
+  console.log('trigger OK');
   // ローディング解除
   e_loading.fadeOut(200);
 
@@ -382,40 +399,41 @@ $(async function () {
     let mission_type_val = e_mission_type.val();
     let mission_flag_val = e_mission_flag.val();
     // 対象ポケモン1
-    if (!advanced) e_target_1.prop("disabled", mission_type[mission_type_val].same_client);
-    else e_target_1.prop("disabled", false);
-    CheckBannedPokemon(e_target_1, e_target_1.prop("disabled"));
-    CheckInvalidPokemon(e_target_1, e_target_1.prop("disabled"));
+    if (!advanced) e_target_1.prop('disabled', mission_type[mission_type_val].same_client);
+    else e_target_1.prop('disabled', false);
+    CheckBannedPokemon(e_target_1, e_target_1.prop('disabled'));
+    CheckInvalidPokemon(e_target_1, e_target_1.prop('disabled'));
     // 対象ポケモン2
     if (!advanced) {
-      let target2_d = (mission_type_val == 10 && mission_flag_val == 6) || (mission_type_val == 11 && mission_flag_val == 0);
-      e_target_2.prop("disabled", !target2_d);
+      let target2_d =
+        (mission_type_val == 10 && mission_flag_val == 6) || (mission_type_val == 11 && mission_flag_val == 0);
+      e_target_2.prop('disabled', !target2_d);
       if (!target2_d) e_target_2.val(0);
-    } else e_target_2.prop("disabled", false);
-    CheckBannedPokemon(e_target_2, e_target_2.prop("disabled"));
-    CheckInvalidPokemon(e_target_2, e_target_2.prop("disabled"));
+    } else e_target_2.prop('disabled', false);
+    CheckBannedPokemon(e_target_2, e_target_2.prop('disabled'));
+    CheckInvalidPokemon(e_target_2, e_target_2.prop('disabled'));
     // 固定フロア
     // アジト依頼(依頼タイプ=0xA, フラグ=0x6)の場合、固定フロア有効
-    let prevFixed = e_fixed_floor.prop("disabled");
+    let prevFixed = e_fixed_floor.prop('disabled');
     if (advanced || (mission_type_val == 0xa && mission_flag_val == 0x6) || mission_type[mission_type_val].used_fixed) {
-      e_fixed_floor.prop("disabled", false);
+      e_fixed_floor.prop('disabled', false);
     } else {
-      e_fixed_floor.prop("disabled", true);
+      e_fixed_floor.prop('disabled', true);
     }
 
     // 固定フロアの活性状態に変更があれば値を0にする
-    if (prevFixed != e_fixed_floor.prop("disabled")) e_fixed_floor.val(0);
+    if (prevFixed != e_fixed_floor.prop('disabled')) e_fixed_floor.val(0);
 
     // 時闇に存在しない項目は非活性かつ半透明化
     // 該当: 対象ポケモン2, 固定フロア
     let sky_only = [e_target_2, e_fixed_floor];
-    let old = e_version_old.prop("checked");
+    let old = e_version_old.prop('checked');
     sky_only.forEach(function (r) {
-      let item = r.parents(".item");
+      let item = r.parents('.item');
       if (old) {
-        r.prop("disabled", old); // 強制的に非活性
-        item.addClass("opacity-50");
-      } else item.removeClass("opacity-50");
+        r.prop('disabled', old); // 強制的に非活性
+        item.addClass('opacity-50');
+      } else item.removeClass('opacity-50');
     });
   }
 
@@ -425,34 +443,34 @@ $(async function () {
    * @param {*} reset 強制的に解除
    */
   function CheckInvalidPokemon(elem, reset = false) {
-    let errMsgClass = "error-invalid-poke";
+    let errMsgClass = 'error-invalid-poke';
     let errMsgElem = $(`<p class="${errMsgClass} text-danger m-0">`);
-    let errMsgText = "無効なポケモンが選択されています。";
+    let errMsgText = '無効なポケモンが選択されています。';
     errMsgElem.html('<i class="bi bi-exclamation-circle-fill"></i>' + errMsgText);
 
     if (reset) {
-      elem.removeClass("border-danger");
-      elem.nextAll(".select2").find(".select2-selection").removeClass("border-danger");
-      elem.parents(".item").children(`.${errMsgClass}`).remove();
+      elem.removeClass('border-danger');
+      elem.nextAll('.select2').find('.select2-selection').removeClass('border-danger');
+      elem.parents('.item').children(`.${errMsgClass}`).remove();
       return;
     }
 
-    let valid = elem.find("option:selected").data("gender");
-    let allow = elem.find("option:selected").data("allow");
-    let disabled = elem.prop("disabled");
+    let valid = elem.find('option:selected').data('gender');
+    let allow = elem.find('option:selected').data('allow');
+    let disabled = elem.prop('disabled');
     if (valid != undefined) {
       if (valid == 0 && !allow && !disabled) {
         // 無効エラー
-        elem.addClass("border-danger");
-        elem.nextAll(".select2").find(".select2-selection").addClass("border-danger");
-        if (elem.parents(".item").children(`.${errMsgClass}`).length == 0) {
-          elem.parents(".item").append(errMsgElem);
+        elem.addClass('border-danger');
+        elem.nextAll('.select2').find('.select2-selection').addClass('border-danger');
+        if (elem.parents('.item').children(`.${errMsgClass}`).length == 0) {
+          elem.parents('.item').append(errMsgElem);
         }
       } else {
         // エラー解除
-        elem.removeClass("border-danger");
-        elem.nextAll(".select2").find(".select2-selection").removeClass("border-danger");
-        elem.parents(".item").children(`.${errMsgClass}`).remove();
+        elem.removeClass('border-danger');
+        elem.nextAll('.select2').find('.select2-selection').removeClass('border-danger');
+        elem.parents('.item').children(`.${errMsgClass}`).remove();
       }
     }
   }
@@ -470,8 +488,8 @@ $(async function () {
 
       // 有効クラス(allow)切替
       pokes.forEach(function (r) {
-        if (allow) elem.find(`option[value="${r}"]`).data("allow", true);
-        else elem.find(`option[value="${r}"]`).data("allow", false);
+        if (allow) elem.find(`option[value="${r}"]`).data('allow', true);
+        else elem.find(`option[value="${r}"]`).data('allow', false);
 
         //console.log(allow + " -> " + r + " : " + elem.find(`option[value="${r}"]`).data("allow"));
       });
@@ -484,43 +502,43 @@ $(async function () {
    * @param {*} reset 強制的に解除
    */
   function CheckBannedPokemon(elem, reset = false) {
-    let errMsgClass = "error-banned-poke";
+    let errMsgClass = 'error-banned-poke';
     let errMsgElem = $(`<p class="${errMsgClass} text-danger m-0">`);
-    let errMsgText = "依頼で使えないポケモンが選択されています。";
+    let errMsgText = '依頼で使えないポケモンが選択されています。';
     errMsgElem.html('<i class="bi bi-exclamation-circle-fill"></i>' + errMsgText);
 
     if (reset) {
-      elem.removeClass("border-danger");
-      elem.nextAll(".select2").find(".select2-selection").removeClass("border-danger");
-      elem.parents(".item").children(`.${errMsgClass}`).remove();
+      elem.removeClass('border-danger');
+      elem.nextAll('.select2').find('.select2-selection').removeClass('border-danger');
+      elem.parents('.item').children(`.${errMsgClass}`).remove();
       return;
     }
 
-    let valid = elem.find("option:selected").data("banned");
-    let allow = elem.find("option:selected").data("allow");
-    let disabled = elem.prop("disabled");
+    let valid = elem.find('option:selected').data('banned');
+    let allow = elem.find('option:selected').data('allow');
+    let disabled = elem.prop('disabled');
 
     if (valid != undefined) {
       if (allow && !disabled) {
         // 例外許可
         //console.log("許可 - " + elem.prop("id"));
-        elem.removeClass("border-danger");
-        elem.nextAll(".select2").find(".select2-selection").removeClass("border-danger");
-        elem.parents(".item").children(`.${errMsgClass}`).remove();
+        elem.removeClass('border-danger');
+        elem.nextAll('.select2').find('.select2-selection').removeClass('border-danger');
+        elem.parents('.item').children(`.${errMsgClass}`).remove();
       } else if (valid && !disabled) {
         // 禁止
         //console.log("禁止 - " + elem.prop("id"));
-        elem.addClass("border-danger");
-        elem.nextAll(".select2").find(".select2-selection").addClass("border-danger");
-        if (elem.parents(".item").children(`.${errMsgClass}`).length == 0) {
-          elem.parents(".item").append(errMsgElem);
+        elem.addClass('border-danger');
+        elem.nextAll('.select2').find('.select2-selection').addClass('border-danger');
+        if (elem.parents('.item').children(`.${errMsgClass}`).length == 0) {
+          elem.parents('.item').append(errMsgElem);
         }
       } else {
         // 通常
         //console.log("通常 - " + elem.prop("id"));
-        elem.nextAll(".select2").find(".select2-selection").removeClass("border-danger");
-        elem.removeClass("border-danger");
-        elem.parents(".item").children(`.${errMsgClass}`).remove();
+        elem.nextAll('.select2').find('.select2-selection').removeClass('border-danger');
+        elem.removeClass('border-danger');
+        elem.parents('.item').children(`.${errMsgClass}`).remove();
       }
     }
   }
@@ -531,32 +549,32 @@ $(async function () {
    * @param {*} reset 強制的に解除
    */
   function CheckInvalidItem(elem, reset) {
-    let errMsgClass = "error-invalid-item";
+    let errMsgClass = 'error-invalid-item';
     let errMsgElem = $(`<p class="${errMsgClass} text-danger m-0">`);
-    let errMsgText = "無効な道具が選択されています。";
+    let errMsgText = '無効な道具が選択されています。';
     errMsgElem.html('<i class="bi bi-exclamation-circle-fill"></i>' + errMsgText);
 
     if (reset) {
-      elem.removeClass("border-danger");
-      elem.nextAll(".select2").find(".select2-selection").removeClass("border-danger");
-      elem.parents(".item").children(`.${errMsgClass}`).remove();
+      elem.removeClass('border-danger');
+      elem.nextAll('.select2').find('.select2-selection').removeClass('border-danger');
+      elem.parents('.item').children(`.${errMsgClass}`).remove();
       return;
     }
 
-    let valid = elem.find("option:selected").data("valid");
-    if (valid != undefined && !elem.prop("disabled")) {
+    let valid = elem.find('option:selected').data('valid');
+    if (valid != undefined && !elem.prop('disabled')) {
       if (!valid) {
         // 無効エラー
-        elem.addClass("border-danger");
-        elem.nextAll(".select2").find(".select2-selection").addClass("border-danger");
-        if (elem.parents(".item").children(`.${errMsgClass}`).length == 0) {
-          elem.parents(".item").append(errMsgElem);
+        elem.addClass('border-danger');
+        elem.nextAll('.select2').find('.select2-selection').addClass('border-danger');
+        if (elem.parents('.item').children(`.${errMsgClass}`).length == 0) {
+          elem.parents('.item').append(errMsgElem);
         }
       } else {
         // エラー解除
-        elem.removeClass("border-danger");
-        elem.nextAll(".select2").find(".select2-selection").removeClass("border-danger");
-        elem.parents(".item").children(`.${errMsgClass}`).remove();
+        elem.removeClass('border-danger');
+        elem.nextAll('.select2').find('.select2-selection').removeClass('border-danger');
+        elem.parents('.item').children(`.${errMsgClass}`).remove();
       }
     }
   }
@@ -571,14 +589,14 @@ $(async function () {
         e_dungeon.val(allow_treasure_memo_dun[0]).change();
       }
       // 許可ダンジョン以外を選択不可にする
-      e_dungeon.find("option").each(function () {
+      e_dungeon.find('option').each(function () {
         if (allow_treasure_memo_dun.indexOf(Number($(this).val())) == -1) {
-          $(this).prop("disabled", true);
+          $(this).prop('disabled', true);
         }
       });
     } else {
-      e_dungeon.find("option").each(function () {
-        $(this).prop("disabled", false);
+      e_dungeon.find('option').each(function () {
+        $(this).prop('disabled', false);
       });
     }
   }
@@ -599,7 +617,7 @@ $(async function () {
         `組み合わせによってはフリーズのおそれがあるため、非推奨です。<br>` +
         `別の依頼タイプ・フラグに変更するか、使用する場合は必ずポケモンの組み合わせを適切に設定してください。` +
         `</p>`;
-      e_mission_alert.addClass("alert-danger");
+      e_mission_alert.addClass('alert-danger');
       e_mission_alert.html(msg);
       e_mission_alert.fadeIn();
     } else {
@@ -614,9 +632,9 @@ $(async function () {
    */
   function AppendMissionType(elem = e_mission_type) {
     let prev = elem.val(); // 現在選択中の依頼タイプID (保持用)
-    let skyId = elem.find("option:selected").data("sky") ?? 0; // 空基準の依頼タイプID
+    let skyId = elem.find('option:selected').data('sky') ?? 0; // 空基準の依頼タイプID
     let mtype = mission_type;
-    let old = e_version_old.prop("checked");
+    let old = e_version_old.prop('checked');
 
     // 時闇の項目に合わせる
     if (old) {
@@ -625,12 +643,14 @@ $(async function () {
       });
     }
     // アドバンスド有効時、項目数を0xFまで拡張
-    if (advanced) for (let i = mtype.length; i < 16; i++) mtype.push({ id: i, name: "-", flag: 0 });
+    if (advanced) for (let i = mtype.length; i < 16; i++) mtype.push({ id: i, name: '-', flag: 0 });
 
     // 項目を追加
     elem.empty();
     for (let i = 0; i < mtype.length; i++) {
-      elem.append(`<option value="${i}" data-sky="${mtype[i].id}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${mtype[i].name}</option>`);
+      elem.append(
+        `<option value="${i}" data-sky="${mtype[i].id}">[${('00' + i.toString(16)).slice(-2).toUpperCase()}] ${mtype[i].name}</option>`,
+      );
     }
     // 時闇に存在する項目なら値を元に戻し、存在しないなら0にする
     if (old) {
@@ -661,22 +681,22 @@ $(async function () {
    */
   function AppendMissionFlag(elem = e_mission_flag) {
     let prev = elem.val() != undefined ? elem.val() : 0;
-    let skyValue = $("#mission-type option:selected").data("sky");
+    let skyValue = $('#mission-type option:selected').data('sky');
     let flagType = mission_type[skyValue].flag;
     elem.empty();
 
     // 項目セット
     let options = [];
-    if (e_version_sky.prop("checked")) {
+    if (e_version_sky.prop('checked')) {
       options = mission_flag[flagType]; // 空
     } else {
       options = mission_flag_old[flagType]; // 時闇
     }
 
     // アドバンスド有効時、項目数を0xFまで拡張
-    if (advanced) for (let i = options.length; i < 16; i++) options.push("-");
+    if (advanced) for (let i = options.length; i < 16; i++) options.push('-');
     for (let i = 0; i < options.length; i++) {
-      elem.append(`<option value="${i}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${options[i]}</option>`);
+      elem.append(`<option value="${i}">[${('00' + i.toString(16)).slice(-2).toUpperCase()}] ${options[i]}</option>`);
     }
 
     // 値を再度セット
@@ -690,7 +710,9 @@ $(async function () {
     let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
     for (let i = 0; i < reward_type.length; i++) {
-      elem.append(`<option value="${i}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${reward_type[i].name}</option>`);
+      elem.append(
+        `<option value="${i}">[${('00' + i.toString(16)).slice(-2).toUpperCase()}] ${reward_type[i].name}</option>`,
+      );
     }
     // 値を再度セット
     if (prev >= elem.children().length || prev == undefined) prev = 0;
@@ -717,8 +739,8 @@ $(async function () {
       if (subName.length > 0 && subName != null) pokeName += ` - ${subName}`;
       elem.append(
         `<option value="${i}" data-search="${pokeName}" data-pokeid="${i % 600}" data-gender="${gender}" data-banned="${banned}">` +
-          `[${("000" + i.toString(16)).slice(-3).toUpperCase()}] ${pokeName} (${poke_gender[gender].name})` +
-          `</option>`
+          `[${('000' + i.toString(16)).slice(-3).toUpperCase()}] ${pokeName} (${poke_gender[gender].name})` +
+          `</option>`,
       );
     }
     // 値を再度セット
@@ -733,11 +755,11 @@ $(async function () {
     let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
     for (let i = 0; i < ItemData.length; i++) {
-      let itemName = ItemData[i].Name.replace(/\[+[^\[*\]]*\]+/g, "");
+      let itemName = ItemData[i].Name.replace(/\[+[^\[*\]]*\]+/g, '');
       elem.append(
-        `<option value="${i}" data-search="${itemName}" data-valid="${ItemData[i].IsValid}">[${("000" + i.toString(16))
+        `<option value="${i}" data-search="${itemName}" data-valid="${ItemData[i].IsValid}">[${('000' + i.toString(16))
           .slice(-3)
-          .toUpperCase()}] ${itemName}</option>`
+          .toUpperCase()}] ${itemName}</option>`,
       );
     }
     // 値を再度セット
@@ -753,11 +775,11 @@ $(async function () {
     for (let i = 0; i < DungeonData.length; i++) {
       // 追加
       elem.append(
-        `<option value="${i}" data-search="${DungeonData[i].Name}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`
+        `<option value="${i}" data-search="${DungeonData[i].Name}">[${('00' + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`,
       );
     }
     // ダミー(0xAD)を選択不可にする
-    if (!advanced) $(`select#dungeon option[value="${0xad}"]`).prop("disabled", true);
+    if (!advanced) $(`select#dungeon option[value="${0xad}"]`).prop('disabled', true);
 
     // 値を再度セット
     if (prev >= elem.children().length || prev == undefined) prev = 0;
@@ -782,12 +804,14 @@ $(async function () {
         if (diff != -1) {
           // 難易度が上がる依頼タイプの場合、難易度を上げる
           if (mission_type[e_mission_type.val()].difficult && diff < 15) diff++;
-          elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F : ${difficult[diff].name}(${difficult[diff].value})</option>`);
+          elem.append(
+            `<option value="${i}">${dun.FlagStairs ? '' : 'B'}${i - dun.FloorPrev}F : ${difficult[diff].name}(${difficult[diff].value})</option>`,
+          );
         } else {
-          elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F</option>`);
+          elem.append(`<option value="${i}">${dun.FlagStairs ? '' : 'B'}${i - dun.FloorPrev}F</option>`);
         }
       } else {
-        elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F</option>`);
+        elem.append(`<option value="${i}">${dun.FlagStairs ? '' : 'B'}${i - dun.FloorPrev}F</option>`);
       }
     }
     // 値をセット
@@ -800,7 +824,9 @@ $(async function () {
     let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
     for (let i = 0; i < FixedData.length; i++) {
-      elem.append(`<option value="${i}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${FixedData[i].Name}</option>`);
+      elem.append(
+        `<option value="${i}">[${('00' + i.toString(16)).slice(-2).toUpperCase()}] ${FixedData[i].Name}</option>`,
+      );
     }
     // 値を再度セット
     if (prev >= elem.children().length || prev == undefined) prev = 0;
@@ -813,7 +839,9 @@ $(async function () {
     let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
     for (let i = 0; i < restriction.length; i++) {
-      elem.append(`<option value="${i}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${restriction[i].name}</option>`);
+      elem.append(
+        `<option value="${i}">[${('00' + i.toString(16)).slice(-2).toUpperCase()}] ${restriction[i].name}</option>`,
+      );
     }
     // 値を再度セット
     if (prev >= elem.children().length || prev == undefined) prev = 0;
@@ -826,7 +854,9 @@ $(async function () {
     let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
     for (let i = 0; i < poke_type.length; i++) {
-      elem.append(`<option value="${i}" data-search="${poke_type[i].name}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${poke_type[i].name}</option>`);
+      elem.append(
+        `<option value="${i}" data-search="${poke_type[i].name}">[${('00' + i.toString(16)).slice(-2).toUpperCase()}] ${poke_type[i].name}</option>`,
+      );
     }
     // 値を再度セット
     if (prev >= elem.children().length || prev == undefined) prev = 0;
@@ -843,10 +873,10 @@ $(async function () {
     let sky = CheckVersionSky();
     let region = GetRegion();
     let swap = GetSwapTable(sky, region);
-    let error = "";
-    e_pass_alert.removeClass("alert-success");
-    e_pass_alert.removeClass("alert-danger");
-    e_pass_alert.removeClass("alert-warning");
+    let error = '';
+    e_pass_alert.removeClass('alert-success');
+    e_pass_alert.removeClass('alert-danger');
+    e_pass_alert.removeClass('alert-warning');
 
     // パスワード取得
     let pass = ConvertToHalfPassString(e_pass_area.val());
@@ -867,12 +897,17 @@ $(async function () {
         mission.Decode(sky, region, pass);
 
         // 依頼タイプがおたからメモかつ対象ダンジョン以外の時は除外
-        if (!advanced && CheckVersionSky() && mission.MissionType == 0xc && allow_treasure_memo_dun.indexOf(Number(mission.Dungeon)) == -1) {
+        if (
+          !advanced &&
+          CheckVersionSky() &&
+          mission.MissionType == 0xc &&
+          allow_treasure_memo_dun.indexOf(Number(mission.Dungeon)) == -1
+        ) {
           let msg =
             `<p>展開可能なパスワードですが、おたからメモ対象外のダンジョンが含まれています。<br>` +
             `<a href="?advanced">アドバンスドモード</a>で読み込むことができます。</p>`;
           e_pass_alert.html(msg);
-          e_pass_alert.addClass("alert-warning");
+          e_pass_alert.addClass('alert-warning');
           e_pass_alert.fadeIn();
           return mission;
         }
@@ -895,13 +930,13 @@ $(async function () {
         e_seed.val(mission.Seed.toString(16).toUpperCase()).change();
 
         // チェックサムセット
-        e_checksum_1.removeClass("is-valid");
-        e_checksum_2.removeClass("is-valid");
+        e_checksum_1.removeClass('is-valid');
+        e_checksum_2.removeClass('is-valid');
         e_checksum_1.val(mission.Checksum1.toString(16).toUpperCase());
         e_checksum_2.val(mission.Checksum2.toString(16).toUpperCase());
         if (mission.Checksum1 == mission.Checksum2) {
-          e_checksum_1.addClass("is-valid");
-          e_checksum_2.addClass("is-valid");
+          e_checksum_1.addClass('is-valid');
+          e_checksum_2.addClass('is-valid');
         }
 
         // メッセージ
@@ -909,31 +944,31 @@ $(async function () {
         console.log(mission);
 
         if (mission.Checksum1 == mission.Checksum2) {
-          e_pass_alert.html("パスワードを展開しました！");
-          e_pass_alert.addClass("alert-success");
+          e_pass_alert.html('パスワードを展開しました！');
+          e_pass_alert.addClass('alert-success');
         } else {
           let msg =
             `<p>パスワードを展開しましたが、チェックサムが一致しません。` +
             `<br>Checksum1: ${mission.Checksum1.toString(16).toUpperCase()} / Checksum2: ${mission.Checksum2.toString(16).toUpperCase()}</p>` +
             `<p>このまま生成することで正しいチェックサムのパスワードに修正して生成できます。<br>(ただし、正しく使用できる依頼であるかは保証しません)</p>`;
           e_pass_alert.html(msg);
-          e_pass_alert.addClass("alert-warning");
+          e_pass_alert.addClass('alert-warning');
         }
         e_pass_alert.fadeIn();
 
         return mission;
       } catch (e) {
-        error = "処理エラー (" + e + ")";
+        error = '処理エラー (' + e + ')';
         console.error(e);
         e_pass_alert.hide();
         e_pass_alert.text(error);
-        e_pass_alert.addClass("alert-danger");
+        e_pass_alert.addClass('alert-danger');
         e_pass_alert.fadeIn();
       }
     } else {
       e_pass_alert.hide();
-      e_pass_alert.text("\n" + error);
-      e_pass_alert.addClass("alert-danger");
+      e_pass_alert.text('\n' + error);
+      e_pass_alert.addClass('alert-danger');
       e_pass_alert.fadeIn();
     }
   }
@@ -943,9 +978,9 @@ $(async function () {
    */
   async function GeneratePass() {
     e_pass_alert.hide();
-    e_pass_alert.removeClass("alert-success");
-    e_pass_alert.removeClass("alert-danger");
-    e_pass_alert.removeClass("alert-warning");
+    e_pass_alert.removeClass('alert-success');
+    e_pass_alert.removeClass('alert-danger');
+    e_pass_alert.removeClass('alert-warning');
 
     let sky = CheckVersionSky();
     let region = GetRegion();
@@ -955,22 +990,25 @@ $(async function () {
     mission.MissionType = e_mission_type.val() ?? 0;
     mission.MissionFlag = e_mission_flag.val() ?? 0;
     mission.RewardType = e_reward_type.val() ?? 0;
-    mission.RewardValue = reward_type[e_reward_type.val()].mode == 0 ? parseInt(e_reward_value_number.val(), 16) : e_reward_value_select.val();
+    mission.RewardValue =
+      reward_type[e_reward_type.val()].mode == 0
+        ? parseInt(e_reward_value_number.val(), 16)
+        : e_reward_value_select.val();
     mission.Client = e_client.val() ?? 0;
-    mission.Target1 = !e_target_1.prop("disabled") ? e_target_1.val() ?? 0 : e_client.val() ?? 0;
-    mission.Target2 = !e_target_2.prop("disabled") ? e_target_2.val() ?? 0 : 0;
+    mission.Target1 = !e_target_1.prop('disabled') ? (e_target_1.val() ?? 0) : (e_client.val() ?? 0);
+    mission.Target2 = !e_target_2.prop('disabled') ? (e_target_2.val() ?? 0) : 0;
     mission.TargetItem = e_target_item.val() ?? 0;
     mission.Dungeon = e_dungeon.val() ?? 0;
     mission.Floor = e_dungeon_floor.val() ?? 0;
-    mission.Fixed = !e_fixed_floor.prop("disabled") ? e_fixed_floor.val() : 0;
+    mission.Fixed = !e_fixed_floor.prop('disabled') ? e_fixed_floor.val() : 0;
     mission.RestType = e_rest_type.val() ?? 0;
     mission.RestValue = e_rest_value.val() ?? 0;
     mission.Seed = parseInt(e_seed.val(), 16) ?? 0;
 
-    let passstr = "";
-    if (e_mode_consecutive.prop("checked")) {
+    let passstr = '';
+    if (e_mode_consecutive.prop('checked')) {
       if (!advanced) {
-        alert("アドバンスドモード限定の機能なので使用できません。");
+        alert('アドバンスドモード限定の機能なので使用できません。');
         return false;
       }
 
@@ -981,10 +1019,10 @@ $(async function () {
       let max = Number(e_consecutive_max.val());
       let data = {
         maxFind: max,
-        randRewardValue: e_consecutive_rand_reward_value.prop("checked"),
-        randPokemon: e_consecutive_rand_pokemon.prop("checked"),
-        randTargetItem: e_consecutive_rand_target_item.prop("checked"),
-        randSeed: e_consecutive_rand_seed.prop("checked"),
+        randRewardValue: e_consecutive_rand_reward_value.prop('checked'),
+        randPokemon: e_consecutive_rand_pokemon.prop('checked'),
+        randTargetItem: e_consecutive_rand_target_item.prop('checked'),
+        randSeed: e_consecutive_rand_seed.prop('checked'),
         isSky: sky,
         region: region,
         mission: mission,
@@ -995,10 +1033,10 @@ $(async function () {
       const threshold = 10; // 何%ごとにプログレスバーを更新するか
 
       // Worker処理
-      worker = new Worker("/wondermail/js/mail_worker.js", { type: "module" });
+      worker = new Worker('/js/wondermail/mail_worker.js', { type: 'module' });
       let workerMsg = new Promise((resolve, reject) => {
         worker.onmessage = (e) => {
-          if (e.data.type == "progress") {
+          if (e.data.type == 'progress') {
             // 進行
             let value = (e.data.count / max) * 100;
             let scale = (progUpdateCount + 1) * threshold;
@@ -1006,7 +1044,7 @@ $(async function () {
               e_progress_worker_bar.css({ width: `${scale}%` });
               progUpdateCount++;
             }
-          } else if (e.data.type == "complete") {
+          } else if (e.data.type == 'complete') {
             // 完了
             console.log(e.data.passes);
             resolve(e.data);
@@ -1024,7 +1062,7 @@ $(async function () {
       try {
         await workerMsg;
       } catch (err) {
-        console.error("Worker Error: ", err);
+        console.error('Worker Error: ', err);
       } finally {
         worker.terminate();
       }
@@ -1037,12 +1075,12 @@ $(async function () {
     if (passstr.length == GetSwapTable(sky, region).length) {
       let result = passstr.concat();
       // 全角化
-      if ($("#option-multibyte").prop("checked")) {
+      if ($('#option-multibyte').prop('checked')) {
         result = ConvertToMultiPassString(result); // 全角化
       }
       // スペース追加
-      if ($("#option-space").prop("checked")) {
-        let space = $("#option-multibyte").prop("checked") ? `　` : ` `;
+      if ($('#option-space').prop('checked')) {
+        let space = $('#option-multibyte').prop('checked') ? `　` : ` `;
         if (sky) {
           // 空 => 5/7/5で空白追加
           result =
@@ -1074,21 +1112,21 @@ $(async function () {
         }
       }
       // 改行
-      if ($("#option-line").prop("checked")) {
+      if ($('#option-line').prop('checked')) {
         let half = result.length / 2;
-        let space = result.charAt(half) == " " || result.charAt(half) == "　";
-        result = result.slice(0, half) + "\r\n" + result.slice(half + (space ? 1 : 0), result.length);
+        let space = result.charAt(half) == ' ' || result.charAt(half) == '　';
+        result = result.slice(0, half) + '\r\n' + result.slice(half + (space ? 1 : 0), result.length);
       }
 
-      e_pass_area.animate({ backgroundColor: "#000" }, 0).animate({ backgroundColor: "#fff" }, 500);
+      e_pass_area.animate({ backgroundColor: '#000' }, 0).animate({ backgroundColor: '#fff' }, 500);
       e_pass_area.val(result);
 
-      e_pass_alert.addClass("alert-success");
-      e_pass_alert.html("パスワードを生成しました！");
+      e_pass_alert.addClass('alert-success');
+      e_pass_alert.html('パスワードを生成しました！');
       e_pass_alert.fadeIn();
     } else {
-      e_pass_alert.addClass("alert-danger");
-      e_pass_alert.text("パスワードの生成に失敗しました。");
+      e_pass_alert.addClass('alert-danger');
+      e_pass_alert.text('パスワードの生成に失敗しました。');
       e_pass_alert.fadeIn();
     }
   }
@@ -1099,12 +1137,12 @@ $(async function () {
    * @returns
    */
   function ConvertToHalfPassString(str) {
-    let res = "";
+    let res = '';
     res = str
       .toUpperCase()
-      .replace(/[\0\r\n\t 　]/g, "")
-      .replace(/♯/g, "#")
-      .replace(/[−―‐―ー—⁻₋]/g, "-")
+      .replace(/[\0\r\n\t 　]/g, '')
+      .replace(/♯/g, '#')
+      .replace(/[−―‐―ー—⁻₋]/g, '-')
       .replace(/[Ａ-Ｚａ-ｚ０-９＋－＝＆％＠＃]/g, function (s) {
         return String.fromCharCode(s.charCodeAt(0) - 0xfee0);
       });
@@ -1117,10 +1155,10 @@ $(async function () {
    * @returns
    */
   function ConvertToMultiPassString(str) {
-    let res = "";
+    let res = '';
     res = str
       .toUpperCase()
-      .replace(/[\0\r\n\t 　]/g, "")
+      .replace(/[\0\r\n\t 　]/g, '')
       .replace(/[A-Za-z0-9+-=&%@#]/g, function (s) {
         return String.fromCharCode(s.charCodeAt(0) + 0xfee0);
       });
@@ -1132,7 +1170,7 @@ $(async function () {
    * @returns
    */
   function CheckVersionSky() {
-    return e_version_sky.prop("checked");
+    return e_version_sky.prop('checked');
   }
 
   /**
@@ -1140,10 +1178,10 @@ $(async function () {
    * @returns
    */
   function GetRegion() {
-    let res = "";
-    if (e_region_jp.prop("checked")) res = "JP";
-    else if (e_region_na.prop("checked")) res = "NA";
-    else if (e_region_eu.prop("checked")) res = "EU";
+    let res = '';
+    if (e_region_jp.prop('checked')) res = 'JP';
+    else if (e_region_na.prop('checked')) res = 'NA';
+    else if (e_region_eu.prop('checked')) res = 'EU';
     return res;
   }
 
@@ -1212,7 +1250,7 @@ $(async function () {
         // 0x16Aを上限にランダム取得
         res = Math.floor(Math.random() * (0x16a + 1));
         // [時闇] 時闇に無い道具を除外
-        if (e_version_old.prop("checked") && !ItemData[res].IsTokiYami) continue;
+        if (e_version_old.prop('checked') && !ItemData[res].IsTokiYami) continue;
         // ふしぎなタマゴを除外
         if (res == 0xb2) continue;
         // ポケを除外
@@ -1254,7 +1292,13 @@ $(async function () {
       for (let i = 0; i < 0x16b; i++) {
         let allow = 0;
         let isSky = CheckVersionSky();
-        if ((isSky || (!isSky && ItemData[i].IsTokiYami)) && i != 0xb2 && i != 0xbb && i != 0xb7 && ItemData[i].IsValid) {
+        if (
+          (isSky || (!isSky && ItemData[i].IsTokiYami)) &&
+          i != 0xb2 &&
+          i != 0xbb &&
+          i != 0xb7 &&
+          ItemData[i].IsValid
+        ) {
           allow = 1;
         }
         res.push(allow);

@@ -1,5 +1,5 @@
-import { WonderMail } from "/wondermail/js/password.js";
-self.addEventListener("message", (e) => {
+import { WonderMail } from '/js/wondermail/password.js';
+self.addEventListener('message', (e) => {
   let mission = new WonderMail();
   mission.Status = e.data.mission.Status;
   mission.Client = e.data.mission.Client;
@@ -49,17 +49,19 @@ self.addEventListener("message", (e) => {
   let countMax = 0;
   while (true) {
     let t_reward_value = rand_reward_value ? Math.floor(Math.random() * 0x800) : mission.RewardValue;
-    let t_client = rand_pokemon ? GetRandomAllowValue(e.data.allowedPokemon) : mission.Client ?? 0;
-    let t_target_1 = rand_pokemon ? GetRandomAllowValue(e.data.allowedPokemon) : mission.Target1 ?? 0;
+    let t_client = rand_pokemon ? GetRandomAllowValue(e.data.allowedPokemon) : (mission.Client ?? 0);
+    let t_target_1 = rand_pokemon ? GetRandomAllowValue(e.data.allowedPokemon) : (mission.Target1 ?? 0);
     let t_target_2 =
-      rand_pokemon && ((mission.MissionType == 10 && mission.MissionFlag == 6) || (mission.MissionType == 11 && mission.MissionFlag == 0))
+      rand_pokemon &&
+      ((mission.MissionType == 10 && mission.MissionFlag == 6) ||
+        (mission.MissionType == 11 && mission.MissionFlag == 0))
         ? GetRandomAllowValue(e.data.allowedPokemon)
-        : mission.Target2 ?? 0;
+        : (mission.Target2 ?? 0);
 
     // 依頼主と同じポケモンを使用する
     if (sameClient) t_target_1 = t_client;
 
-    let t_item = rand_target_item ? GetRandomAllowValue(e.data.allowedTargetItem) : mission.TargetItem ?? 0;
+    let t_item = rand_target_item ? GetRandomAllowValue(e.data.allowedTargetItem) : (mission.TargetItem ?? 0);
     let t_seed = rand_seed ? Math.floor(Math.random() * 0x1000000) : mission.Seed;
 
     // 依頼作成
@@ -112,7 +114,7 @@ self.addEventListener("message", (e) => {
 
     //if (cnt >= maxrand) break;
     self.postMessage({
-      type: "progress",
+      type: 'progress',
       count: cnt,
     });
     if (cnt >= max) break;
@@ -129,7 +131,7 @@ self.addEventListener("message", (e) => {
   // 終了
   self.postMessage({
     passes: passwords,
-    type: "complete",
+    type: 'complete',
   });
 });
 

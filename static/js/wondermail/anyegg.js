@@ -1,24 +1,24 @@
-import { WonderMail } from "/wondermail/js/password.js";
+import { WonderMail } from '/js/wondermail/password.js';
 
-console.log("a");
+console.log('a');
 $(async function () {
   var PokemonData;
 
   // 要素キャッシュ
-  var e_pass_area = $("#pass-area");
-  var e_version_sky = $("#version-sky");
-  var e_version_old = $("#version-old");
-  var e_region_jp = $("#region-jp");
-  var e_region_na = $("#region-na");
-  var e_region_eu = $("#region-eu");
-  var e_pokemon = $("#pokemon");
-  var e_pass_generate = $("#pass-generate");
-  var e_context_regionfree = $("#context-regionfree");
+  var e_pass_area = $('#pass-area');
+  var e_version_sky = $('#version-sky');
+  var e_version_old = $('#version-old');
+  var e_region_jp = $('#region-jp');
+  var e_region_na = $('#region-na');
+  var e_region_eu = $('#region-eu');
+  var e_pokemon = $('#pokemon');
+  var e_pass_generate = $('#pass-generate');
+  var e_context_regionfree = $('#context-regionfree');
 
-  var e_caution = $(".caution");
-  var e_text_wrap = $(".text-wrap");
-  var e_fix_wrap = $(".fix-wrap");
-  var e_fix_text = $(".fix-text");
+  var e_caution = $('.caution');
+  var e_text_wrap = $('.text-wrap');
+  var e_fix_wrap = $('.fix-wrap');
+  var e_fix_text = $('.fix-text');
 
   // 公開日まで蓋をしておく
   // let now = new Date();
@@ -31,7 +31,7 @@ $(async function () {
   // }
 
   // JSON取得
-  await Promise.all([getJsonData("pokemon"), getJsonData("floor")])
+  await Promise.all([getJsonData('pokemon'), getJsonData('floor')])
     .then((results) => {
       PokemonData = results[0];
     })
@@ -43,15 +43,15 @@ $(async function () {
   e_pokemon.select2(select2Config);
 
   // 生成
-  e_pass_generate.on("click", function () {
+  e_pass_generate.on('click', function () {
     GeneratePass();
   });
   // バージョン
-  $("input[name='version']").on("change", function () {
-    let disabled = e_version_old.prop("checked");
-    e_region_jp.prop("disabled", disabled);
-    e_region_na.prop("disabled", disabled);
-    e_region_eu.prop("disabled", disabled);
+  $("input[name='version']").on('change', function () {
+    let disabled = e_version_old.prop('checked');
+    e_region_jp.prop('disabled', disabled);
+    e_region_na.prop('disabled', disabled);
+    e_region_eu.prop('disabled', disabled);
 
     // チェック処理
     CheckPokemonSelection();
@@ -63,7 +63,7 @@ $(async function () {
     }
   });
   // ポケモン
-  e_pokemon.on("change", function () {
+  e_pokemon.on('change', function () {
     // チェック処理
     CheckPokemonSelection();
   });
@@ -73,7 +73,7 @@ $(async function () {
     e_pokemon.val(1).change();
   });
 
-  $(".fix-pokemon").on("click", function () {
+  $('.fix-pokemon').on('click', function () {
     let id = e_pokemon.val() % 600;
     e_pokemon.val(id).change();
   });
@@ -82,8 +82,8 @@ $(async function () {
    * ポケモンチェック処理
    */
   function CheckPokemonSelection() {
-    let msg = "";
-    let fix = "";
+    let msg = '';
+    let fix = '';
     let pokemonIdx = e_pokemon.val() % 600;
     let genderIdx = Math.floor(e_pokemon.val() / 600);
     if (e_pokemon.val() == 0) {
@@ -101,17 +101,20 @@ $(async function () {
       第二性別の「なにものか」が選択されています。<br>
       タマゴを孵すことは可能ですが、ダンジョンに連れて行くとフリーズするので注意してください。
       `;
-    } else if (e_version_old.prop("checked") && pokemonIdx >= 0x229 && pokemonIdx <= 0x257) {
+    } else if (e_version_old.prop('checked') && pokemonIdx >= 0x229 && pokemonIdx <= 0x257) {
       msg = `
       バージョン「時闇」で技を習得できないポケモンが選択されています。<br>
       時闇の場合、ソフトロックや技関連のバグの要因になるため、非推奨です。
       `;
-    } else if ((PokemonData[pokemonIdx].Genders[genderIdx] == 0 || PokemonData[pokemonIdx].Genders[genderIdx] == 3) && genderIdx == 1) {
+    } else if (
+      (PokemonData[pokemonIdx].Genders[genderIdx] == 0 || PokemonData[pokemonIdx].Genders[genderIdx] == 3) &&
+      genderIdx == 1
+    ) {
       msg = `
       本来存在しない第二性別のポケモンが選択されています。<br>
       技を覚えていない・技がバグる・喋らない等といった本来とは異なる挙動を起こす場合があるため非推奨です。
       `;
-      fix = `[${("000" + pokemonIdx.toString(16)).slice(-3).toUpperCase()}] ${PokemonData[pokemonIdx].Name} (${
+      fix = `[${('000' + pokemonIdx.toString(16)).slice(-3).toUpperCase()}] ${PokemonData[pokemonIdx].Name} (${
         poke_gender[PokemonData[pokemonIdx].Genders[0]].name
       })`;
     }
@@ -151,8 +154,8 @@ $(async function () {
       if (subName.length > 0 && subName != null) pokeName += ` - ${subName}`;
       elem.append(
         `<option value="${i}" data-search="${pokeName}" data-pokeid="${i % 600}" >` +
-          `[${("000" + i.toString(16)).slice(-3).toUpperCase()}] ${pokeName} (${poke_gender[gender].name})` +
-          `</option>`
+          `[${('000' + i.toString(16)).slice(-3).toUpperCase()}] ${pokeName} (${poke_gender[gender].name})` +
+          `</option>`,
       );
     }
     // 値を再度セット
@@ -164,7 +167,7 @@ $(async function () {
    * パスワード生成
    */
   function GeneratePass() {
-    let sky = e_version_sky.prop("checked");
+    let sky = e_version_sky.prop('checked');
     let region = GetRegion();
     let mission = new WonderMail();
 
@@ -188,7 +191,7 @@ $(async function () {
     mission.Seed = randomSeedVal;
     mission.Encode(sky, region);
 
-    let res = "";
+    let res = '';
     if (sky) {
       res = ConvertToMultiFormat(mission.Password, 5, 7, 5);
     } else {
@@ -201,10 +204,10 @@ $(async function () {
    * @returns
    */
   function GetRegion() {
-    let res = "";
-    if (e_region_jp.prop("checked")) res = "JP";
-    else if (e_region_na.prop("checked")) res = "NA";
-    else if (e_region_eu.prop("checked")) res = "EU";
+    let res = '';
+    if (e_region_jp.prop('checked')) res = 'JP';
+    else if (e_region_na.prop('checked')) res = 'NA';
+    else if (e_region_eu.prop('checked')) res = 'EU';
     return res;
   }
 });

@@ -1,17 +1,17 @@
-import { WonderMail } from "/wondermail/js/password.js";
+import { WonderMail } from '/js/wondermail/password.js';
 
 $(async function () {
   var DungeonData;
   var FloorData;
 
   // 要素キャッシュ
-  var e_pass_area = $("#pass-area");
-  var e_region_jp = $("#region-jp");
-  var e_region_na = $("#region-na");
-  var e_region_eu = $("#region-eu");
-  var e_dungeon = $("#dungeon");
-  var e_dungeon_floor = $("#dungeon-floor");
-  var e_pass_generate = $("#pass-generate");
+  var e_pass_area = $('#pass-area');
+  var e_region_jp = $('#region-jp');
+  var e_region_na = $('#region-na');
+  var e_region_eu = $('#region-eu');
+  var e_dungeon = $('#dungeon');
+  var e_dungeon_floor = $('#dungeon-floor');
+  var e_pass_generate = $('#pass-generate');
 
   // 公開日まで蓋をしておく
   // let now = new Date();
@@ -24,7 +24,7 @@ $(async function () {
   // }
 
   // JSON取得
-  await Promise.all([getJsonData("dungeon"), getJsonData("floor")])
+  await Promise.all([getJsonData('dungeon'), getJsonData('floor')])
     .then((results) => {
       DungeonData = results[0];
       FloorData = results[1];
@@ -37,11 +37,11 @@ $(async function () {
   e_dungeon.select2(select2Config);
 
   // ダンジョン
-  e_dungeon.on("change", function () {
+  e_dungeon.on('change', function () {
     AppendDungeonFloor(e_dungeon_floor);
   });
   // 生成
-  e_pass_generate.on("click", function () {
+  e_pass_generate.on('click', function () {
     GeneratePass();
   });
 
@@ -65,7 +65,7 @@ $(async function () {
       if (i == 0xaf) continue;
 
       elem.append(
-        `<option value="${i}" data-search="${DungeonData[i].Name}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`
+        `<option value="${i}" data-search="${DungeonData[i].Name}">[${('00' + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`,
       );
     }
     // ダミー(0xAD)を選択不可にする
@@ -85,7 +85,7 @@ $(async function () {
     let start = dun.FloorPrev + 1;
     let difficult = false;
     for (let i = start; (difficult || i - dun.FloorPrev <= dun.FloorCount) && (!difficult || i <= start + 0xff); i++) {
-      elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F</option>`);
+      elem.append(`<option value="${i}">${dun.FlagStairs ? '' : 'B'}${i - dun.FloorPrev}F</option>`);
     }
     // 値をセット
     elem.val(dun.FloorPrev + 1);
@@ -126,10 +126,10 @@ $(async function () {
    * @returns
    */
   function GetRegion() {
-    let res = "";
-    if (e_region_jp.prop("checked")) res = "JP";
-    else if (e_region_na.prop("checked")) res = "NA";
-    else if (e_region_eu.prop("checked")) res = "EU";
+    let res = '';
+    if (e_region_jp.prop('checked')) res = 'JP';
+    else if (e_region_na.prop('checked')) res = 'NA';
+    else if (e_region_eu.prop('checked')) res = 'EU';
     return res;
   }
 });
