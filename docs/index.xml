@@ -130,7 +130,7 @@
  http-equiv="refresh"
  content="0;URL=https://laioxy.github.io/wondermail/"
 /></description></item><item><title>ダンジョン強制解禁バグ</title><link>https://laioxy.github.io/wondermail/anydungeon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/anydungeon/</guid><description>&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/wondermail/js/anydungeon.js" type="module">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/wondermail/anydungeon.js" type="module">&lt;/script>
 &lt;div class="container-md pb-3">
  &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
  &lt;h1 class="m-0">ダンジョン強制解禁バグ用生成機&lt;/h1>
@@ -303,11 +303,11 @@
  &lt;/li>
  &lt;/ul>
  &lt;/div>
-&lt;/div></description></item><item><title>ふしぎなメール生成機</title><link>https://laioxy.github.io/wondermail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/</guid><description>&lt;link href="https://laioxy.github.io/wondermail/css/wondermail.css" rel="stylesheet" type="text/css" />
+&lt;/div></description></item><item><title>ふしぎなメール生成機</title><link>https://laioxy.github.io/wondermail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/</guid><description>&lt;link href="https://laioxy.github.io/css/wondermail/wondermail.css" rel="stylesheet" type="text/css" />
 &lt;script src="https://laioxy.github.io/js/poke_param.js">&lt;/script>
 &lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/wondermail/js/mail.js" type="module">&lt;/script>
-&lt;script src="https://laioxy.github.io/wondermail/js/mail_param.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/wondermail/mail.js" type="module">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/wondermail/mail_param.js">&lt;/script>
 
 &lt;div class="loading">
  &lt;div class="spinner-border" role="status">
@@ -697,7 +697,7 @@
  &lt;div class="area-mission">
  &lt;p class="fs-5 mb-1">依頼の内容&lt;/p></description></item><item><title>任意タマゴ孵化</title><link>https://laioxy.github.io/wondermail/anyegg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/anyegg/</guid><description>&lt;script src="https://laioxy.github.io/js/poke_param.js">&lt;/script>
 &lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/wondermail/js/anyegg.js" type="module">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/wondermail/anyegg.js" type="module">&lt;/script>
 &lt;div class="container-md pb-3">
  &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
  &lt;h1 class="m-0">任意タマゴ孵化バグ用生成機&lt;/h1>
@@ -835,8 +835,8 @@
  &lt;/div>
 
  &lt;div>
- &lt;p class="fs-5 mb-1">パスワード&lt;/p></description></item><item><title>救助依頼複製ツール</title><link>https://laioxy.github.io/rescue/duplicate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue/duplicate/</guid><description>&lt;script src="https://laioxy.github.io/rescue/js/password.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/rescue/js/duplicate.js">&lt;/script>
+ &lt;p class="fs-5 mb-1">パスワード&lt;/p></description></item><item><title>救助依頼複製ツール</title><link>https://laioxy.github.io/rescue/duplicate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue/duplicate/</guid><description>&lt;script src="https://laioxy.github.io/js/rescue/password.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/rescue/duplicate.js">&lt;/script>
 
 &lt;div class="container-md pb-3">
  &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
@@ -925,8 +925,8 @@
  &lt;/div>
  &lt;/div>
 &lt;/div></description></item><item><title>自演救助ツール</title><link>https://laioxy.github.io/rescue/self-rescue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue/self-rescue/</guid><description>&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/rescue/js/password.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/rescue/js/self-rescue.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/rescue/password.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/rescue/self-rescue.js">&lt;/script>
 
 &lt;div class="container-md pb-3">
  &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
