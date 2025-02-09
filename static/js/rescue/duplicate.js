@@ -1,19 +1,19 @@
 $(function () {
-  var e_pass_area = $("#pass-area");
-  var e_pass_duplicate = $("#pass-duplicate");
+  var e_pass_area = $('#pass-area');
+  var e_pass_duplicate = $('#pass-duplicate');
 
-  var e_pass_sos = $("#pass-sos");
-  var e_base_checksum = $("#base-checksum");
-  var e_new_checksum = $("#new-checksum");
+  var e_pass_sos = $('#pass-sos');
+  var e_base_checksum = $('#base-checksum');
+  var e_new_checksum = $('#new-checksum');
 
   // パスワード複製
-  e_pass_duplicate.on("click", function () {
+  e_pass_duplicate.on('click', function () {
     let pass = ConvertToHalfPassString(e_pass_area.val());
     let rescue = new Rescue();
     rescue.Decode(pass);
 
     if (pass.length != 54) {
-      alert("パスワードの文字数が不正です。");
+      alert('パスワードの文字数が不正です。');
       return false;
     }
     for (let i = 0; i < pass.length; i++) {
@@ -36,7 +36,7 @@ $(function () {
       e_base_checksum.val(ToHex32(rescue.SOSCheckKey).toUpperCase());
       e_new_checksum.val(ToHex32(newRescue.SOSCheckKey).toUpperCase());
     } else {
-      alert("たすけてメールのパスワードではありません。");
+      alert('たすけてメールのパスワードではありません。');
     }
   });
 });

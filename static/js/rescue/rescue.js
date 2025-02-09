@@ -11,23 +11,23 @@ $(async function () {
   var advanced = false;
 
   // 要素キャッシュ
-  var e_pass_area = $("#pass-area");
-  var e_pass_sos = $("#pass-sos");
-  var e_pass_aok = $("#pass-aok");
-  var e_pass_thank = $("#pass-thank");
+  var e_pass_area = $('#pass-area');
+  var e_pass_sos = $('#pass-sos');
+  var e_pass_aok = $('#pass-aok');
+  var e_pass_thank = $('#pass-thank');
 
   var e_rescue_type = $("input:radio[name='rescue-type']");
-  var e_dungeon = $("#dungeon");
-  var e_dungeon_floor = $("#dungeon-floor");
-  var e_dungeon_seed = $("#dungeon-seed");
-  var e_sos_teamid = $("#sos-teamid");
-  var e_sos_checksum = $("#sos-checksum");
-  var e_region = $("#region");
-  var e_team_name = $("#team-name");
-  var e_notsos_value_1 = $("#notsos-value-1");
-  var e_gift_item = $("#gift-item");
-  var e_aok_teamid = $("#aok-teamid");
-  var e_aok_checksum = $("#aok-checksum");
+  var e_dungeon = $('#dungeon');
+  var e_dungeon_floor = $('#dungeon-floor');
+  var e_dungeon_seed = $('#dungeon-seed');
+  var e_sos_teamid = $('#sos-teamid');
+  var e_sos_checksum = $('#sos-checksum');
+  var e_region = $('#region');
+  var e_team_name = $('#team-name');
+  var e_notsos_value_1 = $('#notsos-value-1');
+  var e_gift_item = $('#gift-item');
+  var e_aok_teamid = $('#aok-teamid');
+  var e_aok_checksum = $('#aok-checksum');
   var e_version = $("input:radio[name='version']");
 
   // コンボボックスセット
@@ -35,11 +35,11 @@ $(async function () {
   AppendDungeon(e_dungeon);
   AppendDungeonFloor(e_dungeon_floor);
 
-  e_dungeon.on("change", function () {
+  e_dungeon.on('change', function () {
     AppendDungeonFloor(e_dungeon_floor, true);
   });
 
-  $("#pass-analysis").on("click", function () {
+  $('#pass-analysis').on('click', function () {
     // パスワード展開
     rescue = new Rescue();
     let pass = ConvertToHalfPassString(e_pass_area.val());
@@ -55,8 +55,8 @@ $(async function () {
       sos.Encode(1);
       e_pass_sos.text(ConvertToMultiFormat(sos.Password));
     } else {
-      e_pass_sos.text("");
-      e_pass_sos.prop("placeholder", "ふっかつ・おれいのメールから生成不可");
+      e_pass_sos.text('');
+      e_pass_sos.prop('placeholder', 'ふっかつ・おれいのメールから生成不可');
     }
 
     // ふっかつメール生成
@@ -94,14 +94,14 @@ $(async function () {
    * @returns
    */
   function ConvertToHalfPassString(str) {
-    let res = "";
+    let res = '';
     res = str
       .toUpperCase()
-      .replace(/[\0\r\n\t 　]/g, "")
-      .replace(/♯/g, "#")
-      .replace(/oOｏＯ/g, "0")
-      .replace(/iIｉＩ/g, "1")
-      .replace(/[−―‐―ー—⁻₋]/g, "-")
+      .replace(/[\0\r\n\t 　]/g, '')
+      .replace(/♯/g, '#')
+      .replace(/oOｏＯ/g, '0')
+      .replace(/iIｉＩ/g, '1')
+      .replace(/[−―‐―ー—⁻₋]/g, '-')
       .replace(/[Ａ-Ｚａ-ｚ０-９＋－＝＆％＠＃]/g, function (s) {
         return String.fromCharCode(s.charCodeAt(0) - 0xfee0);
       });
@@ -114,19 +114,19 @@ $(async function () {
    * @returns
    */
   function ConvertToMultiFormat(str) {
-    let res = "";
+    let res = '';
     let replace;
     replace = str
       .toUpperCase()
-      .replace(/[\0\r\n\t 　]/g, "")
+      .replace(/[\0\r\n\t 　]/g, '')
       .replace(/[A-Za-z0-9+-=&%@#]/g, function (s) {
         return String.fromCharCode(s.charCodeAt(0) + 0xfee0);
       });
     for (let i = 0; i < 9; i++) {
       res += replace.slice(6 * i, 6 * (i + 1));
       if (i < 8) {
-        if ((i + 1) % 3 == 0) res += "\n";
-        else res += "　";
+        if ((i + 1) % 3 == 0) res += '\n';
+        else res += '　';
       }
     }
     return res;
@@ -146,9 +146,9 @@ $(async function () {
       //   ].Name.replace(/\[+[^\[*\]]*\]+/g, "")}</option>`
       // );
       elem.append(
-        `<option value="${i}" data-search="${ItemData[i].Name}" data-valid="${ItemData[i].IsValid}">[${("000" + i.toString(16)).slice(-3).toUpperCase()}] ${
+        `<option value="${i}" data-search="${ItemData[i].Name}" data-valid="${ItemData[i].IsValid}">[${('000' + i.toString(16)).slice(-3).toUpperCase()}] ${
           ItemData[i].Name
-        }</option>`
+        }</option>`,
       );
     }
     // 値を再度セット
@@ -163,10 +163,12 @@ $(async function () {
     let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
     for (let i = 0; i < DungeonData.length; i++) {
-      elem.append(`<option value="${i}">[${("00" + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`);
+      elem.append(
+        `<option value="${i}">[${('00' + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`,
+      );
     }
     // ダミー(0xAD)を選択不可にする
-    if (!advanced) $(`select#dungeon option[value="${0xad}"]`).prop("disabled", true);
+    if (!advanced) $(`select#dungeon option[value="${0xad}"]`).prop('disabled', true);
     // 値を再度セット
     if (prev >= elem.children().length || prev == undefined) prev = 0;
     elem.val(prev);
@@ -182,7 +184,7 @@ $(async function () {
     elem.empty();
     for (let i = dun.FloorPrev + 1; i - dun.FloorPrev <= dun.FloorCount; i++) {
       let diff = FloorData[dun.MappaIndex][i].MissionRankId;
-      elem.append(`<option value="${i}">${dun.FlagStairs ? "" : "B"}${i - dun.FloorPrev}F</option>`);
+      elem.append(`<option value="${i}">${dun.FlagStairs ? '' : 'B'}${i - dun.FloorPrev}F</option>`);
     }
     // 値をセット
     elem.val(dun.FloorPrev + 1);
