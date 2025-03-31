@@ -55,5 +55,5 @@ const poke_iqgroup = [
   { id: 12, name: '未使用' },
   { id: 13, name: '未使用' },
   { id: 14, name: '未使用' },
-  { id: 15, name: '無効' },
+  { id: 15, name: '未使用' },
 ];
