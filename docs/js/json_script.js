@@ -9,6 +9,7 @@ const jsonPathsArray = {
   fixed: '/data/fixed.min.json',
   message: '/data/message.min.json',
   type: '/data/type.min.json',
+  iqgroup: '/data/iqgroup.min.json',
 };
 
 /**
@@ -18,8 +19,7 @@ const jsonPathsArray = {
  */
 async function getJsonData(key) {
   try {
-    const res = await $.getJSON(jsonPathsArray[key]);
-    return res;
+    return await fetch(jsonPathsArray[key]).then((res) => res.json());
   } catch (e) {
     console.error('getJsonData Failed: ', e);
     return null;

@@ -1,4 +1,4 @@
-var select2Config = { theme: "bootstrap-5", matcher: Select2CustomMatcher, templateResult: Select2FormatState };
+var select2Config = { theme: 'bootstrap-5', matcher: Select2CustomMatcher, templateResult: Select2FormatState };
 
 /**
  * 値を符号なし16進数に変換
@@ -11,7 +11,7 @@ function ToHex32(value) {
 
   if (!h) return l.toString(16);
 
-  return h.toString(16) + ("0000" + l.toString(16)).slice(-4);
+  return h.toString(16) + ('0000' + l.toString(16)).slice(-4);
 }
 
 /**
@@ -44,14 +44,14 @@ function HiraToKana(str) {
  * @returns
  */
 function ConvertToHalfPassString(str) {
-  let res = "";
+  let res = '';
   res = str
     .toUpperCase()
-    .replace(/[\0\r\n\t 　]/g, "")
-    .replace(/♯/g, "#")
-    .replace(/oOｏＯ/g, "0")
-    .replace(/iIｉＩ/g, "1")
-    .replace(/[−―‐―ー—⁻₋]/g, "-")
+    .replace(/[\0\r\n\t 　]/g, '')
+    .replace(/♯/g, '#')
+    .replace(/oOｏＯ/g, '0')
+    .replace(/iIｉＩ/g, '1')
+    .replace(/[−―‐―ー—⁻₋]/g, '-')
     .replace(/[Ａ-Ｚａ-ｚ０-９＋－＝＆％＠＃]/g, function (s) {
       return String.fromCharCode(s.charCodeAt(0) - 0xfee0);
     });
@@ -67,17 +67,17 @@ function ConvertToHalfPassString(str) {
  * @returns
  */
 function ConvertToMultiFormat(str, sec1, sec2, sec3) {
-  let res = "";
+  let res = '';
   let replace;
   replace = str
     .toUpperCase()
-    .replace(/[\0\r\n\t 　]/g, "")
+    .replace(/[\0\r\n\t 　]/g, '')
     .replace(/[A-Za-z0-9+-=&%@#]/g, function (s) {
       return String.fromCharCode(s.charCodeAt(0) + 0xfee0);
     });
 
   if (sec1 == undefined || sec2 == undefined || sec3 == undefined) {
-    alert("プログラムエラー");
+    alert('プログラムエラー');
     return false;
   }
 
@@ -85,21 +85,32 @@ function ConvertToMultiFormat(str, sec1, sec2, sec3) {
   while (true) {
     // セクション1
     res += replace.slice(i, i + sec1);
-    res += "　";
+    res += '　';
     i += sec1;
     // セクション2
     res += replace.slice(i, i + sec2);
-    res += "　";
+    res += '　';
     i += sec2;
     // セクション3
     res += replace.slice(i, i + sec3);
     i += sec3;
     // 改行
     if (i >= str.length) break;
-    else res += "\n";
+    else res += '\n';
   }
 
   return res;
+}
+
+/**
+ * 文字列を全角に変換
+ * @param {string} str 対象の文字列
+ * @returns
+ */
+function toFullWidth(str) {
+  return str.replace(/[\x20-\x7E]/g, (char) => {
+    return String.fromCharCode(char.charCodeAt(0) + 0xfee0);
+  });
 }
 
 /**
@@ -108,7 +119,148 @@ function ConvertToMultiFormat(str, sec1, sec2, sec3) {
  * @returns
  */
 function formatRemoveTagString(str) {
-  return str.replace(/\[+[^\[*\]]*\]+/g, "");
+  return str.replace(/\[+[^\[*\]]*\]+/g, '');
+}
+
+/**
+ * 未使用ポケモンであるかチェック
+ * @param {*} pokemonId ポケモンID
+ * @returns
+ */
+function isUnusedPokemon(pokemonId) {
+  const ids = [0, 279, 384]; // なにものか, セレビィ(ピンク), カクレオン(紫)
+  return ids.includes(pokemonId) || pokemonId > 536;
+}
+
+/**
+ * 未使用技であるかチェック
+ * @param {*} moveId 技ID
+ * @returns
+ */
+function isUnusedMove(moveId) {
+  const ids = [
+    0, // なし
+    355, // こうげき
+    356, // ようすをみる
+    357, // がまん
+    358, // リベンジ
+    361, // ゆきなだれ
+    362, // ほりおこし
+    363, // かいてんぎり
+    364, // わなみえ
+    365, // とりあげる
+    365, // はねかえし
+    366, // やまごえぎり
+    367, // ばしょがえ
+    368, // ふっとび
+    369, // ワープ
+    370, // へんか
+    371, // のろのろ
+    372, // かそく
+    373, // ライト
+    374, // こうちょく
+    375, // いちじしのぎ
+    376, // とびつき
+    377, // ひきよせ
+    378, // おはらい
+    379, // ようすみ
+    380, // とりかわる
+    381, // バクスイ
+    382, // ふらふら
+    383, // もろは
+    384, // わざふういん
+    385, // だっしゅつ
+    386, // せんりがん
+    387, // じごくみみ
+    388, // ひあがり
+    389, // わなこわし
+    390, // よびよせ
+    391, // とうめい
+    392, // いちげき
+    393, // しきべつ
+    395, // ふっかつ
+    396, // ビックリ
+    397, // きょうめい
+    398, // ハラヘリ
+    399, // おおべや
+    400, // うめたて
+    401, // わなつくり
+    402, // のりうつり
+    403, // どうぐへんか
+    404, // -
+    405, // なげたもの
+    406, // なげとばし
+    407, // つうか
+    408, // アイテムなげ
+    409, // かいだん
+    410, // えんとう
+    411, // -
+    412, // かんつう
+    413, // -
+    414, // -
+    415, // -
+    416, // -
+    417, // -
+    418, // -
+    419, // -
+    420, // -
+    421, // -
+    422, // -
+    423, // -
+    424, // - (はらいのけだま)
+    425, // - (てきしばりだま)
+    426, // - (みなマッハだま)
+    427, // - (てきおびえだま)
+    428, // - (みなヒットだま)
+    429, // - (てきふうじだま)
+    467, // さばきのつぶて
+    543, // -
+    544, // -
+    545, // -
+    546, // -
+    547, // -
+    548, // -
+    549, // -
+    550, // -
+    551, // -
+    552, // -
+    553, // -
+    554, // -
+    555, // -
+    556, // -
+    557, // -
+    558, // -
+  ];
+  return ids.includes(moveId);
+}
+
+/**
+ * 未使用ダンジョンであるかチェック
+ * @param {*} dungeonId
+ * @returns
+ */
+function isUnusedDungeon(dungeonId) {
+  const ids = [
+    0, // テストダンジョン
+    71, // かくされたいせき おくそこ
+    105, // ダミー
+    106, // ダミー
+    165, // ちょこっとへいげん
+    166, // クリアざん
+    167, // チャレンジリバー
+    168, // おためしのもり
+    169, // いざないのうみ
+    170, // てんしゅのかくれざと
+    171, // ダミー
+    172, // ダミー
+    173, // ダミー
+    175, // シェイミのさと
+    176, // アーマルドのすみか
+    177, // ひかりのいずみ
+    178, // おんせん
+    179, // きゅうじょダンジョン
+  ]; // 192以降: くんれんじょ, きゅうじょダンジョン
+  return ids.includes(dungeonId) || dungeonId > 191;
 }
 
 /**
@@ -123,12 +275,12 @@ function Select2CustomMatcher(params, data) {
   let e_data = $(data.element);
 
   // 検索語がない場合は、すべてのデータを返す
-  if ($.trim(params.term) === "") {
+  if ($.trim(params.term) === '') {
     return data;
   }
 
   // textプロパティがない場合は、項目を表示しない
-  if (typeof data.text === "undefined") {
+  if (typeof data.text === 'undefined') {
     return null;
   }
 
@@ -140,14 +292,14 @@ function Select2CustomMatcher(params, data) {
   }
 
   // 名称部分のみで検索（ひらがなカタカナ両対応）
-  if (e_data.data("search") != undefined) {
-    let hira = KanaToHira(e_data.data("search"));
-    let kana = HiraToKana(e_data.data("search"));
+  if (e_data.data('search') != undefined) {
+    const hira = KanaToHira(e_data.data('search'));
+    const kana = HiraToKana(e_data.data('search'));
     if (hira.indexOf(params.term) > -1 || kana.indexOf(params.term) > -1) {
-      var modifiedData = $.extend({}, data, true);
+      const modifiedData = $.extend({}, data, true);
       return modifiedData;
     } else if (data.text.indexOf(params.term) > -1) {
-      var modifiedData = $.extend({}, data, true);
+      const modifiedData = $.extend({}, data, true);
       return modifiedData;
     }
   }
@@ -166,20 +318,20 @@ function Select2CustomMatcher(params, data) {
 function Select2FormatState(state) {
   let res = $(`<span>${state.text}</span>`);
 
-  let banned = $(state.element).data("banned") ?? false;
-  let nogender = $(state.element).data("gender") == 0;
-  let invalid = $(state.element).data("valid") != undefined ? !$(state.element).data("valid") : undefined;
-  let allow = $(state.element).data("allow") != undefined ? $(state.element).data("allow") : undefined;
+  let banned = $(state.element).data('banned') ?? false;
+  let nogender = $(state.element).data('gender') == 0;
+  let invalid = $(state.element).data('valid') != undefined ? !$(state.element).data('valid') : undefined;
+  let allow = $(state.element).data('allow') != undefined ? $(state.element).data('allow') : undefined;
 
   if (banned) {
     // 禁止ポケモン
-    res.addClass("banned");
+    res.addClass('banned');
   } else if (nogender) {
     // 無効ポケモン
-    res.addClass("invalid");
+    res.addClass('invalid');
   } else if (invalid != undefined && invalid) {
     // 無効道具
-    res.addClass("invalid");
+    res.addClass('invalid');
   }
 
   return res;
