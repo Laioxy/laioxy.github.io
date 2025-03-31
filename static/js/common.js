@@ -1,4 +1,4 @@
-var select2Config = { theme: "bootstrap-5", matcher: Select2CustomMatcher, templateResult: Select2FormatState };
+var select2Config = { theme: 'bootstrap-5', matcher: Select2CustomMatcher, templateResult: Select2FormatState };
 
 /**
  * 値を符号なし16進数に変換
@@ -11,7 +11,7 @@ function ToHex32(value) {
 
   if (!h) return l.toString(16);
 
-  return h.toString(16) + ("0000" + l.toString(16)).slice(-4);
+  return h.toString(16) + ('0000' + l.toString(16)).slice(-4);
 }
 
 /**
@@ -44,14 +44,14 @@ function HiraToKana(str) {
  * @returns
  */
 function ConvertToHalfPassString(str) {
-  let res = "";
+  let res = '';
   res = str
     .toUpperCase()
-    .replace(/[\0\r\n\t 　]/g, "")
-    .replace(/♯/g, "#")
-    .replace(/oOｏＯ/g, "0")
-    .replace(/iIｉＩ/g, "1")
-    .replace(/[−―‐―ー—⁻₋]/g, "-")
+    .replace(/[\0\r\n\t 　]/g, '')
+    .replace(/♯/g, '#')
+    .replace(/oOｏＯ/g, '0')
+    .replace(/iIｉＩ/g, '1')
+    .replace(/[−―‐―ー—⁻₋]/g, '-')
     .replace(/[Ａ-Ｚａ-ｚ０-９＋－＝＆％＠＃]/g, function (s) {
       return String.fromCharCode(s.charCodeAt(0) - 0xfee0);
     });
@@ -67,17 +67,17 @@ function ConvertToHalfPassString(str) {
  * @returns
  */
 function ConvertToMultiFormat(str, sec1, sec2, sec3) {
-  let res = "";
+  let res = '';
   let replace;
   replace = str
     .toUpperCase()
-    .replace(/[\0\r\n\t 　]/g, "")
+    .replace(/[\0\r\n\t 　]/g, '')
     .replace(/[A-Za-z0-9+-=&%@#]/g, function (s) {
       return String.fromCharCode(s.charCodeAt(0) + 0xfee0);
     });
 
   if (sec1 == undefined || sec2 == undefined || sec3 == undefined) {
-    alert("プログラムエラー");
+    alert('プログラムエラー');
     return false;
   }
 
@@ -85,18 +85,18 @@ function ConvertToMultiFormat(str, sec1, sec2, sec3) {
   while (true) {
     // セクション1
     res += replace.slice(i, i + sec1);
-    res += "　";
+    res += '　';
     i += sec1;
     // セクション2
     res += replace.slice(i, i + sec2);
-    res += "　";
+    res += '　';
     i += sec2;
     // セクション3
     res += replace.slice(i, i + sec3);
     i += sec3;
     // 改行
     if (i >= str.length) break;
-    else res += "\n";
+    else res += '\n';
   }
 
   return res;
@@ -108,7 +108,7 @@ function ConvertToMultiFormat(str, sec1, sec2, sec3) {
  * @returns
  */
 function formatRemoveTagString(str) {
-  return str.replace(/\[+[^\[*\]]*\]+/g, "");
+  return str.replace(/\[+[^\[*\]]*\]+/g, '');
 }
 
 /**
@@ -123,12 +123,12 @@ function Select2CustomMatcher(params, data) {
   let e_data = $(data.element);
 
   // 検索語がない場合は、すべてのデータを返す
-  if ($.trim(params.term) === "") {
+  if ($.trim(params.term) === '') {
     return data;
   }
 
   // textプロパティがない場合は、項目を表示しない
-  if (typeof data.text === "undefined") {
+  if (typeof data.text === 'undefined') {
     return null;
   }
 
@@ -140,14 +140,14 @@ function Select2CustomMatcher(params, data) {
   }
 
   // 名称部分のみで検索（ひらがなカタカナ両対応）
-  if (e_data.data("search") != undefined) {
-    let hira = KanaToHira(e_data.data("search"));
-    let kana = HiraToKana(e_data.data("search"));
+  if (e_data.data('search') != undefined) {
+    const hira = KanaToHira(e_data.data('search'));
+    const kana = HiraToKana(e_data.data('search'));
     if (hira.indexOf(params.term) > -1 || kana.indexOf(params.term) > -1) {
-      var modifiedData = $.extend({}, data, true);
+      const modifiedData = $.extend({}, data, true);
       return modifiedData;
     } else if (data.text.indexOf(params.term) > -1) {
-      var modifiedData = $.extend({}, data, true);
+      const modifiedData = $.extend({}, data, true);
       return modifiedData;
     }
   }
@@ -166,20 +166,20 @@ function Select2CustomMatcher(params, data) {
 function Select2FormatState(state) {
   let res = $(`<span>${state.text}</span>`);
 
-  let banned = $(state.element).data("banned") ?? false;
-  let nogender = $(state.element).data("gender") == 0;
-  let invalid = $(state.element).data("valid") != undefined ? !$(state.element).data("valid") : undefined;
-  let allow = $(state.element).data("allow") != undefined ? $(state.element).data("allow") : undefined;
+  let banned = $(state.element).data('banned') ?? false;
+  let nogender = $(state.element).data('gender') == 0;
+  let invalid = $(state.element).data('valid') != undefined ? !$(state.element).data('valid') : undefined;
+  let allow = $(state.element).data('allow') != undefined ? $(state.element).data('allow') : undefined;
 
   if (banned) {
     // 禁止ポケモン
-    res.addClass("banned");
+    res.addClass('banned');
   } else if (nogender) {
     // 無効ポケモン
-    res.addClass("invalid");
+    res.addClass('invalid');
   } else if (invalid != undefined && invalid) {
     // 無効道具
-    res.addClass("invalid");
+    res.addClass('invalid');
   }
 
   return res;
