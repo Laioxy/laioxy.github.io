@@ -9,28 +9,27 @@ $(async function () {
   //   return;
   // }
 
-  var ItemData = await getJsonData("item");
+  var ItemData = await getJsonData('item');
 
-  var e_pass_area = $("#pass-area");
-  var e_pass_result = $("#pass-result");
-  var e_gift_item = $("#gift-item");
-  var e_gift_item_count_wrap = $("#gift-item-count-wrap");
-  var e_gift_item_count = $("#gift-item-count");
-  var e_gift_item_inner_wrap = $("#gift-item-inner-wrap");
-  var e_gift_item_inner = $("#gift-item-inner");
-  var e_error = $("#error-box");
-  var e_error_text = $("#error-text");
-  var e_warning = $("#warning-box");
-  var e_warning_text = $("#warning-text");
-  var e_btn_analysis = $("#pass-analysis");
+  var e_pass_area = $('#pass-area');
+  var e_pass_result = $('#pass-result');
+  var e_gift_item = $('#gift-item');
+  var e_gift_item_count_wrap = $('#gift-item-count-wrap');
+  var e_gift_item_count = $('#gift-item-count');
+  var e_gift_item_inner_wrap = $('#gift-item-inner-wrap');
+  var e_gift_item_inner = $('#gift-item-inner');
+  var e_error = $('#error-box');
+  var e_error_text = $('#error-text');
+  var e_warning = $('#warning-box');
+  var e_warning_text = $('#warning-text');
+  var e_btn_analysis = $('#pass-analysis');
 
   // アドバンスドモード (エラー無視して生成)
-  var advanced =
-    new URL(document.location).searchParams.get("advanced") != null;
+  var advanced = new URL(document.location).searchParams.get('advanced') != null;
   if (advanced) {
-    e_btn_analysis.css("background-color", "#6610f2");
-    e_btn_analysis.css("border-color", "#6f42c1");
-    e_btn_analysis.text(e_btn_analysis.text() + " (advanced)");
+    e_btn_analysis.css('background-color', '#6610f2');
+    e_btn_analysis.css('border-color', '#6f42c1');
+    e_btn_analysis.text(e_btn_analysis.text() + ' (advanced)');
   }
 
   // 贈ってもらう道具セット
@@ -46,10 +45,7 @@ $(async function () {
 
   function InitGiftItemCount() {
     const item = ItemData[e_gift_item.val()];
-    const inner =
-      item.Category == 12 || item.Id == 0xbb
-        ? ItemData[e_gift_item_inner.val()]
-        : null;
+    const inner = item.Category == 12 || item.Id == 0xbb ? ItemData[e_gift_item_inner.val()] : null;
 
     // 投擲物-トゲ(0), 投擲物-石(1)、ポケの時、道具の個数表示
     if (item.Category == 0 || item.Category == 1 || item.Id == 0xb7) {
@@ -66,47 +62,31 @@ $(async function () {
     }
 
     // [WARNING] 無効な道具選択
-    if (
-      (item.Id > 0 && !item.IsValid) ||
-      (inner != null && inner.Id > 0 && !inner.IsValid)
-    ) {
+    if ((item.Id > 0 && !item.IsValid) || (inner != null && inner.Id > 0 && !inner.IsValid)) {
       msg = `無効な道具が選択されています。<br>
       パスワードの作成は可能ですが、入力しても弾かれてしまうので使用できません。`;
       ViewMsgWarning(msg);
     }
     // [WARNING] 贈る道具としてポケ、しようごマシン、ふしぎなタマゴ選択
     else if (item.Id == 0xb7 || item.Id == 0xb2 || item.Id == 0xbb) {
-      msg = `贈ってもらう道具に「${formatRemoveTagString(
-        item.Name
-      )}」が選択されています。<br>
+      msg = `贈ってもらう道具に「${formatRemoveTagString(item.Name)}」が選択されています。<br>
       パスワードの作成は可能ですが、入力しても弾かれてしまうので使用できません。`;
       ViewMsgWarning(msg);
     }
     // [WARNING] 中身の道具としてポケ、しようごマシン、ふしぎなタマゴ選択
-    else if (
-      inner != null &&
-      (inner.Id == 0xb7 || inner.Id == 0xb2 || inner.Id == 0xbb)
-    ) {
-      msg = `中身の道具に「${formatRemoveTagString(
-        inner.Name
-      )}」が選択されています。<br>
+    else if (inner != null && (inner.Id == 0xb7 || inner.Id == 0xb2 || inner.Id == 0xbb)) {
+      msg = `中身の道具に「${formatRemoveTagString(inner.Name)}」が選択されています。<br>
       パスワードの作成は可能ですが、入力しても弾かれてしまうので使用できません。`;
       ViewMsgWarning(msg);
     }
     // [WARNING] スタック可能な道具で個数が0
-    else if (
-      (item.Category == 0 || item.Category == 1) &&
-      e_gift_item_count.val() == 0
-    ) {
+    else if ((item.Category == 0 || item.Category == 1) && e_gift_item_count.val() == 0) {
       msg = `スタック可能な道具で個数が${e_gift_item_count.val()}に設定されています。<br>
       パスワードの作成は可能ですが、入力しても弾かれてしまうので使用できません。`;
       ViewMsgWarning(msg);
     }
     // [WARNING] スタック可能な道具で個数が99を超える
-    else if (
-      (item.Category == 0 || item.Category == 1) &&
-      e_gift_item_count.val() > 99
-    ) {
+    else if ((item.Category == 0 || item.Category == 1) && e_gift_item_count.val() > 99) {
       msg = `スタック可能な道具で個数が99を超えています。<br>
       パスワードの作成は可能ですが、入力しても弾かれてしまうので使用できません。`;
       ViewMsgWarning(msg);
@@ -118,21 +98,21 @@ $(async function () {
   /**
    * Changeイベント
    */
-  e_gift_item.on("change", function () {
+  e_gift_item.on('change', function () {
     InitGiftItemCount();
   });
-  e_gift_item_inner.on("change", function () {
+  e_gift_item_inner.on('change', function () {
     InitGiftItemCount();
   });
-  e_gift_item_count.on("change, input", function () {
+  e_gift_item_count.on('change, input', function () {
     InitGiftItemCount();
   });
 
   /**
    * ふっかつ/おれいのメール作成ボタン押下
    */
-  e_btn_analysis.on("click", function () {
-    let msg = "";
+  e_btn_analysis.on('click', function () {
+    let msg = '';
     let input = ConvertToHalfPassString(e_pass_area.val());
 
     if (input.length !== 54) {
@@ -176,10 +156,7 @@ $(async function () {
 
     // 投擲物の個数をセット
     if (item.Category == 0 || item.Category == 1) {
-      result.GiftItemCount = Math.max(
-        0,
-        Math.min(99, Number(e_gift_item_count.val() ?? 0))
-      );
+      result.GiftItemCount = Math.max(0, Math.min(99, Number(e_gift_item_count.val() ?? 0)));
     }
     // 宝箱またはしようごマシンの中身をセット
     else if (item.Category == 12 || item.Id == 0xbb) {
@@ -196,13 +173,13 @@ $(async function () {
       result.AOKCheckKey = rescue.SOSCheckKey;
       result.AOKTeamId = Math.floor(Math.random() * 0xffffffff);
       result.GiftItemId = e_gift_item.val() ?? 0;
-      result.TeamName = "じえん";
+      result.TeamName = 'じえん';
       result.Encode(4);
     } else if (rescue.RescueType == 4) {
       // ふっかつ→おれい
       result.RescueType = 5;
       result.GiftItemId = e_gift_item.val() ?? 0;
-      result.TeamName = "じえん";
+      result.TeamName = 'じえん';
       result.Encode(5);
     }
     e_pass_result.text(ConvertToMultiFormat(result.Password, 6, 6, 6));
@@ -244,11 +221,9 @@ $(async function () {
     for (let i = 0; i < ItemData.length; i++) {
       const itemName = formatRemoveTagString(ItemData[i].Name);
       elem.append(
-        `<option value="${i}" data-search="${itemName}" data-valid="${
-          ItemData[i].IsValid
-        }">[${("000" + i.toString(16))
+        `<option value="${i}" data-search="${itemName}" data-valid="${ItemData[i].IsValid}">[${('000' + i.toString(16))
           .slice(-3)
-          .toUpperCase()}] ${itemName}</option>`
+          .toUpperCase()}] ${itemName}</option>`,
       );
     }
     // 値を再度セット
