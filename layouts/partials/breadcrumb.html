@@ -1,0 +1,14 @@
+<!-- パンくずリスト -->
+<!-- ※動的生成の為キャッシュ化はしないこと -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    {{ range .page.Ancestors.Reverse }}
+      <li class="breadcrumb-item">
+        <a href="{{ .Permalink }}">
+          {{ .Title }}
+        </a>
+      </li>
+    {{ end }}
+    <li class="breadcrumb-item active">{{ .title }}</li>
+  </ol>
+</nav>
