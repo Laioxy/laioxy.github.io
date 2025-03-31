@@ -1,0 +1,36 @@
+<!-- 対象のポケモンが対象のかしこさを習得している(できる)か -->
+<!-- dict "id" {ポケモンID} "skillId" {かしこさID} "skillValue" {かしこさ値(任意)} -->
+<!-- skillValue が未指定の場合、かしこさ値を考慮しない -->
+
+{{ $iqgroup_json := resources.Get "data/iqgroup.json" | transform.Unmarshal }}
+{{ $iqskill_json := resources.Get "data/iqskill.json" | transform.Unmarshal }}
+
+{{ $pokemonId := int .id }}
+{{ $skillId := int .skillId }}
+{{ $skillValue := -1 }}
+{{ if .skillValue }}
+  {{ $skillValue = int .skillValue }}
+{{ end }}
+
+
+<!-- かしこさグループを取得 -->
+{{ $pokemon := partial "methods/GetPokemonById" $pokemonId }}
+{{ $iqGroup := int $pokemon.IQGroup }}
+
+
+<!-- かしこさを取得 -->
+{{ $skills := index $iqgroup_json $iqGroup }}
+
+
+<!-- 習得できるかチェック -->
+{{ $res := in $skills $skillId }}
+{{ if and $res (ge $skillValue 0) }}
+  <!-- かしこさ値の指定がある場合、そのかしこさ値で習得できるかチェック -->
+  {{ $skill := index $iqskill_json $skillId }}
+  {{ $targetValue := int $skill.IQValue }}
+  {{ $res = le $targetValue $skillValue }}
+{{ end }}
+
+
+<!-- true/false -->
+{{ return $res }}

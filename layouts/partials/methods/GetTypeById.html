@@ -1,0 +1,3 @@
+<!-- タイプをIDで取得する -->
+{{ $type_json := resources.Get "data/type.json" | transform.Unmarshal }}
+{{ return index $type_json (int .) }}

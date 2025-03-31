@@ -1,0 +1,58 @@
+<!-- 対象のポケモンIDが出現する固定フロアデータを取得する -->
+<!-- dict "id" {ポケモンID} "mode" {s(空), t(時), d(闇)} -->
+
+{{ $pokemonId := (int .id) }}
+{{ $fixeds := partial "methods/SearchFixedFloorByPokemonId" $pokemonId }}
+
+{{ $dungeon_json := resources.Get "data/dungeon.json" | transform.Unmarshal }}
+{{ $floor_json := resources.Get "data/floor.json" | transform.Unmarshal }}
+
+
+<!-- モードで時・闇・空を切替 -->
+{{ $mode := "s" }}
+{{ with .mode }}
+  {{ if or (eq . "t") (or (eq . "d") (eq . "s")) }}
+    {{ $mode = . }}
+  {{ end }}
+{{ end }}
+
+{{ $mappa := false }}
+{{ if or (eq $mode "t") (eq $mode "time") }}
+  {{ $mappa = resources.Get "data/mappa_t.json" | transform.Unmarshal }}
+{{ else if or (eq $mode "d") (eq $mode "darkness") }}
+  {{ $mappa = resources.Get "data/mappa_d.json" | transform.Unmarshal }}
+{{ else }}
+  {{ $mappa = resources.Get "data/mappa_s.json" | transform.Unmarshal }}
+{{ end }}
+
+
+<!-- 固定フロアデータをダンジョンから検索 -->
+{{ $dungeons := first 192 $dungeon_json }}
+{{ $result := slice }}
+{{ if and (gt $pokemonId 0) (ne $pokemonId 553) }}
+  {{ range $dungeon := $dungeons }}
+    <!-- フロアデータ ※0Fは除外, 開始フロア～終了フロアの範囲で取る -->
+    {{ $floorsData := index $floor_json (int $dungeon.MappaIndex) }}
+    {{ $floorStart := add (int $dungeon.FloorPrev) 1 }}
+    {{ $floorEnd := add (int $dungeon.FloorPrev) (int $dungeon.FloorCount) }}
+    {{ $floorsAfter := after $floorStart $floorsData }}
+    {{ $floors := first (int $dungeon.FloorCount) $floorsAfter }}
+
+
+    <!-- 固定フロアIDを含むフロアを検索 -->
+    {{ range $fixed := $fixeds }}
+      {{ $floor := where $floors "FixedFloorId" $fixed.id }}
+      {{ with $floor }}
+        {{ $result = $result | append (dict "fixedFloor" $fixed "dungeon" $dungeon "floors" $floor) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+
+<!--
+  fixedFloor: 固定フロアデータ
+  dungeon: ダンジョンデータ
+  floor: フロアデータ
+-->
+{{ return $result }}

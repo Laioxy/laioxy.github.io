@@ -1,0 +1,8 @@
+<!-- 固定フロアIDからポケモンエンティティを取得 -->
+{{ $entityPokemon_json := resources.Get "data/entityPokemon.json" | transform.Unmarshal }}
+
+{{ $fixed := partial "methods/GetFixedFloorById" (int .) }}
+{{ $entities := where $fixed.Entries "EntityId" "ge" 0 }}
+{{ range $entity := $entities }}
+  {{ $entityPokemonData := index $entityPokemon_json (int $entity.EntityId) }}
+{{ end }}

@@ -1,0 +1,3 @@
+<!-- ポケモンを取得する -->
+{{ $pokemon_json := resources.Get "data/pokemon.json" | transform.Unmarshal }}
+{{ return index $pokemon_json (int .) }}

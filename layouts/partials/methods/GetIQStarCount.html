@@ -1,0 +1,10 @@
+<!-- かしこさ値を星の数に変換 -->
+{{ $value := int . }}
+{{ $iqstar := 0.5 }}
+{{ if ge $value 60 }}
+  <!-- かしこさ1～59の場合は0.5、60以降は50区切り -->
+  {{ $multi := math.Floor (div (sub $value 10) 50) }}
+  {{ $multi = math.Max $multi 0 }}
+  {{ $iqstar = add $iqstar (mul $iqstar $multi) }}
+{{ end }}
+{{ return $iqstar }}

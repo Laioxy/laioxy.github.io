@@ -1,0 +1,33 @@
+<!-- 対象のポケモンIDを含む固定フロアを検索 -->
+{{ $entityPokemon_json := resources.Get "data/entityPokemon.json" | transform.Unmarshal }}
+{{ $fixed_json := resources.Get "data/fixed.json" | transform.Unmarshal }}
+{{ $id := int . }}
+
+
+<!-- ポケモンIDからエンティティIDを検索 -->
+{{ $searchPoke := slice }}
+{{ range $i, $entityPokemon := $entityPokemon_json }}
+  {{ if eq (int $entityPokemon.PokemonId) $id }}
+    {{ $searchPoke = $searchPoke | append (dict "id" $i "entity" $entityPokemon) }}
+  {{ end }}
+{{ end }}
+
+
+<!-- 対象のエンティティを持つ固定フロアを検索 -->
+{{ $result := slice }}
+{{ range $search := $searchPoke }}
+  {{ range $i, $fixed := $fixed_json }}
+    {{ $matches := where $fixed.Entries "EntityId" $search.id }}
+    {{ with $matches }}
+      {{ $result = $result | append (dict "id" $i "fixed" $fixed "entity" $search.entity) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+
+<!--
+  id: 固定フロアID
+  fixed: 固定フロアデータ (fixed.json)
+  entity: ポケモンエンティティデータ (entityPokemon.json)
+-->
+{{ return $result }}

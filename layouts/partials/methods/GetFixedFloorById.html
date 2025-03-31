@@ -1,0 +1,2 @@
+{{ $fixed_json := resources.Get "data/fixed.json" | transform.Unmarshal }}
+{{ return index $fixed_json (int .) }}
