@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lai-brary</title><link>http://localhost:1313/</link><description>Recent content on Lai-brary</description><generator>Hugo</generator><language>ja</language><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>http://localhost:1313/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/</guid><description>&lt;div class="top-contents container-md py-3">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lai-brary</title><link>https://laioxy.github.io/</link><description>Recent content on Lai-brary</description><generator>Hugo</generator><language>ja</language><atom:link href="https://laioxy.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://laioxy.github.io/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/</guid><description>&lt;div class="top-contents container-md py-3">
  &lt;div class="d-flex flex-column flex-md-row gap-3">
  &lt;div class="col d-flex flex-column gap-3">
  &lt;div class="card p-sm-4 p-3 border border-secondary-subtle">
@@ -7,12 +7,12 @@
  &lt;/div>
  &lt;div class="card p-sm-4 p-3 border border-secondary-subtle">
  &lt;h2 class="top-icon">
- &lt;img src="http://localhost:1313/img/icon_title_sky.png" />
+ &lt;img src="https://laioxy.github.io/img/icon_title_sky.png" />
  &lt;span>ポケダン時闇空&lt;/span>
  &lt;/h2>
  &lt;ul>
  &lt;li>
- &lt;a href="http://localhost:1313/wondermail/">ふしぎなメール生成機&lt;/a>
+ &lt;a href="https://laioxy.github.io/wondermail/">ふしぎなメール生成機&lt;/a>
  &lt;p>
  あらゆる組み合わせのふしぎなメールを作り出します。
  &lt;br />
@@ -21,7 +21,7 @@
  &lt;/li>
  &lt;ul>
  &lt;li>
- &lt;a href="http://localhost:1313/wondermail/anydungeon">
+ &lt;a href="https://laioxy.github.io/wondermail/anydungeon">
  ダンジョン強制解禁バグ用 (空限定)
  &lt;/a>
  &lt;p>
@@ -31,7 +31,7 @@
  &lt;/p>
  &lt;/li>
  &lt;li>
- &lt;a href="http://localhost:1313/wondermail/anyegg">任意タマゴ孵化用&lt;/a>
+ &lt;a href="https://laioxy.github.io/wondermail/anyegg">任意タマゴ孵化用&lt;/a>
  &lt;p>
  任意のポケモンをタマゴ経由で入手します。
  &lt;br />
@@ -40,11 +40,11 @@
  &lt;/li>
  &lt;/ul>
  &lt;li>
- &lt;a href="http://localhost:1313/rescue/duplicate">救助依頼複製ツール&lt;/a>
+ &lt;a href="https://laioxy.github.io/rescue/duplicate">救助依頼複製ツール&lt;/a>
  &lt;p>救助依頼の複製をするツール。役に立つ救助保存の複製にどうぞ。&lt;/p>
  &lt;/li>
  &lt;li>
- &lt;a href="http://localhost:1313/rescue/self-rescue">自演救助ツール&lt;/a>
+ &lt;a href="https://laioxy.github.io/rescue/self-rescue">自演救助ツール&lt;/a>
  &lt;p>
  倒されてしまった時の救助を自演で行います。ついでに道具も貰えます。
  &lt;/p>
@@ -58,7 +58,7 @@
 
  &lt;div class="card p-sm-4 p-3 border border-secondary-subtle">
  &lt;h2 class="top-icon">
- &lt;img src="http://localhost:1313/img/icon_link.png" />
+ &lt;img src="https://laioxy.github.io/img/icon_link.png" />
  &lt;span>Link&lt;/span>
  &lt;/h2>
  &lt;ul>
@@ -117,20 +117,20 @@
  &lt;/div>
  &lt;/div>
  &lt;/div>
-&lt;/div></description></item><item><title/><link>http://localhost:1313/rescue-duplicate.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/rescue-duplicate.html</guid><description>&lt;meta
+&lt;/div></description></item><item><title/><link>https://laioxy.github.io/rescue-duplicate.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue-duplicate.html</guid><description>&lt;meta
  http-equiv="refresh"
  content="0;URL=https://laioxy.github.io/rescue/duplicate"
-/></description></item><item><title/><link>http://localhost:1313/wondermail-anyegg.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/wondermail-anyegg.html</guid><description>&lt;meta
+/></description></item><item><title/><link>https://laioxy.github.io/wondermail-anyegg.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail-anyegg.html</guid><description>&lt;meta
  http-equiv="refresh"
  content="0;URL=https://laioxy.github.io/wondermail/anyegg"
-/></description></item><item><title/><link>http://localhost:1313/wondermail-dungeon.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/wondermail-dungeon.html</guid><description>&lt;meta
+/></description></item><item><title/><link>https://laioxy.github.io/wondermail-dungeon.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail-dungeon.html</guid><description>&lt;meta
  http-equiv="refresh"
  content="0;URL=https://laioxy.github.io/wondermail/anydungeon"
-/></description></item><item><title/><link>http://localhost:1313/wondermail-s.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/wondermail-s.html</guid><description>&lt;meta
+/></description></item><item><title/><link>https://laioxy.github.io/wondermail-s.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail-s.html</guid><description>&lt;meta
  http-equiv="refresh"
  content="0;URL=https://laioxy.github.io/wondermail/"
-/></description></item><item><title>ダンジョン強制解禁バグ</title><link>http://localhost:1313/wondermail/anydungeon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/wondermail/anydungeon/</guid><description>&lt;script src="http://localhost:1313/js/json_script.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/wondermail/anydungeon.js" type="module">&lt;/script>
+/></description></item><item><title>ダンジョン強制解禁バグ</title><link>https://laioxy.github.io/wondermail/anydungeon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/anydungeon/</guid><description>&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/wondermail/anydungeon.js" type="module">&lt;/script>
 &lt;div class="container-md pb-3">
  &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
  &lt;h1 class="m-0">ダンジョン強制解禁バグ用生成機&lt;/h1>
@@ -169,7 +169,7 @@
  制限なく作成したい方は通常のツールをご使用下さい。
  &lt;br />
  通常のふしぎなメール生成機は
- &lt;a href="http://localhost:1313/wondermail/">こちら&lt;/a>
+ &lt;a href="https://laioxy.github.io/wondermail/">こちら&lt;/a>
  &lt;/p>
  &lt;/div>
 
@@ -303,11 +303,11 @@
  &lt;/li>
  &lt;/ul>
  &lt;/div>
-&lt;/div></description></item><item><title>ふしぎなメール生成機</title><link>http://localhost:1313/wondermail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/wondermail/</guid><description>&lt;link href="http://localhost:1313/css/wondermail/wondermail.css" rel="stylesheet" type="text/css" />
-&lt;script src="http://localhost:1313/js/poke_param.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/json_script.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/wondermail/mail.js" type="module">&lt;/script>
-&lt;script src="http://localhost:1313/js/wondermail/mail_param.js">&lt;/script>
+&lt;/div></description></item><item><title>ふしぎなメール生成機</title><link>https://laioxy.github.io/wondermail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/</guid><description>&lt;link href="https://laioxy.github.io/css/wondermail/wondermail.css" rel="stylesheet" type="text/css" />
+&lt;script src="https://laioxy.github.io/js/poke_param.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/wondermail/mail.js" type="module">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/wondermail/mail_param.js">&lt;/script>
 
 &lt;div class="loading">
  &lt;div class="spinner-border" role="status">
@@ -695,9 +695,9 @@
 
  &lt;div class="d-flex flex-column gap-4">
  &lt;div class="area-mission">
- &lt;p class="fs-5 mb-1">依頼の内容&lt;/p></description></item><item><title>任意タマゴ孵化</title><link>http://localhost:1313/wondermail/anyegg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/wondermail/anyegg/</guid><description>&lt;script src="http://localhost:1313/js/poke_param.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/json_script.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/wondermail/anyegg.js" type="module">&lt;/script>
+ &lt;p class="fs-5 mb-1">依頼の内容&lt;/p></description></item><item><title>任意タマゴ孵化</title><link>https://laioxy.github.io/wondermail/anyegg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/anyegg/</guid><description>&lt;script src="https://laioxy.github.io/js/poke_param.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/wondermail/anyegg.js" type="module">&lt;/script>
 &lt;div class="container-md pb-3">
  &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
  &lt;h1 class="m-0">任意タマゴ孵化バグ用生成機&lt;/h1>
@@ -740,7 +740,7 @@
  &lt;/p>
  &lt;p>
  通常のふしぎなメール生成機は
- &lt;a href="http://localhost:1313/wondermail/">こちら&lt;/a>
+ &lt;a href="https://laioxy.github.io/wondermail/">こちら&lt;/a>
  &lt;/p>
  &lt;/div>
 
@@ -835,8 +835,8 @@
  &lt;/div>
 
  &lt;div>
- &lt;p class="fs-5 mb-1">パスワード&lt;/p></description></item><item><title>救助依頼複製ツール</title><link>http://localhost:1313/rescue/duplicate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/rescue/duplicate/</guid><description>&lt;script src="http://localhost:1313/js/rescue/password.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/rescue/duplicate.js">&lt;/script>
+ &lt;p class="fs-5 mb-1">パスワード&lt;/p></description></item><item><title>救助依頼複製ツール</title><link>https://laioxy.github.io/rescue/duplicate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue/duplicate/</guid><description>&lt;script src="https://laioxy.github.io/js/rescue/password.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/rescue/duplicate.js">&lt;/script>
 
 &lt;div class="container-md pb-3">
  &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
@@ -924,9 +924,9 @@
  &lt;/div>
  &lt;/div>
  &lt;/div>
-&lt;/div></description></item><item><title>自演救助ツール</title><link>http://localhost:1313/rescue/self-rescue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/rescue/self-rescue/</guid><description>&lt;script src="http://localhost:1313/js/json_script.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/rescue/password.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/rescue/self-rescue.js">&lt;/script>
+&lt;/div></description></item><item><title>自演救助ツール</title><link>https://laioxy.github.io/rescue/self-rescue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue/self-rescue/</guid><description>&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/rescue/password.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/rescue/self-rescue.js">&lt;/script>
 
 &lt;div class="container-md pb-3">
  &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
@@ -960,6 +960,9 @@
  お礼を貰いたくて仕方がない図々しい方は是非。
  &lt;/p>
  &lt;p>全バージョン(時/闇/空)、全リージョン(日本/北米/欧州)対応。&lt;/p>
+ &lt;p>
+ 本来は贈ることができない「ゼロのしま せいぶ」「ゼロのしま なんぶ」でもお礼の道具を贈ることができます。
+ &lt;/p>
  &lt;/div>
 
  &lt;div>

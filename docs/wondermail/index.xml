@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wondermails on Lai-brary</title><link>http://localhost:1313/wondermail/</link><description>Recent content in Wondermails on Lai-brary</description><generator>Hugo</generator><language>ja</language><atom:link href="http://localhost:1313/wondermail/index.xml" rel="self" type="application/rss+xml"/><item><title>ダンジョン強制解禁バグ</title><link>http://localhost:1313/wondermail/anydungeon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/wondermail/anydungeon/</guid><description>&lt;script src="http://localhost:1313/js/json_script.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/wondermail/anydungeon.js" type="module">&lt;/script>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wondermails on Lai-brary</title><link>https://laioxy.github.io/wondermail/</link><description>Recent content in Wondermails on Lai-brary</description><generator>Hugo</generator><language>ja</language><atom:link href="https://laioxy.github.io/wondermail/index.xml" rel="self" type="application/rss+xml"/><item><title>ダンジョン強制解禁バグ</title><link>https://laioxy.github.io/wondermail/anydungeon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/anydungeon/</guid><description>&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/wondermail/anydungeon.js" type="module">&lt;/script>
 &lt;div class="container-md pb-3">
  &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
  &lt;h1 class="m-0">ダンジョン強制解禁バグ用生成機&lt;/h1>
@@ -38,7 +38,7 @@
  制限なく作成したい方は通常のツールをご使用下さい。
  &lt;br />
  通常のふしぎなメール生成機は
- &lt;a href="http://localhost:1313/wondermail/">こちら&lt;/a>
+ &lt;a href="https://laioxy.github.io/wondermail/">こちら&lt;/a>
  &lt;/p>
  &lt;/div>
 
@@ -172,11 +172,11 @@
  &lt;/li>
  &lt;/ul>
  &lt;/div>
-&lt;/div></description></item><item><title>ふしぎなメール生成機</title><link>http://localhost:1313/wondermail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/wondermail/</guid><description>&lt;link href="http://localhost:1313/css/wondermail/wondermail.css" rel="stylesheet" type="text/css" />
-&lt;script src="http://localhost:1313/js/poke_param.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/json_script.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/wondermail/mail.js" type="module">&lt;/script>
-&lt;script src="http://localhost:1313/js/wondermail/mail_param.js">&lt;/script>
+&lt;/div></description></item><item><title>ふしぎなメール生成機</title><link>https://laioxy.github.io/wondermail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/</guid><description>&lt;link href="https://laioxy.github.io/css/wondermail/wondermail.css" rel="stylesheet" type="text/css" />
+&lt;script src="https://laioxy.github.io/js/poke_param.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/wondermail/mail.js" type="module">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/wondermail/mail_param.js">&lt;/script>
 
 &lt;div class="loading">
  &lt;div class="spinner-border" role="status">
@@ -564,9 +564,9 @@
 
  &lt;div class="d-flex flex-column gap-4">
  &lt;div class="area-mission">
- &lt;p class="fs-5 mb-1">依頼の内容&lt;/p></description></item><item><title>任意タマゴ孵化</title><link>http://localhost:1313/wondermail/anyegg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/wondermail/anyegg/</guid><description>&lt;script src="http://localhost:1313/js/poke_param.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/json_script.js">&lt;/script>
-&lt;script src="http://localhost:1313/js/wondermail/anyegg.js" type="module">&lt;/script>
+ &lt;p class="fs-5 mb-1">依頼の内容&lt;/p></description></item><item><title>任意タマゴ孵化</title><link>https://laioxy.github.io/wondermail/anyegg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/anyegg/</guid><description>&lt;script src="https://laioxy.github.io/js/poke_param.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
+&lt;script src="https://laioxy.github.io/js/wondermail/anyegg.js" type="module">&lt;/script>
 &lt;div class="container-md pb-3">
  &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
  &lt;h1 class="m-0">任意タマゴ孵化バグ用生成機&lt;/h1>
@@ -609,7 +609,7 @@
  &lt;/p>
  &lt;p>
  通常のふしぎなメール生成機は
- &lt;a href="http://localhost:1313/wondermail/">こちら&lt;/a>
+ &lt;a href="https://laioxy.github.io/wondermail/">こちら&lt;/a>
  &lt;/p>
  &lt;/div>
 
