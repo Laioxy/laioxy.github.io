@@ -68,7 +68,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -990,7 +990,7 @@
           "LearningMoveId": 486
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -2090,7 +2090,7 @@
           "LearningMoveId": 151
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -3153,7 +3153,7 @@
           "LearningMoveId": 238
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -4200,7 +4200,7 @@
           "LearningMoveId": 291
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -5308,7 +5308,7 @@
           "LearningMoveId": 291
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -6395,7 +6395,7 @@
           "LearningMoveId": 272
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -7510,7 +7510,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -8630,7 +8630,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -9713,7 +9713,7 @@
           "LearningMoveId": 239
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -10768,7 +10768,7 @@
           "LearningMoveId": 529
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -11642,7 +11642,7 @@
           "LearningMoveId": 58
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -12564,7 +12564,7 @@
           "LearningMoveId": 530
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -13595,7 +13595,7 @@
           "LearningMoveId": 529
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -14469,7 +14469,7 @@
           "LearningMoveId": 58
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -15383,7 +15383,7 @@
           "LearningMoveId": 66
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -16458,7 +16458,7 @@
           "LearningMoveId": 442
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -17530,7 +17530,7 @@
           "LearningMoveId": 442
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -18573,7 +18573,7 @@
           "LearningMoveId": 442
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -19612,7 +19612,7 @@
           "LearningMoveId": 66
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -20732,7 +20732,7 @@
           "LearningMoveId": 66
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -21811,7 +21811,7 @@
           "LearningMoveId": 211
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -22883,7 +22883,7 @@
           "LearningMoveId": 211
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -23926,7 +23926,7 @@
           "LearningMoveId": 485
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -25042,7 +25042,7 @@
           "LearningMoveId": 485
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -26105,7 +26105,7 @@
           "LearningMoveId": 64
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -27124,7 +27124,7 @@
           "LearningMoveId": 190
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -28195,7 +28195,7 @@
           "LearningMoveId": 141
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -29323,7 +29323,7 @@
           "LearningMoveId": 141
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -30418,7 +30418,7 @@
           "LearningMoveId": 198
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -31514,7 +31514,7 @@
           "LearningMoveId": 198
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -32553,7 +32553,7 @@
           "LearningMoveId": 243
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -33704,7 +33704,7 @@
           "LearningMoveId": 177
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -34796,7 +34796,7 @@
           "LearningMoveId": 177
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -35831,7 +35831,7 @@
           "LearningMoveId": 323
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -36994,7 +36994,7 @@
           "LearningMoveId": 439
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -38085,7 +38085,7 @@
           "LearningMoveId": 330
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -39232,7 +39232,7 @@
           "LearningMoveId": 157
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -40284,7 +40284,7 @@
           "LearningMoveId": 542
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -41343,7 +41343,7 @@
           "LearningMoveId": 140
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -42426,7 +42426,7 @@
           "LearningMoveId": 302
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -43549,7 +43549,7 @@
           "LearningMoveId": 442
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -44653,7 +44653,7 @@
           "LearningMoveId": 442
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -45716,7 +45716,7 @@
           "LearningMoveId": 253
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -46780,7 +46780,7 @@
           "LearningMoveId": 253
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -47791,7 +47791,7 @@
           "LearningMoveId": 151
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -48826,7 +48826,7 @@
           "LearningMoveId": 470
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -49934,7 +49934,7 @@
           "LearningMoveId": 470
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -51005,7 +51005,7 @@
           "LearningMoveId": 109
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -52081,7 +52081,7 @@
           "LearningMoveId": 530
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -53136,7 +53136,7 @@
           "LearningMoveId": 131
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -54232,7 +54232,7 @@
           "LearningMoveId": 131
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -55295,7 +55295,7 @@
           "LearningMoveId": 516
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -56435,7 +56435,7 @@
           "LearningMoveId": 516
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -57530,7 +57530,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -58662,7 +58662,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -59761,7 +59761,7 @@
           "LearningMoveId": 440
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -60897,7 +60897,7 @@
           "LearningMoveId": 440
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -62004,7 +62004,7 @@
           "LearningMoveId": 517
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -63052,7 +63052,7 @@
           "LearningMoveId": 132
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -64111,7 +64111,7 @@
           "LearningMoveId": 501
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -65187,7 +65187,7 @@
           "LearningMoveId": 501
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -66214,7 +66214,7 @@
           "LearningMoveId": 98
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -67257,7 +67257,7 @@
           "LearningMoveId": 187
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -68397,7 +68397,7 @@
           "LearningMoveId": 209
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -69504,7 +69504,7 @@
           "LearningMoveId": 209
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -70619,7 +70619,7 @@
           "LearningMoveId": 246
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -71739,7 +71739,7 @@
           "LearningMoveId": 246
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -72810,7 +72810,7 @@
           "LearningMoveId": 246
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -73889,7 +73889,7 @@
           "LearningMoveId": 474
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -74969,7 +74969,7 @@
           "LearningMoveId": 474
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -75988,7 +75988,7 @@
           "LearningMoveId": 336
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -77031,7 +77031,7 @@
           "LearningMoveId": 474
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -78123,7 +78123,7 @@
           "LearningMoveId": 474
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -79182,7 +79182,7 @@
           "LearningMoveId": 481
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -80278,7 +80278,7 @@
           "LearningMoveId": 481
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -81353,7 +81353,7 @@
           "LearningMoveId": 481
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -82432,7 +82432,7 @@
           "LearningMoveId": 517
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -83500,7 +83500,7 @@
           "LearningMoveId": 517
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -84543,7 +84543,7 @@
           "LearningMoveId": 115
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -85699,7 +85699,7 @@
           "LearningMoveId": 115
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -86842,7 +86842,7 @@
           "LearningMoveId": 193
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -87905,7 +87905,7 @@
           "LearningMoveId": 193
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -88968,7 +88968,7 @@
           "LearningMoveId": 314
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -90060,7 +90060,7 @@
           "LearningMoveId": 66
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -91120,7 +91120,7 @@
           "LearningMoveId": 66
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 22
@@ -92171,7 +92171,7 @@
           "LearningMoveId": 134
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -93271,7 +93271,7 @@
           "LearningMoveId": 134
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -94322,7 +94322,7 @@
           "LearningMoveId": 43
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -95442,7 +95442,7 @@
           "LearningMoveId": 43
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -96545,7 +96545,7 @@
           "LearningMoveId": 345
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -97577,7 +97577,7 @@
           "LearningMoveId": 201
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -98628,7 +98628,7 @@
           "LearningMoveId": 5
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -99756,7 +99756,7 @@
           "LearningMoveId": 5
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -100855,7 +100855,7 @@
           "LearningMoveId": 5
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -101994,7 +101994,7 @@
           "LearningMoveId": 481
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -103110,7 +103110,7 @@
           "LearningMoveId": 317
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -104258,7 +104258,7 @@
           "LearningMoveId": 317
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -105365,7 +105365,7 @@
           "LearningMoveId": 121
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -106481,7 +106481,7 @@
           "LearningMoveId": 121
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -107560,7 +107560,7 @@
           "LearningMoveId": 316
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -108611,7 +108611,7 @@
           "LearningMoveId": 316
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -109658,7 +109658,7 @@
           "LearningMoveId": 109
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -110750,7 +110750,7 @@
           "LearningMoveId": 537
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -111829,7 +111829,7 @@
           "LearningMoveId": 140
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -112961,7 +112961,7 @@
           "LearningMoveId": 140
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -114068,7 +114068,7 @@
           "LearningMoveId": 77
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -115135,7 +115135,7 @@
           "LearningMoveId": 440
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -116194,7 +116194,7 @@
           "LearningMoveId": 474
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -117354,7 +117354,7 @@
           "LearningMoveId": 43
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -118462,7 +118462,7 @@
           "LearningMoveId": 43
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -119525,7 +119525,7 @@
           "LearningMoveId": 323
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -120677,7 +120677,7 @@
           "LearningMoveId": 323
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -121820,7 +121820,7 @@
           "LearningMoveId": 140
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -123024,7 +123024,7 @@
           "LearningMoveId": 511
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -124124,7 +124124,7 @@
           "LearningMoveId": 77
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -125300,7 +125300,7 @@
           "LearningMoveId": 539
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -126372,7 +126372,7 @@
           "LearningMoveId": 539
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -127411,7 +127411,7 @@
           "LearningMoveId": 323
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -128471,7 +128471,7 @@
           "LearningMoveId": 323
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -129506,7 +129506,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -130533,7 +130533,7 @@
           "LearningMoveId": 13
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -131648,7 +131648,7 @@
           "LearningMoveId": 134
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -132836,7 +132836,7 @@
           "LearningMoveId": 516
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -133952,7 +133952,7 @@
           "LearningMoveId": 270
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -135063,7 +135063,7 @@
           "LearningMoveId": 64
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -136134,7 +136134,7 @@
           "LearningMoveId": 157
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -137197,7 +137197,7 @@
           "LearningMoveId": 243
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -138309,7 +138309,7 @@
           "LearningMoveId": 455
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -139356,7 +139356,7 @@
           "LearningMoveId": 121
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 360
@@ -140275,7 +140275,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -141382,7 +141382,7 @@
           "LearningMoveId": 150
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -142458,7 +142458,7 @@
           "LearningMoveId": 282
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 360
@@ -143377,7 +143377,7 @@
           "LearningMoveId": 457
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -144429,7 +144429,7 @@
           "LearningMoveId": 159
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -145492,7 +145492,7 @@
           "LearningMoveId": 521
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -146555,7 +146555,7 @@
           "LearningMoveId": 519
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -147610,7 +147610,7 @@
           "LearningMoveId": 193
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -148681,7 +148681,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -149785,7 +149785,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -150852,7 +150852,7 @@
           "LearningMoveId": 474
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -151964,7 +151964,7 @@
           "LearningMoveId": 491
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -153071,7 +153071,7 @@
           "LearningMoveId": 455
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -154207,7 +154207,7 @@
           "LearningMoveId": 455
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -155347,7 +155347,7 @@
           "LearningMoveId": 14
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -156414,7 +156414,7 @@
           "LearningMoveId": 12
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -157485,7 +157485,7 @@
           "LearningMoveId": 223
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -158552,7 +158552,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -159656,7 +159656,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -160747,7 +160747,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -161906,7 +161906,7 @@
           "LearningMoveId": 508
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -163097,7 +163097,7 @@
           "LearningMoveId": 508
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -164432,7 +164432,7 @@
           "LearningMoveId": 151
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -165532,7 +165532,7 @@
           "LearningMoveId": 151
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -166603,7 +166603,7 @@
           "LearningMoveId": 238
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -167670,7 +167670,7 @@
           "LearningMoveId": 278
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -168742,7 +168742,7 @@
           "LearningMoveId": 278
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -169801,7 +169801,7 @@
           "LearningMoveId": 272
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -170896,7 +170896,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -172016,7 +172016,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -173115,7 +173115,7 @@
           "LearningMoveId": 239
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -174226,7 +174226,7 @@
           "LearningMoveId": 241
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -175358,7 +175358,7 @@
           "LearningMoveId": 241
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -176469,7 +176469,7 @@
           "LearningMoveId": 331
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -177577,7 +177577,7 @@
           "LearningMoveId": 331
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -178640,7 +178640,7 @@
           "LearningMoveId": 530
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -179744,7 +179744,7 @@
           "LearningMoveId": 530
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -180831,7 +180831,7 @@
           "LearningMoveId": 495
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -181907,7 +181907,7 @@
           "LearningMoveId": 495
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -182950,7 +182950,7 @@
           "LearningMoveId": 442
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -184029,7 +184029,7 @@
           "LearningMoveId": 128
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -185125,7 +185125,7 @@
           "LearningMoveId": 128
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -186152,7 +186152,7 @@
           "LearningMoveId": 542
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -187208,7 +187208,7 @@
           "LearningMoveId": 297
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -188296,7 +188296,7 @@
           "LearningMoveId": 525
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -189400,7 +189400,7 @@
           "LearningMoveId": 497
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -190516,7 +190516,7 @@
           "LearningMoveId": 497
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -191635,7 +191635,7 @@
           "LearningMoveId": 109
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -192771,7 +192771,7 @@
           "LearningMoveId": 109
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -193862,7 +193862,7 @@
           "LearningMoveId": 64
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -194926,7 +194926,7 @@
           "LearningMoveId": 64
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -195985,7 +195985,7 @@
           "LearningMoveId": 64
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -197024,7 +197024,7 @@
           "LearningMoveId": 537
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -198067,7 +198067,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -199167,7 +199167,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -200246,7 +200246,7 @@
           "LearningMoveId": 430
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -201318,7 +201318,7 @@
           "LearningMoveId": 241
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -202405,7 +202405,7 @@
           "LearningMoveId": 43
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -203501,7 +203501,7 @@
           "LearningMoveId": 43
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -204560,7 +204560,7 @@
           "LearningMoveId": 43
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -205607,7 +205607,7 @@
           "LearningMoveId": 497
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -206747,7 +206747,7 @@
           "LearningMoveId": 486
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -207823,7 +207823,7 @@
           "LearningMoveId": 537
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -208882,7 +208882,7 @@
           "LearningMoveId": 530
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -209962,7 +209962,7 @@
           "LearningMoveId": 159
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -211046,7 +211046,7 @@
           "LearningMoveId": 159
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -212137,7 +212137,7 @@
           "LearningMoveId": 513
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -213204,7 +213204,7 @@
           "LearningMoveId": 448
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -214255,7 +214255,7 @@
           "LearningMoveId": 515
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -215391,7 +215391,7 @@
           "LearningMoveId": 115
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -216526,7 +216526,7 @@
           "LearningMoveId": 512
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -217606,7 +217606,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -218476,7 +218476,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -219346,7 +219346,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -220216,7 +220216,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -221086,7 +221086,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -221956,7 +221956,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -222826,7 +222826,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -223696,7 +223696,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -224566,7 +224566,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -225436,7 +225436,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -226306,7 +226306,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -227176,7 +227176,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -228046,7 +228046,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -228916,7 +228916,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -229786,7 +229786,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -230656,7 +230656,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -231526,7 +231526,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -232396,7 +232396,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -233266,7 +233266,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -234136,7 +234136,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -235006,7 +235006,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -235876,7 +235876,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -236746,7 +236746,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -237616,7 +237616,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -238486,7 +238486,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -239356,7 +239356,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -240226,7 +240226,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -241096,7 +241096,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -241978,7 +241978,7 @@
           "LearningMoveId": 316
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -242908,7 +242908,7 @@
           "LearningMoveId": 62
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -244044,7 +244044,7 @@
           "LearningMoveId": 140
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -245160,7 +245160,7 @@
           "LearningMoveId": 193
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -246235,7 +246235,7 @@
           "LearningMoveId": 121
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -247383,7 +247383,7 @@
           "LearningMoveId": 247
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -248571,7 +248571,7 @@
           "LearningMoveId": 481
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -249674,7 +249674,7 @@
           "LearningMoveId": 62
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -250826,7 +250826,7 @@
           "LearningMoveId": 62
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -251973,7 +251973,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -253081,7 +253081,7 @@
           "LearningMoveId": 181
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -254144,7 +254144,7 @@
           "LearningMoveId": 514
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -255224,7 +255224,7 @@
           "LearningMoveId": 323
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -256328,7 +256328,7 @@
           "LearningMoveId": 462
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -257500,7 +257500,7 @@
           "LearningMoveId": 503
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -258628,7 +258628,7 @@
           "LearningMoveId": 430
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -259727,7 +259727,7 @@
           "LearningMoveId": 484
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -260787,7 +260787,7 @@
           "LearningMoveId": 484
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -261866,7 +261866,7 @@
           "LearningMoveId": 215
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -262974,7 +262974,7 @@
           "LearningMoveId": 215
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -264045,7 +264045,7 @@
           "LearningMoveId": 484
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -265169,7 +265169,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -266277,7 +266277,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -267304,7 +267304,7 @@
           "LearningMoveId": 277
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -268400,7 +268400,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -269496,7 +269496,7 @@
           "LearningMoveId": 491
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -270612,7 +270612,7 @@
           "LearningMoveId": 542
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -271744,7 +271744,7 @@
           "LearningMoveId": 542
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -272835,7 +272835,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -273874,7 +273874,7 @@
           "LearningMoveId": 140
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -274950,7 +274950,7 @@
           "LearningMoveId": 455
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -276017,7 +276017,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -277092,7 +277092,7 @@
           "LearningMoveId": 465
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -278204,7 +278204,7 @@
           "LearningMoveId": 138
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 360
@@ -279095,7 +279095,7 @@
           "LearningMoveId": 185
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -280159,7 +280159,7 @@
           "LearningMoveId": 66
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -281210,7 +281210,7 @@
           "LearningMoveId": 270
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -282306,7 +282306,7 @@
           "LearningMoveId": 64
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -283382,7 +283382,7 @@
           "LearningMoveId": 157
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -284458,7 +284458,7 @@
           "LearningMoveId": 531
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -285614,7 +285614,7 @@
           "LearningMoveId": 140
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -286781,7 +286781,7 @@
           "LearningMoveId": 64
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -287860,7 +287860,7 @@
           "LearningMoveId": 278
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -288939,7 +288939,7 @@
           "LearningMoveId": 270
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -290014,7 +290014,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -291122,7 +291122,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -292201,7 +292201,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -293364,7 +293364,7 @@
           "LearningMoveId": 100
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -294515,7 +294515,7 @@
           "LearningMoveId": 100
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -295642,7 +295642,7 @@
           "LearningMoveId": 293
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -296753,7 +296753,7 @@
           "LearningMoveId": 293
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -297856,7 +297856,7 @@
           "LearningMoveId": 443
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -298988,7 +298988,7 @@
           "LearningMoveId": 537
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -300087,7 +300087,7 @@
           "LearningMoveId": 238
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -301194,7 +301194,7 @@
           "LearningMoveId": 53
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -302298,7 +302298,7 @@
           "LearningMoveId": 517
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -303389,7 +303389,7 @@
           "LearningMoveId": 272
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -304484,7 +304484,7 @@
           "LearningMoveId": 66
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -305584,7 +305584,7 @@
           "LearningMoveId": 66
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -306659,7 +306659,7 @@
           "LearningMoveId": 239
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -307754,7 +307754,7 @@
           "LearningMoveId": 62
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -308858,7 +308858,7 @@
           "LearningMoveId": 515
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -309917,7 +309917,7 @@
           "LearningMoveId": 503
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -311025,7 +311025,7 @@
           "LearningMoveId": 503
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -312076,7 +312076,7 @@
           "LearningMoveId": 529
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 360
@@ -312959,7 +312959,7 @@
           "LearningMoveId": 58
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 360
@@ -313878,7 +313878,7 @@
           "LearningMoveId": 530
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -314889,7 +314889,7 @@
           "LearningMoveId": 58
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 360
@@ -315808,7 +315808,7 @@
           "LearningMoveId": 530
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -316859,7 +316859,7 @@
           "LearningMoveId": 443
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -317931,7 +317931,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -318970,7 +318970,7 @@
           "LearningMoveId": 320
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -320041,7 +320041,7 @@
           "LearningMoveId": 155
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -321105,7 +321105,7 @@
           "LearningMoveId": 133
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -322164,7 +322164,7 @@
           "LearningMoveId": 537
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -323267,7 +323267,7 @@
           "LearningMoveId": 442
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -324331,7 +324331,7 @@
           "LearningMoveId": 442
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -325366,7 +325366,7 @@
           "LearningMoveId": 442
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -326462,7 +326462,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -327533,7 +327533,7 @@
           "LearningMoveId": 331
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -328665,7 +328665,7 @@
           "LearningMoveId": 331
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -329768,7 +329768,7 @@
           "LearningMoveId": 331
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -330855,7 +330855,7 @@
           "LearningMoveId": 252
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -331927,7 +331927,7 @@
           "LearningMoveId": 530
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -332994,7 +332994,7 @@
           "LearningMoveId": 79
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -334074,7 +334074,7 @@
           "LearningMoveId": 246
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -335153,7 +335153,7 @@
           "LearningMoveId": 121
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -336269,7 +336269,7 @@
           "LearningMoveId": 77
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -337380,7 +337380,7 @@
           "LearningMoveId": 430
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -338479,7 +338479,7 @@
           "LearningMoveId": 8
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -339551,7 +339551,7 @@
           "LearningMoveId": 470
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -340614,7 +340614,7 @@
           "LearningMoveId": 127
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -341657,7 +341657,7 @@
           "LearningMoveId": 241
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -342733,7 +342733,7 @@
           "LearningMoveId": 241
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -343836,7 +343836,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -344947,7 +344947,7 @@
           "LearningMoveId": 77
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -346067,7 +346067,7 @@
           "LearningMoveId": 77
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -347114,7 +347114,7 @@
           "LearningMoveId": 308
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -348166,7 +348166,7 @@
           "LearningMoveId": 484
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 22
@@ -349262,7 +349262,7 @@
           "LearningMoveId": 534
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -350350,7 +350350,7 @@
           "LearningMoveId": 326
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -351461,7 +351461,7 @@
           "LearningMoveId": 89
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -352589,7 +352589,7 @@
           "LearningMoveId": 431
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -353741,7 +353741,7 @@
           "LearningMoveId": 532
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -354853,7 +354853,7 @@
           "LearningMoveId": 532
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -355936,7 +355936,7 @@
           "LearningMoveId": 532
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -357099,7 +357099,7 @@
           "LearningMoveId": 117
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -358251,7 +358251,7 @@
           "LearningMoveId": 117
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -359346,7 +359346,7 @@
           "LearningMoveId": 64
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -360442,7 +360442,7 @@
           "LearningMoveId": 64
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -361509,7 +361509,7 @@
           "LearningMoveId": 542
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -362573,7 +362573,7 @@
           "LearningMoveId": 542
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -363625,7 +363625,7 @@
           "LearningMoveId": 140
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -364721,7 +364721,7 @@
           "LearningMoveId": 287
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -365833,7 +365833,7 @@
           "LearningMoveId": 94
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -366917,7 +366917,7 @@
           "LearningMoveId": 485
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -368013,7 +368013,7 @@
           "LearningMoveId": 485
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -369076,7 +369076,7 @@
           "LearningMoveId": 203
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -370160,7 +370160,7 @@
           "LearningMoveId": 491
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -371247,7 +371247,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -372355,7 +372355,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -373406,7 +373406,7 @@
           "LearningMoveId": 140
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -374498,7 +374498,7 @@
           "LearningMoveId": 131
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -375581,7 +375581,7 @@
           "LearningMoveId": 230
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -376677,7 +376677,7 @@
           "LearningMoveId": 205
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -377805,7 +377805,7 @@
           "LearningMoveId": 205
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -378920,7 +378920,7 @@
           "LearningMoveId": 9
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -380052,7 +380052,7 @@
           "LearningMoveId": 131
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -381108,7 +381108,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -382175,7 +382175,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -383278,7 +383278,7 @@
           "LearningMoveId": 313
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -384398,7 +384398,7 @@
           "LearningMoveId": 313
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -385477,7 +385477,7 @@
           "LearningMoveId": 293
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -386573,7 +386573,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -387660,7 +387660,7 @@
           "LearningMoveId": 440
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -388832,7 +388832,7 @@
           "LearningMoveId": 474
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -389916,7 +389916,7 @@
           "LearningMoveId": 155
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -391015,7 +391015,7 @@
           "LearningMoveId": 155
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -392130,7 +392130,7 @@
           "LearningMoveId": 131
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -393206,7 +393206,7 @@
           "LearningMoveId": 131
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -394261,7 +394261,7 @@
           "LearningMoveId": 247
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -395385,7 +395385,7 @@
           "LearningMoveId": 247
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -396484,7 +396484,7 @@
           "LearningMoveId": 155
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -397595,7 +397595,7 @@
           "LearningMoveId": 155
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -398706,7 +398706,7 @@
           "LearningMoveId": 474
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -399786,7 +399786,7 @@
           "LearningMoveId": 474
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -400853,7 +400853,7 @@
           "LearningMoveId": 470
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -401937,7 +401937,7 @@
           "LearningMoveId": 470
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -402976,7 +402976,7 @@
           "LearningMoveId": 121
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -404036,7 +404036,7 @@
           "LearningMoveId": 434
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -405063,7 +405063,7 @@
           "LearningMoveId": 31
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -406139,7 +406139,7 @@
           "LearningMoveId": 31
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -407199,7 +407199,7 @@
           "LearningMoveId": 31
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -408259,7 +408259,7 @@
           "LearningMoveId": 31
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -409355,7 +409355,7 @@
           "LearningMoveId": 304
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -410531,7 +410531,7 @@
           "LearningMoveId": 304
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -411607,7 +411607,7 @@
           "LearningMoveId": 209
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -412743,7 +412743,7 @@
           "LearningMoveId": 209
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -413842,7 +413842,7 @@
           "LearningMoveId": 317
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -414978,7 +414978,7 @@
           "LearningMoveId": 317
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -416097,7 +416097,7 @@
           "LearningMoveId": 537
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -417213,7 +417213,7 @@
           "LearningMoveId": 439
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -418337,7 +418337,7 @@
           "LearningMoveId": 293
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -419513,7 +419513,7 @@
           "LearningMoveId": 316
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -420427,7 +420427,7 @@
           "LearningMoveId": 270
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -421487,7 +421487,7 @@
           "LearningMoveId": 150
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -422554,7 +422554,7 @@
           "LearningMoveId": 150
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -423630,7 +423630,7 @@
           "LearningMoveId": 150
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -424693,7 +424693,7 @@
           "LearningMoveId": 150
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -425720,7 +425720,7 @@
           "LearningMoveId": 32
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -426768,7 +426768,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -427803,7 +427803,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -428850,7 +428850,7 @@
           "LearningMoveId": 533
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -429962,7 +429962,7 @@
           "LearningMoveId": 134
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -431018,7 +431018,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -432118,7 +432118,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -433197,7 +433197,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -434236,7 +434236,7 @@
           "LearningMoveId": 203
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -435162,7 +435162,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -436257,7 +436257,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -437344,7 +437344,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -438435,7 +438435,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -439534,7 +439534,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -440641,7 +440641,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -441792,7 +441792,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -442927,7 +442927,7 @@
           "LearningMoveId": 113
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -444006,7 +444006,7 @@
           "LearningMoveId": 278
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -445133,7 +445133,7 @@
           "LearningMoveId": 91
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -446288,7 +446288,7 @@
           "LearningMoveId": 256
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -447399,7 +447399,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -448562,7 +448562,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -449733,7 +449733,7 @@
           "LearningMoveId": 316
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -450896,7 +450896,7 @@
           "LearningMoveId": 132
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -452051,7 +452051,7 @@
           "LearningMoveId": 537
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -453151,7 +453151,7 @@
           "LearningMoveId": 537
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -454230,7 +454230,7 @@
           "LearningMoveId": 238
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -455321,7 +455321,7 @@
           "LearningMoveId": 53
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -456449,7 +456449,7 @@
           "LearningMoveId": 517
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -457560,7 +457560,7 @@
           "LearningMoveId": 272
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -458687,7 +458687,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -459799,7 +459799,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -460894,7 +460894,7 @@
           "LearningMoveId": 239
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -462001,7 +462001,7 @@
           "LearningMoveId": 518
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -463057,7 +463057,7 @@
           "LearningMoveId": 518
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -464092,7 +464092,7 @@
           "LearningMoveId": 518
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -465127,7 +465127,7 @@
           "LearningMoveId": 237
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -466231,7 +466231,7 @@
           "LearningMoveId": 237
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -467294,7 +467294,7 @@
           "LearningMoveId": 529
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 360
@@ -468221,7 +468221,7 @@
           "LearningMoveId": 293
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -469260,7 +469260,7 @@
           "LearningMoveId": 521
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -470320,7 +470320,7 @@
           "LearningMoveId": 521
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -471359,7 +471359,7 @@
           "LearningMoveId": 521
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -472378,7 +472378,7 @@
           "LearningMoveId": 504
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -473426,7 +473426,7 @@
           "LearningMoveId": 320
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -474473,7 +474473,7 @@
           "LearningMoveId": 533
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -475601,7 +475601,7 @@
           "LearningMoveId": 533
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -476724,7 +476724,7 @@
           "LearningMoveId": 431
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -477852,7 +477852,7 @@
           "LearningMoveId": 431
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -478915,7 +478915,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -479797,7 +479797,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -480679,7 +480679,7 @@
           "LearningMoveId": 324
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -481597,7 +481597,7 @@
           "LearningMoveId": 131
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -482652,7 +482652,7 @@
           "LearningMoveId": 537
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -483711,7 +483711,7 @@
           "LearningMoveId": 431
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -484762,7 +484762,7 @@
           "LearningMoveId": 530
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -485793,7 +485793,7 @@
           "LearningMoveId": 529
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -486723,7 +486723,7 @@
           "LearningMoveId": 313
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -487766,7 +487766,7 @@
           "LearningMoveId": 497
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -488834,7 +488834,7 @@
           "LearningMoveId": 60
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -489926,7 +489926,7 @@
           "LearningMoveId": 60
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -490997,7 +490997,7 @@
           "LearningMoveId": 447
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -492045,7 +492045,7 @@
           "LearningMoveId": 447
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -493076,7 +493076,7 @@
           "LearningMoveId": 447
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -494055,7 +494055,7 @@
           "LearningMoveId": 117
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -495091,7 +495091,7 @@
           "LearningMoveId": 117
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -496139,7 +496139,7 @@
           "LearningMoveId": 117
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -497210,7 +497210,7 @@
           "LearningMoveId": 117
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -498281,7 +498281,7 @@
           "LearningMoveId": 497
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -499384,7 +499384,7 @@
           "LearningMoveId": 155
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -500504,7 +500504,7 @@
           "LearningMoveId": 155
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -501607,7 +501607,7 @@
           "LearningMoveId": 439
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -502731,7 +502731,7 @@
           "LearningMoveId": 439
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -503790,7 +503790,7 @@
           "LearningMoveId": 46
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -504869,7 +504869,7 @@
           "LearningMoveId": 436
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -505948,7 +505948,7 @@
           "LearningMoveId": 326
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -507056,7 +507056,7 @@
           "LearningMoveId": 326
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -508115,7 +508115,7 @@
           "LearningMoveId": 497
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -509215,7 +509215,7 @@
           "LearningMoveId": 155
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -510323,7 +510323,7 @@
           "LearningMoveId": 155
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -511410,7 +511410,7 @@
           "LearningMoveId": 450
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -512509,7 +512509,7 @@
           "LearningMoveId": 450
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -513616,7 +513616,7 @@
           "LearningMoveId": 140
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -514700,7 +514700,7 @@
           "LearningMoveId": 134
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -515820,7 +515820,7 @@
           "LearningMoveId": 191
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -516924,7 +516924,7 @@
           "LearningMoveId": 241
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -517984,7 +517984,7 @@
           "LearningMoveId": 436
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -519076,7 +519076,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -520184,7 +520184,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -521271,7 +521271,7 @@
           "LearningMoveId": 538
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -522386,7 +522386,7 @@
           "LearningMoveId": 497
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -523494,7 +523494,7 @@
           "LearningMoveId": 525
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -524630,7 +524630,7 @@
           "LearningMoveId": 132
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -525733,7 +525733,7 @@
           "LearningMoveId": 131
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -526789,7 +526789,7 @@
           "LearningMoveId": 131
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -527832,7 +527832,7 @@
           "LearningMoveId": 459
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -528968,7 +528968,7 @@
           "LearningMoveId": 459
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -530079,7 +530079,7 @@
           "LearningMoveId": 45
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -531227,7 +531227,7 @@
           "LearningMoveId": 45
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -532338,7 +532338,7 @@
           "LearningMoveId": 511
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -533422,7 +533422,7 @@
           "LearningMoveId": 82
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -534514,7 +534514,7 @@
           "LearningMoveId": 82
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -535573,7 +535573,7 @@
           "LearningMoveId": 240
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -536637,7 +536637,7 @@
           "LearningMoveId": 150
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -537733,7 +537733,7 @@
           "LearningMoveId": 150
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -538856,7 +538856,7 @@
           "LearningMoveId": 436
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -540011,7 +540011,7 @@
           "LearningMoveId": 193
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -541070,7 +541070,7 @@
           "LearningMoveId": 475
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -542213,7 +542213,7 @@
           "LearningMoveId": 453
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -543376,7 +543376,7 @@
           "LearningMoveId": 194
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 18
@@ -544483,7 +544483,7 @@
           "LearningMoveId": 455
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -545594,7 +545594,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -546645,7 +546645,7 @@
           "LearningMoveId": 508
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -547788,7 +547788,7 @@
           "LearningMoveId": 530
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -548851,7 +548851,7 @@
           "LearningMoveId": 181
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -549922,7 +549922,7 @@
           "LearningMoveId": 258
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -550989,7 +550989,7 @@
           "LearningMoveId": 247
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -552128,7 +552128,7 @@
           "LearningMoveId": 106
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -553215,7 +553215,7 @@
           "LearningMoveId": 242
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -554314,7 +554314,7 @@
           "LearningMoveId": 440
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -555497,7 +555497,7 @@
           "LearningMoveId": 484
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 22
@@ -556592,7 +556592,7 @@
           "LearningMoveId": 317
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -557719,7 +557719,7 @@
           "LearningMoveId": 313
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -558806,7 +558806,7 @@
           "LearningMoveId": 521
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -559853,7 +559853,7 @@
           "LearningMoveId": 43
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -560956,7 +560956,7 @@
           "LearningMoveId": 439
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -562059,7 +562059,7 @@
           "LearningMoveId": 155
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -563178,7 +563178,7 @@
           "LearningMoveId": 508
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -564297,7 +564297,7 @@
           "LearningMoveId": 508
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -565432,7 +565432,7 @@
           "LearningMoveId": 524
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 8
@@ -566515,7 +566515,7 @@
           "LearningMoveId": 455
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -567582,7 +567582,7 @@
           "LearningMoveId": 508
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -568701,7 +568701,7 @@
           "LearningMoveId": 109
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -569772,7 +569772,7 @@
           "LearningMoveId": 12
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -570807,7 +570807,7 @@
           "LearningMoveId": 506
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -571878,7 +571878,7 @@
           "LearningMoveId": 436
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 12
@@ -573025,7 +573025,7 @@
           "LearningMoveId": 468
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -574060,7 +574060,7 @@
           "LearningMoveId": 468
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 24
@@ -575087,7 +575087,7 @@
           "LearningMoveId": 508
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -576214,7 +576214,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -577461,7 +577461,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -578708,7 +578708,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -579955,7 +579955,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -581202,7 +581202,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -582449,7 +582449,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -583696,7 +583696,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -584943,7 +584943,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -586190,7 +586190,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -587437,7 +587437,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -588684,7 +588684,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -589931,7 +589931,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -591178,7 +591178,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -592425,7 +592425,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -593672,7 +593672,7 @@
           "LearningMoveId": 467
         }
       ],
-      "LearningHm": [
+      "LearningTmHm": [
         {
           "LearningLv": 0,
           "LearningMoveId": 1
@@ -594883,7 +594883,7 @@
           "LearningMoveId": 450
         }
       ],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -595748,7 +595748,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -596613,7 +596613,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -597477,7 +597477,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -598341,7 +598341,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -599205,7 +599205,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -600069,7 +600069,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -600933,7 +600933,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -601797,7 +601797,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -602661,7 +602661,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -603525,7 +603525,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -604389,7 +604389,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -605253,7 +605253,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -606117,7 +606117,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -606981,7 +606981,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -607845,7 +607845,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -608709,7 +608709,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -609573,7 +609573,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -610437,7 +610437,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -611301,7 +611301,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -611373,7 +611373,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -611445,7 +611445,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -611517,7 +611517,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -611589,7 +611589,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -611661,7 +611661,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -611733,7 +611733,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -611805,7 +611805,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -611877,7 +611877,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -611949,7 +611949,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612021,7 +612021,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612093,7 +612093,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612165,7 +612165,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612237,7 +612237,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612309,7 +612309,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612381,7 +612381,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612453,7 +612453,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612525,7 +612525,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612597,7 +612597,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612669,7 +612669,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612741,7 +612741,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612813,7 +612813,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612885,7 +612885,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -612957,7 +612957,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -613029,7 +613029,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -613101,7 +613101,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -613173,7 +613173,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -613245,7 +613245,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   },
@@ -613317,7 +613317,7 @@
     ],
     "Learning": {
       "LearningLv": [],
-      "LearningHm": [],
+      "LearningTmHm": [],
       "LearningEgg": []
     }
   }
