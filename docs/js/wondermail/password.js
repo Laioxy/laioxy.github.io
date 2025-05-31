@@ -76,49 +76,12 @@ class WonderMail {
     if (pass.length > 0) {
       this.Password = pass;
     }
-    let swap = GetSwapTable(sky, region);
+    const swapTable = GetSwapTable(sky, region);
+    const idxList = decPasswordToIdx(this.Password);
+    const swapList = decIdxToSwapWM(idxList, swapTable);
+    const convList = decSwapToBit(swapList);
+    const decList = decBitToDecWM(convList, sky);
 
-    // Index変換
-    let idxList = new Array(this.Password.length);
-    for (let i = 0; i < this.Password.length; i++) {
-      idxList[i] = pass_str.indexOf(this.Password[i]);
-    }
-    // Swap変換
-    let swapList = new Array(this.Password.length);
-    for (let i = 0; i < this.Password.length; i++) {
-      swapList[i] = idxList[swap[i]];
-    }
-    // Bit変換
-    let bit = 0;
-    let val = 0;
-    let convList = [];
-    swapList.forEach(function (r) {
-      val |= r << bit;
-      bit += 5;
-      if (bit >= 8) {
-        convList.push(val & 0xff);
-        val >>= 8;
-        bit -= 8;
-      }
-    });
-    // Decode
-    let first = convList[0];
-    let mov = first % 2 == 0 ? -1 : 1;
-    let pos = first;
-    let rcn = (first >> 4) + (first & 0xf) + 8;
-    let decList = [];
-    convList.forEach(function (r, i) {
-      let dec = r;
-      if ((sky && i >= 4) || (!sky && i >= 1)) {
-        dec += 0xff00 - encryption[pos];
-        dec &= 0xff;
-        pos += mov;
-        pos &= 0xff;
-        rcn--;
-        if (rcn == 0) pos = first;
-      }
-      decList.push(dec);
-    });
     this.idxList = idxList;
     this.swapList = swapList;
     this.convList = convList;
@@ -172,7 +135,6 @@ class WonderMail {
     }
   }
   Encode(sky = true, region = 'jp') {
-    let swap = GetSwapTable(sky, region);
     this.Sky = sky;
     let decode;
     if (this.Sky) {
@@ -234,54 +196,17 @@ class WonderMail {
 
     // 8bitにトリミング
     for (let i = 0; i < decode.length; i++) decode[i] &= 0xff;
-    this.decList = decode.concat();
 
-    // decode => bit
-    let t = decode[0];
-    let r = decode[0];
-    let num = (t & 0x01) == 1 ? 1 : -1;
-    let rByte = (t >> 4) + 8 + (t & 0x0f);
-    if (rByte > 16) rByte = -1;
-    let count = rByte;
-    for (let i = this.Sky ? 4 : 1; i < decode.length - 1; i++) {
-      decode[i] += encryption[t];
-      t += num;
-      decode[i] &= 0xff;
-      t &= 0xff;
-      count--;
-      if (count == 0) {
-        t = decode[0];
-        // t = r;
-        // count = rByte;
-      }
-    }
-    this.convList = decode.concat();
+    const swapTable = GetSwapTable(sky, region);
+    const convList = encDecToBitWM(decode, sky);
+    const swapList = encBitToSwapWM(convList, swapTable);
+    const idxList = encSwapToIdxWM(swapList, swapTable);
+    const pass = encIdxToPasswordWM(idxList, swapTable);
 
-    // bit => swap
-    let sw = new Array(swap.length);
-    let bits = 0;
-    let aidx = 0;
-    for (let i = 0; i < sw.length; i++) {
-      sw[i] = decode[aidx] >> bits;
-      if (bits > 2) sw[i] |= decode[aidx + 1] << (8 - bits);
-      bits += 5;
-      if (bits > 7) {
-        aidx++;
-        bits %= 8;
-      }
-    }
-    for (let i = 0; i < sw.length; i++) sw[i] &= 0x1f;
-    this.swapList = sw.concat();
-
-    // swap => idx
-    let idx = new Array(swap.length);
-    for (let i = 0; i < swap.length; i++) idx[swap[i]] = sw[i] & (pass_str.length - 1);
-    this.idxList = idx.concat();
-
-    // パスワード化
-    let pass = '';
-    for (let i = 0; i < swap.length; i++) pass += pass_str.charAt(idx[i]);
-
+    this.decList = decode;
+    this.convList = convList;
+    this.swapList = swapList;
+    this.idxList = idxList;
     this.Password = pass;
   }
 
@@ -334,5 +259,158 @@ function GetSwapTable(sky = true, region = 'JP') {
         break;
     }
   } else res = swap_table.old;
+  return res;
+}
+
+/**
+ * [Decode] パスワード -> Idx 変換
+ * @param {string} passStr
+ * @returns {number[]}
+ */
+function decPasswordToIdx(passStr) {
+  const res = new Array(passStr.length);
+  for (let i = 0; i < passStr.length; i++) {
+    res[i] = pass_str.indexOf(passStr[i]);
+  }
+  return res;
+}
+
+/**
+ * [Decode] Idx -> Swap 変換
+ * @param {number[]} idxList
+ * @returns {number[]}
+ */
+function decIdxToSwapWM(idxList, swapTable) {
+  const res = new Array(idxList.length);
+  for (let i = 0; i < idxList.length; i++) {
+    res[i] = idxList[swapTable[i]];
+  }
+  return res;
+}
+
+/**
+ * [Decode] Swap -> Bit 変換
+ * @param {number[]} swapList
+ * @returns {number[]}
+ */
+function decSwapToBit(swapList) {
+  let bit = 0;
+  let val = 0;
+  const res = [];
+  for (let i = 0; i < swapList.length; i++) {
+    val |= swapList[i] << bit;
+    bit += 5;
+    if (bit >= 8) {
+      res.push(val & 0xff);
+      val >>= 8;
+      bit -= 8;
+    }
+  }
+  return res;
+}
+
+/**
+ * [Decode] Bit -> Dec 変換
+ * @param {number[]} convList
+ * @returns {number[]}
+ */
+function decBitToDecWM(convList, sky) {
+  const first = convList[0];
+
+  // 最初の値の上位4ビットと下位4ビットの和に8を足す
+  const count = (first >> 4) + (first & 0xf) + 8;
+  const mov = first & 0x01 ? 1 : -1;
+
+  const res = [];
+  // チェックサムはそのまま入れる
+  if (sky) {
+    for (let i = 0; i < 4; i++) res.push(convList[i]);
+  } else {
+    for (let i = 0; i < 1; i++) res.push(convList[i]);
+  }
+
+  let pos = 0;
+  for (let i = sky ? 4 : 1; i < convList.length; i++) {
+    const j = (pos * mov + first) & 0xff;
+    const dec = (convList[i] - encryption[j]) & 0xff;
+    res.push(dec);
+    pos = (pos + 1) % count;
+  }
+  return res;
+}
+
+/**
+ * [Encode] Dec -> Bit 変換
+ * @param {number[]} decList
+ * @returns {number[]}
+ */
+function encDecToBitWM(decList, sky) {
+  const t = decList[0];
+  const mov = (t & 0x01) == 1 ? 1 : -1;
+  const count = (t >> 4) + (t & 0xf) + 8;
+  const res = [];
+
+  // チェックサム分をセット
+  if (sky) {
+    for (let i = 0; i < 4; i++) res.push(decList[i]);
+  } else {
+    for (let i = 0; i < 1; i++) res.push(decList[i]);
+  }
+
+  let position = 0;
+  for (let i = sky ? 4 : 1; i < decList.length; i++) {
+    const j = (position * mov + t) & 0xff;
+    const val = (decList[i] + encryption[j]) & 0xff;
+    res.push(val);
+    position = (position + 1) % count;
+  }
+  return res;
+}
+
+/**
+ * [Encode] Bit -> Swap 変換
+ * @param {number[]} convList
+ * @returns {number[]}
+ */
+function encBitToSwapWM(convList, swapTable) {
+  const res = new Array(swapTable.length);
+  let bits = 0;
+  let aidx = 0;
+  for (let i = 0; i < res.length; i++) {
+    res[i] = convList[aidx] >> bits;
+    if (bits > 2) res[i] |= convList[aidx + 1] << (8 - bits);
+    bits += 5;
+    if (bits > 7) {
+      aidx++;
+      bits %= 8;
+    }
+  }
+  for (let i = 0; i < res.length; i++) res[i] &= pass_str.length - 1;
+  return res;
+}
+
+/**
+ * [Encode] Swap -> Idx 変換
+ * @param {number[]} swapList
+ * @returns {number[]}
+ */
+function encSwapToIdxWM(swapList, swapTable) {
+  const res = new Array(swapTable.length);
+  for (let i = 0; i < swapTable.length; i++) {
+    res[swapTable[i]] = swapList[i] & (pass_str.length - 1);
+  }
+  return res;
+}
+
+/**
+ * [Encode] Idx -> パスワード 変換
+ * @param {number[]} idxList
+ * @returns {string}
+ */
+function encIdxToPasswordWM(idxList, swapTable) {
+  let res = '';
+  for (let i = 0; i < swapTable.length; i++) {
+    res += pass_str.charAt(idxList[i]);
+  }
   return res;
 }
