@@ -2,68 +2,67 @@ import { WonderMail, GetSwapTable } from '/js/wondermail/password.js';
 
 $(async function () {
   // JSONデータ格納用変数
-  var PokemonData;
-  var ItemData;
-  var DungeonData;
-  var FloorData;
-  var FixedData;
+  let PokemonData;
+  let ItemData;
+  let DungeonData;
+  let FloorData;
+  let FixedData;
 
   // 要素キャッシュ
-  var e_loading = $('.loading');
-  var e_advanced = $('.advanced');
-  var e_progress_worker_bar = $('#progress-worker-bar');
-  var e_progress_wrap = $('#progress-wrap');
-  var e_pass_area = $('#pass-area');
-  var e_version_sky = $('#version-sky');
-  var e_version_old = $('#version-old');
-  var e_region_jp = $('#region-jp');
-  var e_region_na = $('#region-na');
-  var e_region_eu = $('#region-eu');
-  var e_checksum_1 = $('#checksum1');
-  var e_checksum_2 = $('#checksum2');
+  const e_loading = $('.loading');
+  const e_advanced = $('.advanced');
+  const e_progress_worker_bar = $('#progress-worker-bar');
+  const e_progress_wrap = $('#progress-wrap');
+  const e_pass_area = $('#pass-area');
+  const e_version_sky = $('#version-sky');
+  const e_version_old = $('#version-old');
+  const e_region_jp = $('#region-jp');
+  const e_region_na = $('#region-na');
+  const e_region_eu = $('#region-eu');
+  const e_checksum_1 = $('#checksum1');
+  const e_checksum_2 = $('#checksum2');
 
-  var e_mission_type = $('#mission-type');
-  var e_mission_flag = $('#mission-flag');
-  var e_reward_type = $('#reward-type');
-  var e_reward_value_number = $('#reward-value-number');
-  var e_reward_value_select = $('#reward-value-select');
-  var e_client = $('#client');
-  var e_target_1 = $('#target-1');
-  var e_target_2 = $('#target-2');
-  var e_target_item = $('#target-item');
-  var e_dungeon = $('#dungeon');
-  var e_dungeon_floor = $('#dungeon-floor');
-  var e_fixed_floor = $('#fixed-floor');
-  var e_rest_type = $('#rest-type');
-  var e_rest_value = $('#rest-value');
-  var e_seed = $('#seed');
+  const e_mission_type = $('#mission-type');
+  const e_mission_flag = $('#mission-flag');
+  const e_reward_type = $('#reward-type');
+  const e_reward_value_number = $('#reward-value-number');
+  const e_reward_value_select = $('#reward-value-select');
+  const e_client = $('#client');
+  const e_target_1 = $('#target-1');
+  const e_target_2 = $('#target-2');
+  const e_target_item = $('#target-item');
+  const e_dungeon = $('#dungeon');
+  const e_dungeon_floor = $('#dungeon-floor');
+  const e_fixed_floor = $('#fixed-floor');
+  const e_rest_type = $('#rest-type');
+  const e_rest_value = $('#rest-value');
+  const e_seed = $('#seed');
 
-  var e_mode_consecutive = $('#mode-consecutive');
-  var e_consecutive_max = $('#consecutive-max');
-  var e_consecutive_rand_reward_value = $('#consecutive-random-reward-value');
-  var e_consecutive_rand_pokemon = $('#consecutive-random-pokemon');
-  var e_consecutive_rand_target_item = $('#consecutive-random-target-item');
-  var e_consecutive_rand_seed = $('#consecutive-random-seed');
+  const e_mode_consecutive = $('#mode-consecutive');
+  const e_consecutive_max = $('#consecutive-max');
+  const e_consecutive_rand_reward_value = $('#consecutive-random-reward-value');
+  const e_consecutive_rand_pokemon = $('#consecutive-random-pokemon');
+  const e_consecutive_rand_target_item = $('#consecutive-random-target-item');
+  const e_consecutive_rand_seed = $('#consecutive-random-seed');
 
   // ボタン要素
-  var e_target_item_rand = $('#target-item-rand');
+  const e_target_item_rand = $('#target-item-rand');
 
   // アラート要素
-  var e_pass_alert = $('#pass-alert');
-  var e_mission_alert = $('#mission-alert');
+  const e_pass_alert = $('#pass-alert');
+  const e_mission_alert = $('#mission-alert');
 
   // アドバンスドモード (上級者向け)
   // 有効にするとdisabledを無効化、項目を一部拡張
-  var advanced = new URL(document.location).searchParams.get('advanced') != null;
+  const advanced = new URL(document.location).searchParams.get('advanced') != null;
 
   // Worker
-  var worker = null;
+  let worker = null;
 
   // アドバンスドモード表示
   if (advanced) e_advanced.show();
   else e_advanced.hide();
 
-  console.log('Promise Start');
   await Promise.all([
     getJsonData('pokemon'),
     getJsonData('item'),
@@ -81,7 +80,6 @@ $(async function () {
     .catch((e) => {
       console.error(e);
     });
-  console.log('Promise End');
 
   // Select2
   e_reward_value_select.select2(select2Config);
@@ -365,8 +363,6 @@ $(async function () {
     }
   });
 
-  console.log('event OK');
-
   // 初期化
   let init = new Promise(async function () {
     AppendMissionType(e_mission_type);
@@ -386,11 +382,9 @@ $(async function () {
     e_dungeon.val(1).change();
   });
 
-  console.log('init OK');
   // ロード完了後、イベントトリガー
   $('select').trigger('change');
   e_pass_area.trigger('keyup');
-  console.log('trigger OK');
   // ローディング解除
   e_loading.fadeOut(200);
 
@@ -941,7 +935,7 @@ $(async function () {
 
         // メッセージ
         e_pass_alert.hide();
-        console.log(mission);
+        if (advanced) console.log(mission);
 
         if (mission.Checksum1 == mission.Checksum2) {
           e_pass_alert.html('パスワードを展開しました！');
@@ -1210,7 +1204,7 @@ $(async function () {
    * @returns 0=許可, 1=禁止ポケモン対象, 2=その他
    */
   function IsBannedPokemon(x) {
-    var species = GetBaseForm(x);
+    let species = GetBaseForm(x);
     if (species != x) {
       return 2;
     }
@@ -1218,7 +1212,7 @@ $(async function () {
     if (species >= 0x216 && species <= 0x257) return 2;
     if (species >= 0x216 + 600 && species <= 0x257 + 600) return 2;
 
-    for (var i = 0; i < banned_poke.length; i++) {
+    for (let i = 0; i < banned_poke.length; i++) {
       if (species % 600 == banned_poke[i]) return 1;
     }
     return 0;
