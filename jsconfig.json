@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "static",
+    "paths": {
+      "/js/*": ["js/*"]
+    },
+    "checkJs": false,
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"]
+  },
+  "include": ["static/js/**/*.js"]
+}
