@@ -1,0 +1,19 @@
+<!-- 無効な技(ダメ計に使用できる技)であるかチェック -->
+{{ $id := int . }}
+{{ $res := false }}
+
+{{ if eq $id 467 }}
+  <!-- さばきのつぶてを許可 -->
+  {{ $res = false }}
+{{ else if in (slice 61 340 535) $id }}
+  <!-- がまん, リベンジ, ゆきなだれを除外 -->
+  {{ $res = true }}
+{{ else }}
+  <!-- 未使用技を除外 -->
+  {{ $unusedMoves := partial "methods/GetUnusedMove.html" }}
+  {{ $res = or (in $unusedMoves $id) (lt 557 $id) }}
+{{ end }}
+
+
+<!-- true/false -->
+{{ return $res }}
