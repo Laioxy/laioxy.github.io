@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   const modalElement = document.querySelector('#modal-damage');
   modalElement.addEventListener('hide.bs.modal', () => {
     document.activeElement.blur();
+    modalElement.remove();
   });
   // ページの一番上へジャンプ
   const topBtnElement = document.querySelector('#top-btn');
