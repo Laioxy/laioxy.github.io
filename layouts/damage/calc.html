@@ -1,0 +1,1558 @@
+{{ define "main" }}
+  {{ $pokemon_json := resources.Get "data/pokemon.json" | transform.Unmarshal }}
+  {{ $move_json := resources.Get "data/move.json" | transform.Unmarshal }}
+  {{ $type_json := resources.Get "data/type.json" | transform.Unmarshal }}
+  {{ $item_json := resources.Get "data/item.json" | transform.Unmarshal }}
+  {{ $iqskill_json := resources.Get "data/iqskill.json" | transform.Unmarshal }}
+  {{ $abilityCount := 124 }}
+
+
+  <script src="/js/json_script.js"></script>
+  <script src="/js/damage/view.js" type="module"></script>
+  <script src="/js/poke_param.js"></script>
+  <link href="/css/damage/calc.css" rel="stylesheet" type="text/css" />
+
+  <!-- ローディング -->
+  <div class="loading fade show">
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-xxl py-3" id="damage-calc">
+    <!-- トップボタン -->
+    <div id="top-btn"><i class="bi bi-chevron-up"></i></div>
+
+    <!-- 計算結果 -->
+    <div
+      id="damage-result"
+      class="text-bg-success"
+      data-bs-toggle="modal"
+      data-bs-target="#modal-damage">
+      <div class="container-xxl">
+        <div class="row">
+          <div class="col-8 col-md-4">
+            <div class="d-flex align-items-center gap-1 mb-2">
+              <h6 class="m-0">ダメージ</h6>
+              <div id="damage-result-badge"></div>
+            </div>
+            <div class="d-flex align-items-baseline flex-wrap gap-1">
+              <span class="fw-bold" id="damage-min">XXX</span>
+              <span>～</span>
+              <span class="fw-bold" id="damage-max">XXX</span>
+              <span id="damage-avg">(平均: XXX)</span>
+            </div>
+          </div>
+          <div class="col-4">
+            <h6>命中率</h6>
+            <span class="fw-bold" id="accuracy-result">XXX.XX%</span>
+          </div>
+          <div class="col-4 d-none d-md-block">
+            <h6>急所率</h6>
+            <span class="fw-bold" id="critical-result">XXX.XX%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 計算結果 (詳細モーダル) -->
+    <div class="modal fade" id="modal-damage" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">詳細</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="monster-info">
+              <div class="monster">
+                <p class="m-0 fw-bold">
+                  <span id="attacker-name">ポケモン名</span>
+                  <span class="form-text" id="attacker-level">Lv100</span>
+                </p>
+                <p class="form-text" id="attacker-status">XXX</p>
+              </div>
+              <i class="bi bi-caret-right-fill fs-4"></i>
+              <div class="monster">
+                <p class="m-0 fw-bold">
+                  <span id="defender-name">ポケモン名</span>
+                  <span class="form-text" id="defender-level">Lv100</span>
+                </p>
+                <p class="form-text" id="defender-status">XXX</p>
+              </div>
+            </div>
+            <table class="table table-sm table-borderless mb-3">
+              <colgroup>
+                <col style="width: 12rem" />
+                <col />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th>技</th>
+                  <td><span class="move-name"></span></td>
+                </tr>
+                <tr>
+                  <th>ダメージ</th>
+                  <td>
+                    <p class="m-0">
+                      <span class="damage-min"></span>
+                      ～
+                      <span class="damage-max"></span>
+                      <span class="damage-avg"></span>
+                    </p>
+                    <p id="damage-badge-wrap"></p>
+                  </td>
+                </tr>
+                <tr>
+                  <th>命中率</th>
+                  <td><span class="hit-chance"></span></td>
+                </tr>
+                <tr>
+                  <th>急所率</th>
+                  <td><span class="crit-chance"></span></td>
+                </tr>
+              </tbody>
+            </table>
+            <hr />
+            <table class="table table-sm table-borderless mb-3">
+              <colgroup>
+                <col style="width: 12rem" />
+                <col />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th>タイプ相性</th>
+                  <td><span class="type-matchup"></span></td>
+                </tr>
+                <tr>
+                  <th>技タイプ</th>
+                  <td><span class="move-type"></span></td>
+                </tr>
+                <tr>
+                  <th>技分類</th>
+                  <td><span class="move-category"></span></td>
+                </tr>
+                <tr>
+                  <th>急所</th>
+                  <td><span class="critical-hit"></span></td>
+                </tr>
+                <tr>
+                  <th>タイプ無効</th>
+                  <td><span class="full-type-immunity"></span></td>
+                </tr>
+                <tr>
+                  <th>ダメージ無し</th>
+                  <td><span class="no-damage"></span></td>
+                </tr>
+              </tbody>
+            </table>
+            <hr />
+            <table class="table table-sm table-borderless mb-3">
+              <colgroup>
+                <col style="width: 12rem" />
+                <col />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th>
+                    攻撃側ランク{{ partial "tooltips" "攻撃側の攻撃系能力ランク。<br>物理技なら攻撃、特殊技なら特攻。" }}
+                  </th>
+                  <td><span class="offensive-stat-stage"></span></td>
+                </tr>
+                <tr>
+                  <th>
+                    防御側ランク{{ partial "tooltips" "防御側の防御系能力ランク。<br>物理技なら防御、特殊技なら特防。" }}
+                  </th>
+                  <td><span class="defensive-stat-stage"></span></td>
+                </tr>
+                <tr>
+                  <th>
+                    攻撃側ステータス{{ partial "tooltips" "攻撃側の攻撃系ステータス。<br>物理技なら攻撃、特殊技なら特攻。" }}
+                  </th>
+                  <td><span class="offensive-stat"></span></td>
+                </tr>
+                <tr>
+                  <th>
+                    防御側ステータス{{ partial "tooltips" "防御側の防御系ステータス。<br>物理技なら防御、特殊技なら特防。" }}
+                  </th>
+                  <td><span class="defensive-stat"></span></td>
+                </tr>
+                <tr>
+                  <th>
+                    攻撃側最終ステータス{{ partial "tooltips" "ATとFLVの計算に使用する、攻撃側ステータスにランク補正を適用した値。" }}
+                  </th>
+                  <td><span class="offense-calc"></span></td>
+                </tr>
+                <tr>
+                  <th>
+                    防御側最終ステータス{{ partial "tooltips" "DEFとFLVの計算に使用する、防御側ステータスにランク補正を適用した値。" }}
+                  </th>
+                  <td><span class="defense-calc"></span></td>
+                </tr>
+                <tr>
+                  <th>
+                    AT{{ partial "tooltips" "技の威力+修正値にランク補正を適用し、攻撃側の最終ステータスに足した値。<br>語源は内部デバッグメッセージから。" }}
+                  </th>
+                  <td><span class="damage-calc-at"></span></td>
+                </tr>
+                <tr>
+                  <th>
+                    DEF{{ partial "tooltips" "防御側のステータスにランク補正を適用した値(＝防御側最終ステータス)。<br>語源は内部デバッグメッセージから。" }}
+                  </th>
+                  <td><span class="damage-calc-def"></span></td>
+                </tr>
+                <tr>
+                  <th>
+                    FLV{{ partial "tooltips" "攻撃側のレベル+(攻撃-防御)÷8<br>この計算には攻撃側・防御側それぞれの最終ステータスの値が使用される。<br>語源は内部デバッグメッセージから。" }}
+                  </th>
+                  <td><span class="damage-calc-flv"></span></td>
+                </tr>
+                <tr>
+                  <th>
+                    基礎ダメージ{{ partial "tooltips" "(153 ÷ 256) × AT - DEF ÷ 2 + 50 × ln(10 × FLV + 500) - 311<br>相手が敵(チームメンバーではない)なら、更に64/85で乗算する。" }}
+                  </th>
+                  <td><span class="damage-calc-base"></span></td>
+                </tr>
+                <tr>
+                  <th>
+                    静的ダメージ倍率{{ partial "tooltips" "基礎ダメージに適用される静的なダメージ倍率。<br>一部の技に固有で存在する倍率や、さきどり、すてみ、てつのこぶし等の倍率が含まれる。<br>タイプ一致補正等の動的な倍率はここには含まれない。" }}
+                  </th>
+                  <td><span class="static-damage-mult"></span></td>
+                </tr>
+                <tr>
+                  <th>
+                    最終ダメージ{{ partial "tooltips" "乱数補正を適用する前の最終ダメージ。" }}
+                  </th>
+                  <td><span class="damage-calc"></span></td>
+                </tr>
+                <tr>
+                  <th>
+                    乱数範囲{{ partial "tooltips" "乱数補正の範囲。<br>実際には0～16383の乱数に57344を足し、<br>65536で割った分が乱数補正となる。" }}
+                  </th>
+                  <td>
+                    <span class="min-random-damage-mult-pct"></span>
+                    ～
+                    <span class="max-random-damage-mult-pct"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="mb-3">
+      ダメージ計算機
+      <span class="fs-5">for ポケダン空</span>
+    </h1>
+    <div class="d-flex gap-3 flex-column">
+      <div class="card-group">
+        <div class="move-wrap card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="table-floating">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-floating">
+                        <select class="move form-select" id="move">
+                          <!-- 通常攻撃 -->
+                          <optgroup label="通常攻撃">
+                            <option value="355" selected>通常攻撃</option>
+                          </optgroup>
+
+                          <!-- 道具 -->
+                          <optgroup label="道具">
+                            <option value="405" data-power="1">きのえだ</option>
+                            <option value="405" data-power="4">
+                              てつのトゲ
+                            </option>
+                            <option value="405" data-power="6">
+                              ぎんのハリ
+                            </option>
+                            <option value="405" data-power="7">
+                              きんのキバ
+                            </option>
+                            <option value="405" data-power="10">
+                              サボネアのハリ
+                            </option>
+                            <option value="405" data-power="15">
+                              サニーゴのトゲ
+                            </option>
+                            <option value="405" data-power="20">
+                              おうごんのトゲ
+                            </option>
+                            <option value="73">がんせきだま</option>
+                            <option value="364">ぶんどりのたま</option>
+                            <option value="366">やまごえだま</option>
+                          </optgroup>
+
+                          <!-- 技 -->
+                          {{ $sortedMoves := sort $move_json "Name" }}
+                          <optgroup label="技">
+                            {{ range $move := $sortedMoves }}
+                              {{ $valid := partial "methods/IsValidMove.html" (int .Id) }}
+                              {{ if and (not $valid) (ne (int .Category) 2) (ne (int .Power) 0) }}
+                                <option value="{{ .Id }}">
+                                  {{ .Name }}
+                                </option>
+                              {{ end }}
+                            {{ end }}
+                          </optgroup>
+
+                          <!-- 非対応 -->
+                          <optgroup label="非対応">
+                            {{ range $move := $sortedMoves }}
+                              {{ $valid := partial "methods/IsValidMove.html" (int .Id) }}
+                              {{ if and (not $valid) (or (eq (int .Category) 2) (eq (int .Power) 0)) }}
+                                <option
+                                  value="{{ .Id }}"
+                                  data-no-support="true">
+                                  {{ .Name }}
+                                </option>
+                              {{ end }}
+                            {{ end }}
+                          </optgroup>
+                        </select>
+                        <label class="form-label">技</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-floating">
+                        <input
+                          type="number"
+                          class="ginseng-boost form-control"
+                          id="ginseng-boost"
+                          value="0"
+                          max="99"
+                          min="0" />
+                        <label>修正値 (カテキン)</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <table
+                  class="table table-sm table-borderless align-middle mt-2">
+                  <tbody>
+                    <tr>
+                      <td>
+                        現在PP
+                        {{ partial "tooltips" "きりふだのダメージ倍率に関連する。<br>※たげいには未対応。<hr>最大PPの100%以下: 0.5倍<br>最大PPの75%以下: 0.75倍<br>最大PPの50%以下: 1倍<br>最大PPの25%以下: 1.25倍" }}
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          class="move-pp form-control form-control-sm"
+                          id="move-now-pp"
+                          value="0"
+                          max="99"
+                          min="0" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        連続命中数
+                        {{ partial "tooltips" "ころがる、アイスボール、トリプルキックの<br>命中した回数によるダメージ倍率に関連する。<br>※既に命中している回数を入力する。例えば3回目命中時のダメージを計算する場合は2を入力。<hr>ころがる: 1回毎に+0.1倍<br>アイスボール: 1回毎に+0.1倍<br>トリプルキック: 1回毎に+1.0倍 (3回まで)" }}
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          class="move-hits form-control form-control-sm"
+                          id="move-hits"
+                          value="0"
+                          max="9"
+                          min="0" />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="mt-2 mb-1 p-1">
+                  <!-- 急所 -->
+                  <div class="form-check form-switch">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="damage-critical" />
+                    <label class="form-check-label" for="damage-critical">
+                      急所
+                    </label>
+                  </div>
+
+                  <!-- ちからもち/ヨガパワー -->
+                  <div class="form-check form-switch">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="damage-hugepower" />
+                    <label class="form-check-label" for="damage-hugepower">
+                      ちからもち/ヨガパワー
+                    </label>
+                  </div>
+
+                  <!-- 時闇 -->
+                  <div class="form-check form-switch">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="damage-support-td" />
+                    <label class="form-check-label" for="damage-support-td">
+                      時闇の威力で計算
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 mt-2 mt-md-0">
+                <div class="" id="move-info">
+                  <table class="table table-sm">
+                    <colgroup>
+                      <col style="width: 50%" />
+                      <col style="width: 50%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <td>威力</td>
+                        <td id="move-power">XX</td>
+                      </tr>
+                      <tr>
+                        <td>タイプ</td>
+                        <td id="move-type">○○○</td>
+                      </tr>
+                      <tr>
+                        <td>分類</td>
+                        <td id="move-category">○○</td>
+                      </tr>
+                      <tr>
+                        <td>PP</td>
+                        <td id="move-pp">XX</td>
+                      </tr>
+                      <tr>
+                        <td>命中値1</td>
+                        <td id="move-accuracy-1">XXX</td>
+                      </tr>
+                      <tr>
+                        <td>命中値2</td>
+                        <td id="move-accuracy-2">XXX</td>
+                      </tr>
+                      <tr>
+                        <td>基礎命中率</td>
+                        <td id="move-accuracy-base">XX.X%</td>
+                      </tr>
+                      <tr>
+                        <td>攻撃回数</td>
+                        <td id="move-strikes">X</td>
+                      </tr>
+                      <tr>
+                        <td>急所率</td>
+                        <td id="move-critical">XX%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column gap-3">
+              <div>
+                <h4>ダンジョン・共通</h4>
+                <div class="row mb-2">
+                  <div class="col-auto d-flex align-items-center">天気</div>
+                  <div class="col">
+                    <select
+                      class="form-select form-select-sm"
+                      id="dungeon-weather">
+                      <option value="0">はれ</option>
+                      <option value="1">ひざしがつよい</option>
+                      <option value="2">すなあらし</option>
+                      <option value="3">くもり</option>
+                      <option value="4">あめ</option>
+                      <option value="5">あられ</option>
+                      <option value="6">きり</option>
+                      <option value="7">ゆき</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-plus-team" />
+                      <label class="form-check-label" for="dungeon-plus-team">
+                        プラス (チーム)
+                      </label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-plus-enemy" />
+                      <label class="form-check-label" for="dungeon-plus-enemy">
+                        プラス (敵)
+                      </label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-minus-team" />
+                      <label class="form-check-label" for="dungeon-minus-team">
+                        マイナス (チーム)
+                      </label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-minus-enemy" />
+                      <label class="form-check-label" for="dungeon-minus-enemy">
+                        マイナス (敵)
+                      </label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-cheerleader" />
+                      <label class="form-check-label" for="dungeon-cheerleader">
+                        おうえん
+                      </label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-flower-gift" />
+                      <label class="form-check-label" for="dungeon-flower-gift">
+                        フラワーギフト
+                      </label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-lightning-rod" />
+                      <label
+                        class="form-check-label"
+                        for="dungeon-lightning-rod">
+                        ひらいしん
+                      </label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-storm-drain" />
+                      <label class="form-check-label" for="dungeon-storm-drain">
+                        よびみず
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-mud-sport" />
+                      <label class="form-check-label" for="dungeon-mud-sport">
+                        どろあそび
+                      </label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-water-sport" />
+                      <label class="form-check-label" for="dungeon-water-sport">
+                        みずあそび
+                      </label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-gravity" />
+                      <label class="form-check-label" for="dungeon-gravity">
+                        じゅうりょく
+                      </label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-iq-disabled" />
+                      <label class="form-check-label" for="dungeon-iq-disabled">
+                        かしこさ無効
+                      </label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="dungeon-explorer-maze" />
+                      <label
+                        class="form-check-label"
+                        for="dungeon-explorer-maze">
+                        たんけんたいのま
+                        {{ partial "tooltips" "たんけんたいのまでは敵補正が無くなり、<br>互いにチームメンバーとしてダメージを与える。" }}
+                      </label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="jp-version"
+                        checked />
+                      <label class="form-check-label" for="jp-version">
+                        日本版
+                        {{ partial "tooltips" "日本版空のみに存在する<br>ギラティナのフォルム補正バグを有効化。<hr>アナザー:<br>攻撃側の攻撃-2段階, 特攻-2段階<br>防御側の防御+2段階, 特防+2段階<br>オリジン:<br>攻撃側の攻撃+2段階, 特攻+2段階<br>防御側の防御-2段階, 特防-2段階" }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-group">
+        {{ $fighterClass := slice "attacker" "defender" }}
+        {{ range $mode, $fighter := $fighterClass }}
+          <div class="{{ $fighter }} poke-structure card" id="{{ $fighter }}">
+            <div
+              class="card-header d-flex justify-content-between align-items-center">
+              <span
+                class="fs-4
+                {{ if eq $mode 0 }}
+                  text-danger
+                {{ else }}
+                  text-primary
+                {{ end }}">
+                {{ if eq $mode 0 }}Attacker{{ else }}Defender{{ end }}
+              </span>
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-fighter-swap">
+                <i class="bi bi-arrow-left-right"></i>
+              </button>
+            </div>
+            <div class="card-body d-flex flex-column gap-3">
+              <div class="row">
+                <div class="col">
+                  <div class="d-flex flex-column gap-3">
+                    <!-- ポケモン -->
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-floating">
+                          <select
+                            class="pokemon form-select"
+                            id="pokemon-{{ $fighter }}">
+                            {{ range $index, $pokemon := $pokemon_json }}
+                              <option
+                                value="{{ $index }}"
+                                {{ if eq $index 1 }}selected{{ end }}>
+                                {{ .Name }}
+                                {{ with .SubName }}({{ . }}){{ end }}
+                              </option>
+                            {{ end }}
+                          </select>
+                          <label class="form-label">ポケモン</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- タイプ -->
+                    <div class="row">
+                      <div class="col">
+                        <div class="input-group">
+                          {{ range seq 2 }}
+                            <div class="form-floating">
+                              <select
+                                class="form-select type-{{ . }}"
+                                id="type-{{ . }}-{{ $fighter }}">
+                                {{ range $index, $type := $type_json }}
+                                  <option
+                                    value="{{ $index }}"
+                                    {{ if eq $index 0 }}selected{{ end }}>
+                                    {{ if eq $index 0 }}
+                                      -
+                                    {{ else }}
+                                      {{ $type.Name }}
+                                    {{ end }}
+                                  </option>
+                                {{ end }}
+                              </select>
+                              <label class="form-label">タイプ{{ . }}</label>
+                            </div>
+                          {{ end }}
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 特性 -->
+                    {{ $abilities := slice }}
+                    {{ range seq 123 }}
+                      {{ $ability := partial "methods/GetAbilityById.html" . }}
+                      {{ $abilities = $abilities | append $ability }}
+                    {{ end }}
+                    {{ $abilities = sort $abilities "Name" }}
+                    <div class="row">
+                      <div class="col">
+                        <div class="input-group">
+                          {{ range seq 2 }}
+                            <div class="form-floating">
+                              <select
+                                class="form-select ability-{{ . }}"
+                                id="ability-{{ . }}-{{ $fighter }}">
+                                <option value="0">-</option>
+                                {{ range $ability := $abilities }}
+                                  <option value="{{ .Id }}">
+                                    {{ .Name }}
+                                  </option>
+                                {{ end }}
+                              </select>
+                              <label class="form-label">特性{{ . }}</label>
+                            </div>
+                          {{ end }}
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 性別 -->
+                    <div class="row">
+                      <div class="col-auto d-flex flex-column">
+                        <p class="mb-1">性別</p>
+                        <div class="btn-group">
+                          <input
+                            type="radio"
+                            class="btn-check gender"
+                            name="gender-{{ $fighter }}"
+                            id="gender-{{ $fighter }}-1"
+                            checked />
+                          <label
+                            class="btn btn-outline-secondary"
+                            for="gender-{{ $fighter }}-1">
+                            オス
+                          </label>
+
+                          <input
+                            type="radio"
+                            class="btn-check gender"
+                            name="gender-{{ $fighter }}"
+                            id="gender-{{ $fighter }}-2" />
+                          <label
+                            class="btn btn-outline-secondary"
+                            for="gender-{{ $fighter }}-2">
+                            メス
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex flex-column gap-3">
+                <!-- レベル (Lv) -->
+                <div class="row">
+                  <div class="col-auto">
+                    <div class="input-group">
+                      <div class="form-floating">
+                        <input
+                          class="status-lv form-control form-control"
+                          type="number"
+                          value="1"
+                          max="100"
+                          min="0" />
+                        <label class="form-label">Lv</label>
+                      </div>
+                      <button
+                        class="btn-apply-status btn btn btn-outline-secondary">
+                        ステータスに適用
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- HP -->
+                <div class="row">
+                  <div class="col-auto">
+                    <div class="input-group">
+                      <div class="form-floating">
+                        <input
+                          class="status-hp form-control form-control"
+                          type="number"
+                          value="1"
+                          max="999"
+                          min="0" />
+                        <label>現在HP</label>
+                      </div>
+                      <div class="form-floating">
+                        <input
+                          class="status-hp-max form-control form-control"
+                          type="number"
+                          value="1"
+                          max="999"
+                          min="0" />
+                        <label>最大HP</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="form-check form-switch">
+                      <input
+                        class="form-check-input flag-leader"
+                        id="is-leader-{{ $fighter }}"
+                        type="checkbox" />
+                      <label
+                        class="form-check-label"
+                        for="is-leader-{{ $fighter }}">
+                        リーダー
+                      </label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                      <input
+                        class="form-check-input flag-member"
+                        id="is-member-{{ $fighter }}"
+                        type="checkbox"
+                        {{ if eq $mode 0 }}checked{{ end }} />
+                      <label
+                        class="form-check-label"
+                        for="is-member-{{ $fighter }}">
+                        チームメンバー
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ステータス -->
+                {{ $statusProperties := slice
+                  (dict "name" "攻撃" "class" "atk")
+                  (dict "name" "防御" "class" "def")
+                  (dict "name" "特攻" "class" "spa")
+                  (dict "name" "特防" "class" "spd")
+                }}
+                <div class="table-floating">
+                  {{ range $statusProperties }}
+                    <div class="row">
+                      <div class="col">
+                        <div class="input-group">
+                          <div class="form-floating">
+                            <input
+                              type="number"
+                              class="status-value-{{ .class }} form-control"
+                              value="1"
+                              max="255"
+                              min="0" />
+                            <label>
+                              {{ .name }}
+                            </label>
+                          </div>
+                          <div class="form-floating">
+                            <input
+                              type="number"
+                              class="status-stage-{{ .class }} form-control"
+                              value="10"
+                              max="20"
+                              min="0" />
+                            <label>能力ランク</label>
+                          </div>
+                          <div class="form-floating">
+                            <input
+                              type="number"
+                              class="status-half-{{ .class }} form-control"
+                              value="0"
+                              max="0"
+                              min="-7" />
+                            <label>半減ランク</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {{ end }}
+                </div>
+
+                <!-- その他ランク -->
+
+                <table class="table table-sm table-borderless align-middle">
+                  <colgroup>
+                    <col style="width: 50%" />
+                    <col style="width: 50%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <td>命中ランク</td>
+                      <td>
+                        <input
+                          type="number"
+                          max="20"
+                          min="0"
+                          value="10"
+                          class="form-control form-control-sm stage-accuracy" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>回避ランク</td>
+                      <td>
+                        <input
+                          type="number"
+                          max="20"
+                          min="0"
+                          value="10"
+                          class="form-control form-control-sm stage-evasion" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>[専用道具] 攻撃</td>
+                      <td>
+                        <input
+                          type="number"
+                          max="999"
+                          min="0"
+                          value="0"
+                          class="form-control form-control-sm ex-status-atk" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>[専用道具] 防御</td>
+                      <td>
+                        <input
+                          type="number"
+                          max="999"
+                          min="0"
+                          value="0"
+                          class="form-control form-control-sm ex-status-def" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>[専用道具] 特攻</td>
+                      <td>
+                        <input
+                          type="number"
+                          max="999"
+                          min="0"
+                          value="0"
+                          class="form-control form-control-sm ex-status-spa" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>[専用道具] 特防</td>
+                      <td>
+                        <input
+                          type="number"
+                          max="999"
+                          min="0"
+                          value="0"
+                          class="form-control form-control-sm ex-status-spd" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        たくわえる
+                        {{ partial "tooltips" "はきだすの倍率に関連する。<br>たくわえた回数につき+1.0倍。最大3回。" }}
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          max="3"
+                          min="0"
+                          value="0"
+                          class="form-control form-control-sm stage-stockpile" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        もらいび
+                        {{ partial "tooltips" "もらいびが発動した回数。<br>回数分だけ特攻ランクが上昇する。最大2回。" }}
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          max="2"
+                          min="0"
+                          value="0"
+                          class="form-control form-control-sm boost-flashfire" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>装備中の道具</td>
+                      <td>
+                        <!--
+                            0x00E (14)  みおとしメガネ -> めつぶし状態関連
+                            0x013 (19)  ピントレンズ
+                            0x014 (20)  ねらわれハチマキ
+                            0x01A (26)  パワーバンダナ
+                            0x025 (37)  ぼうぎょスカーフ
+                            0x028 (40)  スペシャルリボン
+                            0x029 (41)  キトサンバンダナ
+                            0x02A (42)  みきりハチマキ
+                            0x02B (43)  じくうのオーブ
+                            0x032 (50)  ゴンベのハラマキ
+                            0x034 (52)  ノーてんバンダナ
+
+                            0x045 (69)  いやしのタネ
+                            0x046 (70)  オレンのみ
+                            0x047 (71)  オボンのみ
+                            0x048 (72)  めぐすりのタネ
+                            0x049 (73)  ふっかつのタネ
+                            0x04A (74)  めつぶしのタネ
+                            0x04B (75)  ふこうのタネ
+                            0x04C (76)  まどわしのタネ
+                            0x04D (77)  いのちのタネ
+                            0x04E (78)  チーゴのみ
+                            0x04F (79)  くうふくのタネ
+                            0x050 (80)  しゅんそくのタネ
+                            0x051 (81)  モモンのみ
+                            0x052 (82)  クラボのみ
+                            0x053 (83)  ふらふらのタネ
+                            0x054 (84)  すいみんのタネ
+                            0x055 (85)  ただのタネ
+                            0x056 (86)  ワープのタネ
+                            0x057 (87)  ばくれつのタネ
+                            0x059 (89)  しあわせのタネ
+                            0x05A (90)  カゴのみ
+                            0x05B (91)  しばられのタネ
+                            0x05D (93)  おうごんのタネ
+                            0x05E (94)  じゃあくなタネ
+                            0x05F (95)  せいなるタネ
+                            0x060 (96)  もうげきのタネ
+                            0x061 (97)  ドロンのタネ
+                            0x068 (104) めくすぐりのタネ
+                            0x069 (105) ぷっかつのタネ
+                            0x06A (106) すいみんぐのタネ
+                            0x06B (107) じゃあなのタネ
+                            0x075 (117) オレソのみ
+                            0x076 (118) ふごうのタネ
+
+                            0x1AC (428) シルバーリボン
+                            0x1AD (429) ブラウンリボン
+                            0x1AE (430) レッドリボン
+                            0x1AF (431) ピンクリボン
+                            0x1B0 (432) オレンジリボン
+                            0x1B1 (433) イエローリボン
+                            0x1B2 (434) きみどりリボン
+                            0x1B3 (435) グリーンリボン
+                            0x1B4 (436) ふかみどりリボン
+                            0x1B5 (437) ミントいろリボン
+                            0x1B6 (438) みずいろリボン
+                            0x1B7 (439) ブルーリボン
+                            0x1B8 (440) こんいろリボン
+                            0x1B9 (441) むらさきリボン
+                            0x1BA (442) すみれいろリボン
+                            0x1BB (443) こいピンクリボン
+                          -->
+                        <select
+                          class="form-select form-select-sm held-item"
+                          id="held-item-{{ $fighter }}">
+                          <option value="0">-</option>
+                          {{ $heldItemsNormalIds := slice 14 19 20 26 37 40 41 42 43 50 52 }}
+                          {{ $heldItemsNatureIds := slice 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 89 90 91 93 94 95 96 97 104 105 106 107 117 118 }}
+                          {{ $heldItemsRibbonIds := slice 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442 443 }}
+                          {{ $heldItemsNormal := where $item_json "Id" "in" (apply $heldItemsNormalIds "float" ".") }}
+                          {{ $heldItemsNature := where $item_json "Id" "in" (apply $heldItemsNatureIds "float" ".") }}
+                          {{ $heldItemsRibbon := where $item_json "Id" "in" (apply $heldItemsRibbonIds "float" ".") }}
+                          {{ $heldItemGroups := slice
+                            (dict "label" "装備品" "slice" (sort $heldItemsNormal "Name"))
+                            (dict "label" "しぜんのめぐみ" "slice" (sort $heldItemsNature "Name"))
+                            (dict "label" "波動色リボン" "slice" (sort $heldItemsRibbon "Name"))
+                          }}
+
+                          {{ range $heldItemGroups }}
+                            <optgroup label="{{ .label }}">
+                              {{ range .slice }}
+                                <option value="{{ .Id }}">
+                                  {{ .Name }}
+                                </option>
+                              {{ end }}
+                            </optgroup>
+                          {{ end }}
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>
+                        <div class="form-check form-switch">
+                          <input
+                            type="checkbox"
+                            class="form-check-input held-item-sticky"
+                            id="item-sticky-{{ $fighter }}" />
+                          <label
+                            class="form-check-label"
+                            for="item-sticky-{{ $fighter }}">
+                            ネバつき
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="accordion" id="accordion-{{ $fighter }}">
+                  <div class="accordion-item iqskill-group">
+                    <h2 class="accordion-header">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse-iqskill-{{ $fighter }}"
+                        aria-expanded="true"
+                        aria-controls="collapse-iqskill-{{ $fighter }}">
+                        かしこさ
+                      </button>
+                    </h2>
+                    <div
+                      id="collapse-iqskill-{{ $fighter }}"
+                      class="accordion-collapse collapse">
+                      <div class="accordion-body">
+                        <!--
+                        0x01 (1)  あいしょうばつぐん
+                        0x04 (4)  いっぱつひっちゅう
+                        0x05 (5)  すばやくかいひ
+                        0x1D (29) ねらいうち
+                        0x22 (34) こうげきてき
+                        0x23 (35) みがまえる
+                        0x2F (47) ごうわん
+                        0x30 (48) しゅうちゅう
+                        0x31 (49) まけんき
+                        0x32 (50) おうえん
+                        0x3B (59) ムラっけ
+                        0x3C (60) かたならし
+                        0x3F (63) どたんば
+                        0x40 (64) かみひとえ
+                      -->
+                        {{ $iqskillIds := slice 1 4 5 29 34 35 47 48 49 50 59 60 63 64 }}
+                        {{ $iqskills := where $iqskill_json "Id" "in" (apply $iqskillIds "float" ".") }}
+                        {{ $half := math.Ceil (div (float (len $iqskills)) 2) }}
+                        {{ $firstHalf := first $half $iqskills }}
+                        {{ $secondHalf := after $half $iqskills }}
+
+
+                        <div class="row">
+                          {{ range slice $firstHalf $secondHalf }}
+                            <div class="col-12 col-md-6">
+                              {{ range . }}
+                                <div class="form-check form-switch">
+                                  <input
+                                    type="checkbox"
+                                    class="form-check-input iqskill-{{ .Id }}"
+                                    id="iqskill-{{ .Id }}-{{ $fighter }}"
+                                    value="{{ .Id }}" />
+                                  <label
+                                    class="form-check-label"
+                                    for="iqskill-{{ .Id }}-{{ $fighter }}">
+                                    {{ .Name }}
+                                  </label>
+                                </div>
+                              {{ end }}
+                            </div>
+                          {{ end }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item status-group">
+                    <h2 class="accordion-header">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse-status-{{ $fighter }}"
+                        aria-expanded="true"
+                        aria-controls="collapse-status-{{ $fighter }}">
+                        状態異常
+                      </button>
+                    </h2>
+                    <div
+                      id="collapse-status-{{ $fighter }}"
+                      class="accordion-collapse collapse">
+                      <div class="accordion-body">
+                        {{ $statuses := slice
+                          (dict "class" "sleep" "label" "すいみん" "value" "sleep")
+                          (dict "class" "nightmare" "label" "あくむ" "value" "nightmare")
+                          (dict "class" "napping" "label" "あくび" "value" "napping")
+                          (dict "class" "burn" "label" "やけど" "value" "burn")
+                          (dict "class" "poison" "label" "どく" "value" "poison")
+                          (dict "class" "bad-poison" "label" "もうどく" "value" "bad_poison")
+                          (dict "class" "paralysis" "label" "まひ" "value" "paralysis")
+                          (dict "class" "identifying" "label" "しきべつ" "value" "identifying")
+                          (dict "class" "confusion" "label" "こんらん" "value" "confusion")
+                          (dict "class" "skull-bash" "label" "ロケットずつき" "value" "skull_bash")
+                          (dict "class" "flying" "label" "そらをとぶ" "value" "flying")
+                          (dict "class" "bouncing" "label" "とびはねる" "value" "bouncing")
+                          (dict "class" "diving" "label" "ダイビング" "value" "diving")
+                          (dict "class" "digging" "label" "あなをほる" "value" "digging")
+                          (dict "class" "charge" "label" "じゅうでん" "value" "charge")
+                          (dict "class" "shadow-force" "label" "シャドーダイブ" "value" "shadow_force")
+                          (dict "class" "reflect" "label" "リフレクター" "value" "reflect")
+                          (dict "class" "light-screen" "label" "ひかりのかべ" "value" "light_screen")
+                          (dict "class" "lucky-chant" "label" "おまじない" "value" "lucky_chant")
+                          (dict "class" "gastro-acid" "label" "いえき" "value" "gastro_acid")
+                          (dict "class" "sure-shot" "label" "ひっちゅう" "value" "sure_shot")
+                          (dict "class" "whiffer" "label" "えんまく" "value" "whiffer")
+                          (dict "class" "focus-energy" "label" "きあいだめ" "value" "focus_energy")
+                          (dict "class" "cross-eyed" "label" "まどわし" "value" "cross_eyed")
+                          (dict "class" "miracle-eye" "label" "ミラクルアイ" "value" "miracle_eye")
+                          (dict "class" "magnet-rise" "label" "でんじふゆう" "value" "magnet_rise")
+                          (dict "class" "exposed" "label" "みやぶる" "value" "exposed")
+                        }}
+                        {{ $half := math.Ceil (div (float (len $statuses)) 2) }}
+                        {{ $firstHalf := first $half $statuses }}
+                        {{ $secondHalf := after $half $statuses }}
+                        <div class="row">
+                          {{ range slice $firstHalf $secondHalf }}
+                            <div class="col-12 col-md-6">
+                              {{ range . }}
+                                <div class="form-check form-switch">
+                                  <input
+                                    type="checkbox"
+                                    class="form-check-input status-{{ .class }}"
+                                    id="status-{{ .class }}-{{ $fighter }}"
+                                    value="{{ .value }}" />
+                                  <label
+                                    class="form-check-label"
+                                    for="status-{{ .class }}-{{ $fighter }}">
+                                    {{ .label }}
+                                  </label>
+                                </div>
+                              {{ end }}
+                            </div>
+                          {{ end }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item exeffect-group">
+                    <h2 class="accordion-header">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse-exeffect-{{ $fighter }}"
+                        aria-expanded="true"
+                        aria-controls="collapse-exeffect-{{ $fighter }}">
+                        専用道具効果
+                      </button>
+                    </h2>
+                    <div
+                      id="collapse-exeffect-{{ $fighter }}"
+                      class="accordion-collapse collapse">
+                      <div class="accordion-body">
+                        {{ $statuses := slice
+                          (dict "class" "no-critical-hit" "label" "急所無効" "value" 5)
+                          (dict "class" "half-physical" "label" "物理ダメージ半減" "value" 30)
+                          (dict "class" "half-special" "label" "特殊ダメージ半減" "value" 31)
+                          (dict "class" "evasion-clear" "label" "回避率+2(はれ)" "value" 61)
+                          (dict "class" "evasion-sunny" "label" "回避率+2(ひざしがつよい)" "value" 62)
+                          (dict "class" "evasion-sandstorm" "label" "回避率+2(すなあらし)" "value" 63)
+                          (dict "class" "evasion-cloudy" "label" "回避率+2(くもり)" "value" 64)
+                          (dict "class" "evasion-rainy" "label" "回避率+2(あめ)" "value" 65)
+                          (dict "class" "evasion-hail" "label" "回避率+2(あられ)" "value" 66)
+                          (dict "class" "evasion-screen" "label" "回避率+2(きり)" "value" 67)
+                          (dict "class" "bypass-reflect" "label" "リフレクター/ひかりのかべ無効" "value" 68)
+                          (dict "class" "scrappy" "label" "ゴーストにノーマル・かくとうが通る" "value" 69)
+                          (dict "class" "miracle-eye" "label" "あくにエスパーが通る" "value" 70)
+                          (dict "class" "time-shield" "label" "ダメージ半減" "value" 90)
+                          (dict "class" "air-blade" "label" "与ダメージ1.5倍" "value" 91)
+                          (dict "class" "no-fire" "label" "ほのお技無効" "value" 102)
+                          (dict "class" "no-water" "label" "みず技無効" "value" 103)
+                          (dict "class" "no-grass" "label" "くさ技無効" "value" 104)
+                          (dict "class" "no-electric" "label" "でんき技無効" "value" 105)
+                          (dict "class" "no-fighting" "label" "かくとう技無効" "value" 106)
+                          (dict "class" "no-ground" "label" "じめん技無効" "value" 107)
+                          (dict "class" "no-flying" "label" "ひこう技無効" "value" 108)
+                          (dict "class" "no-psychic" "label" "エスパー技無効" "value" 109)
+                          (dict "class" "no-ghost" "label" "ゴースト技無効" "value" 110)
+                          (dict "class" "no-dragon" "label" "ドラゴン技無効" "value" 111)
+                          (dict "class" "no-dark" "label" "あく技無効" "value" 112)
+                          (dict "class" "no-still" "label" "はがね技無効" "value" 113)
+                          (dict "class" "absorb-fire" "label" "ほのお技吸収" "value" 114)
+                          (dict "class" "absorb-water" "label" "みず技吸収" "value" 115)
+                          (dict "class" "absorb-grass" "label" "くさ技吸収" "value" 116)
+                          (dict "class" "absorb-electric" "label" "でんき技吸収" "value" 117)
+                          (dict "class" "absorb-ice" "label" "こおり技吸収" "value" 118)
+                          (dict "class" "absorb-fighting" "label" "かくとう技吸収" "value" 119)
+                          (dict "class" "absorb-ground" "label" "じめん吸収" "value" 120)
+                          (dict "class" "absorb-flying" "label" "ひこう技吸収" "value" 121)
+                          (dict "class" "absorb-psychic" "label" "エスパー技吸収" "value" 122)
+                          (dict "class" "absorb-bug" "label" "むし技吸収" "value" 123)
+                          (dict "class" "absorb-rock" "label" "いわ技吸収" "value" 124)
+                          (dict "class" "absorb-ghost" "label" "ゴースト技吸収" "value" 125)
+                          (dict "class" "absorb-dragon" "label" "ドラゴン技吸収" "value" 126)
+                          (dict "class" "absorb-dark" "label" "あく技吸収" "value" 127)
+                          (dict "class" "absorb-steel" "label" "はがね技吸収" "value" 128)
+                        }}
+                        <div class="row">
+                          {{ with $statuses }}
+                            <div class="col-12">
+                              {{ range . }}
+                                <div class="form-check form-switch">
+                                  <input
+                                    type="checkbox"
+                                    class="form-check-input exeffect-{{ .class }}"
+                                    id="exeffect-{{ .class }}-{{ $fighter }}"
+                                    value="{{ .value }}" />
+                                  <label
+                                    class="form-check-label"
+                                    for="exeffect-{{ .class }}-{{ $fighter }}">
+                                    {{ .label }}
+                                  </label>
+                                </div>
+                                <details>
+                                  <summary>対象</summary>
+                                  <!-- 対象の専用道具を表示 -->
+                                  {{ $filter := where $item_json "ExEffect" "!=" nil }}
+                                  {{ $target := where $filter "ExEffect.EffectId" .value }}
+                                  {{ if $target }}
+                                    {{ $output := slice }}
+                                    {{ range $i := $target }}
+                                      {{ $output = $output | append $i.Name }}
+                                    {{ end }}
+                                    {{ delimit $output "、" }}
+                                  {{ else }}
+                                    (未使用)
+                                  {{ end }}
+                                </details>
+                              {{ end }}
+                            </div>
+                          {{ end }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="fw-bold">めざめるパワー</h4>
+                  <table class="table table-sm table-borderless align-middle">
+                    <colgroup>
+                      <col style="width: 50%" />
+                      <col style="width: 50%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <td>タイプ</td>
+                        <td>
+                          <select
+                            class="form-select form-select-sm hidden-power-type">
+                            {{ range $index, $type := $type_json }}
+                              <option
+                                value="{{ $index }}"
+                                {{ if eq $index 0 }}selected{{ end }}>
+                                {{ if eq $index 0 }}
+                                  -
+                                {{ else }}
+                                  {{ $type.Name }}
+                                {{ end }}
+                              </option>
+                            {{ end }}
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>威力</td>
+                        <td>
+                          <input
+                            type="number"
+                            max="2"
+                            min="0"
+                            value="0"
+                            class="form-control form-control-sm hidden-power-power" />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div>
+                  <h4 class="fw-bold">その他</h4>
+                  <table class="table table-sm table-borderless align-middle">
+                    <colgroup>
+                      <col style="width: 50%" />
+                      <col style="width: 50%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <td>
+                          かしこさ
+                          {{ partial "tooltips" "おんがえし/やつあたりのダメージに関連する。<br>※現在未対応。<hr>おんがえし:<br>5ダメージを基準に、50・100・200・300・400・500・600・700で5ダメージずつ増える(最大45)。<br>やつあたり:<br>45ダメージを基準に、50・100・200・300・400・500・600・700で5ダメージずつ減る(最低5)。" }}
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            max="9999"
+                            min="0"
+                            value="1"
+                            class="form-control form-control-sm iq-value" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          おなか
+                          {{ partial "tooltips" "なかまくうふく状態に関連する。<br>リーダー以外のポケモンでおなかが0になると与えるダメージが1になる。" }}
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            max="200"
+                            min="0"
+                            value="100"
+                            class="form-control form-control-sm belly-value" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          移動速度
+                          {{ partial "tooltips" "ジャイロボールのダメージ、特性こんじょう、ふしぎなうろこに関連する。<br>どんそく状態は悪い状態として扱うため特性の効果が発動する。0にするとどんそく状態。<hr>ジャイロボール: どんそく状態なら与えるダメージ2倍<br>こんじょう: 悪い状態なら物理技の与えるダメージ2倍<br>ふしぎなうろこ: 悪い状態なら物理技で受けるダメージを半減" }}
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            max="4"
+                            min="0"
+                            value="1"
+                            class="form-control form-control-sm movement-speed" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <div class="form-check form-switch">
+                            <input
+                              class="form-check-input flag-me-first"
+                              id="me-first-{{ $fighter }}"
+                              type="checkbox" />
+                            <label
+                              class="form-check-label"
+                              for="me-first-{{ $fighter }}">
+                              さきどり (ダメージ1.5倍)
+                            </label>
+                          </div>
+                          <div class="form-check form-switch">
+                            <input
+                              class="form-check-input flag-practice-swinger"
+                              id="practice-swinger-{{ $fighter }}"
+                              type="checkbox" />
+                            <label
+                              class="form-check-label"
+                              for="practice-swinger-{{ $fighter }}">
+                              かたならし (攻撃,特攻+1段階)
+                            </label>
+                          </div>
+                          <div class="form-check form-switch">
+                            <input
+                              class="form-check-input flag-anger-point"
+                              id="anger-point-{{ $fighter }}"
+                              type="checkbox" />
+                            <label
+                              class="form-check-label"
+                              for="anger-point-{{ $fighter }}">
+                              いかりのつぼ (攻撃+10段階)
+                            </label>
+                          </div>
+                          <div class="form-check form-switch">
+                            <input
+                              class="form-check-input flag-td-timeshield"
+                              id="td-timeshield-{{ $fighter }}"
+                              type="checkbox" />
+                            <label
+                              class="form-check-label"
+                              for="td-timeshield-{{ $fighter }}">
+                              [時闇] タイムシールドバグ (ダメージ2倍)
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+
+    <h5 class="mt-3 fw-bold">これなに？</h5>
+    <p>
+      「ポケモン不思議のダンジョン 時・闇・空の探検隊」のダメージ計算ツール。
+      <br />
+      技・道具・ふしぎだま・装備品・かしこさ・専用道具・状態異常・天候・乱数など、様々な事象を考慮して詳細に計算できます。
+      <br />
+      画面下部の計算結果をクリックすると詳細を確認できます。
+      <br />
+      <span class="text-danger">
+        （今の所は）固定ダメージの計算には対応していません。
+      </span>
+    </p>
+
+    <h5 class="fw-bold">計算結果が違う！バグを見つけた！</h5>
+    <p class="d-inline-flex">
+      <a
+        href="https://twitter.com/Laioxy"
+        target="_blank"
+        rel="noopener noreferrer">
+        Twitter
+      </a>
+      (現X)で教えて下さい。
+    </p>
+
+    <h5 class="fw-bold">そのうちやりたい</h5>
+    <ul>
+      <li>
+        固定ダメージの対応 (サイコウェーブ、マグニチュード等状況で変動するもの
+        完全固定の技は未定)
+      </li>
+      <li>時闇ギラティナの対応 (フォルム補正を外す)</li>
+      <li>入力内容を保持して共有、または保存できるようにする</li>
+    </ul>
+
+    <h5 class="fw-bold">参考</h5>
+    <ul>
+      <li>
+        <a
+          href="https://github.com/UsernameFodder/damage-eos/"
+          target="_blank"
+          rel="noopener noreferrer">
+          damage-eos
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/UsernameFodder/pmdsky-debug"
+          target="_blank"
+          rel="noopener noreferrer">
+          pmdsky-debug
+        </a>
+      </li>
+    </ul>
+  </div>
+{{ end }}
