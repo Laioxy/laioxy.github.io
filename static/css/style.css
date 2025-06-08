@@ -25,8 +25,8 @@ html {
   body {
     height: 100%;
     padding-top: 60px;
-    font-family: Verdana, "Droid Sans", "メイリオ", Meiryo,
-      var(--bs-body-font-family);
+    font-family:
+      Verdana, "Droid Sans", "メイリオ", Meiryo, var(--bs-body-font-family);
   }
   select {
     option:disabled {
@@ -60,38 +60,11 @@ html {
       image-rendering: pixelated;
     }
   }
-  .drop-shadow {
-    /* filter: drop-shadow(0px 0px 2px #333);
-    transform: translateZ(0); */
-  }
 }
 
 /* メインコンテナ */
 #main-container {
   max-width: 1200px;
-}
-
-/* トップページ */
-.top-contents {
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin: 0;
-    li p.link_context {
-      font-size: 0.8em;
-    }
-  }
-  h2.top-icon {
-    display: flex;
-    line-height: 1em;
-    img {
-      width: auto;
-      height: 1em;
-      margin-right: 0.4em;
-      display: inline-block;
-    }
-  }
 }
 
 /* ローディング */
@@ -146,6 +119,18 @@ html {
   background-color: var(--bs-secondary-bg) !important;
   display: none;
 }
+.select2-container--bootstrap-5 {
+  .select2-selection {
+    border-color: var(--bs-border-color);
+    background-color: var(--bs-body-bg);
+  }
+  .select2-selection--multiple
+    .select2-selection__rendered
+    .select2-selection__choice {
+    border-color: var(--bs-border-color);
+    color: var(--bs-body-color);
+  }
+}
 
 /* YouYubeレスポンシブ対応 */
 .youtube {
@@ -169,6 +154,25 @@ table.table {
 .tooltip {
   font-family: unset;
   --bs-tooltip-max-width: 24rem;
+
+  .tooltip-inner {
+    text-align: left;
+
+    hr {
+      margin: 0.25rem 0;
+    }
+  }
+}
+
+.bg-indigo {
+  background-color: var(--bs-indigo);
+}
+
+/* ページ送り */
+.turn-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
 }
 
 /* タイプ */
@@ -250,5 +254,179 @@ table.table {
   /* はがね */
   &[data-type="17"] {
     background-color: var(--type-steel-color);
+  }
+}
+
+/* テーブル型フローティングラベル */
+.table-floating {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  .row:first-child {
+    .form-floating input.form-control,
+    .choices__inner {
+      border-bottom: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+  .row:not(:first-child):not(:last-child) {
+    .form-floating input.form-control,
+    .choices__inner {
+      border-bottom: 0;
+      border-radius: 0;
+    }
+  }
+  .row:last-child {
+    .form-floating input.form-control,
+    .choices__inner {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+}
+
+/* choices.js bootstrap5 theme */
+.choices {
+  .choices__inner {
+    background-color: var(--bs-body-bg);
+    border-radius: var(--bs-border-radius);
+    border-color: var(--bs-border-color);
+    .choices__input {
+      background-color: var(--bs-body-bg);
+    }
+  }
+  /* リスト部分を固定ヘッダーより手前に出ないようにする */
+  .choices__list {
+    z-index: 3;
+  }
+  /* 右幅が狭くなり過ぎないようにする */
+  .choices__list--single {
+    padding-right: 24px;
+  }
+  .choices__list--dropdown .choices__item--selectable.is-highlighted,
+  .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
+    background-color: var(--bs-body-bg);
+    &:hover {
+      background-color: var(--bs-secondary-bg);
+    }
+  }
+  .choices__list--dropdown,
+  .choices__list[aria-expanded] {
+    border-bottom-left-radius: var(--bs-border-radius);
+    border-bottom-right-radius: var(--bs-border-radius);
+    background-color: var(--bs-body-bg);
+  }
+  &.is-open .choices__inner {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .choices__list--multiple .choices__item {
+    border-radius: var(--bs-border-radius);
+    background-color: var(--bs-info);
+    border: none;
+    color: #fff;
+
+    &.is-highlighted {
+      background-color: var(--bs-info-border-subtle);
+    }
+  }
+  &.is-focused .choices__inner,
+  &.is-open .choices__inner,
+  .choices__list--dropdown,
+  .choices__list[aria-expanded] {
+    border-color: var(--bs-border-color);
+  }
+  &:has(input:focus) {
+    border-radius: var(--bs-border-radius);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+
+    .choices__inner {
+      border-color: #86b7fe;
+      border-radius: var(--bs-border-radius);
+    }
+  }
+  /* 入力欄 */
+  &[data-type*="select-one"] .choices__input {
+    background-color: var(--bs-body-bg);
+    border-bottom-color: var(--bs-border-color);
+  }
+  /* Select 下矢印 */
+  &[data-type*="select-one"]::after {
+    border-color: var(--bs-emphasis-color) transparent transparent;
+  }
+  /* Select 上矢印 */
+  &[data-type*="select-one"].is-open::after {
+    border-color: transparent transparent var(--bs-emphasis-color);
+  }
+  /* form-select-sm を持つ場合小さくする */
+  &:has(.form-select-sm) {
+    .choices__inner {
+      min-height: unset;
+      padding: 0;
+      .choices__list {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        padding-left: 0.5rem;
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
+
+/* choices.js インプットグループ */
+.input-group {
+  .form-floating:first-child .choices .choices__inner {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .form-floating:not(:first-child):not(:last-child) .choices .choices__inner {
+    border-radius: 0;
+  }
+  .form-floating:last-child .choices .choices__inner {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+/* choices.js フローティングラベル */
+.form-floating {
+  .choices {
+    margin: 0;
+
+    .choices__inner {
+      padding: 0;
+
+      .choices__list {
+        --bs-form-select-bg-img: url(
+          data:image/svg + xml,
+          %3csvgxmlns="http://www.w3.org/2000/svg"viewBox="0 0 16 16"%3e%3cpathfill="none"stroke="%23343a40"stroke-linecap="round"stroke-linejoin="round"stroke-width="2"d="m2 5 6 6 6-6"/%3e%3c/svg%3e
+        );
+        padding: 1.825rem 2.25rem 0.625rem 0.75rem;
+        display: block;
+        width: 100%;
+        font-size: 1rem;
+        font-weight: 400;
+        /* height: calc(3.5rem + calc(var(--bs-border-width) * 2)); */
+        min-height: calc(3.5rem + calc(var(--bs-border-width) * 2));
+        line-height: 1.25;
+        background-color: var(--bs-body-bg);
+        background-image:
+          var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 16px 12px;
+      }
+    }
+  }
+  /* ラベル部分 */
+  .choices + .form-control-plaintext ~ label,
+  .choices + .form-control:focus ~ label,
+  .choices + .form-control:not(:placeholder-shown) ~ label,
+  .choices ~ label {
+    color: rgba(var(--bs-body-color-rgb), 0.65);
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
   }
 }
