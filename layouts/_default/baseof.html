@@ -88,7 +88,7 @@
       <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="/">
           <img
-            src="/img/icon_img.png"
+            src="/img/item/item_13_3.png"
             alt="Lai-brary"
             class="drop-shadow d-inline-block align-text-top" />
           Lai-brary
@@ -119,15 +119,9 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link" href="/wondermail">ふしぎなメール生成機</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/wondermail/anydungeon">
-                  ダンジョン強制解禁
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/wondermail/anyegg">任意タマゴ孵化</a>
+                {{ with ref . "/wondermail/wondermail.html" }}
+                  <a class="nav-link" href="{{ . }}">ダメージ計算機</a>
+                {{ end }}
               </li>
             </ul>
 
@@ -135,26 +129,64 @@
 
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link" href="/rescue/duplicate">
-                  救助依頼複製ツール
-                </a>
+                {{ with ref . "/wondermail/wondermail.html" }}
+                  <a class="nav-link" href="{{ . }}">ふしぎなメール生成機</a>
+                {{ end }}
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/rescue/self-rescue">
-                  自演救助ツール
-                </a>
+                {{ with ref . "/wondermail/anydungeon.html" }}
+                  <a class="nav-link" href="{{ . }}">ダンジョン強制解禁</a>
+                {{ end }}
+              </li>
+              <li class="nav-item">
+                {{ with ref . "/wondermail/anyegg.html" }}
+                  <a class="nav-link" href="{{ . }}">任意タマゴ孵化</a>
+                {{ end }}
+              </li>
+              <li class="nav-item">
+                {{ with ref . "/rescue/duplicate.html" }}
+                  <a class="nav-link" href="{{ . }}">救助依頼複製ツール</a>
+                {{ end }}
+              </li>
+              <li class="nav-item">
+                {{ with ref . "/rescue/self-rescue.html" }}
+                  <a class="nav-link" href="{{ . }}">自演救助ツール</a>
+                {{ end }}
               </li>
             </ul>
 
             <hr />
 
-            <a
-              href="https://twitter.com/Laioxy"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="nav-link fs-4">
-              <i class="bi bi-twitter"></i>
-            </a>
+            <div class="d-flex flex-row gap-2">
+              <a
+                href="https://twitter.com/Laioxy"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="nav-link fs-4">
+                <i class="bi bi-twitter"></i>
+              </a>
+              <a
+                href="https://youtube.com/@Laioxy"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="nav-link fs-4">
+                <i class="bi bi-youtube"></i>
+              </a>
+              <a
+                href="https://twitch.tv/Laioxy"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="nav-link fs-4">
+                <i class="bi bi-twitch"></i>
+              </a>
+              <a
+                href="https://github.com/Laioxy"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="nav-link fs-4">
+                <i class="bi bi-github"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
