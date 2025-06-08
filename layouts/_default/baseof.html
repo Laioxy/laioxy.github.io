@@ -19,7 +19,7 @@
     <meta name="og:image" content="https://laioxy.github.io/img/card_img.png" />
 
     {{ block "title" . }}
-      {{ if .Title }}
+      {{ if and (.Title) (ne .Title .Site.Title) }}
         <title>{{ .Title }} | {{ .Site.Title }}</title>
         <meta name="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
       {{ else }}
