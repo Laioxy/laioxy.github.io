@@ -4,6 +4,7 @@
 const jsonPathsArray = {
   pokemon: '/data/pokemon.min.json',
   item: '/data/item.min.json',
+  move: '/data/move.min.json',
   dungeon: '/data/dungeon.min.json',
   floor: '/data/floor.min.json',
   fixed: '/data/fixed.min.json',
