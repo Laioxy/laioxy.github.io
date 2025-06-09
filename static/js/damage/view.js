@@ -96,14 +96,19 @@ document.addEventListener('DOMContentLoaded', async function () {
   for (const element of pokemonElements) ApplyPokemonInfo(element, false);
   for (const element of applyStatusBtnElements) LevelApplyStatus(element, false);
 
-  Calculation(); // 計算
+  await Calculation(); // 計算
 
   // ローディング解除
   const loadingElement = document.querySelector('.loading');
-  loadingElement.classList.remove('show');
-  loadingElement.addEventListener('transitionend', () => {
-    loadingElement.remove();
+  const duration = 300;
+  loadingElement.style.transition = `opacity ${duration}ms`;
+  loadingElement.style.opacity = 1;
+  requestAnimationFrame(() => {
+    loadingElement.style.opacity = 0;
   });
+  setTimeout(() => {
+    if (loadingElement.parentNode) loadingElement.remove();
+  }, duration);
 });
 
 /**
