@@ -1,0 +1,82 @@
+.resize {
+  resize: vertical;
+  overflow: hidden;
+  height: 64vh;
+
+  .list-wrap {
+    overflow-x: scroll;
+    height: 100%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+table.data-list {
+  th,
+  td {
+    height: 45px;
+    vertical-align: middle;
+  }
+  thead th {
+    user-select: none;
+    cursor: pointer;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+
+    /* レンダリングバグ対策 */
+    /* (position:sticky, top:0 の時にborderが一部透明になる) */
+    border: none !important;
+    outline: solid 1px var(--bs-table-bg);
+
+    &.asc::after {
+      content: "▲";
+    }
+    &.desc::after {
+      content: "▼";
+    }
+    &.asc::after,
+    &.desc::after {
+      font-size: 0.8em;
+      margin-left: 0.5rem;
+    }
+  }
+  tbody {
+    tr:hover {
+      td {
+        background-color: var(--bs-secondary-bg);
+      }
+    }
+    td a {
+      text-decoration: underline;
+      font-weight: bold;
+      color: var(--bs-body-color);
+      &:hover {
+        color: var(--bs-primary);
+      }
+    }
+  }
+}
+
+/* オプション表示切替 */
+:has(#option-hex-id:checked) {
+  .raw-id {
+    display: none;
+  }
+  .hex-id {
+    display: inline;
+  }
+}
+:has(#option-hex-id:not(:checked)) {
+  .raw-id {
+    display: inline;
+  }
+  .hex-id {
+    display: none;
+  }
+}
+:has(#option-visible-subname:not(:checked)) .sub-name {
+  display: none;
+}
