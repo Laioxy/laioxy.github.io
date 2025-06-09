@@ -2,3 +2,4 @@
 .prettierignore
 public/
 node_modules/
+resources/
