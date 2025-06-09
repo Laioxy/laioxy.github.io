@@ -18,8 +18,9 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title fw-bold">
-            {{ $link := ref . "/damage/calc.md" }}
-            <a href="{{ $link }}" class="stretched-link">ダメージ計算機</a>
+            {{ with ref . "/damage/calc.md" }}
+              <a href="{{ . }}" class="stretched-link">ダメージ計算機</a>
+            {{ end }}
           </h5>
           <p>ポケモンが与えるダメージを計算します。</p>
         </div>

@@ -86,13 +86,16 @@
   <body class="bg-body">
     <nav class="navbar bg-body-tertiary fixed-top" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="/">
-          <img
-            src="/img/item/item_13_3.png"
-            alt="Lai-brary"
-            class="drop-shadow d-inline-block align-text-top" />
-          Lai-brary
-        </a>
+        {{ with ref . "/index.md" }}
+          <a class="navbar-brand fw-bold" href="{{ . }}">
+            <img
+              src="/img/item/item_13_3.png"
+              alt="Lai-brary"
+              class="drop-shadow d-inline-block align-text-top" />
+            Lai-brary
+          </a>
+        {{ end }}
+
 
         <button
           class="navbar-toggler"
@@ -108,7 +111,15 @@
           id="offcanvasNavbar"
           aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Lai-brary</h5>
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+              {{ with ref . "/index.md" }}
+                <a
+                  href="{{ . }}"
+                  class="text-decoration-none text-body-secondary">
+                  Lai-brary
+                </a>
+              {{ end }}
+            </h5>
             <button
               type="button"
               class="btn-close"
