@@ -272,7 +272,10 @@
                   <div class="row">
                     <div class="col">
                       <div class="form-floating">
-                        <select class="move form-select" id="move">
+                        <select
+                          class="move form-select"
+                          id="move"
+                          data-choices="true">
                           <!-- 通常攻撃 -->
                           <optgroup label="通常攻撃">
                             <option value="355" selected>通常攻撃</option>
@@ -371,7 +374,7 @@
                     </tr>
                     <tr>
                       <td>
-                        連続命中数
+                        連続数
                         {{ partial "tooltips" "ころがる、アイスボール、トリプルキックの<br>命中した回数によるダメージ倍率に関連する。<br>※既に命中している回数を入力する。例えば3回目命中時のダメージを計算する場合は2を入力。<hr>ころがる: 1回毎に+0.1倍<br>アイスボール: 1回毎に+0.1倍<br>トリプルキック: 1回毎に+1.0倍 (3回まで)" }}
                       </td>
                       <td>
@@ -407,7 +410,9 @@
                       type="checkbox"
                       class="form-check-input"
                       id="damage-hugepower" />
-                    <label class="form-check-label" for="damage-hugepower">
+                    <label
+                      class="form-check-label text-nowrap"
+                      for="damage-hugepower">
                       ちからもち/ヨガパワー
                     </label>
                   </div>
@@ -418,7 +423,9 @@
                       type="checkbox"
                       class="form-check-input"
                       id="damage-support-td" />
-                    <label class="form-check-label" for="damage-support-td">
+                    <label
+                      class="form-check-label text-nowrap"
+                      for="damage-support-td">
                       時闇の威力で計算
                     </label>
                   </div>
@@ -672,7 +679,8 @@
                         <div class="form-floating">
                           <select
                             class="pokemon form-select"
-                            id="pokemon-{{ $fighter }}">
+                            id="pokemon-{{ $fighter }}"
+                            data-choices="true">
                             {{ range $index, $pokemon := $pokemon_json }}
                               <option
                                 value="{{ $index }}"
@@ -695,7 +703,8 @@
                             <div class="form-floating">
                               <select
                                 class="form-select type-{{ . }}"
-                                id="type-{{ . }}-{{ $fighter }}">
+                                id="type-{{ . }}-{{ $fighter }}"
+                                data-choices="true">
                                 {{ range $index, $type := $type_json }}
                                   <option
                                     value="{{ $index }}"
@@ -729,7 +738,8 @@
                             <div class="form-floating">
                               <select
                                 class="form-select ability-{{ . }}"
-                                id="ability-{{ . }}-{{ $fighter }}">
+                                id="ability-{{ . }}-{{ $fighter }}"
+                                data-choices="true">
                                 <option value="0">-</option>
                                 {{ range $ability := $abilities }}
                                   <option value="{{ .Id }}">
@@ -1073,7 +1083,8 @@
                           -->
                         <select
                           class="form-select held-item"
-                          id="held-item-{{ $fighter }}">
+                          id="held-item-{{ $fighter }}"
+                          data-choices="true">
                           <option value="0">-</option>
                           {{ $heldItemsNormalIds := slice 14 19 20 26 37 40 41 42 43 50 52 }}
                           {{ $heldItemsNatureIds := slice 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 89 90 91 93 94 95 96 97 104 105 106 107 117 118 }}
@@ -1475,7 +1486,7 @@
                             <label
                               class="form-check-label"
                               for="anger-point-{{ $fighter }}">
-                              いかりのつぼ (攻撃+10段階)
+                              いかりのつぼ (攻撃10段階に固定)
                             </label>
                           </div>
                           <div class="form-check form-switch">
