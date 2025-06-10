@@ -21,6 +21,7 @@
 
 html {
   height: 100%;
+  font-size: 15px;
   body {
     height: 100%;
     padding-top: 60px;
@@ -44,6 +45,11 @@ html {
   }
   p:last-child {
     margin-bottom: 0; /* 最後の<p>だけmargin消す */
+  }
+  @media only screen and (max-width: 768px) {
+    input[type="text"], input[type="number"], textarea  {
+      font-size: 16px;
+    }
   }
 }
 
@@ -298,6 +304,9 @@ label + a[data-bs-toggle="tooltip"] {
       background-color: var(--bs-body-bg);
     }
   }
+  .choices__input {
+    font-size: 16px;
+  }
   /* リスト部分を固定ヘッダーより手前に出ないようにする */
   .choices__list {
     z-index: 3;
@@ -353,6 +362,7 @@ label + a[data-bs-toggle="tooltip"] {
   &[data-type*="select-one"] .choices__input {
     background-color: var(--bs-body-bg);
     border-bottom-color: var(--bs-border-color);
+    padding: 8px;
   }
   /* Select 下矢印 */
   &[data-type*="select-one"]::after {
