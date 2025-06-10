@@ -105,7 +105,7 @@
  &lt;div>
  &lt;p class="fs-5 mb-1">パスワード&lt;/p>
  &lt;textarea
- class="form-control form-control-sm d-grid"
+ class="form-control d-grid"
  rows="2"
  id="pass-area"
  placeholder=""
@@ -348,7 +348,7 @@
  &lt;span class="context-sm" id="pass-maxlength">&lt;/span>
  &lt;/label>
  &lt;textarea
- class="form-control form-control-sm d-grid"
+ class="form-control d-grid"
  rows="2"
  id="pass-area"
  placeholder="スペース・改行など入っても大丈夫です">&lt;/textarea>
@@ -548,7 +548,7 @@
  &lt;div id="mission-rawdata-div" class="collapse">
  &lt;textarea
  id="mission-rawdata"
- class="form-control form-control-sm font-monospace"
+ class="form-control font-monospace"
  rows="2"
  readonly>&lt;/textarea>
  &lt;/div>

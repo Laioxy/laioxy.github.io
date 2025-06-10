@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', async function () {
  * Choices.js 初期化 (インスタンスのセット)
  */
 function InitChoices() {
-  const choicesElements = document.querySelectorAll('#damage-calc select[id]');
+  const choicesElements = document.querySelectorAll('#damage-calc select[data-choices]');
   for (const element of choicesElements) {
     choicesInstances[element.id] = new Choices(element, choicesOptions);
   }

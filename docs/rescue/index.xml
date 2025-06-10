@@ -22,7 +22,7 @@
  &lt;div class="row d-flex flex-column gap-3">
  &lt;div>
  &lt;textarea
- class="form-control form-control-sm d-grid"
+ class="form-control d-grid"
  rows="3"
  id="pass-area"
  placeholder="たすけてメールのパスワードを入力 (スペース・改行可)">&lt;/textarea>
@@ -44,44 +44,10 @@
  &lt;div>
  &lt;textarea
  id="pass-sos"
- class="form-control form-control-sm d-grid"
+ class="form-control d-grid"
  rows="3"
  readonly>&lt;/textarea>
  &lt;/div>
- &lt;!-- 
- &lt;div class="row">
- &lt;div class="col">
- &lt;label class="form-label">生成元ハッシュ&lt;/label>
- &lt;/div>
- &lt;div class="col-1">&lt;/div>
- &lt;div class="col">
- &lt;label class="form-label">生成後ハッシュ&lt;/label>
- &lt;/div>
- &lt;/div>
- &lt;div class="row mt-0">
- &lt;div class="col">
- &lt;input
- id="base-checksum"
- type="text"
- class="form-control"
- readonly
- />
- &lt;/div>
- &lt;div
- class="col-1 d-flex justify-content-center align-items-center"
- >
- &lt;i class="bi bi-arrow-right">&lt;/i>
- &lt;/div>
- &lt;div class="col">
- &lt;input
- id="new-checksum"
- type="text"
- class="form-control"
- readonly
- />
- &lt;/div>
- &lt;/div>
- &lt;/div> -->
  &lt;/div>
  &lt;/div>
  &lt;/div>
