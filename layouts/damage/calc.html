@@ -362,7 +362,7 @@
                       <td>
                         <input
                           type="number"
-                          class="move-pp form-control form-control-sm"
+                          class="move-pp form-control"
                           id="move-now-pp"
                           value="0"
                           max="99"
@@ -377,7 +377,7 @@
                       <td>
                         <input
                           type="number"
-                          class="move-hits form-control form-control-sm"
+                          class="move-hits form-control"
                           id="move-hits"
                           value="0"
                           max="9"
@@ -394,7 +394,9 @@
                       type="checkbox"
                       class="form-check-input"
                       id="damage-critical" />
-                    <label class="form-check-label" for="damage-critical">
+                    <label
+                      class="form-check-label text-nowrap"
+                      for="damage-critical">
                       急所
                     </label>
                   </div>
@@ -481,9 +483,7 @@
                 <div class="row mb-2">
                   <div class="col-auto d-flex align-items-center">天気</div>
                   <div class="col">
-                    <select
-                      class="form-select form-select-sm"
-                      id="dungeon-weather">
+                    <select class="form-select" id="dungeon-weather">
                       <option value="0">はれ</option>
                       <option value="1">ひざしがつよい</option>
                       <option value="2">すなあらし</option>
@@ -619,8 +619,8 @@
                         class="form-check-label"
                         for="dungeon-explorer-maze">
                         たんけんたいのま
-                        {{ partial "tooltips" "たんけんたいのまでは敵補正が無くなり、<br>互いにチームメンバーとしてダメージを与える。" }}
                       </label>
+                      {{ partial "tooltips" "たんけんたいのまでは敵補正が無くなり、<br>互いにチームメンバーとしてダメージを与える。" }}
                     </div>
                     <div class="form-check form-switch">
                       <input
@@ -630,8 +630,8 @@
                         checked />
                       <label class="form-check-label" for="jp-version">
                         日本版
-                        {{ partial "tooltips" "日本版空のみに存在する<br>ギラティナのフォルム補正バグを有効化。<hr>アナザー:<br>攻撃側の攻撃-2段階, 特攻-2段階<br>防御側の防御+2段階, 特防+2段階<br>オリジン:<br>攻撃側の攻撃+2段階, 特攻+2段階<br>防御側の防御-2段階, 特防-2段階" }}
                       </label>
+                      {{ partial "tooltips" "日本版空のみに存在する<br>ギラティナのフォルム補正バグを有効化。<hr>アナザー:<br>攻撃側の攻撃-2段階, 特攻-2段階<br>防御側の防御+2段階, 特防+2段階<br>オリジン:<br>攻撃側の攻撃+2段階, 特攻+2段階<br>防御側の防御-2段階, 特防-2段階" }}
                     </div>
                   </div>
                 </div>
@@ -785,7 +785,7 @@
                     <div class="input-group">
                       <div class="form-floating">
                         <input
-                          class="status-lv form-control form-control"
+                          class="status-lv form-control"
                           type="number"
                           value="1"
                           max="100"
@@ -806,7 +806,7 @@
                     <div class="input-group">
                       <div class="form-floating">
                         <input
-                          class="status-hp form-control form-control"
+                          class="status-hp form-control"
                           type="number"
                           value="1"
                           max="999"
@@ -815,7 +815,7 @@
                       </div>
                       <div class="form-floating">
                         <input
-                          class="status-hp-max form-control form-control"
+                          class="status-hp-max form-control"
                           type="number"
                           value="1"
                           max="999"
@@ -918,7 +918,7 @@
                           max="20"
                           min="0"
                           value="10"
-                          class="form-control form-control-sm stage-accuracy" />
+                          class="form-control stage-accuracy" />
                       </td>
                     </tr>
                     <tr>
@@ -929,7 +929,7 @@
                           max="20"
                           min="0"
                           value="10"
-                          class="form-control form-control-sm stage-evasion" />
+                          class="form-control stage-evasion" />
                       </td>
                     </tr>
                     <tr>
@@ -940,7 +940,7 @@
                           max="999"
                           min="0"
                           value="0"
-                          class="form-control form-control-sm ex-status-atk" />
+                          class="form-control ex-status-atk" />
                       </td>
                     </tr>
                     <tr>
@@ -951,7 +951,7 @@
                           max="999"
                           min="0"
                           value="0"
-                          class="form-control form-control-sm ex-status-def" />
+                          class="form-control ex-status-def" />
                       </td>
                     </tr>
                     <tr>
@@ -962,7 +962,7 @@
                           max="999"
                           min="0"
                           value="0"
-                          class="form-control form-control-sm ex-status-spa" />
+                          class="form-control ex-status-spa" />
                       </td>
                     </tr>
                     <tr>
@@ -973,7 +973,7 @@
                           max="999"
                           min="0"
                           value="0"
-                          class="form-control form-control-sm ex-status-spd" />
+                          class="form-control ex-status-spd" />
                       </td>
                     </tr>
                     <tr>
@@ -987,7 +987,7 @@
                           max="3"
                           min="0"
                           value="0"
-                          class="form-control form-control-sm stage-stockpile" />
+                          class="form-control stage-stockpile" />
                       </td>
                     </tr>
                     <tr>
@@ -1001,7 +1001,7 @@
                           max="2"
                           min="0"
                           value="0"
-                          class="form-control form-control-sm boost-flashfire" />
+                          class="form-control boost-flashfire" />
                       </td>
                     </tr>
                     <tr>
@@ -1072,7 +1072,7 @@
                             0x1BB (443) こいピンクリボン
                           -->
                         <select
-                          class="form-select form-select-sm held-item"
+                          class="form-select held-item"
                           id="held-item-{{ $fighter }}">
                           <option value="0">-</option>
                           {{ $heldItemsNormalIds := slice 14 19 20 26 37 40 41 42 43 50 52 }}
@@ -1363,8 +1363,7 @@
                       <tr>
                         <td>タイプ</td>
                         <td>
-                          <select
-                            class="form-select form-select-sm hidden-power-type">
+                          <select class="form-select hidden-power-type">
                             {{ range $index, $type := $type_json }}
                               <option
                                 value="{{ $index }}"
@@ -1387,7 +1386,7 @@
                             max="2"
                             min="0"
                             value="0"
-                            class="form-control form-control-sm hidden-power-power" />
+                            class="form-control hidden-power-power" />
                         </td>
                       </tr>
                     </tbody>
@@ -1413,7 +1412,7 @@
                             max="9999"
                             min="0"
                             value="1"
-                            class="form-control form-control-sm iq-value" />
+                            class="form-control iq-value" />
                         </td>
                       </tr>
                       <tr>
@@ -1427,7 +1426,7 @@
                             max="200"
                             min="0"
                             value="100"
-                            class="form-control form-control-sm belly-value" />
+                            class="form-control belly-value" />
                         </td>
                       </tr>
                       <tr>
@@ -1441,7 +1440,7 @@
                             max="4"
                             min="0"
                             value="1"
-                            class="form-control form-control-sm movement-speed" />
+                            class="form-control movement-speed" />
                         </td>
                       </tr>
                       <tr>
