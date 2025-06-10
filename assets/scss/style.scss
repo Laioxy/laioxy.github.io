@@ -151,13 +151,14 @@ table.table {
 }
 
 /* ツールチップ */
+label + a[data-bs-toggle="tooltip"] {
+  margin-left: 0.25rem;
+}
 .tooltip {
   font-family: unset;
   --bs-tooltip-max-width: 24rem;
-
   .tooltip-inner {
     text-align: left;
-
     hr {
       margin: 0.25rem 0;
     }
@@ -361,7 +362,17 @@ table.table {
   &[data-type*="select-one"].is-open::after {
     border-color: transparent transparent var(--bs-emphasis-color);
   }
-  /* form-select-sm を持つ場合小さくする */
+  /* select (中) */
+  &:has(.form-select) {
+    .choices__inner {
+      min-height: unset;
+      padding: 0;
+      .choices__list {
+        padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+      }
+    }
+  }
+  /* select (小) */
   &:has(.form-select-sm) {
     .choices__inner {
       min-height: unset;
@@ -413,8 +424,8 @@ table.table {
         min-height: calc(3.5rem + calc(var(--bs-border-width) * 2));
         line-height: 1.25;
         background-color: var(--bs-body-bg);
-        background-image:
-          var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+        background-image: var(--bs-form-select-bg-img),
+          var(--bs-form-select-bg-icon, none);
         background-repeat: no-repeat;
         background-position: right 0.75rem center;
         background-size: 16px 12px;
