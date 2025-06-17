@@ -1392,12 +1392,13 @@
                       <tr>
                         <td>威力</td>
                         <td>
-                          <input
-                            type="number"
-                            max="2"
-                            min="0"
-                            value="0"
-                            class="form-control hidden-power-power" />
+                          {{ $hiddenPowers := slice 2 4 6 7 8 9 10 13 15 17 }}
+                          <select class="form-select hidden-power-power">
+                            <option value="0" selected>-</option>
+                            {{ range $hiddenPowers }}
+                              <option value="{{ . }}">{{ . }}</option>
+                            {{ end }}
+                          </select>
                         </td>
                       </tr>
                     </tbody>
