@@ -258,10 +258,21 @@
       </div>
     </div>
 
-    <h1 class="mb-3">
-      ダメージ計算機
-      <span class="fs-5">for ポケダン空</span>
-    </h1>
+    <div
+      class="d-flex align-items-start justify-content-between flex-column flex-sm-row mb-2">
+      <h1 class="mb-sm-1">
+        ダメージ計算機
+        <span class="fs-5">for ポケダン空</span>
+      </h1>
+      <button
+        type="button"
+        class="btn btn-sm btn-primary"
+        id="btn-changelog"
+        data-bs-toggle="modal"
+        data-bs-target="#modal-changelog">
+        更新履歴
+      </button>
+    </div>
     <div class="d-flex gap-3 flex-column">
       <div class="card-group">
         <div class="move-wrap card">
@@ -1566,5 +1577,67 @@
         </a>
       </li>
     </ul>
+  </div>
+
+  <!-- 更新履歴モーダル -->
+  <div class="modal fade" id="modal-changelog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">更新履歴</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h5>2025/06/17</h5>
+          <ul>
+            <li>変更履歴追加</li>
+            <li>
+              サイコウェーブ、マグニチュード、ソニックブーム、りゅうのいかり、ちきゅうなげ、ナイトヘッド、しんくうぎり対応
+            </li>
+            <li>ダメおしのダメージ補正が正しく機能していない問題を修正</li>
+            <li>
+              めざめるパワーの威力の上限が2になっていた問題を修正（威力を選択式に変更）
+            </li>
+          </ul>
+          <h5>2025/06/10</h5>
+          <ul>
+            <li>スマホで項目フォーカス時に画面が拡大される問題を修正</li>
+            <li>天気の項目選択を従来の物に変更</li>
+            <li>
+              画面幅によって技のトグルボタンの文字が折り返される問題を修正
+            </li>
+            <li>
+              「連続命中数」→「連続数」
+              <br />
+              「いかりのつぼ (攻撃+10段階)」→「いかりのつぼ
+              (攻撃10段階に固定)」に文言変更
+            </li>
+          </ul>
+          <h5>2025/06/09</h5>
+          <ul>
+            <li>画面幅によってレベル、HPの欄が潰れる問題を改善</li>
+            <li>
+              iOS端末でアクセシビリティ「視差効果を減らす」が有効時に正しく操作できない問題を修正
+            </li>
+          </ul>
+          <h5>2025/06/08</h5>
+          <ul>
+            <li>公開</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 {{ end }}
