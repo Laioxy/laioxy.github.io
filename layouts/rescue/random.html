@@ -1,0 +1,239 @@
+{{ define "main" }}
+  {{ $dungeon_json := resources.Get "data/dungeon.json" | transform.Unmarshal }}
+  {{ $floor_json := resources.Get "data/floor.json" | transform.Unmarshal }}
+  {{ $dungeons := first 192 $dungeon_json }}
+  {{ $dungeons := where $dungeons "MaxRescue" "!=" 255 }}
+  {{ $dungeons := where $dungeons "FloorPrev" "=" 0 }}
+
+
+  <script src="/js/rescue/password.js"></script>
+  <script src="/js/rescue/random.js"></script>
+
+  <div class="container-md py-2" id="rescue-random">
+    <h1>救助依頼ランダム生成</h1>
+    <p>
+      「ポケモン不思議のダンジョン
+      時の探検隊・闇の探検隊・空の探検隊」の救助依頼をランダムに作成するツール。
+      <br />
+      元々は救助TA(タイムアタック)の練習ツールとして自分用に使っていたもの。難しい救助の挑戦、検証、TA企画等にどうぞ。
+    </p>
+    <ul>
+      <li>
+        異なるリージョンの依頼は受けることができるが、チーム名は固定される。
+        <br />
+        日本版の場合「ポケモンズ」になる。
+      </li>
+      <li>
+        バージョンを「空」にしている場合、「空 (1)」「空
+        (2)」のいずれかで生成される。内部の値が異なるだけでこれといった違いは無い。
+      </li>
+      <li>
+        フロアを0Fにした場合、救助地点が無くなる代わりにダンジョンをクリアすることで救助完了になる。
+      </li>
+
+      <li class="text-danger">固定フロアの救助依頼は受けられない。</li>
+      <li class="text-danger">
+        テストダンジョンは
+        {{ with ref . "/wondermail/anydungeon.html" }}
+          <a href="{{ . }}">強制解禁</a>
+        {{ end }}
+        して一度クリアしていないと受けられないので注意。
+      </li>
+      <li class="text-danger">
+        海外版(北米/欧州)の6～10文字チーム名には未対応。海外版に対応したチーム名を入力しても実際に表示される文字は異なるものになるので注意。
+      </li>
+      <li class="text-danger">
+        <span class="fw-bold">
+          このツールで生成したパスワードは「捏造パス」なので利用は自己責任で。
+        </span>
+      </li>
+    </ul>
+    <hr />
+
+    <div class="d-flex flex-column gap-3">
+      <div class="row gap-4 gap-md-0">
+        <!-- リージョン -->
+        <div class="col-12 col-md-auto">
+          <h6>リージョン</h6>
+          <div class="btn-group d-flex d-md-inline-flex">
+            <input
+              type="radio"
+              class="btn-check"
+              id="region-jp"
+              name="region"
+              value="0"
+              checked />
+            <label
+              class="btn btn-outline-primary col-6 col-md-auto"
+              for="region-jp">
+              日本
+            </label>
+
+            <input
+              type="radio"
+              class="btn-check"
+              id="region-other"
+              name="region"
+              value="8" />
+            <label
+              class="btn btn-outline-primary col-6 col-md-auto"
+              for="region-other">
+              北米 / 欧州
+            </label>
+          </div>
+        </div>
+
+        <!-- バージョン -->
+        <div class="col-12 col-md-auto">
+          <h6>バージョン</h6>
+          <div class="btn-group d-flex d-md-inline-flex">
+            <input
+              type="radio"
+              class="btn-check"
+              id="version-sky"
+              name="version"
+              value="2"
+              checked />
+            <label class="btn btn-outline-primary" for="version-sky">空</label>
+
+            <input
+              type="radio"
+              class="btn-check"
+              id="version-time"
+              name="version"
+              value="0" />
+            <label class="btn btn-outline-primary" for="version-time">時</label>
+
+            <input
+              type="radio"
+              class="btn-check"
+              id="version-darkness"
+              name="version"
+              value="1" />
+            <label class="btn btn-outline-primary" for="version-darkness">
+              闇
+            </label>
+          </div>
+        </div>
+
+        <div class="col col-lg-4">
+          <h6>
+            チーム名
+            <small id="team-name-maxlength">(最大5文字)</small>
+          </h6>
+          <input
+            type="text"
+            class="form-control"
+            id="team-name"
+            maxlength="5"
+            placeholder="空欄の場合ランダム" />
+        </div>
+      </div>
+      <div>
+        <h6>ダンジョン</h6>
+        <div class="row g-2">
+          <div class="col-12 col-md-6">
+            <div class="form-floating">
+              <select id="dungeon" class="form-select">
+                {{ range $index, $dungeon := $dungeons }}
+                  <!-- 鍵部屋以外の固定フロアIDを取得 -->
+                  {{ $floors := index $floor_json (int $dungeon.MappaIndex) }}
+                  {{ $filtered := where (where $floors "FixedFloorId" "gt" 0) "FixedFloorId" "le" 170 }}
+                  {{ $hasFixed := slice }}
+                  {{ range $filtered }}
+                    {{ $hasFixed = $hasFixed | append .FloorNo }}
+                  {{ end }}
+                  {{ $dataFixed := delimit $hasFixed "," }}
+
+
+                  <option
+                    value="{{ .Id }}"
+                    data-stairs="{{ .FlagStairs }}"
+                    data-search="{{ .Name }}"
+                    data-maxfloor="{{ .FloorCount }}"
+                    data-fixed="{{ $dataFixed }}"
+                    {{ if eq (int .Id) 102 }}selected{{ end }}>
+                    {{ $name := replaceRE "\\[.*?\\]" "" .Name }}
+                    {{ printf "[%02X] %s" (int .Id) $name }}
+                  </option>
+                {{ end }}
+              </select>
+              <label for="dungeon">ダンジョン</label>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="input-group">
+              <div class="form-floating">
+                <select id="floor" class="form-select"></select>
+                <label for="floor">フロア</label>
+              </div>
+              <button id="floor-max" class="btn btn-outline-primary">
+                最大
+              </button>
+              <button id="floor-random" class="btn btn-outline-primary">
+                ランダム
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col col-lg-8 col-xl-7">
+        <h6>パスワード生成</h6>
+        <div class="input-group">
+          <textarea
+            class="form-control"
+            id="password"
+            rows="3"
+            readonly></textarea>
+          <button class="btn btn-primary" id="generate-btn">生成</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-body">
+        <table class="table">
+          <colgroup>
+            <col style="width: 10rem" />
+            <col />
+          </colgroup>
+          <tbody>
+            <tr>
+              <td>リージョン</td>
+              <td id="output-region"></td>
+            </tr>
+            <tr>
+              <td>バージョン</td>
+              <td id="output-version"></td>
+            </tr>
+            <tr>
+              <td>ダンジョン</td>
+              <td id="output-dungeon"></td>
+            </tr>
+            <tr>
+              <td>フロア</td>
+              <td id="output-floor"></td>
+            </tr>
+            <tr>
+              <td>ダンジョンSEED</td>
+              <td id="output-dungeon-seed"></td>
+            </tr>
+            <tr>
+              <td>チーム名</td>
+              <td id="output-team-name"></td>
+            </tr>
+            <tr>
+              <td>固有ID</td>
+              <td id="output-native-id"></td>
+            </tr>
+            <tr>
+              <td>メールID</td>
+              <td id="output-sos-id"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{{ end }}

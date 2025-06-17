@@ -170,6 +170,11 @@
                   <a class="nav-link" href="{{ . }}">自演救助ツール</a>
                 {{ end }}
               </li>
+              <li class="nav-item">
+                {{ with ref . "/rescue/random.html" }}
+                  <a class="nav-link" href="{{ . }}">救助依頼ランダム生成</a>
+                {{ end }}
+              </li>
             </ul>
 
             <hr />
