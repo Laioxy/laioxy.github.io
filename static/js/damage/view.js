@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
   }
   // モーダル非表示時のイベント
-  const modalElement = document.querySelector('#modal-damage');
+  const modalElement = document.querySelector('.modal');
   modalElement.addEventListener('hide.bs.modal', () => {
     document.activeElement.blur();
   });
@@ -665,6 +665,12 @@ function Calculation() {
     `;
     damageResultBadgeWrapElement.innerHTML += badgeHtml;
   }
+  // 固定ダメージバッジ表示
+  if (dungeon.damageDetailLog.isFixedDamage) {
+    damageResultBadgeWrapElement.innerHTML += `
+      <span class="badge text-bg-dark">固定</span>
+    `;
+  }
 
   // モーダルに詳細表示
   const modalElement = document.querySelector('#modal-damage');
@@ -708,7 +714,7 @@ function Calculation() {
   modalElement.querySelector('.max-random-damage-mult-pct').textContent =
     `${result.details.calc.maxRandomDamageMultPct}%`;
 
-  // [モーダル] ダメージ詳細バッジ
+  // [modal] ダメージ詳細バッジ
   const typeMatchMults = [1, 1];
   const erratic = attacker.iqSkillEnabled(0x3b, dungeon) || defender.iqSkillEnabled(0x38, dungeon);
   for (let i = 0; i < 2; i++) {

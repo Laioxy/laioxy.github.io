@@ -445,6 +445,52 @@ export const TIME_DARKNESS_BASE_POWER = [
   { id: 0x040, power: 24 }, // かみなり 24 -> 45
 ];
 
+/** マグニチュード ダメージテーブル (基本) */
+export const MAGNITUDE_DAMAGE_TABLE = [5, 10, 15, 25, 30, 35, 40];
+/** ソニックブーム 固定ダメージ */
+export const SONICBOOM_FIXED_DAMAGE = 20;
+/** しんくうぎり 固定ダメージ (基本) */
+export const VACUUM_CUT_FIXED_DAMAGE = 18;
+/** りゅうのいかり 固定ダメージ */
+export const DRAGON_RAGE_FIXED_DAMAGE = 30;
+/** いしのつぶて 固定ダメージ */
+export const GEO_PEBBLE_DAMAGE = 10;
+/** ゴローンのいし 固定ダメージ */
+export const GRAVELEROCK_DAMAGE = 20;
+/** たいこのかせき 固定ダメージ */
+export const RARE_FOSSIL_DAMAGE = 100;
+/** アンノーンのいし 固定ダメージ */
+export const UNOWN_ROCK_DAMAGE = 60;
+/** おんがえし 固定ダメージテーブル */
+export const RETURN_FIXED_DAMAGE_TABLE = [
+  { iq: 50, damage: 5 },
+  { iq: 100, damage: 10 },
+  { iq: 200, damage: 15 },
+  { iq: 300, damage: 20 },
+  { iq: 400, damage: 25 },
+  { iq: 500, damage: 30 },
+  { iq: 600, damage: 35 },
+  { iq: 700, damage: 40 },
+  { iq: 1000, damage: 45 },
+  { iq: 10000, damage: 9999 },
+  { iq: 0xffff, damage: 1 },
+];
+/** やつあたり 固定ダメージテーブル */
+export const FRUSTRATION_FIXED_DAMAGE_TABLE = [
+  { iq: 0, damage: 9999 },
+  { iq: 50, damage: 45 },
+  { iq: 100, damage: 40 },
+  { iq: 200, damage: 35 },
+  { iq: 300, damage: 30 },
+  { iq: 400, damage: 25 },
+  { iq: 500, damage: 20 },
+  { iq: 600, damage: 15 },
+  { iq: 700, damage: 10 },
+  { iq: 1000, damage: 5 },
+  { iq: 10000, damage: 1 },
+  { iq: 0xffff, damage: 1 },
+];
+
 /**
  * 技のタイプを取得
  * @param {*} moveId

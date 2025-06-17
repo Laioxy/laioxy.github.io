@@ -886,6 +886,9 @@ class DamageDetailLog {
   /** エアーブレード発動 */
   isAirBladeActive = false;
 
+  /** 固定ダメージ */
+  isFixedDamage = false;
+
   // simulateDamageCalc
   damageMult = 1;
 }
