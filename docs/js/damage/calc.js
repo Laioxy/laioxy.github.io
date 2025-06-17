@@ -1454,6 +1454,7 @@ export function getHpDepMultTableIdx(entity) {
  */
 export function simulateDamageCalc(damageData, dungeon, attacker, defender, move) {
   let damageMult = 1;
+  let fixedDamage = 0;
 
   switch (move.id) {
     case 0: // なし
@@ -1513,6 +1514,16 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
     case 0x64: // ゴッドバード
       damageMult = Mechanics.SKY_ATTACK_DAMAGE_MULTIPLIER;
       break;
+    case 0x6c: // サイコウェーブ
+      const lv = attacker.level;
+      const mult = 256 * (dungeon.rng.varianceDial + 0.5);
+
+      // 下限上限1～199でトリミング
+      fixedDamage = (lv * mult) >> 8;
+      if (fixedDamage < 0) fixedDamage = 1;
+      if (199 < fixedDamage) fixedDamage = 199;
+
+      return simulateDamageCalcFixed(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x71: // しおふき
       damageMult = Mechanics.WATER_SPOUT_DAMAGE_MULT_TABLE[getHpDepMultTableIdx(attacker)];
       break;
@@ -1528,12 +1539,19 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
         damageMult /= 2; // すなあらし, あめ, あられ なら1倍に戻す
       }
       break;
+    case 0x98: // ソニックブーム
+      fixedDamage = Mechanics.SONICBOOM_FIXED_DAMAGE;
+      return simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x99: // そらをとぶ
       damageMult = Mechanics.FLY_DAMAGE_MULTIPLIER;
       break;
     case 0x9c: // ダイビング
       damageMult = Mechanics.DIVE_DAMAGE_MULTIPLIER;
       break;
+    case 0xaa: // ちきゅうなげ
+    case 0xd8: // ナイトヘッド
+      fixedDamage = attacker.level;
+      return simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0xcd: // とびはねる
       damageMult = Mechanics.BOUNCE_DAMAGE_MULTIPLIER;
       break;
@@ -1547,21 +1565,33 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
     case 0xf5: // はきだす
       damageMult = attacker.statuses.stockpile;
       break;
+    case 0x115: // プレゼント
+      fixedDamage = getValueByRatio([0, 25, 50, 75], dungeon.rng.varianceDial);
+      return simulateDamageCalcFixed(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x116: // ふんか
       damageMult = Mechanics.ERUPTION_DAMAGE_MULT_TABLE[getHpDepMultTableIdx(attacker)];
       break;
+    case 0x128: // マグニチュード
+      fixedDamage = getValueByRatio(Mechanics.MAGNITUDE_DAMAGE_TABLE, dungeon.rng.varianceDial);
+      return simulateDamageCalcFixed(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x14b: // ゆめくい
       if (!defender.statuses.sleep && !defender.statuses.nightmare && !defender.statuses.napping) {
         dungeon.damageCalc.dreamEaterFailed = true;
         return 0;
       }
       break;
+    case 0x155: // りゅうのいかり
+      fixedDamage = Mechanics.DRAGON_RAGE_FIXED_DAMAGE;
+      return simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x15c: // ロケットずつき
       damageMult = Mechanics.SKULL_BASH_DAMAGE_MULTIPLIER;
       break;
     case 0x163: // こうげき (通常攻撃)
       damageMult = Mechanics.CONST_0_50;
       break;
+    case 0x18a: // しんくうぎり
+      fixedDamage = Mechanics.VACUUM_CUT_FIXED_DAMAGE;
+      return simulateDamageCalcFixed(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x1d7: // しぜんのめぐみ
       return simulateDamageCalcNaturalGift(damageData, dungeon, attacker, defender, move.ginseng);
     case 0x1c9: // きりふだ
@@ -1581,6 +1611,7 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
       }
       break;
     case 0x1d5: // しおみず
+    case 0x1e8: // ダメおし
       let maxHp = defender.hp_max;
       if (maxHp > Mechanics.MAX_HP_CAP) {
         maxHp = Mechanics.MAX_HP_CAP;
@@ -1925,4 +1956,120 @@ function deepClone(obj) {
   }
 
   return copy;
+}
+
+/**
+ * 固定ダメージを計算
+ * @param {DungeonState} dungeon
+ * @param {Monster} attacker
+ * @param {Monster} defender
+ * @param {Number} fixedDamage
+ * @param {DamageData} damageOut
+ * @param {Number} attackType
+ * @param {Number} moveCategory
+ */
+function damageCalcFixed(dungeon, attacker, defender, fixedDamage, damageOut, attackType, moveCategory, moveId) {
+  if (!executeMoveEffectPrechecks(dungeon, attacker, defender, moveId)) {
+    return 0;
+  }
+
+  // タイプ相性の取得
+  const typeMatchups = [
+    getTypeMatchUp(dungeon, attacker, defender, 0, attackType),
+    getTypeMatchUp(dungeon, attacker, defender, 1, attackType),
+  ];
+
+  dungeon.damageCalc.moveIndivTypeMatchups[0] = typeMatchups[0];
+  dungeon.damageCalc.moveIndivTypeMatchups[1] = typeMatchups[1];
+  damageOut.typeMatchup = Mechanics.TYPE_MATCHUP_COMBINATOR_TABLE[typeMatchups[0]][typeMatchups[1]];
+
+  // 相性が効果抜群以外、防御側がふしぎなまもり、攻撃タイプがなし以外 -> x0
+  let superEffective = damageOut.typeMatchup == eos.MATCHUP_SUPER_EFFECTIVE;
+  if (!superEffective) {
+    if (defender.abilityActiveDetails(0x35, attacker, true) && attackType != eos.TYPE_NONE) {
+      fixedDamage = 0;
+      dungeon.damageDetailLog.isWonderGuardActive = true;
+    }
+  }
+  // ごうわん補正 -> x1.5
+  if (moveId == 0x195 && attacker.iqSkillEnabled(0x2f, dungeon)) {
+    fixedDamage *= Math.ceil(fixedDamage * Mechanics.POWER_PITCHER_DAMAGE_MULTIPLIER);
+    dungeon.damageDetailLog.isPowerPitcherActive = true;
+  }
+
+  let resFixedDamage = Math.ceil(fixedDamage);
+  if (fixedDamage == 0) resFixedDamage = 1;
+
+  damageOut.damage = resFixedDamage;
+  damageOut.type = attackType;
+  damageOut.category = moveCategory;
+
+  return resFixedDamage;
+}
+
+/**
+ * 固定ダメージ実行
+ * @param {DamageData} damageData
+ * @param {DungeonState} dungeon
+ * @param {Monster} attacker
+ * @param {Monster} defender
+ * @param {Move} move
+ * @param {Number} baseFixedDamage
+ */
+function simulateDamageCalcFixed(damageData, dungeon, attacker, defender, move, baseFixedDamage) {
+  const attackType = attacker.getMoveType(move.id, dungeon);
+  const moveCategory = getMoveCategory(move.id);
+
+  // 計算
+  const calc = damageCalcFixed(
+    dungeon,
+    attacker,
+    defender,
+    baseFixedDamage,
+    damageData,
+    attackType,
+    moveCategory,
+    move.id,
+  );
+  const effected = CalcTypeBasedDamageEffects(dungeon, attacker, defender, 0, attackType, damageData, false);
+  const fixedDamage = Math.ceil(calc * effected.damageMultOut);
+  damageData.damage = fixedDamage;
+  dungeon.damageDetailLog.isFixedDamage = true;
+
+  return runMockDamageSequence(dungeon, attacker, defender, move.id, damageData);
+}
+
+/**
+ * 固定ダメージ実行 (静的固定)
+ * @param {*} damageData
+ * @param {*} dungeon
+ * @param {*} attacker
+ * @param {*} defender
+ * @param {*} move
+ * @param {*} baseFixedDamage
+ * @returns
+ */
+function simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, baseFixedDamage) {
+  const attackType = attacker.getMoveType(move.id, dungeon);
+  const moveCategory = getMoveCategory(move.id);
+
+  damageData.type = attackType;
+  damageData.category = moveCategory;
+  damageData.damage = baseFixedDamage;
+  dungeon.damageDetailLog.isFixedDamage = true;
+
+  return runMockDamageSequence(dungeon, attacker, defender, move.id, damageData);
+}
+
+/**
+ * 0～1の範囲で値を指定し、配列から割合でデータを取得する
+ * @param {*} array 配列
+ * @param {*} ratio 0～1
+ * @returns
+ */
+function getValueByRatio(array, ratio) {
+  // ratioを0～1に制限
+  ratio = Math.min(Math.max(ratio, 0), 1);
+  const index = Math.floor(ratio * (array.length - 1));
+  return array[index];
 }
