@@ -109,7 +109,7 @@ function GendersEqualNotGenderless(monster1, monster2) {
  * @param {*} attackPower
  * @param {*} attackType
  * @param {DamageData} damageOut
- * @param {boolean} partial 通常攻撃or投擲物
+ * @param {boolean} partial ムラっけ、テクニシャンの影響を受けるか
  * @returns 効果抜群フラグ(superEffective), ダメージ倍率(damageMultOut)
  */
 function CalcTypeBasedDamageEffects(dungeon, attacker, defender, attackPower, attackType, damageOut, partial) {
@@ -1523,7 +1523,7 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
       if (fixedDamage < 0) fixedDamage = 1;
       if (199 < fixedDamage) fixedDamage = 199;
 
-      return simulateDamageCalcFixed(damageData, dungeon, attacker, defender, move, fixedDamage);
+      return simulateDamageCalcFixedDynamic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x71: // しおふき
       damageMult = Mechanics.WATER_SPOUT_DAMAGE_MULT_TABLE[getHpDepMultTableIdx(attacker)];
       break;
@@ -1567,13 +1567,13 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
       break;
     case 0x115: // プレゼント
       fixedDamage = getValueByRatio([0, 25, 50, 75], dungeon.rng.varianceDial);
-      return simulateDamageCalcFixed(damageData, dungeon, attacker, defender, move, fixedDamage);
+      return simulateDamageCalcFixedDynamic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x116: // ふんか
       damageMult = Mechanics.ERUPTION_DAMAGE_MULT_TABLE[getHpDepMultTableIdx(attacker)];
       break;
     case 0x128: // マグニチュード
       fixedDamage = getValueByRatio(Mechanics.MAGNITUDE_DAMAGE_TABLE, dungeon.rng.varianceDial);
-      return simulateDamageCalcFixed(damageData, dungeon, attacker, defender, move, fixedDamage);
+      return simulateDamageCalcFixedDynamic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x14b: // ゆめくい
       if (!defender.statuses.sleep && !defender.statuses.nightmare && !defender.statuses.napping) {
         dungeon.damageCalc.dreamEaterFailed = true;
@@ -1591,7 +1591,7 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
       break;
     case 0x18a: // しんくうぎり
       fixedDamage = Mechanics.VACUUM_CUT_FIXED_DAMAGE;
-      return simulateDamageCalcFixed(damageData, dungeon, attacker, defender, move, fixedDamage);
+      return simulateDamageCalcFixedDynamic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x1d7: // しぜんのめぐみ
       return simulateDamageCalcNaturalGift(damageData, dungeon, attacker, defender, move.ginseng);
     case 0x1c9: // きりふだ
@@ -1656,6 +1656,19 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
   }
   dungeon.damageDetailLog.damageMult = damageMult;
   return simulateDamageCalcWithMult(damageData, dungeon, attacker, defender, move, damageMult);
+}
+
+/**
+ * 0～1の範囲で値を指定し、配列から割合でデータを取得する
+ * @param {*} array 配列
+ * @param {*} ratio 0～1
+ * @returns
+ */
+function getValueByRatio(array, ratio) {
+  // ratioを0～1に制限
+  ratio = Math.min(Math.max(ratio, 0), 1);
+  const index = Math.floor(ratio * (array.length - 1));
+  return array[index];
 }
 
 /**
@@ -1959,6 +1972,98 @@ function deepClone(obj) {
 }
 
 /**
+ * 動的固定ダメージを計算 (サイコウェーブ、プレゼント、マグニチュード、しんくうぎり)
+ * JP: 0x2334304
+ * @param {DamageData} damageData
+ * @param {DungeonState} dungeon
+ * @param {Monster} attacker
+ * @param {Monster} defender
+ * @param {Move} move
+ * @param {Number} damage ダメージ
+ */
+function simulateDamageCalcFixedDynamic(damageData, dungeon, attacker, defender, move, damage) {
+  const attackType = attacker.getMoveType(move.id, dungeon);
+  const moveCategory = getMoveCategory(move.id);
+  const fixedDamage = calcDamageFixedApplyEffects(
+    damageData,
+    dungeon,
+    attacker,
+    defender,
+    attackType,
+    moveCategory,
+    damage,
+  );
+
+  damageData.type = attackType;
+  damageData.category = moveCategory;
+
+  // [original] プレゼントかつ0ダメージで呼び出されたなら0とする
+  if (move.id == 0x115 && damage == 0) {
+    damageData.damage = 0;
+  } else {
+    damageData.damage = fixedDamage;
+  }
+  dungeon.damageDetailLog.isFixedDamage = true;
+
+  return runMockDamageSequence(dungeon, attacker, defender, move.id, damageData);
+}
+
+/**
+ * 固定ダメージをトリミングし、補正を適用して計算
+ * JP: 0x230e5c8
+ * @param {DungeonState} dungeon
+ * @param {Monster} attacker
+ * @param {Monster} defender
+ * @param {*} attackType
+ * @param {*} moveCategory
+ * @param {*} damage
+ * @param {*} damageOut
+ * @returns
+ */
+function calcDamageFixedApplyEffects(damageData, dungeon, attacker, defender, attackType, moveCategory, damage) {
+  // 1～999でトリミング
+  if (damage < 1) damage = 1;
+  if (999 < damage) damage = 999;
+
+  // 補正を取得
+  const effect = CalcTypeBasedDamageEffects(dungeon, attacker, defender, damage, attackType, damageData, false);
+
+  // 計算
+  const fixedDamage = Math.ceil(damage * effect.damageMultOut);
+  return fixedDamage;
+}
+
+/**
+ * 静的固定ダメージを計算
+ * @param {DungeonState} dungeon
+ * @param {Monster} attacker
+ * @param {Monster} defender
+ * @param {Move} move
+ * @param {Number} damage
+ */
+function simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, damage) {
+  const attackType = attacker.getMoveType(move.id, dungeon);
+  const moveCategory = getMoveCategory(move.id);
+  const fixedDamage = calcDamageFixed(
+    dungeon,
+    attacker,
+    defender,
+    damage,
+    damageData,
+    attackType,
+    moveCategory,
+    move.id,
+  );
+
+  damageData.type = attackType;
+  damageData.category = moveCategory;
+  damageData.damage = fixedDamage;
+  dungeon.damageDetailLog.isFixedDamage = true;
+
+  return runMockDamageSequence(dungeon, attacker, defender, move.id, damageData);
+}
+
+/**
  * 固定ダメージを計算
  * @param {DungeonState} dungeon
  * @param {Monster} attacker
@@ -1968,7 +2073,7 @@ function deepClone(obj) {
  * @param {Number} attackType
  * @param {Number} moveCategory
  */
-function damageCalcFixed(dungeon, attacker, defender, fixedDamage, damageOut, attackType, moveCategory, moveId) {
+function calcDamageFixed(dungeon, attacker, defender, fixedDamage, damageOut, attackType, moveCategory, moveId) {
   if (!executeMoveEffectPrechecks(dungeon, attacker, defender, moveId)) {
     return 0;
   }
@@ -2000,76 +2105,5 @@ function damageCalcFixed(dungeon, attacker, defender, fixedDamage, damageOut, at
   let resFixedDamage = Math.ceil(fixedDamage);
   if (fixedDamage == 0) resFixedDamage = 1;
 
-  damageOut.damage = resFixedDamage;
-  damageOut.type = attackType;
-  damageOut.category = moveCategory;
-
   return resFixedDamage;
-}
-
-/**
- * 固定ダメージ実行
- * @param {DamageData} damageData
- * @param {DungeonState} dungeon
- * @param {Monster} attacker
- * @param {Monster} defender
- * @param {Move} move
- * @param {Number} baseFixedDamage
- */
-function simulateDamageCalcFixed(damageData, dungeon, attacker, defender, move, baseFixedDamage) {
-  const attackType = attacker.getMoveType(move.id, dungeon);
-  const moveCategory = getMoveCategory(move.id);
-
-  // 計算
-  const calc = damageCalcFixed(
-    dungeon,
-    attacker,
-    defender,
-    baseFixedDamage,
-    damageData,
-    attackType,
-    moveCategory,
-    move.id,
-  );
-  const effected = CalcTypeBasedDamageEffects(dungeon, attacker, defender, 0, attackType, damageData, false);
-  const fixedDamage = Math.ceil(calc * effected.damageMultOut);
-  damageData.damage = fixedDamage;
-  dungeon.damageDetailLog.isFixedDamage = true;
-
-  return runMockDamageSequence(dungeon, attacker, defender, move.id, damageData);
-}
-
-/**
- * 固定ダメージ実行 (静的固定)
- * @param {*} damageData
- * @param {*} dungeon
- * @param {*} attacker
- * @param {*} defender
- * @param {*} move
- * @param {*} baseFixedDamage
- * @returns
- */
-function simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, baseFixedDamage) {
-  const attackType = attacker.getMoveType(move.id, dungeon);
-  const moveCategory = getMoveCategory(move.id);
-
-  damageData.type = attackType;
-  damageData.category = moveCategory;
-  damageData.damage = baseFixedDamage;
-  dungeon.damageDetailLog.isFixedDamage = true;
-
-  return runMockDamageSequence(dungeon, attacker, defender, move.id, damageData);
-}
-
-/**
- * 0～1の範囲で値を指定し、配列から割合でデータを取得する
- * @param {*} array 配列
- * @param {*} ratio 0～1
- * @returns
- */
-function getValueByRatio(array, ratio) {
-  // ratioを0～1に制限
-  ratio = Math.min(Math.max(ratio, 0), 1);
-  const index = Math.floor(ratio * (array.length - 1));
-  return array[index];
 }
