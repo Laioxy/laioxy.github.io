@@ -115,9 +115,34 @@ document.addEventListener('DOMContentLoaded', async function () {
  * Choices.js 初期化 (インスタンスのセット)
  */
 function InitChoices() {
+  const choicesOptionsMove = {
+    ...choicesOptions,
+    callbackOnCreateTemplates: function (template, escapeForTemplate, getClassNames) {
+      return {
+        choice: ({ classNames }, data) => {
+          return template(`
+          <div class="${getClassNames(classNames.item).join(' ')} ${getClassNames(classNames.itemChoice).join(' ')} ${getClassNames(
+            data.disabled ? classNames.itemDisabled : classNames.itemSelectable,
+          ).join(' ')}" data-choice ${
+            data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'
+          } data-id="${data.id}" data-value="${escapeForTemplate(data.value)}" ${
+            data.groupId > 0 ? 'role="treeitem"' : 'role="option"'
+          } data-group="${data.group.label}">
+            <span>${data.label}</span>
+          </div>
+          `);
+        },
+      };
+    },
+  };
+
   const choicesElements = document.querySelectorAll('#damage-calc select[data-choices]');
   for (const element of choicesElements) {
-    choicesInstances[element.id] = new Choices(element, choicesOptions);
+    if (element.id == 'move') {
+      choicesInstances[element.id] = new Choices(element, choicesOptionsMove);
+    } else {
+      choicesInstances[element.id] = new Choices(element, choicesOptions);
+    }
   }
 }
 
