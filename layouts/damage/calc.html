@@ -314,16 +314,35 @@
                               おうごんのトゲ
                             </option>
                             <option value="73">がんせきだま</option>
+                            <option value="397">ひれいだま</option>
                             <option value="364">ぶんどりのたま</option>
                             <option value="366">やまごえだま</option>
                           </optgroup>
 
                           <!-- 技 -->
                           {{ $sortedMoves := sort $move_json "Name" }}
+                          <!--
+                            [非対応]
+                            7   あてみなげ
+                            38  おいうち
+                            50  かいりき
+                            51  カウンター
+                            61  がまん
+                            123 じばく
+                            155 だいばくはつ
+                            249 はたきおとす
+                            294 まきつく
+                            316 ミラーコート
+                            340 リベンジ
+                            359 ゆきなだれ
+                            472 しっぺがえし
+                            532 メタルバースト
+                          -->
+                          {{ $exclusionMoves := slice 7 38 50 51 61 123 155 249 294 316 340 359 472 532 }}
                           <optgroup label="技">
                             {{ range $move := $sortedMoves }}
                               {{ $valid := partial "methods/IsValidMove.html" (int .Id) }}
-                              {{ if and (not $valid) (ne (int .Category) 2) (ne (int .Power) 0) }}
+                              {{ if and (not $valid) (ne (int .Category) 2) (not (in $exclusionMoves (int .Id))) }}
                                 <option value="{{ .Id }}">
                                   {{ .Name }}
                                 </option>
@@ -335,7 +354,7 @@
                           <optgroup label="非対応">
                             {{ range $move := $sortedMoves }}
                               {{ $valid := partial "methods/IsValidMove.html" (int .Id) }}
-                              {{ if and (not $valid) (or (eq (int .Category) 2) (eq (int .Power) 0)) }}
+                              {{ if or (and (not $valid) (eq (int .Category) 2)) (in $exclusionMoves (int .Id)) }}
                                 <option
                                   value="{{ .Id }}"
                                   data-no-support="true">
@@ -1427,7 +1446,7 @@
                       <tr>
                         <td>
                           かしこさ
-                          {{ partial "tooltips" "おんがえし/やつあたりのダメージに関連する。<br>※現在未対応。<hr>おんがえし:<br>5ダメージを基準に、50・100・200・300・400・500・600・700で5ダメージずつ増える(最大45)。<br>やつあたり:<br>45ダメージを基準に、50・100・200・300・400・500・600・700で5ダメージずつ減る(最低5)。" }}
+                          {{ partial "tooltips" "おんがえし/やつあたりのダメージに関連する。<hr>おんがえし:<br>5ダメージを基準に、50・100・200・300・400・500・600・700で5ダメージずつ増える(最大45)。<br>やつあたり:<br>45ダメージを基準に、50・100・200・300・400・500・600・700で5ダメージずつ減る(最低5)。" }}
                         </td>
                         <td>
                           <input
@@ -1533,7 +1552,7 @@
       画面下部の計算結果をクリックすると詳細を確認できます。
       <br />
       <span class="text-danger">
-        一部の固定ダメージの計算には対応していません。順次対応。
+        変化技も選択可能ですが、これは命中率と急所率の計算用に残しているものでダメージ計算用途ではありません。
       </span>
     </p>
 
@@ -1550,10 +1569,6 @@
 
     <h5 class="fw-bold">そのうちやりたい</h5>
     <ul>
-      <li>
-        固定ダメージの対応 (残:
-        がむしゃら、いかりのまえば、おんがえし、やつあたり、つのドリル、じわれ、ぜったいれいど、ひれいだま)
-      </li>
       <li>時闇ギラティナの対応 (フォルム補正を外す)</li>
       <li>入力内容を保持して共有、または保存できるようにする</li>
     </ul>
@@ -1592,6 +1607,13 @@
             aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <h5>2025/06/19</h5>
+          <ul>
+            <li>固定ダメージ技を非対応のカテゴリから除外</li>
+            <li>
+              いかりのまえば、おんがえし、がむしゃら、ぜったいれいど、つのドリル、ハサミギロチン、やつあたり、ひれいだま対応
+            </li>
+          </ul>
           <h5>2025/06/18</h5>
           <ul>
             <li>プレゼント対応</li>

@@ -473,7 +473,7 @@ export const RETURN_FIXED_DAMAGE_TABLE = [
   { iq: 700, damage: 40 },
   { iq: 1000, damage: 45 },
   { iq: 10000, damage: 9999 },
-  { iq: 0xffff, damage: 1 },
+  { iq: -1, damage: 1 }, // 0xffff
 ];
 /** やつあたり 固定ダメージテーブル */
 export const FRUSTRATION_FIXED_DAMAGE_TABLE = [
@@ -488,7 +488,7 @@ export const FRUSTRATION_FIXED_DAMAGE_TABLE = [
   { iq: 700, damage: 10 },
   { iq: 1000, damage: 5 },
   { iq: 10000, damage: 1 },
-  { iq: 0xffff, damage: 1 },
+  { iq: -1, damage: 1 }, // 0xffff
 ];
 
 /**

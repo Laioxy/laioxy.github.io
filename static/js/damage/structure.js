@@ -419,6 +419,18 @@ export class Monster {
   weatherBallType(dungeon) {
     return Mechanics.WEATHER_BALL_TYPE_TABLE[this.perceivedWeather(dungeon)];
   }
+
+  /**
+   * ポケモンの大きさを取得する (ひれいだま用)
+   * @returns
+   */
+  getSize() {
+    if (!PokemonData) {
+      console.error('PokemonData not found');
+      return false;
+    }
+    return PokemonData[this.id].Size;
+  }
 }
 
 /**

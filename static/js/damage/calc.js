@@ -1165,6 +1165,11 @@ export function ApplyAbilityAndEffectImmunities(attacker, defender, damageData) 
   if (!defender.isMonster() || !attacker.isMonster()) {
     return;
   }
+  // がんじょうのポケモンが一撃技を受ける
+  if (defender.abilityActiveDetails(0xd, attacker, true) && damageData.damage == 9999) {
+    damageData.noDamage = true;
+    return;
+  }
   // ちくでんのポケモンが電気技を受ける
   if (defender.abilityActiveDetails(0x23, attacker, true) && damageData.type == eos.TYPE_ELECTRIC) {
     damageData.noDamage = true;
@@ -1467,6 +1472,9 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
     case 0x8: // あなをほる
       damageMult = Mechanics.DIG_DAMAGE_MULTIPLIER;
       break;
+    case 0x14: // いかりのまえば
+      fixedDamage = Math.floor(defender.hp / 2);
+      return simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x1f: // ウェザーボール
       return simulateDamageCalcWeatherBall(damageData, dungeon, attacker, defender, move.ginseng);
     case 0x20: // うずしお
@@ -1475,6 +1483,15 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
         damageMult = 2;
       }
       break;
+    case 0x30: // おんがえし
+      for (const dmg of Mechanics.RETURN_FIXED_DAMAGE_TABLE) {
+        if (dmg.iq < 0) break;
+        if (attacker.iq < dmg.iq) {
+          fixedDamage = dmg.damage;
+          break;
+        }
+      }
+      return simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x39: // かぜおこし
     case 0xa2: // たつまき
       if (defender.statuses.flying || defender.statuses.bouncing) {
@@ -1484,6 +1501,10 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
     case 0x3c: // かまいたち
       damageMult = Mechanics.RAZOR_WIND_DAMAGE_MULTIPLIER;
       break;
+    case 0x42: // がむしゃら
+      const diff = defender.hp - attacker.hp;
+      fixedDamage = Math.max(diff, 0);
+      return simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x43: // からげんき
       if (
         attacker.statuses.burn ||
@@ -1532,6 +1553,30 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
         damageMult = 2;
       }
       break;
+    // じわれ
+    case 0x83: {
+      const moveType = attacker.getMoveType(move.id, dungeon);
+      const isMoldBreaker = attacker.abilityActive(0x53);
+
+      // ふゆう相手に命中するかチェック
+      if (!isMoldBreaker && defender.levitateActive(dungeon)) {
+        fixedDamage = 0;
+      }
+      // 一撃技が命中するかチェック
+      else if (checkMoveHitOhko(dungeon, attacker, defender, moveType)) {
+        fixedDamage = 9999;
+      }
+      return simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, fixedDamage);
+    }
+    case 0x96: // ぜったいれいど, つのドリル, ハサミギロチン
+    case 0xb1:
+    case 0xf7: {
+      const moveType = attacker.getMoveType(move.id, dungeon);
+      if (checkMoveHitOhko(dungeon, attacker, defender, moveType)) {
+        fixedDamage = 9999;
+      }
+      return simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, fixedDamage);
+    }
     case 0x97: // ソーラービーム
       const weather = attacker.perceivedWeather(dungeon);
       damageMult = Mechanics.SOLARBEAM_DAMAGE_MULTIPLIER;
@@ -1574,6 +1619,15 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
     case 0x128: // マグニチュード
       fixedDamage = getValueByRatio(Mechanics.MAGNITUDE_DAMAGE_TABLE, dungeon.rng.varianceDial);
       return simulateDamageCalcFixedDynamic(damageData, dungeon, attacker, defender, move, fixedDamage);
+    case 0x148: // やつあたり
+      for (const dmg of Mechanics.FRUSTRATION_FIXED_DAMAGE_TABLE) {
+        if (dmg.iq < 0) break;
+        if (attacker.iq < dmg.iq) {
+          fixedDamage = dmg.damage;
+          break;
+        }
+      }
+      return simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x14b: // ゆめくい
       if (!defender.statuses.sleep && !defender.statuses.nightmare && !defender.statuses.napping) {
         dungeon.damageCalc.dreamEaterFailed = true;
@@ -1592,6 +1646,9 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
     case 0x18a: // しんくうぎり
       fixedDamage = Mechanics.VACUUM_CUT_FIXED_DAMAGE;
       return simulateDamageCalcFixedDynamic(damageData, dungeon, attacker, defender, move, fixedDamage);
+    case 0x18d: // ひれいだま (きょうめい)
+      fixedDamage = defender.getSize();
+      return simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x1d7: // しぜんのめぐみ
       return simulateDamageCalcNaturalGift(damageData, dungeon, attacker, defender, move.ginseng);
     case 0x1c9: // きりふだ
@@ -2044,16 +2101,10 @@ function calcDamageFixedApplyEffects(damageData, dungeon, attacker, defender, at
 function simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, damage) {
   const attackType = attacker.getMoveType(move.id, dungeon);
   const moveCategory = getMoveCategory(move.id);
-  const fixedDamage = calcDamageFixed(
-    dungeon,
-    attacker,
-    defender,
-    damage,
-    damageData,
-    attackType,
-    moveCategory,
-    move.id,
-  );
+  let fixedDamage = 0;
+  if (damage > 0) {
+    fixedDamage = calcDamageFixed(dungeon, attacker, defender, damage, damageData, attackType, moveCategory, move.id);
+  }
 
   damageData.type = attackType;
   damageData.category = moveCategory;
@@ -2106,4 +2157,33 @@ function calcDamageFixed(dungeon, attacker, defender, fixedDamage, damageOut, at
   if (fixedDamage == 0) resFixedDamage = 1;
 
   return resFixedDamage;
+}
+
+/**
+ * 一撃必殺技が命中するかチェック
+ * JP: 0x230E9E0
+ * @param {Monster} attacker
+ * @param {Monster} defender
+ * @param {Number} attackType
+ */
+function checkMoveHitOhko(dungeon, attacker, defender, attackType) {
+  // きもったまチェック
+  if (
+    !attacker.scrappyShouldActivate(defender, attackType, dungeon) &&
+    Mechanics.typeIneffectiveAgainstGhost(attackType) &&
+    (defender.ghostImmunityActive(attacker, 0) || defender.ghostImmunityActive(attacker, 1))
+  ) {
+    return false;
+  }
+
+  // タイプ相性チェック
+  // 効果がない => false, それ以外 => true
+  let i = 0;
+  while (true) {
+    if (1 < i) return true;
+    const matchUp = getTypeMatchUp(dungeon, attacker, defender, i, attackType);
+    if (matchUp == 0) break;
+    i++;
+  }
+  return false;
 }
