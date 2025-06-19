@@ -12,6 +12,14 @@
     background-color: var(--bs-danger-bg-subtle);
   }
 
+  // 非対応技の背景を暗くする
+  .choices .choices__item[data-group="非対応"] {
+    background-color: var(--bs-tertiary-color);
+    &.is-highlighted {
+      background-color: var(--bs-secondary-color);
+    }
+  }
+
   #damage-result {
     cursor: pointer;
     position: fixed;
