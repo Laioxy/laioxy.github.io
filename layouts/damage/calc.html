@@ -8,8 +8,25 @@
 
 
   <script src="/js/json_script.js"></script>
-  <script src="/js/damage/view.js" type="module"></script>
   <script src="/js/poke_param.js"></script>
+  {{ with resources.Get "js/damage/view.js" }}
+    {{ $opts := dict
+      "minify" (not hugo.IsDevelopment)
+      "sourceMap" (cond hugo.IsDevelopment "inline" "")
+      "targetPath" "js/damage/bundle.js"
+    }}
+    {{ with . | js.Build $opts }}
+      {{ if hugo.IsDevelopment }}
+        <!-- 開発環境用 -->
+        <script src="{{ .RelPermalink }}"></script>
+      {{ else }}
+        <!-- 本番環境用 -->
+        {{ with . | resources.Fingerprint }}
+          <script src="{{ .RelPermalink }}"></script>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
   {{ partial "methods/SetScssMinify.html" "damage/calc" }}
 
 
@@ -1553,7 +1570,7 @@
       画面下部の計算結果をクリックすると詳細を確認できます。
       <br />
       <span class="text-danger">
-        変化技も選択可能ですが、これは命中率と急所率の計算用に残しているものでダメージ計算用途ではありません。
+        変化技も選択可能ですが、これは命中率の計算用に残しているものでダメージ計算用途ではありません。
       </span>
     </p>
 

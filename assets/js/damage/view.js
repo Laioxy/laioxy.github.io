@@ -1,7 +1,7 @@
-import * as eos from '/js/damage/const.js';
-import * as Mechanics from '/js/damage/mechanics.js';
-import { RunCalcDamage } from '/js/damage/calc.js';
-import { Monster, DungeonState, DamageData, Move } from '/js/damage/structure.js';
+import * as eos from './const.js';
+import * as Mechanics from './mechanics.js';
+import { RunCalcDamage } from './calc.js';
+import { Monster, DungeonState, DamageData, Move } from './structure.js';
 
 const fighterClassNames = ['attacker', 'defender'];
 const moveCategoryNames = ['物理', '特殊', '変化'];
@@ -17,8 +17,6 @@ const choicesInstances = [];
 let moveInfoElement = null;
 
 document.addEventListener('DOMContentLoaded', async function () {
-  const moveElement = document.getElementById('move');
-
   // tooltip初期化
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
   const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
@@ -49,10 +47,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
         // ダメージ計算
         Calculation();
-        // 技情報更新 (時闇の威力適用)
-        if (element.id == 'damage-support-td') {
-          ApplyMoveInfo(moveElement);
-        }
       });
     } else if (element.tagName === 'SELECT') {
       element.addEventListener('change', function (e) {
@@ -67,6 +61,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   // 技変更時、技情報更新
+  const moveElement = document.getElementById('move');
   moveElement.addEventListener('change', function (e) {
     ApplyMoveInfo(e.target);
   });
@@ -166,17 +161,11 @@ function ApplyMoveInfo(target) {
   }
 
   const move = MoveData[target.value];
-  let power = move.Power;
 
   // option要素に威力が定義されている場合、それに上書きする
   // (投擲アイテムの対応)
   const option = target.options[target.selectedIndex];
-  if ('power' in option.dataset) power = option.dataset['power'];
-
-  // 時闇
-  const tdBasePower = Mechanics.TIME_DARKNESS_BASE_POWER.find((item) => item.id == move.Id);
-  const damageSupportTdElement = document.querySelector('#damage-support-td');
-  if (damageSupportTdElement.checked && tdBasePower != undefined) power = tdBasePower.power;
+  const power = 'power' in option.dataset ? option.dataset['power'] : move.Power;
 
   const movePowerElement = moveInfoElement.querySelector('#move-power');
   const moveTypeElement = moveInfoElement.querySelector('#move-type');
@@ -195,8 +184,7 @@ function ApplyMoveInfo(target) {
   movePPElement.textContent = move.PP; // たげいは考慮しない？
   moveAccuracy1Element.textContent = move.Accuracy1;
   moveAccuracy2Element.textContent = move.Accuracy2;
-  moveAccuracyBaseElement.textContent =
-    getMoveBaseAccuracy(move.Accuracy1, move.Accuracy2, move.Ginseng).toFixed(2) + '%';
+  moveAccuracyBaseElement.textContent = getMoveBaseAccuracy(move.Accuracy1, move.Accuracy2).toFixed(2) + '%';
   moveStrikesElement.textContent = move.MaxHit;
   moveCriticalElement.textContent = move.Critical + '%';
 }
@@ -663,7 +651,7 @@ function Calculation() {
   } else {
     result = RunCalcDamage(dungeon, attacker, defender, move, MoveData[move.id].Power);
   }
-  // console.log('RESULT', result);
+  //console.log('RESULT', result);
 
   // ダメージ計算結果表示
   const damageMinElement = document.getElementById('damage-min');
@@ -785,7 +773,7 @@ function Calculation() {
       value: result.details.criticalHit,
     },
     { label: 'タイプ無効', multiplier: 0, value: result.details.fullTypeImmunity },
-    { label: 'ダメージ無効', multiplier: 0, value: result.details.noDamage },
+    { label: 'ダメージ無し', multiplier: 0, value: result.details.noDamage },
     { label: 'ふしぎなまもり', multiplier: 0, value: dungeon.damageDetailLog.isWonderGuardActive },
     { label: 'いろめがね x1.2', multiplier: 1.2, value: dungeon.damageDetailLog.isTintedLensActive },
     { label: 'ハードロック x0.75', multiplier: 0.75, value: dungeon.damageDetailLog.isSolidRockActive },
@@ -876,11 +864,8 @@ function getFighterType(target) {
  * @param {*} accuracy2 命中値2
  * @returns
  */
-function getMoveBaseAccuracy(accuracy1, accuracy2, maxGinseng = 0) {
-  const acc1 = Math.min(accuracy1, 100);
-  const acc2 = Math.min(accuracy2, 100);
-  if (maxGinseng == 0) return acc1;
-  else return (acc1 * acc2) / 100;
+function getMoveBaseAccuracy(accuracy1, accuracy2) {
+  return (Math.min(accuracy1, 100) * Math.min(accuracy2, 100)) / 100;
 }
 
 /**
