@@ -323,10 +323,7 @@ label + a[data-bs-toggle="tooltip"] {
   }
   .choices__list--dropdown .choices__item--selectable.is-highlighted,
   .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
-    background-color: var(--bs-body-bg);
-    &:hover {
-      background-color: var(--bs-secondary-bg);
-    }
+    background-color: var(--bs-secondary-bg);
   }
   .choices__list--dropdown,
   .choices__list[aria-expanded] {
