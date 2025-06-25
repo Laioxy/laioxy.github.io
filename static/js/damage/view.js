@@ -184,7 +184,8 @@ function ApplyMoveInfo(target) {
   movePPElement.textContent = move.PP; // たげいは考慮しない？
   moveAccuracy1Element.textContent = move.Accuracy1;
   moveAccuracy2Element.textContent = move.Accuracy2;
-  moveAccuracyBaseElement.textContent = getMoveBaseAccuracy(move.Accuracy1, move.Accuracy2).toFixed(2) + '%';
+  moveAccuracyBaseElement.textContent =
+    getMoveBaseAccuracy(move.Accuracy1, move.Accuracy2, move.Ginseng).toFixed(2) + '%';
   moveStrikesElement.textContent = move.MaxHit;
   moveCriticalElement.textContent = move.Critical + '%';
 }
@@ -864,8 +865,11 @@ function getFighterType(target) {
  * @param {*} accuracy2 命中値2
  * @returns
  */
-function getMoveBaseAccuracy(accuracy1, accuracy2) {
-  return (Math.min(accuracy1, 100) * Math.min(accuracy2, 100)) / 100;
+function getMoveBaseAccuracy(accuracy1, accuracy2, maxGinseng = 0) {
+  const acc1 = Math.min(accuracy1, 100);
+  const acc2 = Math.min(accuracy2, 100);
+  if (maxGinseng == 0) return acc1;
+  else return (acc1 * acc2) / 100;
 }
 
 /**

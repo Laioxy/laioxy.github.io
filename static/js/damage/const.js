@@ -35,6 +35,8 @@
 export const CATEGORY_PHYSICAL = 0;
 /** 特殊技 */
 export const CATEGORY_SPECIAL = 1;
+/** 変化技 */
+export const CATEGORY_STATUS = 2;
 
 /** 性別 無効 */
 export const GENDER_INVALID = 0;
