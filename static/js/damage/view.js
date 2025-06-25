@@ -17,6 +17,8 @@ const choicesInstances = [];
 let moveInfoElement = null;
 
 document.addEventListener('DOMContentLoaded', async function () {
+  const moveElement = document.getElementById('move');
+
   // tooltip初期化
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
   const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
@@ -47,6 +49,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
         // ダメージ計算
         Calculation();
+        // 技情報更新 (時闇の威力適用)
+        if (element.id == 'damage-support-td') {
+          ApplyMoveInfo(moveElement);
+        }
       });
     } else if (element.tagName === 'SELECT') {
       element.addEventListener('change', function (e) {
@@ -61,7 +67,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   // 技変更時、技情報更新
-  const moveElement = document.getElementById('move');
   moveElement.addEventListener('change', function (e) {
     ApplyMoveInfo(e.target);
   });
@@ -161,11 +166,17 @@ function ApplyMoveInfo(target) {
   }
 
   const move = MoveData[target.value];
+  let power = move.Power;
 
   // option要素に威力が定義されている場合、それに上書きする
   // (投擲アイテムの対応)
   const option = target.options[target.selectedIndex];
-  const power = 'power' in option.dataset ? option.dataset['power'] : move.Power;
+  if ('power' in option.dataset) power = option.dataset['power'];
+
+  // 時闇
+  const tdBasePower = Mechanics.TIME_DARKNESS_BASE_POWER.find((item) => item.id == move.Id);
+  const damageSupportTdElement = document.querySelector('#damage-support-td');
+  if (damageSupportTdElement.checked && tdBasePower != undefined) power = tdBasePower.power;
 
   const movePowerElement = moveInfoElement.querySelector('#move-power');
   const moveTypeElement = moveInfoElement.querySelector('#move-type');
