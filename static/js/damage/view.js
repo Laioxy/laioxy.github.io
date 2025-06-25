@@ -785,7 +785,7 @@ function Calculation() {
       value: result.details.criticalHit,
     },
     { label: 'タイプ無効', multiplier: 0, value: result.details.fullTypeImmunity },
-    { label: 'ダメージ無し', multiplier: 0, value: result.details.noDamage },
+    { label: 'ダメージ無効', multiplier: 0, value: result.details.noDamage },
     { label: 'ふしぎなまもり', multiplier: 0, value: dungeon.damageDetailLog.isWonderGuardActive },
     { label: 'いろめがね x1.2', multiplier: 1.2, value: dungeon.damageDetailLog.isTintedLensActive },
     { label: 'ハードロック x0.75', multiplier: 0.75, value: dungeon.damageDetailLog.isSolidRockActive },
