@@ -17,6 +17,7 @@ window.TypeData = null;
 window.choicesOptions = {
   placeholder: false,
   placeholderValue: '選択...',
+  searchPlaceholderValue: '検索...',
   loadingText: 'Loading...',
   noResultsText: '結果なし',
   noChoicesText: '項目なし',
