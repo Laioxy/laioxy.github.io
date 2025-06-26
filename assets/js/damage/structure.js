@@ -31,8 +31,8 @@
   SOFTWARE.
 */
 
-import * as eos from '/js/damage/const.js';
-import * as Mechanics from '/js/damage/mechanics.js';
+import * as eos from './const.js';
+import * as Mechanics from './mechanics.js';
 
 /**
  * ポケモン構造体

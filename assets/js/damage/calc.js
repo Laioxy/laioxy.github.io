@@ -31,11 +31,11 @@
   SOFTWARE.
 */
 
-import * as eos from '/js/damage/const.js';
-import * as ids from '/js/damage/idmap.js';
-import * as Mechanics from '/js/damage/mechanics.js';
-import * as MathUtil from '/js/damage/mathutil.js';
-import { Monster, DamageData, DungeonState, DamageCalcDiag, Move, NaturalGiftInfo } from '/js/damage/structure.js';
+import * as eos from './const.js';
+import * as ids from './idmap.js';
+import * as Mechanics from './mechanics.js';
+import * as MathUtil from './mathutil.js';
+import { Monster, DamageData, DungeonState, DamageCalcDiag, Move, NaturalGiftInfo } from './structure.js';
 
 /**
  * 防御側に対して攻撃した時のタイプ相性を取得
@@ -1705,12 +1705,15 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
         damageMult = 2;
       }
       break;
-
-    // 特殊な固定ダメージとか諸々もここに書き足す予定
-
     default:
+      // 変化技・その他非対応技はダメージ計算を行わず命中率の計算のみを行う
+      // 命中率は命中値1のみを使用する
+      if (checkNoDamageMove(move.id)) {
+        return simulateDamageCalcStatusMoves(damageData, dungeon, attacker, defender, move);
+      }
       break;
   }
+  // 通常のダメージ計算を行う
   dungeon.damageDetailLog.damageMult = damageMult;
   return simulateDamageCalcWithMult(damageData, dungeon, attacker, defender, move, damageMult);
 }
@@ -2125,10 +2128,6 @@ function simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, 
  * @param {Number} moveCategory
  */
 function calcDamageFixed(dungeon, attacker, defender, fixedDamage, damageOut, attackType, moveCategory, moveId) {
-  if (!executeMoveEffectPrechecks(dungeon, attacker, defender, moveId)) {
-    return 0;
-  }
-
   // タイプ相性の取得
   const typeMatchups = [
     getTypeMatchUp(dungeon, attacker, defender, 0, attackType),
@@ -2186,4 +2185,33 @@ function checkMoveHitOhko(dungeon, attacker, defender, attackType) {
     i++;
   }
   return false;
+}
+
+/**
+ * ダメージを与えない技かチェック (変化技 or あてみなげ, おいうち, かいりき, カウンター, がまん, じばく, だいばくはつ, はたきおとす, まきつく, ミラーコート, リベンジ, ゆきなだれ, しっぺがえし, メタルバースト)
+ * @param {Number} moveId
+ * @returns
+ */
+function checkNoDamageMove(moveId) {
+  const moveCategory = getMoveCategory(moveId);
+  const noDamageMove = [0x7, 0x26, 0x32, 0x33, 0x3d, 0x7b, 0x9b, 0xf9, 0x131, 0x13c, 0x154, 0x167, 0x1d8, 0x214];
+  return moveCategory == eos.CATEGORY_STATUS || noDamageMove.includes(move.id);
+}
+
+/**
+ * ダメージを与えない技を実行 (命中チェックのみ行う、命中値1のみ使用)
+ * @param {DamageData} damageData
+ * @param {DungeonState} dungeon
+ * @param {Monster} attacker
+ * @param {Monster} defender
+ * @param {Move} move
+ * @returns
+ */
+function simulateDamageCalcStatusMoves(damageData, dungeon, attacker, defender, move) {
+  const moveCategory = getMoveCategory(move.id);
+  const moveType = attacker.getMoveType(move.id, dungeon);
+  damageData.category = moveCategory;
+  damageData.type = moveType;
+  MoveHitCheck(dungeon, attacker, defender, move.id, false, false);
+  return 0;
 }

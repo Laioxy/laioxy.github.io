@@ -31,7 +31,7 @@
   SOFTWARE.
 */
 
-import * as eos from '/js/damage/const.js';
+import * as eos from './const.js';
 
 class IDMap {
   id = 0;
