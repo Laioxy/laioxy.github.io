@@ -138,7 +138,7 @@ class WonderMail {
     this.Sky = sky;
     let decode;
     if (this.Sky) {
-      decode = new Array(22);
+      decode = new Array(22); // 1バイト分のnullバイトが入る
       decode[4] = parseInt(this.MissionType << 4) | parseInt(this.Status);
       decode[5] = parseInt(this.Client << 4) | parseInt(this.MissionFlag);
       decode[6] = parseInt(this.Target1 << 7) | parseInt(this.Client >> 4);
@@ -156,7 +156,6 @@ class WonderMail {
       decode[18] = parseInt(this.Floor << 2) | parseInt(this.Dungeon >> 6);
       decode[19] = parseInt(this.Fixed << 2) | parseInt(this.Floor >> 6);
       decode[20] = parseInt(this.Fixed >> 6);
-      decode[21] = 0;
       // CRC化→格納
       let crc = this.GetCRC32Table();
       let hash = 0xffffffff;
@@ -170,7 +169,7 @@ class WonderMail {
       decode[2] = hash >> 16;
       decode[3] = hash >> 24;
     } else {
-      decode = new Array(16);
+      decode = new Array(16); // 1バイト分のnullバイトが入る
       decode[1] = parseInt(this.MissionType << 4) | parseInt(this.Status);
       decode[2] = parseInt(this.Client << 4) | parseInt(this.MissionFlag);
       decode[3] = parseInt(this.Target1 << 7) | parseInt(this.Client >> 4);
@@ -358,7 +357,7 @@ function encDecToBitWM(decList, sky) {
   }
 
   let position = 0;
-  for (let i = sky ? 4 : 1; i < decList.length; i++) {
+  for (let i = sky ? 4 : 1; i < decList.length - 1; i++) {
     const j = (position * mov + t) & 0xff;
     const val = (decList[i] + encryption[j]) & 0xff;
     res.push(val);
