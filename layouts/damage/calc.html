@@ -9,24 +9,8 @@
 
   <script src="/js/json_script.js"></script>
   <script src="/js/poke_param.js"></script>
-  {{ with resources.Get "js/damage/view.js" }}
-    {{ $opts := dict
-      "minify" (not hugo.IsDevelopment)
-      "sourceMap" (cond hugo.IsDevelopment "inline" "")
-      "targetPath" "js/damage/bundle.js"
-    }}
-    {{ with . | js.Build $opts }}
-      {{ if hugo.IsDevelopment }}
-        <!-- 開発環境用 -->
-        <script src="{{ .RelPermalink }}"></script>
-      {{ else }}
-        <!-- 本番環境用 -->
-        {{ with . | resources.Fingerprint }}
-          <script src="{{ .RelPermalink }}"></script>
-        {{ end }}
-      {{ end }}
-    {{ end }}
-  {{ end }}
+
+  {{ partial "jsbuild" "js/damage/view.js" }}
   {{ partial "methods/SetScssMinify.html" "damage/calc" }}
 
 

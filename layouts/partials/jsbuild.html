@@ -1,0 +1,21 @@
+<!-- js.Build -->
+{{ with resources.Get . }}
+  {{ $opts := dict
+    "minify" (not hugo.IsDevelopment)
+    "sourceMap" (cond hugo.IsDevelopment "inline" "")
+    "targetPath" (print (path.Dir .) "/bundle.js")
+  }}
+  {{ with . | js.Build $opts }}
+    {{ if hugo.IsDevelopment }}
+      <!-- 開発環境用 -->
+      <script src="{{ .RelPermalink }}"></script>
+    {{ else }}
+      <!-- 本番環境用 -->
+      {{ with . | resources.Fingerprint }}
+        <script src="{{ .RelPermalink }}"></script>
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ else }}
+  {{ errorf "not found %q" . }}
+{{ end }}
