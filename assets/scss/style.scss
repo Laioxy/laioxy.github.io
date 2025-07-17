@@ -323,7 +323,7 @@ label + a[data-bs-toggle="tooltip"] {
   }
   .choices__list--dropdown .choices__item--selectable.is-highlighted,
   .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
-    background-color: var(--bs-secondary-bg);
+    background-color: unset;
   }
   .choices__list--dropdown,
   .choices__list[aria-expanded] {
@@ -399,6 +399,21 @@ label + a[data-bs-toggle="tooltip"] {
     }
   }
 }
+/* choices.js 選択している項目 */
+[data-bs-theme="light"] .choices {
+  .choices__list--dropdown .choices__item--selectable.is-highlighted,
+  .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
+    background-color: var(--bs-body-bg);
+    filter: brightness(0.9);
+  }
+}
+[data-bs-theme="dark"] .choices {
+  .choices__list--dropdown .choices__item--selectable.is-highlighted,
+  .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
+    background-color: var(--bs-body-bg);
+    filter: brightness(1.4);
+  }
+}
 
 /* choices.js インプットグループ */
 .input-group {
@@ -437,12 +452,20 @@ label + a[data-bs-toggle="tooltip"] {
         // height: calc(3.5rem + calc(var(--bs-border-width) * 2));
         min-height: 3.5rem;
         line-height: 1.25;
-        background-color: var(--bs-body-bg);
+        background-color: transparent;
         background-image: var(--bs-form-select-bg-img),
           var(--bs-form-select-bg-icon, none);
         background-repeat: no-repeat;
         background-position: right 0.75rem center;
         background-size: 16px 12px;
+      }
+    }
+    /* disabled */
+    &.is-disabled {
+      background-color: var(--bs-secondary-bg);
+      .choices__inner,
+      .choices__input {
+        background-color: unset;
       }
     }
   }
