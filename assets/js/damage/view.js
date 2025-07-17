@@ -1,5 +1,6 @@
 import * as eos from './const.js';
 import * as Mechanics from './mechanics.js';
+import * as pokeParam from '../poke_param.js';
 import { RunCalcDamage } from './calc.js';
 import { Monster, DungeonState, DamageData, Move } from './structure.js';
 
@@ -258,7 +259,7 @@ function ApplyGenderControl(fighterName, pokemonId, genderId = -1, calc = true) 
       // 性別をセット
       genderElements[i].value = pokemon.Genders[i];
       genderElements[i].disabled = false;
-      genderLabelElements[i].textContent = poke_gender[pokemon.Genders[i]].name;
+      genderLabelElements[i].textContent = pokeParam.pokeGender[pokemon.Genders[i]].name;
       if (genderId > 0 && pokemon.Genders[i] == genderId) {
         genderElements[i].checked = true; // 一致する性別を選択する
       }
