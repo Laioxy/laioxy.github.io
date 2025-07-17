@@ -102,8 +102,14 @@
       sizes="192x192" />
 
     {{ partial "methods/SetScssMinify.html" "style" }}
-    <script src="/js/common.js" type="module"></script>
-    <script src="/js/utils.js"></script>
+
+    {{ with resources.Get "js/utils.js" }}
+      <script src="{{ .RelPermalink }}"></script>
+    {{ end }}
+    {{ with resources.Get "js/common.js" }}
+      <script src="{{ .RelPermalink }}"></script>
+    {{ end }}
+
   </head>
   <body class="bg-body">
     <nav class="navbar bg-body-tertiary fixed-top" data-bs-theme="dark">
