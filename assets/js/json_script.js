@@ -18,7 +18,7 @@ const jsonPathsArray = {
  * @param {string} key キー (pokemon, item, dungeon, floor, fixed, message)
  * @returns JSONデータ
  */
-async function getJsonData(key) {
+export async function getJsonData(key) {
   try {
     return await fetch(jsonPathsArray[key]).then((res) => res.json());
   } catch (e) {

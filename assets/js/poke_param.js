@@ -1,5 +1,5 @@
 // タイプ
-const poke_type = [
+export const pokeType = [
   { id: 0, name: 'なし' },
   { id: 1, name: 'ノーマル' },
   { id: 2, name: 'ほのお' },
@@ -21,7 +21,7 @@ const poke_type = [
 ];
 
 // 性別
-const poke_gender = [
+export const pokeGender = [
   { id: 0, name: '無効' },
   { id: 1, name: 'オス' },
   { id: 2, name: 'メス' },
@@ -29,7 +29,7 @@ const poke_gender = [
 ];
 
 // 移動タイプ
-const poke_movetype = [
+export const pokeMovetype = [
   { id: 0, name: '通常' },
   { id: 1, name: '? (不明)' },
   { id: 2, name: '空中' },
@@ -39,7 +39,7 @@ const poke_movetype = [
 ];
 
 // かしこさグループ
-const poke_iqgroup = [
+export const pokeIqgroup = [
   { id: 0, name: 'A' },
   { id: 1, name: 'B' },
   { id: 2, name: 'C' },
