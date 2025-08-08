@@ -10,7 +10,7 @@
   <script src="/js/json_script.js"></script>
   <script src="/js/poke_param.js"></script>
 
-  {{ partial "jsbuild" "js/damage/view.js" }}
+  {{ partial "jsbuild" (dict "src" "js/damage/view.js" "output" "bandle.js") }}
   {{ partial "methods/SetScssMinify.html" "damage/calc" }}
 
 

@@ -1,9 +1,13 @@
 <!-- js.Build -->
-{{ with resources.Get . }}
+<!-- $src ... ビルド元パス -->
+<!-- $output ... 出力ファイル名 -->
+{{ $src := .src }}
+{{ $output := .output }}
+{{ with resources.Get $src }}
   {{ $opts := dict
     "minify" (not hugo.IsDevelopment)
     "sourceMap" (cond hugo.IsDevelopment "inline" "")
-    "targetPath" (print (path.Dir .) "/bundle.js")
+    "targetPath" (print (path.Dir .) "/" $output)
   }}
   {{ with . | js.Build $opts }}
     {{ if hugo.IsDevelopment }}
@@ -11,11 +15,11 @@
       <script src="{{ .RelPermalink }}"></script>
     {{ else }}
       <!-- 本番環境用 -->
-      {{ with . | resources.Fingerprint }}
+      {{ with $src | resources.Fingerprint }}
         <script src="{{ .RelPermalink }}"></script>
       {{ end }}
     {{ end }}
   {{ end }}
 {{ else }}
-  {{ errorf "not found %q" . }}
+  {{ errorf "not found %q" $src }}
 {{ end }}
