@@ -15,7 +15,7 @@
       <script src="{{ .RelPermalink }}"></script>
     {{ else }}
       <!-- 本番環境用 -->
-      {{ with $src | resources.Fingerprint }}
+      {{ with . | resources.Fingerprint }}
         <script src="{{ .RelPermalink }}"></script>
       {{ end }}
     {{ end }}
