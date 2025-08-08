@@ -1618,6 +1618,9 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
       break;
     case 0x128: // マグニチュード
       fixedDamage = getValueByRatio(Mechanics.MAGNITUDE_DAMAGE_TABLE, dungeon.rng.varianceDial);
+      if (defender.statuses.digging) {
+        fixedDamage *= 2;
+      }
       return simulateDamageCalcFixedDynamic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x148: // やつあたり
       for (const dmg of Mechanics.FRUSTRATION_FIXED_DAMAGE_TABLE) {
