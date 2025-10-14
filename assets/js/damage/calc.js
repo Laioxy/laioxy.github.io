@@ -723,7 +723,7 @@ export function CalcDamage(
     atk += attacker.exclusiveItemOffenseBoost(moveCategory);
   }
   if (defender.is_member) {
-    def += defender.exclusiveItemOffenseBoost(moveCategory);
+    def += defender.exclusiveItemDefenseBoost(moveCategory);
   }
 
   // 物理
