@@ -1,0 +1,54 @@
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 56px);
+  grid-auto-rows: 56px;
+  gap: 4px;
+  justify-content: center;
+}
+
+.pokemon-item {
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  cursor: pointer;
+}
+
+// PCのみアニメーションを付ける
+.pokemon-item:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.position-fixed.bottom-0 {
+  left: 0;
+  right: 0;
+}
+
+.arrow-only-btn {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  height: 40px;
+  width: 40px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.arrow-only-btn .bi-chevron-down {
+  transition: transform 0.3s;
+}
+
+.container {
+  padding-bottom: 6rem;
+}
