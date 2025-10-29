@@ -1,4 +1,4 @@
 ---
-title: "ポケモンチェックリスト"
+title: "ポケモンチェッカー"
 layout: "pokemon"
 ---
