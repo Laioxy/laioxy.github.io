@@ -57,8 +57,8 @@ $(async function () {
     let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
     for (let i = 0; i < DungeonData.length && i < 0xb4; i++) {
-      // 続きダンジョン除外 (ダミー5以外)
-      if (DungeonData[i].FloorPrev > 0 && i != 0xad) continue;
+      // 続きダンジョン除外
+      if (DungeonData[i].FloorPrev > 0) continue;
       // スペシャルエピソード除外
       if (i >= 0x7b && i <= 0xa4) continue;
       // シェイミのさと除外

@@ -2,19 +2,19 @@
 option[data-gender="0"],
 option[data-valid="false"],
 li:has(span.invalid) {
-  background-color: #ccc;
+  background-color: var(--bs-light-border-subtle) !important;
 }
 
 /* 禁止ポケモン */
 option[data-banned="true"],
 li:has(span.banned) {
-  background-color: #ffc0cb;
+  background-color: var(--bs-danger-border-subtle) !important;
 }
 
 /* 例外許可ポケモン */
 option.allow[data-banned="true"],
 li:has(span.allow) {
-  background-color: #bfdfff !important;
+  background-color: var(--bs-primary-border-subtle) !important;
 }
 
 #advanced-alert {
