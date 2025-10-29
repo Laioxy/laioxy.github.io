@@ -38,3 +38,37 @@ window.choicesOptions = {
     },
   },
 };
+
+// テーマ適用 (DOM読込前に行う)
+(function () {
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  const storedTheme = localStorage.getItem('theme') ?? 'auto';
+
+  const getTheme = (mode) => (mode === 'auto' ? (prefersDark.matches ? 'dark' : 'light') : mode);
+  const applyTheme = (mode) => {
+    document.documentElement.setAttribute('data-bs-theme', getTheme(mode));
+  };
+
+  // 初期適用
+  applyTheme(storedTheme);
+
+  // ブラウザテーマ変更時
+  prefersDark.addEventListener('change', () => {
+    if ((localStorage.getItem('theme') ?? 'auto') === 'auto') {
+      applyTheme('auto');
+    }
+  });
+
+  // ユーザー操作による変更
+  document.addEventListener('DOMContentLoaded', () => {
+    const selector = document.getElementById('theme-mode');
+    if (!selector) return;
+
+    selector.value = storedTheme;
+    selector.addEventListener('change', (e) => {
+      const mode = e.target.value;
+      localStorage.setItem('theme', mode);
+      applyTheme(mode);
+    });
+  });
+})();
