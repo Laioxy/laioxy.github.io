@@ -134,6 +134,7 @@ h6 {
     .select2-search .select2-search__field {
       background-color: var(--bs-body-bg);
       border-color: var(--bs-border-color);
+      color: var(--bs-body-color);
     }
     // hover
     .select2-results__options
@@ -343,6 +344,11 @@ label + a[data-bs-toggle="tooltip"] {
   }
 }
 
+/* フローティングラベル disabled時のラベル背景色修正 */
+.form-floating > .form-control:disabled ~ label::after {
+  background-color: transparent !important;
+}
+
 /* choices.js bootstrap5 theme */
 .choices {
   .choices__inner {
@@ -489,7 +495,11 @@ label + a[data-bs-toggle="tooltip"] {
     }
     .choices__inner {
       padding: 0;
+      cursor: default;
 
+      .choices__item--selectable {
+        cursor: default;
+      }
       .choices__list {
         // padding: 1.825rem 2.25rem 0.625rem 0.75rem;
         padding: 1.625rem 2.25rem 0.625rem 0.75rem;
@@ -509,7 +519,7 @@ label + a[data-bs-toggle="tooltip"] {
       }
     }
     /* disabled */
-    &.is-disabled {
+    &.is-disabled .choices__inner {
       background-color: var(--bs-secondary-bg);
       .choices__inner,
       .choices__input {
