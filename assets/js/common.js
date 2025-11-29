@@ -13,6 +13,7 @@ window.FloorData = null;
 window.IQGroupData = null;
 window.IQSkillData = null;
 window.TypeData = null;
+window.RescueData = null;
 
 window.choicesOptions = {
   placeholder: false,

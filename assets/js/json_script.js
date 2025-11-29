@@ -7,10 +7,14 @@ const jsonPathsArray = {
   move: '/data/move.min.json',
   dungeon: '/data/dungeon.min.json',
   floor: '/data/floor.min.json',
+  mappa_s: '/data/mappa_s.min.json',
+  mappa_t: '/data/mappa_t.min.json',
+  mappa_y: '/data/mappa_y.min.json',
   fixed: '/data/fixed.min.json',
   message: '/data/message.min.json',
   type: '/data/type.min.json',
   iqgroup: '/data/iqgroup.min.json',
+  rescue: '/data/rescue.min.json',
 };
 
 /**
