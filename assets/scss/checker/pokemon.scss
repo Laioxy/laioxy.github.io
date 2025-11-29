@@ -17,12 +17,8 @@
   background-position: center;
   background-size: auto;
   cursor: pointer;
-}
-
-// PCのみアニメーションを付ける
-.pokemon-item:hover {
-  transform: scale(1.1);
-  z-index: 1;
+  user-select: none;
+  image-rendering: pixelated;
 }
 
 .position-fixed.bottom-0 {
