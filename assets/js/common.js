@@ -72,3 +72,23 @@ window.choicesOptions = {
     });
   });
 })();
+
+/**
+ * ローディング解除
+ */
+function hideLoading() {
+  const loadingElement = document.querySelector('.loading');
+  if (loadingElement) {
+    const duration = 300;
+    loadingElement.style.transition = `opacity ${duration}ms`;
+    loadingElement.style.opacity = 1;
+    requestAnimationFrame(() => {
+      loadingElement.style.opacity = 0;
+    });
+    setTimeout(() => {
+      if (loadingElement.parentNode) loadingElement.remove();
+    }, duration);
+  } else {
+    console.error('loadingElement not found');
+  }
+}

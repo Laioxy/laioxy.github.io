@@ -105,16 +105,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   await Calculation(); // 計算
 
   // ローディング解除
-  const loadingElement = document.querySelector('.loading');
-  const duration = 300;
-  loadingElement.style.transition = `opacity ${duration}ms`;
-  loadingElement.style.opacity = 1;
-  requestAnimationFrame(() => {
-    loadingElement.style.opacity = 0;
-  });
-  setTimeout(() => {
-    if (loadingElement.parentNode) loadingElement.remove();
-  }, duration);
+  hideLoading();
 });
 
 /**
