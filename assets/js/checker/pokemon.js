@@ -9,14 +9,18 @@ function getUnownSuffix(index) {
   }
 }
 
-const pokemonData = [
-  // Regular Pokemon 1-492
-  ...Array.from({ length: 492 }, (_, i) => ({
-    baseId: i + 1,
-    formId: 0,
-    sortId: i + 1,
-    imageSuffix: '',
-  })),
+const checkPokemonData = [
+  // Regular Pokemon 1-492 (except 412, 413, 422, 423)
+  ...Array.from({ length: 492 }, (_, i) => {
+    const id = i + 1;
+    if ([412, 413, 422, 423].includes(id)) return null;
+    return {
+      baseId: id,
+      formId: 0,
+      sortId: id,
+      imageSuffix: '',
+    };
+  }).filter((x) => x !== null),
   // Unown forms (B-Z, !, ?)
   ...Array.from({ length: 27 }, (_, i) => ({
     baseId: 201,
@@ -24,25 +28,30 @@ const pokemonData = [
     sortId: 201 + (i + 1) / 100,
     imageSuffix: getUnownSuffix(i),
   })),
-  // Burmy/Wormadam forms
-  { baseId: 412, formId: 1, sortId: 412.1, imageSuffix: '-sandy' },
+  // Burmy/Wormadam forms (Sandy, Grass, Trash)
+  { baseId: 412, formId: 1, sortId: 412.0, imageSuffix: '-sandy' },
+  { baseId: 412, formId: 0, sortId: 412.1, imageSuffix: '' },
   { baseId: 412, formId: 2, sortId: 412.2, imageSuffix: '-trash' },
-  { baseId: 413, formId: 1, sortId: 413.1, imageSuffix: '-sandy' },
+  { baseId: 413, formId: 1, sortId: 413.0, imageSuffix: '-sandy' },
+  { baseId: 413, formId: 0, sortId: 413.1, imageSuffix: '' },
   { baseId: 413, formId: 2, sortId: 413.2, imageSuffix: '-trash' },
   // Shellos/Gastrodon forms
-  { baseId: 422, formId: 1, sortId: 422.1, imageSuffix: '-east' },
-  { baseId: 423, formId: 1, sortId: 423.1, imageSuffix: '-east' },
+  { baseId: 422, formId: 1, sortId: 422.0, imageSuffix: '-east' },
+  { baseId: 422, formId: 0, sortId: 422.1, imageSuffix: '' },
+  { baseId: 423, formId: 1, sortId: 423.0, imageSuffix: '-east' },
+  { baseId: 423, formId: 0, sortId: 423.1, imageSuffix: '' },
 ].sort((a, b) => a.sortId - b.sortId);
 
 async function loadPokemon() {
   const container = document.getElementById('pokemon-list');
   container.innerHTML = '';
-  for (let [i, pokemon] of pokemonData.entries()) {
+  for (let [i, pokemon] of checkPokemonData.entries()) {
     const div = document.createElement('div');
     div.className = 'pokemon-item rounded p-1';
     div.style.backgroundColor = 'var(--bs-secondary-bg)';
-    div.dataset.index = i;
+    div.dataset.baseId = pokemon.baseId;
     div.dataset.formId = pokemon.formId;
+    div.dataset.id = indexToPokemonId(i); // ポケモンID
 
     const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/${pokemon.baseId}${pokemon.imageSuffix}.png`;
     div.style.backgroundImage = `url(${imageUrl})`;
@@ -64,7 +73,15 @@ async function loadPokemon() {
 }
 
 function saveState() {
-  const items = document.querySelectorAll('.pokemon-item');
+  const items = Array.from(document.querySelectorAll('.pokemon-item')).sort((a, b) => {
+    const baseIdA = parseInt(a.dataset.baseId);
+    const baseIdB = parseInt(b.dataset.baseId);
+    if (baseIdA !== baseIdB) return baseIdA - baseIdB;
+    const formA = parseInt(a.dataset.formId);
+    const formB = parseInt(b.dataset.formId);
+    return formA - formB;
+  });
+
   let bin = '';
   for (let div of items) {
     bin += div.style.backgroundColor === 'var(--bs-warning)' ? '1' : '0';
@@ -74,7 +91,15 @@ function saveState() {
 }
 
 function loadState() {
-  const items = document.querySelectorAll('.pokemon-item');
+  const items = Array.from(document.querySelectorAll('.pokemon-item')).sort((a, b) => {
+    const baseIdA = parseInt(a.dataset.baseId);
+    const baseIdB = parseInt(b.dataset.baseId);
+    if (baseIdA !== baseIdB) return baseIdA - baseIdB;
+    const formA = parseInt(a.dataset.formId);
+    const formB = parseInt(b.dataset.formId);
+    return formA - formB;
+  });
+
   const compressed = localStorage.getItem('pokemon-checklist');
   const bin = LZString.decompressFromBase64(compressed);
 
@@ -234,6 +259,52 @@ function filterFormVariants(excludeForm, initial) {
       div.style.display = '';
     }
   }
+}
+
+/**
+ * IndexIdからポケモンIDに変換
+ * @param {*} indexId
+ */
+function indexToPokemonId(indexId) {
+  // 仲間にできない姿違いはジャンプする
+  const jumpIds = [
+    0x117, // 桃セレビィ
+    0x17c, // 雪ポワルン
+    0x17d, // 晴ポワルン
+    0x17e, // 雨ポワルン
+    0x180, // 紫カクレオン
+    0x1a3, // AFデオキシス
+    0x1a4, // DFデオキシス
+    0x1a5, // SPデオキシス
+    0x1cd, // ポジチェリム
+  ];
+  const formIds = [
+    [439, 0x1bf], // 砂ミノムッチ
+    [438, 0x1c0], // 草ミノムッチ
+    [440, 0x1c1], // 鋼ミノムッチ
+    [442, 0x1c2], // 砂ミノマダム
+    [441, 0x1c3], // 草ミノマダム
+    [443, 0x1c4], // 鋼ミノマダム
+    [453, 0x1ce], // 東カラナクシ
+    [452, 0x1cf], // 西カラナクシ
+    [455, 0x1d0], // 東トリトドン
+    [454, 0x1d1], // 西トリトドン
+  ];
+
+  let id = indexId + 1;
+  // 不要な姿違いをスキップ
+  for (const jumpId of jumpIds) {
+    if (id >= jumpId) id++;
+    else break;
+  }
+  // 姿違いを変換
+  for (const formId of formIds) {
+    if (id == formId[0]) {
+      id = formId[1];
+      break;
+    }
+  }
+  return id;
 }
 
 loadPokemon();
