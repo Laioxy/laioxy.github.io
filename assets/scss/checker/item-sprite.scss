@@ -1,0 +1,25 @@
+.item-sprite {
+  flex-shrink: 0;
+  border-radius: 2px;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  image-rendering: pixelated;
+  background-image: url("/img/sprites/sheet_itemsprite.png"); /* Hugoでパスを埋め込む場合はテンプレートで置換 */
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+p .item-sprite {
+  margin-top: -3px;
+}
+
+// SpriteId, PaletteIdごとの座標定義
+// 例: .sprite-2-1 { background-position: -16px -32px; }
+@for $spriteId from 0 through 64 {
+  @for $paletteId from 0 through 15 {
+    .sprite-#{$spriteId}-#{$paletteId} {
+      background-position: -#{16 * $paletteId}px -#{16 * $spriteId}px;
+    }
+  }
+}
