@@ -1,3 +1,146 @@
+import { getJsonData } from './../json_script';
+import * as params from './../param';
+
+// スポーンデータ (ポケモン・ダンジョンタブ用)
+let spawnData;
+
+/** 除外するポケモンのID */
+const bannedPokemonIds = [
+  0x117, // 桃セレビィ
+  0x17c, // 雪ポワルン
+  0x17d, // 晴ポワルン
+  0x17e, // 雨ポワルン
+  0x180, // 紫カクレオン
+  0x1a3, // AFデオキシス
+  0x1a4, // DFデオキシス
+  0x1a5, // SPデオキシス
+  0x1cd, // ポジチェリム
+];
+
+/** 進化条件2 */
+const evolve2String = [
+  '-',
+  'つうしんケーブル',
+  '攻撃＞防御',
+  '防御＞攻撃',
+  '攻撃＝防御',
+  'たいようのリボン',
+  'げっこうのリボン',
+  'うつくしスカーフ',
+  'ランダム',
+  'ランダム',
+  'オス',
+  'メス',
+  'げんしのちから習得',
+  'ころがる習得',
+  'ダブルアタック習得',
+  'ものまね習得',
+];
+
+/** イベント勧誘リスト */
+const eventRectuit = [
+  {
+    id: 0x90,
+    context: '「なだれやま ちょうじょう」でフリーザーを倒す (50%)',
+  },
+  {
+    id: 0x96,
+    context: 'ミュウツーからの挑戦状を受ける ※てんくうのかいだん要解禁',
+  },
+  {
+    id: 0x97,
+    context: '「ミステリージャングル おくち」でミュウを倒す (50%)',
+  },
+  {
+    id: 0x10e,
+    context: 'ライコウからの挑戦状を受ける ※なんとうしょとう要解禁',
+  },
+  {
+    id: 0x10f,
+    context: 'エンテイからの挑戦状を受ける ※れっかのどうくつ要解禁',
+  },
+  {
+    id: 0x110,
+    context: 'スイクンからの挑戦状を受ける ※まのかいいき要解禁',
+  },
+  {
+    id: 0x199,
+    context: '2周目以降「ばんにんのどうくつ レジロックのま」でレジロックを倒す (50%)',
+  },
+  {
+    id: 0x19a,
+    context: '2周目以降「ばんにんのどうくつ レジアイスのま」でレジアイスを倒す (50%)',
+  },
+  {
+    id: 0x19b,
+    context: '2周目以降「ばんにんのどうくつ レジスチルのま」でレジスチルを倒す (50%)',
+  },
+  {
+    id: 0x19e,
+    context: '「そこなしうみ おくそこ」でカイオーガを倒す (50%)',
+  },
+  {
+    id: 0x19f,
+    context: '「かげろうのさばく おくち」でグラードンを倒す (50%)',
+  },
+  {
+    id: 0x1a0,
+    context: '「てんくうのかいだん ちょうじょう」でレックウザを倒す (50%)',
+  },
+  {
+    id: 0x1a1,
+    context: 'ジラーチからの挑戦状を受ける ※SE1「ビッパのねがいごと」要クリア',
+  },
+  {
+    id: 0x20a,
+    context: '本編クリア後「ねっすいのどうくつ ちょうじょう」でユクシーを倒す',
+  },
+  {
+    id: 0x20b,
+    context: '本編クリア後「ちていのみずうみ (りゅうさのどうくつ)」でエムリットを倒す',
+  },
+  {
+    id: 0x20c,
+    context: '本編クリア後「すいしょうのみずうみ (だいすいしょうのみち)」でアグノムを倒す',
+  },
+  {
+    id: 0x20d,
+    context: '本編クリア後「じげんのとう ちょうじょう」でディアルガを倒す',
+  },
+  {
+    id: 0x20e,
+    context: 'ダークライ撃破後「そらのさけめ おくそこ」でパルキアを倒す',
+  },
+  {
+    id: 0x20f,
+    context: '「きょだいかざん ちょうじょう」でヒードランを倒す (50%)',
+  },
+  {
+    id: 0x210,
+    context: '「ばんにんのどうくつ レジギガスのま」でレジギガスを倒す',
+  },
+  {
+    id: 0x211,
+    context: '「せかいのおおあな おくそこ」でギラティナを倒す (50%)',
+  },
+  {
+    id: 0x212,
+    context: 'ダークライ撃破後、サメハダいわでクレセリアと話す',
+  },
+  {
+    id: 0x213,
+    context: 'きせきのうみクリア後、再度「きせきのうみ おくそこ」へ向かう',
+  },
+  {
+    id: 0x214,
+    context: 'ダークライ撃破後、依頼を3日分こなす',
+  },
+  {
+    id: 0x216,
+    context: 'そらのいただきクリア後、再度「そらのいただき ちょうじょう」へ向かう',
+  },
+];
+
 function getUnownSuffix(index) {
   if (index < 25) {
     // B-Z
@@ -43,37 +186,65 @@ const checkPokemonData = [
 ].sort((a, b) => a.sortId - b.sortId);
 
 async function loadPokemon() {
+  // JSON読込
+  await fetchJsonData();
+
   const container = document.getElementById('pokemon-list');
   container.innerHTML = '';
   for (let [i, pokemon] of checkPokemonData.entries()) {
-    const div = document.createElement('div');
-    div.className = 'pokemon-item rounded p-1';
-    div.style.backgroundColor = 'var(--bs-secondary-bg)';
-    div.dataset.baseId = pokemon.baseId;
-    div.dataset.formId = pokemon.formId;
-    div.dataset.id = indexToPokemonId(i); // ポケモンID
-
-    const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/${pokemon.baseId}${pokemon.imageSuffix}.png`;
-    div.style.backgroundImage = `url(${imageUrl})`;
-
+    const div = parseHTML(`
+      <div
+        class="pokemon-grid"
+        data-base-id="${pokemon.baseId}"
+        data-form-id="${pokemon.formId}"
+        data-id="${indexToPokemonId(i)}"
+        style="background-image: url(${getPokemonSpriteUrl(i)})"
+      ><div>
+      `);
     container.appendChild(div);
 
     div.addEventListener('click', () => {
-      const isSelected = div.style.backgroundColor === 'var(--bs-warning)';
-      div.style.backgroundColor = isSelected ? 'var(--bs-secondary-bg)' : 'var(--bs-warning)';
-      saveState();
-      updateProgress();
+      togglePokemonChecked(div);
     });
   }
+
+  // スポーンデータ作成
+  spawnData = generateSpawnData();
+  // ポケモン詳細を作成
+  createGuide();
+  // ダンジョン詳細を作成
+  createRecruitDungeon();
 
   loadState();
   restoreFormSwitch();
   filterFormVariants(document.getElementById('toggleFormSwitch').checked, true);
   updateProgress();
+  syncDetailsWithChecker();
+  syncDungeonWithChecker();
+}
+
+/**
+ * チェッカーのポケモンをチェック切替
+ * @param {*} div
+ */
+function togglePokemonChecked(div) {
+  const isSelected = div.classList.contains('checked');
+  const pokemonId = div.dataset.id;
+
+  if (isSelected) {
+    div.classList.remove('checked');
+  } else {
+    div.classList.add('checked');
+  }
+
+  saveState();
+  updateProgress();
+  syncDetailsWithChecker(); // 勧誘方法同期
+  syncDungeonWithChecker(); // ダンジョン同期
 }
 
 function saveState() {
-  const items = Array.from(document.querySelectorAll('.pokemon-item')).sort((a, b) => {
+  const items = Array.from(document.querySelectorAll('#pokemon-list .pokemon-grid')).sort((a, b) => {
     const baseIdA = parseInt(a.dataset.baseId);
     const baseIdB = parseInt(b.dataset.baseId);
     if (baseIdA !== baseIdB) return baseIdA - baseIdB;
@@ -84,14 +255,14 @@ function saveState() {
 
   let bin = '';
   for (let div of items) {
-    bin += div.style.backgroundColor === 'var(--bs-warning)' ? '1' : '0';
+    bin += div.classList.contains('checked') ? '1' : '0';
   }
   const compressed = LZString.compressToBase64(bin);
   localStorage.setItem('pokemon-checklist', compressed);
 }
 
 function loadState() {
-  const items = Array.from(document.querySelectorAll('.pokemon-item')).sort((a, b) => {
+  const items = Array.from(document.querySelectorAll('#pokemon-list .pokemon-grid')).sort((a, b) => {
     const baseIdA = parseInt(a.dataset.baseId);
     const baseIdB = parseInt(b.dataset.baseId);
     if (baseIdA !== baseIdB) return baseIdA - baseIdB;
@@ -105,8 +276,11 @@ function loadState() {
 
   if (!bin || bin.length !== items.length) return;
   for (let i = 0; i < items.length; ++i) {
-    if (bin[i] === '1') items[i].style.backgroundColor = 'var(--bs-warning)';
-    else items[i].style.backgroundColor = 'var(--bs-secondary-bg)';
+    if (bin[i] == '1') {
+      items[i].classList.add('checked');
+    } else {
+      items[i].classList.remove('checked');
+    }
   }
 }
 
@@ -124,12 +298,12 @@ function restoreFormSwitch() {
 
 function updateProgress() {
   const excludeForm = document.getElementById('toggleFormSwitch')?.checked;
-  const items = Array.from(document.querySelectorAll('.pokemon-item')).filter(
+  const items = Array.from(document.querySelectorAll('#pokemon-list .pokemon-grid')).filter(
     (div) => !excludeForm || div.dataset.formId === '0',
   );
   let checked = 0;
   for (let div of items) {
-    if (div.style.backgroundColor === 'var(--bs-warning)') checked++;
+    if (div.classList.contains('checked')) checked++;
   }
   let percent = Math.floor((checked / items.length) * 100);
   if (checked === items.length && items.length > 0) percent = 100;
@@ -209,7 +383,7 @@ function handleImport(e) {
   const errorDiv = document.getElementById('importError');
   let value = textarea.value.trim();
   const bin = LZString.decompressFromBase64(value);
-  const itemsLen = document.querySelectorAll('.pokemon-item').length;
+  const itemsLen = document.querySelectorAll('#pokemon-list .pokemon-grid').length;
   if (!/^[01]+$/i.test(bin) || bin.length !== itemsLen) {
     errorDiv.textContent = 'インポート失敗: フォーマットが正しくありません。';
     errorDiv.style.display = 'block';
@@ -219,11 +393,13 @@ function handleImport(e) {
   importModal.hide();
   loadState();
   updateProgress();
+  syncDetailsWithChecker();
+  syncDungeonWithChecker();
 }
 
 // すべてチェック・すべて解除の実行
 function setAllMarked(marked) {
-  const items = document.querySelectorAll('.pokemon-item');
+  const items = document.querySelectorAll('#pokemon-list .pokemon-grid');
   let bin = '';
   for (let div of items) {
     bin += marked ? '1' : '0';
@@ -233,6 +409,8 @@ function setAllMarked(marked) {
   localStorage.setItem('pokemon-checklist', compressed);
   loadState();
   updateProgress();
+  syncDetailsWithChecker();
+  syncDungeonWithChecker();
 }
 
 // 警告モーダル表示
@@ -251,7 +429,7 @@ function showConfirmModal(message, okCallback) {
 
 // フィルタ（アニメーションなし）
 function filterFormVariants(excludeForm, initial) {
-  const items = document.querySelectorAll('.pokemon-item');
+  const items = document.querySelectorAll('#pokemon-list .pokemon-grid');
   for (let div of items) {
     if (excludeForm && div.dataset.formId !== '0') {
       div.style.display = 'none';
@@ -259,6 +437,30 @@ function filterFormVariants(excludeForm, initial) {
       div.style.display = '';
     }
   }
+  // 詳細情報側にもフィルタを適用
+  filterDetailsFormVariants(excludeForm);
+}
+
+/**
+ * 詳細情報側の姿違いをフィルタ
+ */
+function filterDetailsFormVariants(excludeForm) {
+  const detailsItems = document.querySelectorAll('.recruit-pokemon-grid');
+  detailsItems.forEach((div) => {
+    const id = div.dataset.id;
+    const checkerDiv = document.querySelector(`.pokemon-grid[data-id="${id}"]`);
+
+    if (checkerDiv) {
+      const formId = parseInt(checkerDiv.dataset.formId);
+      if (excludeForm && formId !== 0) {
+        div.style.display = 'none';
+      } else {
+        // チェック状態を確認して表示/非表示を決定
+        const isChecked = checkerDiv.classList.contains('checked');
+        div.style.display = isChecked ? 'none' : '';
+      }
+    }
+  });
 }
 
 /**
@@ -266,18 +468,6 @@ function filterFormVariants(excludeForm, initial) {
  * @param {*} indexId
  */
 function indexToPokemonId(indexId) {
-  // 仲間にできない姿違いはジャンプする
-  const jumpIds = [
-    0x117, // 桃セレビィ
-    0x17c, // 雪ポワルン
-    0x17d, // 晴ポワルン
-    0x17e, // 雨ポワルン
-    0x180, // 紫カクレオン
-    0x1a3, // AFデオキシス
-    0x1a4, // DFデオキシス
-    0x1a5, // SPデオキシス
-    0x1cd, // ポジチェリム
-  ];
   const formIds = [
     [439, 0x1bf], // 砂ミノムッチ
     [438, 0x1c0], // 草ミノムッチ
@@ -292,19 +482,630 @@ function indexToPokemonId(indexId) {
   ];
 
   let id = indexId + 1;
-  // 不要な姿違いをスキップ
-  for (const jumpId of jumpIds) {
+  // 姿違いを変換
+  for (const formId of formIds) {
+    if (indexId == formId[0]) {
+      return formId[1];
+    }
+  }
+  // 除外する姿違いをスキップ
+  for (const jumpId of bannedPokemonIds) {
     if (id >= jumpId) id++;
     else break;
   }
-  // 姿違いを変換
-  for (const formId of formIds) {
-    if (id == formId[0]) {
-      id = formId[1];
-      break;
+  return id;
+}
+
+/**
+ * ポケモンIDから IndexId に逆変換
+ * @param {*} pokemonId
+ */
+function pokemonIdToIndex(pokemonId) {
+  let id = pokemonId;
+  const formIds = [
+    [439, 0x1bf], // 砂ミノムッチ
+    [438, 0x1c0], // 草ミノムッチ
+    [440, 0x1c1], // 鋼ミノムッチ
+    [442, 0x1c2], // 砂ミノマダム
+    [441, 0x1c3], // 草ミノマダム
+    [443, 0x1c4], // 鋼ミノマダム
+    [453, 0x1ce], // 東カラナクシ
+    [452, 0x1cf], // 西カラナクシ
+    [455, 0x1d0], // 東トリトドン
+    [454, 0x1d1], // 西トリトドン
+  ];
+
+  // 姿違いの値変換
+  for (const [baseId, altId] of formIds) {
+    if (pokemonId === altId) {
+      return baseId;
     }
   }
-  return id;
+  // 除外する姿違いをスキップ
+  for (let i = bannedPokemonIds.length - 1; i >= 0; i--) {
+    const jumpId = bannedPokemonIds[i];
+    if (id > jumpId) id--;
+  }
+  // 初期値が1スタートなので、こちらは-1する
+  return id - 1;
+}
+
+/**
+ * ポケモンのスポーン情報を作成
+ * @returns
+ */
+function generateSpawnData() {
+  const data = [];
+  const banned = [0x17c, 0x17d, 0x17e];
+
+  // 勧誘可能・有効ダンジョンのみに絞り込む
+  const dungeons = DungeonData.filter(
+    (r) => r.Id <= 0xbf && r.Id != 9 && r.Id != 11 && r.Id != 13 && !isUnusedDungeon(r.Id) && r.FlagRecruit,
+  );
+
+  for (const dungeon of dungeons) {
+    const dungeonName = dungeon.InName;
+    const mappaIndex = parseInt(dungeon.MappaIndex);
+    const floorPrev = parseInt(dungeon.FloorPrev);
+    const floorCount = parseInt(dungeon.FloorCount);
+    // 固定フロアを除外 (宝箱フロアは許可)
+    const floors = FloorData[mappaIndex]
+      .slice(floorPrev + 1, floorPrev + 1 + floorCount)
+      .filter((r) => r.FixedFloorId == 0 || r.FixedFloorId >= 0xaa);
+
+    if (floors.length > 0) {
+      for (const floor of floors) {
+        const enemyTableId = parseInt(floor.IndexGroup.SpawnEnemy);
+        const enemies = MappaSData.EnemyData[enemyTableId];
+
+        // 敵ポケモンデータをセット (カクレオンを後ろにする)
+        for (const enemy of enemies) {
+          const pokemonId = parseInt(enemy.PokemonId);
+
+          // フォルムチェンジしたポワルンを除外
+          if (banned.includes(pokemonId)) continue;
+
+          // カクレオンの場合、店が出るフロアのみに絞る
+          if (
+            pokemonId == 0x17f &&
+            !(floor.ChanceKecleonShop > 0 && floor.FixedFloorId == 0 && floor.ChanceMonsterHouse < 100)
+          ) {
+            continue;
+          }
+
+          // なにかの場合除外
+          if (pokemonId == 0x229) continue;
+
+          data.push({
+            dungeon: parseInt(dungeon.Id),
+            dungeonName: dungeonName,
+            floor: parseInt(floor.FloorNo) - floorPrev,
+            level: parseInt(enemy.Level),
+            pokemonId: pokemonId,
+          });
+        }
+      }
+    }
+  }
+  return data;
+}
+
+/**
+ * ポケモンの勧誘情報を作成
+ * @returns
+ */
+function generateRecruitData() {
+  const datas = [];
+  for (let i = 0; i < checkPokemonData.length; i++) {
+    const id = indexToPokemonId(i);
+    const data = {
+      id: id,
+      name: PokemonData[id].Name,
+      subname: PokemonData[id].SubName,
+      evolText: getEvolTextData(id),
+      recruit: spawnData.filter((r) => r.pokemonId == id),
+    };
+    datas.push(data);
+  }
+  return datas;
+}
+
+/**
+ * 勧誘情報要素を作成
+ */
+function createGuide() {
+  const recruitData = generateRecruitData();
+
+  // 全ポケモンIDを取得
+  const ids = [];
+  const wrapElement = document.getElementById('recruit-pokemon');
+  for (let i = 0; i < checkPokemonData.length; i++) {
+    const id = indexToPokemonId(i);
+    const spawn = recruitData.find((r) => r.id == id);
+
+    ids.push(id);
+    const pokemon = PokemonData[id];
+    const gridHtml = `
+      <div class="recruit-pokemon-grid rounded" data-id="${id}">
+        <div class="recruit-pokemon-grid-inner">
+          <h6>
+            <img class="recruit-pokemon-img" src="${getPokemonSpriteUrl(i)}">
+            <span>${pokemon.Name}${pokemon.SubName ? `(${pokemon.SubName})` : ''}</span>
+          </h6>
+          <p class="recruit-rate small-text">
+            <span>基礎勧誘率: ${(pokemon.RecruitRate1 / 10).toFixed(1)}%${pokemon.RecruitRate1 != pokemon.RecruitRate2 ? ` (${(pokemon.RecruitRate2 / 10).toFixed(1)}%)` : ''}
+          </p>
+        </div>
+      </div>
+    `;
+    const grid = parseHTML(gridHtml);
+    const inner = grid.querySelector('.recruit-pokemon-grid-inner');
+
+    // 進化方法
+    const divRecruitWrap = document.createElement('div');
+    divRecruitWrap.classList.add('recruit-wrap', 'small-text');
+    if (spawn.evolText.length > 0) {
+      divRecruitWrap.innerHTML = `
+      <p class="mb-1">
+        <span class="badge text-bg-danger me-1">進化</span>${spawn.evolText}
+      </p>`;
+    }
+
+    // 出現ダンジョンをダンジョン・階層連番ごとにグループ化
+    const dungeonGroups = new Map();
+    for (const item of spawn.recruit) {
+      const dungeonId = item.dungeon;
+      if (!dungeonGroups.has(dungeonId)) {
+        dungeonGroups.set(dungeonId, []);
+      }
+      dungeonGroups.get(dungeonId).push(item);
+    }
+    const recruitGroups = {};
+    for (const [dungeonId, items] of dungeonGroups.entries()) {
+      const sorted = items.slice().sort((a, b) => a.floor - b.floor);
+      const groups = [];
+      let current = [sorted[0]];
+      for (let i = 1; i < sorted.length; i++) {
+        const prev = sorted[i - 1].floor;
+        const cur = sorted[i].floor;
+
+        if (cur === prev + 1) {
+          current.push(sorted[i]);
+        } else {
+          groups.push(current);
+          current = [sorted[i]];
+        }
+      }
+      groups.push(current);
+      recruitGroups[dungeonId] = groups;
+    }
+    // ダンジョン毎
+    for (const [dungeonId, group] of Object.entries(recruitGroups)) {
+      const dungeon = DungeonData[dungeonId];
+      const elementHtml = `
+        <p class="mb-1">
+          <span class="badge text-bg-primary me-1">勧誘</span>
+          ${
+            // 道具必須の場合なぞのパーツアイコン表示
+            pokemon.Bit_ItemRequiredSpawning ? '<span class="item-sprite sprite-18-3"></span>' : ''
+          }
+          ${dungeon.InName}
+        </p>
+      `;
+      const element = parseHTML(elementHtml);
+
+      const floorGroupArr = [];
+      for (const floorGroup of group) {
+        const min = Math.min(...floorGroup.map((x) => x.floor));
+        const max = Math.max(...floorGroup.map((x) => x.floor));
+        const stairs = dungeon.FlagStairs ? '' : 'B';
+        floorGroupArr.push(min != max ? `${stairs}${min}F～${stairs}${max}F` : `${stairs}${min}F`);
+      }
+      element.innerHTML += ` ${floorGroupArr.join(', ')}`;
+      divRecruitWrap.appendChild(element);
+    }
+
+    // イベント勧誘
+    const event = eventRectuit.find((r) => r.id == id);
+    if (event) {
+      const p = document.createElement('p');
+      p.classList.add('mb-1');
+      p.innerHTML += `<span class="badge bg-indigo me-1">イベント</span>${event.context}`;
+      divRecruitWrap.appendChild(p);
+    }
+
+    // カフェ
+    if (params.CAFE_RECRUIT_TABLE.includes(id)) {
+      divRecruitWrap.appendChild(
+        parseHTML(`
+          <p class="mb-1 cafe">
+            <span class="badge text-bg-secondary me-1">カフェ</span>
+            ドリンクを飲んで確率で勧誘
+          </p>
+        `),
+      );
+    }
+
+    // シナリオ
+    const scenario = parseHTML(`<p class="small-text mb-1 fw-bold"></p>`);
+    if (Object.keys(recruitGroups).length > 0 && pokemon.UnlockScenario > 0) {
+      scenario.textContent = `※${params.SCENARIO_STRINGS[pokemon.UnlockScenario]}に出現`;
+    }
+
+    // チェックボタン
+    const btnCheck = document.createElement('span');
+    btnCheck.classList.add('recruit-check');
+    btnCheck.innerHTML = '<i class="bi bi-check2-circle"></i>';
+    btnCheck.dataset.isAnimating = 'false';
+    btnCheck.addEventListener('click', (e) => {
+      if (btnCheck.dataset.isAnimating === 'true') return;
+      const checkerItem = document.querySelector(`.pokemon-grid[data-id="${id}"]`);
+      if (checkerItem) {
+        btnCheck.dataset.isAnimating = 'true';
+        togglePokemonChecked(checkerItem);
+      }
+    });
+
+    inner.appendChild(divRecruitWrap);
+    inner.appendChild(scenario);
+    inner.appendChild(btnCheck);
+    grid.appendChild(inner);
+
+    wrapElement.appendChild(grid);
+  }
+}
+
+/**
+ * チェッカーの状態を詳細情報に同期
+ */
+function syncDetailsWithChecker() {
+  const detailsItems = document.querySelectorAll('.recruit-pokemon-grid');
+  const excludeForm = document.getElementById('toggleFormSwitch')?.checked;
+  const detailTab = document.getElementById('detail-tab-pane');
+  const isDetailTabVisible = detailTab && detailTab.classList.contains('show');
+
+  detailsItems.forEach((detailDiv) => {
+    const id = detailDiv.dataset.id;
+    const checkerDiv = document.querySelector(`.pokemon-grid[data-id="${id}"]`);
+    const btnCheck = detailDiv.querySelector('.recruit-check');
+    const formId = parseInt(checkerDiv.dataset.formId);
+
+    if (checkerDiv) {
+      // 姿違いフィルタ適用中かつ基本形でない場合は非表示
+      if (excludeForm && formId !== 0) {
+        detailDiv.style.display = 'none';
+        return;
+      }
+
+      const isChecked = checkerDiv.classList.contains('checked');
+      if (isChecked) {
+        if (isDetailTabVisible) {
+          // 要素の高さとギャップを取得
+          const itemHeight = detailDiv.offsetHeight;
+
+          // CSS 変数を設定
+          detailDiv.style.setProperty('--item-height', itemHeight + 'px');
+
+          // アニメーション付きで非表示化
+          detailDiv.classList.add('hiding');
+          detailDiv.addEventListener(
+            'animationend',
+            () => {
+              detailDiv.style.display = 'none';
+              detailDiv.classList.remove('hiding');
+              if (btnCheck) {
+                btnCheck.dataset.isAnimating = 'false';
+              }
+            },
+            { once: true },
+          );
+        } else {
+          // タブが非表示の場合はアニメーションなしで非表示化
+          detailDiv.style.display = 'none';
+          if (btnCheck) {
+            btnCheck.dataset.isAnimating = 'false';
+          }
+        }
+      } else {
+        // チェック解除時は表示
+        detailDiv.style.display = '';
+        detailDiv.classList.remove('hiding');
+        if (btnCheck) {
+          btnCheck.dataset.isAnimating = 'false';
+        }
+      }
+    }
+  });
+}
+
+/**
+ * スポーンデータをグループ化して取得
+ * @returns
+ */
+function generateSpawnGroup() {
+  const dungeonMap = new Map();
+
+  for (const item of spawnData) {
+    if (!dungeonMap.has(item.dungeon)) {
+      dungeonMap.set(item.dungeon, []);
+    }
+    dungeonMap.get(item.dungeon).push(item);
+  }
+
+  const result = {};
+
+  for (const [dungeon, dungeonItems] of dungeonMap.entries()) {
+    const pokemonMap = new Map();
+
+    // dungeon 内で pokemonId ごとにまとめる
+    for (const item of dungeonItems) {
+      if (!pokemonMap.has(item.pokemonId)) {
+        pokemonMap.set(item.pokemonId, {
+          pokemonId: item.pokemonId,
+          dungeonName: item.dungeonName,
+          items: [],
+        });
+      }
+      pokemonMap.get(item.pokemonId).items.push(item);
+    }
+
+    // 各 pokemonId ごとに floors を連番グループ化
+    const pokemonGroups = [];
+
+    for (const group of pokemonMap.values()) {
+      const sorted = group.items.slice().sort((a, b) => a.floor - b.floor);
+
+      const floorGroups = [];
+      let current = [];
+
+      for (const item of sorted) {
+        if (current.length === 0) {
+          current.push(item);
+        } else {
+          const prev = current[current.length - 1];
+          if (item.floor === prev.floor + 1) {
+            current.push(item);
+          } else {
+            floorGroups.push(current);
+            current = [item];
+          }
+        }
+      }
+      if (current.length) floorGroups.push(current);
+
+      const floors = floorGroups.map((g) => g.map((x) => x.floor));
+      const levelRanges = floorGroups.map((g) => {
+        const levels = g.map((x) => x.level);
+        return {
+          minLevel: Math.min(...levels),
+          maxLevel: Math.max(...levels),
+        };
+      });
+
+      pokemonGroups.push({
+        pokemonId: group.pokemonId,
+        dungeonName: group.dungeonName,
+        floors,
+        levelRanges,
+      });
+    }
+
+    // dungeon をキーとして格納 (カクレオンを後ろにする)
+    result[dungeon] = pokemonGroups
+      .sort((a, b) => a.pokemonId - b.pokemonId)
+      .filter((x) => x.pokemonId != 0x17f)
+      .concat(pokemonGroups.filter((x) => x.pokemonId == 0x17f));
+  }
+
+  return result;
+}
+
+/**
+ * ダンジョン勧誘情報を作成
+ */
+function createRecruitDungeon() {
+  const spawnGroup = generateSpawnGroup();
+
+  const recruitDungeonWrap = document.getElementById('recruit-dungeon');
+  for (const dungeonId in spawnGroup) {
+    const dungeonName = DungeonData[dungeonId].InName;
+
+    // ダンジョングリッド作成
+    const dungeonGridHtml = `
+        <div class="recruit-dungeon-grid rounded">
+          <p class="dungeon-name">${dungeonName}</p>
+          <div class="pokemon-grid-wrap">
+          </div>
+        </div>`;
+    const dungeonGridElement = parseHTML(dungeonGridHtml);
+
+    // ポケモングリッド作成
+    const pokemonGridWrapElement = dungeonGridElement.querySelector('.pokemon-grid-wrap');
+    for (const spawn of spawnGroup[dungeonId]) {
+      const pokemonId = spawn.pokemonId;
+      const indexId = pokemonIdToIndex(pokemonId);
+      const pokemonGridHtml = `
+        <div class="pokemon-grid position-relative" data-id="${pokemonId}"
+          style="background-image: url(${getPokemonSpriteUrl(indexId)})">
+        </div>
+      `;
+      const pokemonGrid = parseHTML(pokemonGridHtml);
+      pokemonGrid.addEventListener('click', function () {
+        // チェッカーのポケモンをトグル
+        const checkerGrid = document.querySelector(`#pokemon-list .pokemon-grid[data-id="${pokemonId}"]`);
+        if (checkerGrid) {
+          togglePokemonChecked(checkerGrid);
+        }
+      });
+      pokemonGridWrapElement.appendChild(pokemonGrid);
+    }
+    recruitDungeonWrap.appendChild(dungeonGridElement);
+  }
+
+  // // イベント勧誘
+  // const eventGridHtml = `
+  //   <div class="recruit-dungeon-grid rounded">
+  //     <p class="dungeon-name">イベント</p>
+  //     <div class="pokemon-grid-wrap">
+  //     </div>
+  //   </div>`;
+  // const eventGridElement = parseHTML(eventGridHtml);
+  // const eventPokemonGridWrapElement = eventGridElement.querySelector('.pokemon-grid-wrap');
+  // for (const event of eventRectuit) {
+  //   const pokemonId = event.id;
+  //   const indexId = pokemonIdToIndex(pokemonId);
+  //   const pokemonGridHtml = `
+  //       <div class="pokemon-grid position-relative" data-id="${pokemonId}"
+  //         style="background-image: url(${getPokemonSpriteUrl(indexId)})">
+  //       </div>
+  //     `;
+  //   const pokemonGrid = parseHTML(pokemonGridHtml);
+  //   pokemonGrid.addEventListener('click', function () {
+  //     // チェッカーのポケモンをトグル
+  //     const checkerGrid = document.querySelector(`#pokemon-list .pokemon-grid[data-id="${pokemonId}"]`);
+  //     if (checkerGrid) {
+  //       togglePokemonChecked(checkerGrid);
+  //     }
+  //   });
+  //   eventPokemonGridWrapElement.appendChild(pokemonGrid);
+  // }
+  // recruitDungeonWrap.appendChild(eventGridElement);
+}
+
+/**
+ * 勧誘方法タブのチェック状況を同期
+ */
+function syncRecruitDetail(pokemonId, isChecked) {
+  const recruitGrid = document.querySelector(`#recruit-dungeon .recruit-pokemon-grid[data-id="${pokemonId}"]`);
+  if (recruitGrid) {
+    if (isChecked) {
+      recruitGrid.classList.add('hiding');
+      recruitGrid.addEventListener(
+        'animationend',
+        () => {
+          recruitGrid.style.display = 'none';
+          recruitGrid.classList.remove('hiding');
+        },
+        { once: true },
+      );
+    } else {
+      recruitGrid.style.display = '';
+      recruitGrid.classList.remove('hiding');
+    }
+  }
+}
+
+/**
+ * ダンジョンタブのチェック状況を同期
+ */
+function syncDungeonDetail(pokemonId, isChecked) {
+  const dungeonGrids = document.querySelectorAll(`#recruit-dungeon .pokemon-grid[data-id="${pokemonId}"]`);
+  dungeonGrids.forEach((grid) => {
+    if (isChecked) {
+      grid.classList.add('checked');
+    } else {
+      grid.classList.remove('checked');
+    }
+  });
+}
+
+/**
+ * チェッカー -> ダンジョン へ同期
+ */
+function syncDungeonWithChecker() {
+  const dungeonGrids = document.querySelectorAll('#recruit-dungeon .pokemon-grid');
+  dungeonGrids.forEach((grid) => {
+    const pokemonId = grid.dataset.id;
+    const checkerGrid = document.querySelector(`#pokemon-list .pokemon-grid[data-id="${pokemonId}"]`);
+
+    if (checkerGrid && checkerGrid.classList.contains('checked')) {
+      grid.classList.add('checked');
+    } else {
+      grid.classList.remove('checked');
+    }
+  });
+}
+
+/**
+ * 該当ポケモンの進化情報をテキストで取得
+ * @param {*} id ポケモンID
+ * @returns
+ */
+function getEvolTextData(id) {
+  const pokemon = PokemonData[id];
+  const prevEvol = PokemonData[parseInt(pokemon.PreEvoIndex)];
+  const evolMethod = parseInt(pokemon.EvoMethod);
+  const evolParam = [parseInt(pokemon.EvoParam1), parseInt(pokemon.EvoParam2)];
+
+  let text = '';
+  if (prevEvol.Id > 0) {
+    const prevEvolName = prevEvol.Name;
+    let evolStr = '';
+    switch (evolMethod) {
+      case 0: // ヌケニン用
+        evolStr = `進化で自動的に加入`;
+        break;
+      case 1: // レベル
+        evolStr = `Lv${evolParam[0]}`;
+        break;
+      case 2: // かしこさ
+        evolStr = `かしこさ★${getIQStarCount(evolParam[0]).toFixed(1)}(${evolParam[0]})以上`;
+        break;
+      case 3: // 道具
+        const itemStr = ItemData[evolParam[0]].Name;
+        evolStr = `${itemStr}`;
+        break;
+      case 4: // タマンタ用
+        const targetStr = PokemonData[evolParam[0]].Name;
+        evolStr = `${targetStr}が仲間にいる`;
+        break;
+      case 5: // つうしんケーブル
+        evolStr = `つうしんケーブル`;
+        break;
+    }
+
+    // 第二条件
+    if (evolMethod >= 0 && evolMethod <= 3 && evolParam[1] > 0) {
+      evolStr += ` + ${evolve2String[evolParam[1]]}`;
+    }
+
+    text = `${prevEvolName} (${evolStr})`;
+    //console.log(`${pokemon.Name}: ${text}`, evolMethod, evolParam);
+  }
+  return text;
+}
+
+/**
+ * ポケモンのスプライト画像URLを取得 (by PokeAPI)
+ * @param {*} indexId
+ * @returns
+ */
+function getPokemonSpriteUrl(indexId) {
+  const imagePokemonData = checkPokemonData[indexId];
+  const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/${imagePokemonData.baseId}${imagePokemonData.imageSuffix}.png`;
+  return imageUrl;
+}
+
+/**
+ * JSONデータを取得
+ */
+async function fetchJsonData() {
+  try {
+    const [pokemonData, itemData, dungeonData, floorData, mappaSData] = await Promise.all([
+      getJsonData('pokemon'),
+      getJsonData('item'),
+      getJsonData('dungeon'),
+      getJsonData('floor'),
+      getJsonData('mappa_s'),
+    ]);
+    window.PokemonData = pokemonData;
+    window.ItemData = itemData;
+    window.DungeonData = dungeonData;
+    window.FloorData = floorData;
+    window.MappaSData = mappaSData;
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 loadPokemon();

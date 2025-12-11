@@ -1,19 +1,98 @@
 {{ define "main" }}
-  <div class="container">
+  <div class="container-lg" id="pokemon-checker">
+    <script>
+      window.ITEM_SPRITE_URL = '{{ (resources.Get "img/sprites/sheet_itemsprite.png").RelPermalink }}';
+    </script>
+
     <p class="text-center my-3">
       <span class="fs-1 d-inline-block">ポケモンチェッカー</span>
       <span class="fs-5 d-inline-block ms-1">for ポケダン空</span>
     </p>
 
-    <div id="pokemon-list" class="pokemon-grid">
-      <!-- Pokemon will be dynamically added here -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="checker-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#checker-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="checker-tab-pane"
+          aria-selected="true">
+          チェッカー
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="detail-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#detail-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="detail-tab-pane"
+          aria-selected="false">
+          ポケモン
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="dungeon-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#dungeon-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="dungeon-tab-pane"
+          aria-selected="false">
+          ダンジョン
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content pt-2">
+      <!-- ポケモンチェッカー -->
+      <div
+        class="tab-pane fade show active"
+        id="checker-tab-pane"
+        role="tabpanel"
+        aria-labelledby="checker-tab">
+        <div id="pokemon-list" class="pokemon-grid-wrap"></div>
+      </div>
+      <!-- ポケモン詳細 -->
+      <div
+        class="tab-pane fade"
+        id="detail-tab-pane"
+        role="tabpanel"
+        aria-labelledby="detail-tab">
+        <p>
+          基礎勧誘率のカッコ内はゲーム開始時の質問に「ある」と答えた場合の初回勧誘率（いわゆる勧誘率2）。
+          <br />
+          <span class="item-sprite sprite-18-3"></span>
+          が付いたものは「なぞのパーツ」か「ひみつのせきばん」を持ち込む必要がある。
+        </p>
+        <div id="recruit-pokemon"></div>
+      </div>
+      <!-- ダンジョン -->
+      <div
+        class="tab-pane fade"
+        id="dungeon-tab-pane"
+        role="tabpanel"
+        aria-labelledby="dungeon-tab">
+        <p>
+          チェック状況はダンジョン間で共有される。ボス等のイベント勧誘は含まれない。
+          <br />
+          ※このタブでは「姿違いを含めない」は機能しない。
+        </p>
+        <div id="recruit-dungeon"></div>
+      </div>
     </div>
 
     <!-- Progress bar -->
     <div
       class="position-fixed bottom-0 start-0 w-100 bg-body"
       style="z-index:999;">
-      <div class="container py-2">
+      <div class="container-lg py-2">
         <!-- %表示 -->
         <div class="d-flex align-items-center mb-1">
           <div class="flex-grow-1 text-center" style="font-weight:bold;">
@@ -209,5 +288,6 @@
   <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
 
   {{ partial "methods/SetScssMinify" "checker/pokemon" }}
+  {{ partial "methods/SetScssMinify" "checker/item-sprite" }}
   {{ partial "jsbuild" (dict "src" "js/checker/pokemon.js" "output" "pokemon.js") }}
 {{ end }}

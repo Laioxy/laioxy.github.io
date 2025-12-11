@@ -373,6 +373,35 @@ function isUnusedDungeon(dungeonId) {
 }
 
 /**
+ * かしこさ値をかしこさの星の数に変換して取得
+ * @param {*} iq かしこさ値
+ * @returns 星の数
+ */
+function getIQStarCount(iq) {
+  let res = 0.5;
+  if (iq >= 60) {
+    let multi = Math.floor((iq - 10) / 50);
+    if (multi < 0) multi = 0;
+    res += res * multi;
+  }
+  return res;
+}
+
+/**
+ * HTMLテキストを安全に要素へ変換
+ * @param {*} html
+ * @returns
+ */
+function parseHTML(html) {
+  const template = document.createElement('template');
+  template.innerHTML = html.trim();
+  if (template.content.childNodes.length > 1) {
+    console.error('[parseHTML] 要素が複数含まれています。要確認！', template.content.childNodes);
+  }
+  return template.content.firstElementChild;
+}
+
+/**
  * [Select2] カスタム検索
  * IDや性別は含まず、項目の名称だけで検索できるようにするもの
  *

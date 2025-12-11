@@ -1,24 +1,30 @@
-.pokemon-grid {
+// ポケモングリッド
+.pokemon-grid-wrap {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 56px);
-  grid-auto-rows: 56px;
+  grid-template-columns: repeat(auto-fill, 50px);
+  grid-auto-rows: 50px;
   gap: 4px;
-  justify-content: center;
-}
 
-.pokemon-item {
-  transition:
-    transform 0.2s,
-    background-color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto;
-  cursor: pointer;
-  user-select: none;
-  image-rendering: pixelated;
+  .pokemon-grid {
+    transition:
+      transform 0.2s,
+      background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    cursor: pointer;
+    user-select: none;
+    image-rendering: pixelated;
+    background-color: var(--bs-tertiary-bg);
+    border-radius: var(--bs-border-radius);
+
+    &.checked {
+      background-color: var(--bs-warning) !important;
+    }
+  }
 }
 
 .position-fixed.bottom-0 {
@@ -45,6 +51,101 @@
   transition: transform 0.3s;
 }
 
-.container {
-  padding-bottom: 6rem;
+#pokemon-checker {
+  padding-bottom: 10rem;
+}
+
+// ポケモンチェッカー
+#pokemon-list {
+  justify-content: center;
+
+  .pokemon-grid:not(.checked) {
+    background-color: var(--bs-secondary-bg);
+  }
+}
+
+// 勧誘方法
+#recruit-pokemon {
+  display: grid;
+  justify-content: center;
+  gap: 4px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+  @media (min-width: 769px) {
+    grid-template-columns: repeat(auto-fill, 300px);
+  }
+
+  .recruit-pokemon-grid {
+    background-color: var(--bs-secondary-bg);
+    position: relative;
+    overflow: hidden;
+    &.hiding {
+      @keyframes fadeOutCollapse {
+        from {
+          opacity: 1;
+          max-height: var(--item-height);
+        }
+        to {
+          opacity: 0;
+          max-height: 0;
+          margin-bottom: 0;
+        }
+      }
+      animation: fadeOutCollapse 0.5s ease forwards;
+    }
+    .recruit-pokemon-grid-inner {
+      padding: 1rem;
+      h6 {
+        display: inline-flex;
+        align-items: center;
+        position: relative;
+        img.recruit-pokemon-img {
+          position: absolute;
+          bottom: -4px;
+          left: -4px;
+          image-rendering: pixelated;
+        }
+        span {
+          margin-left: 2.5rem;
+        }
+      }
+      .recruit-rate {
+        margin-bottom: 0.5rem;
+        color: var(--bs-secondary-color);
+      }
+      .item-sprite {
+        margin-right: 2px;
+      }
+      .recruit-wrap {
+        .item-sprite {
+          margin-top: -2px;
+        }
+      }
+      .recruit-check {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+        font-size: 2rem;
+        width: 45px;
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+// ダンジョン
+#recruit-dungeon {
+  display: grid;
+  gap: 4px;
+  .recruit-dungeon-grid {
+    background-color: var(--bs-secondary-bg);
+    padding: 1rem;
+
+    p.dungeon-name {
+      margin-bottom: 0.75rem;
+    }
+  }
 }
