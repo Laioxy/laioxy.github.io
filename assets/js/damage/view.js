@@ -188,7 +188,7 @@ function ApplyMoveInfo(target) {
   moveAccuracy1Element.textContent = move.Accuracy1;
   moveAccuracy2Element.textContent = move.Accuracy2;
   moveAccuracyBaseElement.textContent =
-    getMoveBaseAccuracy(move.Accuracy1, move.Accuracy2, move.Ginseng).toFixed(2) + '%';
+    getMoveBaseAccuracy(move.Accuracy1, move.Accuracy2, move.MaxBoost).toFixed(2) + '%';
   moveStrikesElement.textContent = move.MaxHit;
   moveCriticalElement.textContent = move.Critical + '%';
 }
