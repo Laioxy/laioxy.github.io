@@ -1084,7 +1084,7 @@ export function MoveHitCheck(dungeon, attacker, defender, moveId, useSecondAccur
     evasionBoost = 2;
   }
   // 攻撃側のはりきりが発動 (物理技) -> 回避+2
-  if (attacker.abilityActive(0x30) && !Mechanics.MoveNotPhysial(moveId)) {
+  if (attacker.abilityActive(0x30) && !MoveNotPhysial(moveId)) {
     evasionBoost += 2;
   }
   // どたんばが有効, HPが1/4以下 -> 回避+2
