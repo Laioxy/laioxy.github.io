@@ -180,8 +180,9 @@ function ApplyMoveInfo(target) {
   const moveStrikesElement = moveInfoElement.querySelector('#move-strikes');
   const moveCriticalElement = moveInfoElement.querySelector('#move-critical');
 
+  // いちげきのたま、変化以外、威力0以外の威力を表示し、該当しないものは「非対応」を表示
   movePowerElement.innerHTML =
-    move.Category != 2 || move.power == 0 ? power : '<span class="text-danger">非対応</span>';
+    move.Id == 0x188 || move.Category != 2 || move.Power == 0 ? power : '<span class="text-danger">非対応</span>';
   moveTypeElement.textContent = TypeData[move.Type].Name;
   moveCategoryElement.textContent = moveCategoryNames[move.Category];
   movePPElement.textContent = move.PP; // たげいは考慮しない？

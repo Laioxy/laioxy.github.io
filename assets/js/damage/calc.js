@@ -1646,6 +1646,9 @@ export function simulateDamageCalc(damageData, dungeon, attacker, defender, move
     case 0x163: // こうげき (通常攻撃)
       damageMult = Mechanics.CONST_0_50;
       break;
+    case 0x188: // いちげきのたま (いちげき)
+      fixedDamage = 9999;
+      return simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, move, fixedDamage);
     case 0x18a: // しんくうぎり
       fixedDamage = Mechanics.VACUUM_CUT_FIXED_DAMAGE;
       return simulateDamageCalcFixedDynamic(damageData, dungeon, attacker, defender, move, fixedDamage);
@@ -2108,6 +2111,9 @@ function simulateDamageCalcFixedStatic(damageData, dungeon, attacker, defender, 
   const attackType = attacker.getMoveType(move.id, dungeon);
   const moveCategory = getMoveCategory(move.id);
   let fixedDamage = 0;
+  if (!executeMoveEffectPrechecks(dungeon, attacker, defender, move.id)) {
+    return 0;
+  }
   if (damage > 0) {
     fixedDamage = calcDamageFixed(dungeon, attacker, defender, damage, damageData, attackType, moveCategory, move.id);
   }
@@ -2198,6 +2204,10 @@ function checkMoveHitOhko(dungeon, attacker, defender, attackType) {
 function checkNoDamageMove(moveId) {
   const moveCategory = getMoveCategory(moveId);
   const noDamageMove = [0x7, 0x26, 0x32, 0x33, 0x3d, 0x7b, 0x9b, 0xf9, 0x131, 0x13c, 0x154, 0x167, 0x1d8, 0x214];
+
+  // いちげきのたまはダメージを与える技とする
+  if (moveId == 0x188) return false;
+
   return moveCategory == eos.CATEGORY_STATUS || noDamageMove.includes(move.id);
 }
 
