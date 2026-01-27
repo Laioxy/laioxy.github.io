@@ -2208,7 +2208,7 @@ function checkNoDamageMove(moveId) {
   // いちげきのたまはダメージを与える技とする
   if (moveId == 0x188) return false;
 
-  return moveCategory == eos.CATEGORY_STATUS || noDamageMove.includes(move.id);
+  return moveCategory == eos.CATEGORY_STATUS || noDamageMove.includes(moveId);
 }
 
 /**
