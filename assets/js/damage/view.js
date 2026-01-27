@@ -624,7 +624,6 @@ function Calculation() {
   move.timeDarkness = moveTimeDarknessElement.checked;
   if (moveDamageCriticalElement.checked) {
     dungeon.rng.criticalHit = true;
-    dungeon.rng.critChance = 100;
   }
   dungeon.rng.hugePurePower = moveHugePurePowerElement.checked;
 
