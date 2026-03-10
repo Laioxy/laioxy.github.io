@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lai-brary</title><link>https://laioxy.github.io/</link><description>Recent content on Lai-brary</description><generator>Hugo</generator><language>ja</language><atom:link href="https://laioxy.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://laioxy.github.io/rescue-duplicate.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue-duplicate.html</guid><description>&lt;meta
  http-equiv="refresh"
  content="0;URL=https://laioxy.github.io/rescue/duplicate"
-/></description></item><item><title/><link>https://laioxy.github.io/wondermail-anyegg.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail-anyegg.html</guid><description>&lt;meta
+/&gt;</description></item><item><title/><link>https://laioxy.github.io/wondermail-anyegg.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail-anyegg.html</guid><description>&lt;meta
  http-equiv="refresh"
  content="0;URL=https://laioxy.github.io/wondermail/anyegg"
-/></description></item><item><title/><link>https://laioxy.github.io/wondermail-dungeon.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail-dungeon.html</guid><description>&lt;meta
+/&gt;</description></item><item><title/><link>https://laioxy.github.io/wondermail-dungeon.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail-dungeon.html</guid><description>&lt;meta
  http-equiv="refresh"
  content="0;URL=https://laioxy.github.io/wondermail/anydungeon"
-/></description></item><item><title/><link>https://laioxy.github.io/wondermail-s.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail-s.html</guid><description>&lt;meta
+/&gt;</description></item><item><title/><link>https://laioxy.github.io/wondermail-s.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail-s.html</guid><description>&lt;meta
  http-equiv="refresh"
  content="0;URL=https://laioxy.github.io/wondermail/"
-/></description></item><item><title>ダメージ計算機 for ポケダン空</title><link>https://laioxy.github.io/damage/calc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/damage/calc/</guid><description/></item><item><title>ダンジョン強制解禁バグ</title><link>https://laioxy.github.io/wondermail/anydungeon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/anydungeon/</guid><description>&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/js/wondermail/anydungeon.js" type="module">&lt;/script>
-&lt;div class="container-md pb-3">
- &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
- &lt;h1 class="m-0">ダンジョン強制解禁バグ用生成機&lt;/h1>
- &lt;hr />
- &lt;p>
+/&gt;</description></item><item><title>ダメージ計算機 for ポケダン空</title><link>https://laioxy.github.io/damage/calc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/damage/calc/</guid><description/></item><item><title>ダンジョン強制解禁バグ</title><link>https://laioxy.github.io/wondermail/anydungeon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/anydungeon/</guid><description>&lt;script src="https://laioxy.github.io/js/json_script.js"&gt;&lt;/script&gt;
+&lt;script src="https://laioxy.github.io/js/wondermail/anydungeon.js" type="module"&gt;&lt;/script&gt;
+&lt;div class="container-md pb-3"&gt;
+ &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle"&gt;
+ &lt;h1 class="m-0"&gt;ダンジョン強制解禁バグ用生成機&lt;/h1&gt;
+ &lt;hr /&gt;
+ &lt;p&gt;
  「ポケモン不思議のダンジョン
  空の探検隊」のダンジョン強制解禁バグ用のパスワードを作成するツール。
- &lt;br />
+ &lt;br /&gt;
  最低限の機能だけ実装した簡易版です。
- &lt;/p>
+ &lt;/p&gt;
 
- &lt;div class="youtube mb-3">
+ &lt;div class="youtube mb-3"&gt;
  &lt;iframe
  width="560"
  height="315"
@@ -31,170 +31,170 @@
  title="YouTube video player"
  frameborder="0"
  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
- allowfullscreen>&lt;/iframe>
- &lt;/div>
+ allowfullscreen&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
 
- &lt;p>
+ &lt;p&gt;
  パスワード入力後、依頼を実行するだけでダンジョンが解禁されます。
- &lt;br />
+ &lt;br /&gt;
  ストーリー系ダンジョンを強制解禁すると
- &lt;b>ゲームの進行に影響を及ぼします。&lt;/b>
- &lt;br />
+ &lt;b&gt;ゲームの進行に影響を及ぼします。&lt;/b&gt;
+ &lt;br /&gt;
  解禁後にセーブしてしまうと
- &lt;b class="text-danger">元の状態には戻せない&lt;/b>
+ &lt;b class="text-danger"&gt;元の状態には戻せない&lt;/b&gt;
  のでよく考えて使うこと！
- &lt;/p>
- &lt;p>
+ &lt;/p&gt;
+ &lt;p&gt;
  この簡易ツールでは解禁できない・解禁してはいけないダンジョンを除外しています。
- &lt;br />
+ &lt;br /&gt;
  制限なく作成したい方は通常のツールをご使用下さい。
- &lt;br />
+ &lt;br /&gt;
  通常のふしぎなメール生成機は
- &lt;a href="https://laioxy.github.io/wondermail/">こちら&lt;/a>
- &lt;/p>
- &lt;/div>
+ &lt;a href="https://laioxy.github.io/wondermail/"&gt;こちら&lt;/a&gt;
+ &lt;/p&gt;
+ &lt;/div&gt;
 
  &lt;div
  class="card p-sm-4 p-3 my-3 border border-secondary-subtle"
- id="pass-form">
- &lt;div class="d-flex flex-column gap-3">
- &lt;div>
- &lt;div class="d-flex flex-column">
- &lt;p class="fs-5 mb-1">リージョン&lt;/p>
- &lt;div class="btn-group text-nowrap" id="group-region">
+ id="pass-form"&gt;
+ &lt;div class="d-flex flex-column gap-3"&gt;
+ &lt;div&gt;
+ &lt;div class="d-flex flex-column"&gt;
+ &lt;p class="fs-5 mb-1"&gt;リージョン&lt;/p&gt;
+ &lt;div class="btn-group text-nowrap" id="group-region"&gt;
  &lt;input
  class="btn-check"
  id="region-jp"
  type="radio"
  name="region"
  value="jp"
- checked />
- &lt;label class="btn btn-outline-primary" for="region-jp">日本&lt;/label>
+ checked /&gt;
+ &lt;label class="btn btn-outline-primary" for="region-jp"&gt;日本&lt;/label&gt;
  &lt;input
  class="btn-check"
  id="region-na"
  type="radio"
  name="region"
- value="na" />
- &lt;label class="btn btn-outline-primary" for="region-na">北米&lt;/label>
+ value="na" /&gt;
+ &lt;label class="btn btn-outline-primary" for="region-na"&gt;北米&lt;/label&gt;
  &lt;input
  class="btn-check"
  id="region-eu"
  type="radio"
  name="region"
- value="eu" />
- &lt;label class="btn btn-outline-primary" for="region-eu">欧州&lt;/label>
- &lt;/div>
- &lt;/div>
- &lt;/div>
+ value="eu" /&gt;
+ &lt;label class="btn btn-outline-primary" for="region-eu"&gt;欧州&lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div>
- &lt;p class="fs-5 mb-1">ダンジョン&lt;/p>
- &lt;div class="row g-2">
- &lt;div class="item col-md-6">
- &lt;div class="form-floating">
- &lt;select id="dungeon" class="form-select">&lt;/select>
- &lt;label for="dungeon">ダンジョン&lt;/label>
- &lt;/div>
- &lt;/div>
- &lt;div class="item col-md-6">
- &lt;div class="form-floating">
- &lt;select id="dungeon-floor" class="form-select">&lt;/select>
- &lt;label for="dungeon-floor">階数&lt;/label>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
+ &lt;div&gt;
+ &lt;p class="fs-5 mb-1"&gt;ダンジョン&lt;/p&gt;
+ &lt;div class="row g-2"&gt;
+ &lt;div class="item col-md-6"&gt;
+ &lt;div class="form-floating"&gt;
+ &lt;select id="dungeon" class="form-select"&gt;&lt;/select&gt;
+ &lt;label for="dungeon"&gt;ダンジョン&lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="item col-md-6"&gt;
+ &lt;div class="form-floating"&gt;
+ &lt;select id="dungeon-floor" class="form-select"&gt;&lt;/select&gt;
+ &lt;label for="dungeon-floor"&gt;階数&lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div>
- &lt;div class="d-grid mb-0">
- &lt;button class="btn btn-primary btn-lg" id="pass-generate">
+ &lt;div&gt;
+ &lt;div class="d-grid mb-0"&gt;
+ &lt;button class="btn btn-primary btn-lg" id="pass-generate"&gt;
  パスワード生成
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div>
- &lt;p class="fs-5 mb-1">パスワード&lt;/p>
+ &lt;div&gt;
+ &lt;p class="fs-5 mb-1"&gt;パスワード&lt;/p&gt;
  &lt;textarea
  class="form-control d-grid"
  rows="2"
  id="pass-area"
  placeholder=""
- readonly>&lt;/textarea>
- &lt;/div>
- &lt;/div>
- &lt;/div>
+ readonly&gt;&lt;/textarea&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
- &lt;h4>生成内容&lt;/h4>
- &lt;ul class="m-0">
- &lt;li>
+ &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle"&gt;
+ &lt;h4&gt;生成内容&lt;/h4&gt;
+ &lt;ul class="m-0"&gt;
+ &lt;li&gt;
  依頼タイプ:
- &lt;code>[0B]挑戦状を受ける&lt;/code>
- &lt;/li>
- &lt;li>
+ &lt;code&gt;[0B]挑戦状を受ける&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
  フラグ:
- &lt;code>[05]ジラーチ用&lt;/code>
- &lt;/li>
- &lt;li>
+ &lt;code&gt;[05]ジラーチ用&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
  報酬タイプ:
- &lt;code>[06]仲間になる&lt;/code>
- &lt;/li>
- &lt;li>
+ &lt;code&gt;[06]仲間になる&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
  報酬値:
- &lt;code>[1A1]ジラーチ&lt;/code>
- &lt;/li>
- &lt;li>
+ &lt;code&gt;[1A1]ジラーチ&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
  依頼主:
- &lt;code>[1A1]ジラーチ&lt;/code>
- &lt;/li>
- &lt;li>
+ &lt;code&gt;[1A1]ジラーチ&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
  対象ポケモン1:
- &lt;code>[1A1]ジラーチ&lt;/code>
- &lt;/li>
- &lt;li>
+ &lt;code&gt;[1A1]ジラーチ&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
  対象ポケモン2:
- &lt;code>[000]-&lt;/code>
- &lt;/li>
- &lt;li>
+ &lt;code&gt;[000]-&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
  対象の道具:
- &lt;code>[046]オレンのみ&lt;/code>
- &lt;/li>
- &lt;li>
+ &lt;code&gt;[046]オレンのみ&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
  ダンジョン:
- &lt;code class="text-primary">(選択)&lt;/code>
- &lt;/li>
- &lt;li>
+ &lt;code class="text-primary"&gt;(選択)&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
  フロア:
- &lt;code class="text-primary">(選択)&lt;/code>
- &lt;/li>
- &lt;li>固定フロア: [95]挑戦状 ジラーチ&lt;/li>
- &lt;li>
+ &lt;code class="text-primary"&gt;(選択)&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;固定フロア: [95]挑戦状 ジラーチ&lt;/li&gt;
+ &lt;li&gt;
  制限タイプ:
- &lt;code>[00]タイプ&lt;/code>
- &lt;/li>
- &lt;li>
+ &lt;code&gt;[00]タイプ&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
  制限値:
- &lt;code>[00]なし&lt;/code>
- &lt;/li>
- &lt;li>
+ &lt;code&gt;[00]なし&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
  SEED:
- &lt;code class="text-primary">ランダム(0x000000～0xFFFFFF)&lt;/code>
- &lt;/li>
- &lt;/ul>
- &lt;/div>
-&lt;/div></description></item><item><title>ふしぎなメール生成機</title><link>https://laioxy.github.io/wondermail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/</guid><description>&lt;link href="https://laioxy.github.io/css/wondermail/wondermail.css" rel="stylesheet" type="text/css" />
-&lt;script src="https://laioxy.github.io/js/poke_param.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/js/wondermail/mail.js" type="module">&lt;/script>
-&lt;script src="https://laioxy.github.io/js/wondermail/mail_param.js">&lt;/script>
+ &lt;code class="text-primary"&gt;ランダム(0x000000～0xFFFFFF)&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>ふしぎなメール生成機</title><link>https://laioxy.github.io/wondermail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/</guid><description>&lt;link href="https://laioxy.github.io/css/wondermail/wondermail.css" rel="stylesheet" type="text/css" /&gt;
+&lt;script src="https://laioxy.github.io/js/poke_param.js"&gt;&lt;/script&gt;
+&lt;script src="https://laioxy.github.io/js/json_script.js"&gt;&lt;/script&gt;
+&lt;script src="https://laioxy.github.io/js/wondermail/mail.js" type="module"&gt;&lt;/script&gt;
+&lt;script src="https://laioxy.github.io/js/wondermail/mail_param.js"&gt;&lt;/script&gt;
 
-&lt;div class="loading">
- &lt;div class="spinner-border" role="status">
- &lt;span class="visually-hidden">Loading...&lt;/span>
- &lt;/div>
- &lt;div id="progress-wrap" style="display: none">
+&lt;div class="loading"&gt;
+ &lt;div class="spinner-border" role="status"&gt;
+ &lt;span class="visually-hidden"&gt;Loading...&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;div id="progress-wrap" style="display: none"&gt;
  &lt;div
  id="progress-worker"
  class="progress"
@@ -202,398 +202,398 @@
  aria-label="Animated striped example"
  aria-valuenow="0"
  aria-valuemin="0"
- aria-valuemax="100">
+ aria-valuemax="100"&gt;
  &lt;div
  id="progress-worker-bar"
  class="progress-bar progress-bar-striped progress-bar-animated"
- style="width: 0%">&lt;/div>
- &lt;/div>
- &lt;button id="cancel-btn" type="button" class="btn btn-primary advanced">
+ style="width: 0%"&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;button id="cancel-btn" type="button" class="btn btn-primary advanced"&gt;
  Cancel
- &lt;/button>
- &lt;/div>
-&lt;/div>
+ &lt;/button&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="container-md pb-3">
- &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
- &lt;h1 class="m-0">ふしぎなメール 生成機&lt;/h1>
+&lt;div class="container-md pb-3"&gt;
+ &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle"&gt;
+ &lt;h1 class="m-0"&gt;ふしぎなメール 生成機&lt;/h1&gt;
 
- &lt;hr />
+ &lt;hr /&gt;
 
- &lt;p class="text-start">
+ &lt;p class="text-start"&gt;
  ポケダン
- &lt;span class="text-primary">時&lt;/span>
+ &lt;span class="text-primary"&gt;時&lt;/span&gt;
  /
- &lt;span class="text-danger">闇&lt;/span>
+ &lt;span class="text-danger"&gt;闇&lt;/span&gt;
  /
- &lt;span class="text-success">空&lt;/span>
+ &lt;span class="text-success"&gt;空&lt;/span&gt;
  のふしぎなメール用のパスワードを作成するツール。
- &lt;br />
+ &lt;br /&gt;
  楽に道具や仲間を集めたり、難しい依頼を作って挑戦したり、バグ技を試してみたりと、用途は様々。
- &lt;/p>
- &lt;p>
+ &lt;/p&gt;
+ &lt;p&gt;
  一応スマホにも対応していますが、使用環境は基本的にPCを想定しています。
- &lt;/p>
- &lt;div class="alert alert-warning">
- &lt;h5 class="alert-heading">
- &lt;i class="bi bi-exclamation-diamond-fill">&lt;/i>
+ &lt;/p&gt;
+ &lt;div class="alert alert-warning"&gt;
+ &lt;h5 class="alert-heading"&gt;
+ &lt;i class="bi bi-exclamation-diamond-fill"&gt;&lt;/i&gt;
  時闇でパスワードを作る場合...
- &lt;/h5>
- &lt;p>
+ &lt;/h5&gt;
+ &lt;p&gt;
  このサイトで使用している各種データは空準拠なので、時闇に無いもので生成するとゲーム側で正しく反映できない場合があります。
- &lt;br />
- &lt;span style="font-size: 0.8em">
+ &lt;br /&gt;
+ &lt;span style="font-size: 0.8em"&gt;
  例: シェイミ、オレソのみ、そらのいただき etc...
- &lt;/span>
- &lt;/p>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/p&gt;
+ &lt;/div&gt;
 
- &lt;div class="alert alert-danger mb-0">
- &lt;h5 class="alert-heading">
- &lt;i class="bi bi-exclamation-diamond-fill">&lt;/i>
+ &lt;div class="alert alert-danger mb-0"&gt;
+ &lt;h5 class="alert-heading"&gt;
+ &lt;i class="bi bi-exclamation-diamond-fill"&gt;&lt;/i&gt;
  必ずお読み下さい
- &lt;/h5>
- &lt;p>
+ &lt;/h5&gt;
+ &lt;p&gt;
  このツールで作成したパスワードはいわゆる「捏造パス」や「改造パス」と呼ばれるものとみなします。
- &lt;br />
+ &lt;br /&gt;
  各種サイト・SNS等へ掲載する際は、
- &lt;u>&lt;b>これらのパスが掲載可能である場所でのみ行ってください。&lt;/b>&lt;/u>
- &lt;br />
+ &lt;u&gt;&lt;b&gt;これらのパスが掲載可能である場所でのみ行ってください。&lt;/b&gt;&lt;/u&gt;
+ &lt;br /&gt;
  また、正規の手段で得られたパスワードとして偽って掲載することを
- &lt;b>禁止&lt;/b>
+ &lt;b&gt;禁止&lt;/b&gt;
  します。
- &lt;/p>
- &lt;hr />
- &lt;p>
+ &lt;/p&gt;
+ &lt;hr /&gt;
+ &lt;p&gt;
  組み合わせによってはセーブデータに影響を及ぼしたり、破損・フリーズを引き起こす場合があります。
- &lt;br />
- &lt;b>自己責任でご利用ください。&lt;/b>
- &lt;/p>
- &lt;/div>
+ &lt;br /&gt;
+ &lt;b&gt;自己責任でご利用ください。&lt;/b&gt;
+ &lt;/p&gt;
+ &lt;/div&gt;
 
- &lt;hr />
+ &lt;hr /&gt;
 
- &lt;p style="font-size: 0.8em">
+ &lt;p style="font-size: 0.8em"&gt;
  URL末尾に
- &lt;code>?advanced&lt;/code>
+ &lt;code&gt;?advanced&lt;/code&gt;
  を追記すると、上級者モード(Advanced Mode)に移行します。
- &lt;br />
+ &lt;br /&gt;
  主に研究用で、一部の項目の制限やエラーを無視して生成できます。また、同じ文字が連続するパスワードを総当たりで検索できます。
- &lt;span class="text-danger">動作は保証しません。&lt;/span>
- &lt;/p>
- &lt;/div>
+ &lt;span class="text-danger"&gt;動作は保証しません。&lt;/span&gt;
+ &lt;/p&gt;
+ &lt;/div&gt;
 
  &lt;div
  class="card p-sm-4 p-3 my-3 border border-secondary-subtle"
- id="pass-form">
- &lt;div id="advanced-alert" class="alert advanced" style="display: none">
- &lt;h5>Advanced Mode!&lt;/h5>
- &lt;span>項目や機能が拡張され、制限が解除されます。&lt;/span>
- &lt;a class="text-white" href="wondermail-s.html">元に戻す&lt;/a>
- &lt;/div>
- &lt;div class="mb-3">
- &lt;div class="d-flex flex-column flex-sm-row gap-0 gap-sm-3">
- &lt;div class="d-flex flex-column">
- &lt;label class="form-label">
- &lt;span>バージョン&lt;/span>
- &lt;/label>
- &lt;div class="btn-group text-nowrap mb-3 mb-sm-0">
+ id="pass-form"&gt;
+ &lt;div id="advanced-alert" class="alert advanced" style="display: none"&gt;
+ &lt;h5&gt;Advanced Mode!&lt;/h5&gt;
+ &lt;span&gt;項目や機能が拡張され、制限が解除されます。&lt;/span&gt;
+ &lt;a class="text-white" href="wondermail-s.html"&gt;元に戻す&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;div class="mb-3"&gt;
+ &lt;div class="d-flex flex-column flex-sm-row gap-0 gap-sm-3"&gt;
+ &lt;div class="d-flex flex-column"&gt;
+ &lt;label class="form-label"&gt;
+ &lt;span&gt;バージョン&lt;/span&gt;
+ &lt;/label&gt;
+ &lt;div class="btn-group text-nowrap mb-3 mb-sm-0"&gt;
  &lt;input
  class="btn-check"
  id="version-sky"
  type="radio"
  name="version"
  value="sky"
- checked />
- &lt;label class="btn btn-outline-primary" for="version-sky">空&lt;/label>
+ checked /&gt;
+ &lt;label class="btn btn-outline-primary" for="version-sky"&gt;空&lt;/label&gt;
  &lt;input
  class="btn-check"
  id="version-old"
  type="radio"
  name="version"
- value="old" />
- &lt;label class="btn btn-outline-primary" for="version-old">
+ value="old" /&gt;
+ &lt;label class="btn btn-outline-primary" for="version-old"&gt;
  時/闇
- &lt;/label>
- &lt;/div>
- &lt;/div>
- &lt;div class="d-flex flex-column">
- &lt;label class="form-label">リージョン&lt;/label>
- &lt;div class="btn-group text-nowrap" id="group-region">
+ &lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="d-flex flex-column"&gt;
+ &lt;label class="form-label"&gt;リージョン&lt;/label&gt;
+ &lt;div class="btn-group text-nowrap" id="group-region"&gt;
  &lt;input
  class="btn-check"
  id="region-jp"
  type="radio"
  name="region"
  value="jp"
- checked />
- &lt;label class="btn btn-outline-primary" for="region-jp">日本&lt;/label>
+ checked /&gt;
+ &lt;label class="btn btn-outline-primary" for="region-jp"&gt;日本&lt;/label&gt;
  &lt;input
  class="btn-check"
  id="region-na"
  type="radio"
  name="region"
- value="na" />
- &lt;label class="btn btn-outline-primary" for="region-na">北米&lt;/label>
+ value="na" /&gt;
+ &lt;label class="btn btn-outline-primary" for="region-na"&gt;北米&lt;/label&gt;
  &lt;input
  class="btn-check"
  id="region-eu"
  type="radio"
  name="region"
- value="eu" />
- &lt;label class="btn btn-outline-primary" for="region-eu">欧州&lt;/label>
- &lt;/div>
- &lt;/div>
- &lt;/div>
+ value="eu" /&gt;
+ &lt;label class="btn btn-outline-primary" for="region-eu"&gt;欧州&lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
  &lt;div
  class="text-primary mt-1"
  id="context-regionfree"
- style="display: none">
- &lt;i class="bi bi-info-circle-fill">&lt;/i>
+ style="display: none"&gt;
+ &lt;i class="bi bi-info-circle-fill"&gt;&lt;/i&gt;
  時/闇のパスワードはリージョンフリーなので指定は不要です。
- &lt;/div>
- &lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div class="mb-3">
- &lt;label class="col-12 form-label">
- &lt;span>パスワード&lt;/span>
- &lt;span class="context-sm" id="pass-maxlength">&lt;/span>
- &lt;/label>
+ &lt;div class="mb-3"&gt;
+ &lt;label class="col-12 form-label"&gt;
+ &lt;span&gt;パスワード&lt;/span&gt;
+ &lt;span class="context-sm" id="pass-maxlength"&gt;&lt;/span&gt;
+ &lt;/label&gt;
  &lt;textarea
  class="form-control d-grid"
  rows="2"
  id="pass-area"
- placeholder="スペース・改行など入っても大丈夫です">&lt;/textarea>
- &lt;/div>
+ placeholder="スペース・改行など入っても大丈夫です"&gt;&lt;/textarea&gt;
+ &lt;/div&gt;
 
- &lt;div class="mb-3 advanced">
- &lt;label class="form-label">
- &lt;span>チェックサム&lt;/span>
- &lt;span class="context-sm">(読み取り専用)&lt;/span>
- &lt;/label>
- &lt;div class="row g-3">
- &lt;div class="col-lg-3 col-6">
+ &lt;div class="mb-3 advanced"&gt;
+ &lt;label class="form-label"&gt;
+ &lt;span&gt;チェックサム&lt;/span&gt;
+ &lt;span class="context-sm"&gt;(読み取り専用)&lt;/span&gt;
+ &lt;/label&gt;
+ &lt;div class="row g-3"&gt;
+ &lt;div class="col-lg-3 col-6"&gt;
  &lt;input
  type="text"
  id="checksum1"
  class="form-control"
  placeholder="checksum1"
- readonly />
- &lt;/div>
- &lt;div class="col-lg-3 col-6">
+ readonly /&gt;
+ &lt;/div&gt;
+ &lt;div class="col-lg-3 col-6"&gt;
  &lt;input
  type="text"
  id="checksum2"
  class="form-control"
  placeholder="checksum2"
- readonly />
- &lt;/div>
- &lt;/div>
- &lt;/div>
+ readonly /&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div class="mb-3">
- &lt;label class="col-12 form-label">生成オプション&lt;/label>
+ &lt;div class="mb-3"&gt;
+ &lt;label class="col-12 form-label"&gt;生成オプション&lt;/label&gt;
  &lt;div
- class="d-flex flex-column flex-sm-row flex-wrap column-gap-3 row-gap-1">
- &lt;div class="btn-group mb-1 g-3 text-nowrap">
+ class="d-flex flex-column flex-sm-row flex-wrap column-gap-3 row-gap-1"&gt;
+ &lt;div class="btn-group mb-1 g-3 text-nowrap"&gt;
  &lt;input
  class="btn-check"
  id="option-multibyte"
  type="radio"
  name="option-multibyte"
  value="multi"
- checked />
- &lt;label class="btn btn-outline-primary" for="option-multibyte">
+ checked /&gt;
+ &lt;label class="btn btn-outline-primary" for="option-multibyte"&gt;
  全角
- &lt;/label>
+ &lt;/label&gt;
  &lt;input
  class="btn-check"
  id="option-singlebyte"
  type="radio"
  name="option-multibyte"
- value="single" />
- &lt;label class="btn btn-outline-primary" for="option-singlebyte">
+ value="single" /&gt;
+ &lt;label class="btn btn-outline-primary" for="option-singlebyte"&gt;
  半角
- &lt;/label>
- &lt;/div>
- &lt;div class="btn-group mb-1 g-3 text-nowrap">
+ &lt;/label&gt;
+ &lt;/div&gt;
+ &lt;div class="btn-group mb-1 g-3 text-nowrap"&gt;
  &lt;input
  class="btn-check"
  id="option-space"
  type="radio"
  name="option-space"
- checked />
- &lt;label class="btn btn-outline-primary" for="option-space">
+ checked /&gt;
+ &lt;label class="btn btn-outline-primary" for="option-space"&gt;
  スペースあり
- &lt;/label>
+ &lt;/label&gt;
  &lt;input
  class="btn-check"
  id="option-nospace"
  type="radio"
- name="option-space" />
- &lt;label class="btn btn-outline-primary" for="option-nospace">
+ name="option-space" /&gt;
+ &lt;label class="btn btn-outline-primary" for="option-nospace"&gt;
  スペースなし
- &lt;/label>
- &lt;/div>
- &lt;div class="btn-group mb-1 text-nowrap">
+ &lt;/label&gt;
+ &lt;/div&gt;
+ &lt;div class="btn-group mb-1 text-nowrap"&gt;
  &lt;input
  class="btn-check"
  id="option-line"
  type="radio"
  name="option-line"
- checked />
- &lt;label class="btn btn-outline-primary" for="option-line">
+ checked /&gt;
+ &lt;label class="btn btn-outline-primary" for="option-line"&gt;
  改行あり
- &lt;/label>
+ &lt;/label&gt;
  &lt;input
  class="btn-check"
  id="option-noline"
  type="radio"
- name="option-line" />
- &lt;label class="btn btn-outline-primary" for="option-noline">
+ name="option-line" /&gt;
+ &lt;label class="btn btn-outline-primary" for="option-noline"&gt;
  改行なし
- &lt;/label>
- &lt;/div>
- &lt;/div>
- &lt;/div>
+ &lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div class="advanced mb-3">
- &lt;div class="form-check">
- &lt;input class="form-check-input" type="checkbox" id="mode-consecutive" />
- &lt;label class="form-check-label" for="mode-consecutive">
+ &lt;div class="advanced mb-3"&gt;
+ &lt;div class="form-check"&gt;
+ &lt;input class="form-check-input" type="checkbox" id="mode-consecutive" /&gt;
+ &lt;label class="form-check-label" for="mode-consecutive"&gt;
  連続文字検索モード (試験的機能)
- &lt;/label>
- &lt;/div>
- &lt;div class="mode-consecutive" style="display: none">
- &lt;div class="d-flex flex-column gap-2 mt-2">
- &lt;div class="card">
- &lt;div class="card-header">検索オプション&lt;/div>
- &lt;div class="card-body">
- &lt;div class="input-group">
- &lt;span class="input-group-text">最大検索数&lt;/span>
+ &lt;/label&gt;
+ &lt;/div&gt;
+ &lt;div class="mode-consecutive" style="display: none"&gt;
+ &lt;div class="d-flex flex-column gap-2 mt-2"&gt;
+ &lt;div class="card"&gt;
+ &lt;div class="card-header"&gt;検索オプション&lt;/div&gt;
+ &lt;div class="card-body"&gt;
+ &lt;div class="input-group"&gt;
+ &lt;span class="input-group-text"&gt;最大検索数&lt;/span&gt;
  &lt;input
  class="form-control"
  type="number"
  id="consecutive-max"
- value="100000" />
- &lt;/div>
- &lt;span class="form-text">
+ value="100000" /&gt;
+ &lt;/div&gt;
+ &lt;span class="form-text"&gt;
  多くても1000000ぐらい推奨、多い程時間がかかります
- &lt;/span>
- &lt;/div>
- &lt;/div>
- &lt;div class="card">
- &lt;div class="card-header">&lt;span>ランダム項目&lt;/span>&lt;/div>
- &lt;div class="card-body">
- &lt;span class="form-text">
+ &lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="card"&gt;
+ &lt;div class="card-header"&gt;&lt;span&gt;ランダム項目&lt;/span&gt;&lt;/div&gt;
+ &lt;div class="card-body"&gt;
+ &lt;span class="form-text"&gt;
  チェックを入れた項目は入力内容にかかわらずランダム化して生成します
- &lt;/span>
- &lt;div class="form-check">
+ &lt;/span&gt;
+ &lt;div class="form-check"&gt;
  &lt;input
  class="form-check-input"
  type="checkbox"
- id="consecutive-random-reward-value" />
+ id="consecutive-random-reward-value" /&gt;
  &lt;label
  class="form-check-label"
- for="consecutive-random-reward-value">
+ for="consecutive-random-reward-value"&gt;
  報酬値
- &lt;/label>
- &lt;/div>
- &lt;div class="form-check">
+ &lt;/label&gt;
+ &lt;/div&gt;
+ &lt;div class="form-check"&gt;
  &lt;input
  class="form-check-input"
  type="checkbox"
- id="consecutive-random-pokemon" />
+ id="consecutive-random-pokemon" /&gt;
  &lt;label
  class="form-check-label"
- for="consecutive-random-pokemon">
+ for="consecutive-random-pokemon"&gt;
  依頼主・対象ポケモン
- &lt;/label>
- &lt;/div>
- &lt;div class="form-check">
+ &lt;/label&gt;
+ &lt;/div&gt;
+ &lt;div class="form-check"&gt;
  &lt;input
  class="form-check-input"
  type="checkbox"
- id="consecutive-random-target-item" />
+ id="consecutive-random-target-item" /&gt;
  &lt;label
  class="form-check-label"
- for="consecutive-random-target-item">
+ for="consecutive-random-target-item"&gt;
  対象の道具
- &lt;/label>
- &lt;/div>
- &lt;div class="form-check">
+ &lt;/label&gt;
+ &lt;/div&gt;
+ &lt;div class="form-check"&gt;
  &lt;input
  class="form-check-input"
  type="checkbox"
  id="consecutive-random-seed"
- checked />
- &lt;label class="form-check-label" for="consecutive-random-seed">
+ checked /&gt;
+ &lt;label class="form-check-label" for="consecutive-random-seed"&gt;
  Seed
- &lt;/label>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
+ &lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div class="d-grid mb-0">
- &lt;div class="btn-group">
- &lt;button class="btn btn-primary btn-lg" id="pass-analysis">
+ &lt;div class="d-grid mb-0"&gt;
+ &lt;div class="btn-group"&gt;
+ &lt;button class="btn btn-primary btn-lg" id="pass-analysis"&gt;
  パスワード展開
- &lt;/button>
- &lt;button class="btn btn-danger btn-lg" id="pass-generate">
+ &lt;/button&gt;
+ &lt;button class="btn btn-danger btn-lg" id="pass-generate"&gt;
  パスワード生成
- &lt;/button>
- &lt;/div>
- &lt;/div>
- &lt;div class="advanced mt-3 mb-0">
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="advanced mt-3 mb-0"&gt;
  &lt;a
  id="mission-rawdata-collapse"
  class="text-black"
  role="button"
  data-bs-toggle="collapse"
- data-bs-target="#mission-rawdata-div">
- &lt;span class="form-label">生データ&lt;/span>
- &lt;i class="bi bi-caret-down-fill">&lt;/i>
- &lt;/a>
- &lt;div id="mission-rawdata-div" class="collapse">
+ data-bs-target="#mission-rawdata-div"&gt;
+ &lt;span class="form-label"&gt;生データ&lt;/span&gt;
+ &lt;i class="bi bi-caret-down-fill"&gt;&lt;/i&gt;
+ &lt;/a&gt;
+ &lt;div id="mission-rawdata-div" class="collapse"&gt;
  &lt;textarea
  id="mission-rawdata"
  class="form-control font-monospace"
  rows="2"
- readonly>&lt;/textarea>
- &lt;/div>
- &lt;/div>
+ readonly&gt;&lt;/textarea&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  &lt;div
  id="pass-alert"
  class="mt-3 mb-0 alert"
  role="alert"
- style="display: none">&lt;/div>
+ style="display: none"&gt;&lt;/div&gt;
 
- &lt;hr class="mt-5" />
+ &lt;hr class="mt-5" /&gt;
 
- &lt;div class="d-flex flex-column gap-4">
- &lt;div class="area-mission">
- &lt;p class="fs-5 mb-1">依頼の内容&lt;/p></description></item><item><title>ポケモンチェッカー</title><link>https://laioxy.github.io/checker/pokemon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/checker/pokemon/</guid><description/></item><item><title>任意タマゴ孵化</title><link>https://laioxy.github.io/wondermail/anyegg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/anyegg/</guid><description>&lt;script src="https://laioxy.github.io/js/poke_param.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/js/wondermail/anyegg.js" type="module">&lt;/script>
-&lt;div class="container-md pb-3">
- &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
- &lt;h1 class="m-0">任意タマゴ孵化バグ用生成機&lt;/h1>
- &lt;hr />
- &lt;p>
+ &lt;div class="d-flex flex-column gap-4"&gt;
+ &lt;div class="area-mission"&gt;
+ &lt;p class="fs-5 mb-1"&gt;依頼の内容&lt;/p&gt;</description></item><item><title>ポケモンチェッカー</title><link>https://laioxy.github.io/checker/pokemon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/checker/pokemon/</guid><description/></item><item><title>任意タマゴ孵化</title><link>https://laioxy.github.io/wondermail/anyegg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/wondermail/anyegg/</guid><description>&lt;script src="https://laioxy.github.io/js/poke_param.js"&gt;&lt;/script&gt;
+&lt;script src="https://laioxy.github.io/js/json_script.js"&gt;&lt;/script&gt;
+&lt;script src="https://laioxy.github.io/js/wondermail/anyegg.js" type="module"&gt;&lt;/script&gt;
+&lt;div class="container-md pb-3"&gt;
+ &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle"&gt;
+ &lt;h1 class="m-0"&gt;任意タマゴ孵化バグ用生成機&lt;/h1&gt;
+ &lt;hr /&gt;
+ &lt;p&gt;
  「ポケモン不思議のダンジョン
  時の探検隊・闇の探検隊・空の探検隊」の任意ポケモン孵化用のパスワードを作成するツール。
- &lt;br />
+ &lt;br /&gt;
  最低限の機能だけ実装した簡易版です。
- &lt;/p>
- &lt;p>
+ &lt;/p&gt;
+ &lt;p&gt;
  このページに書かれている内容はポケダン空を準拠としているので、シェイミ等時闇に存在しないポケモンは一部データが異なる場合があります。
- &lt;/p>
+ &lt;/p&gt;
 
- &lt;div class="youtube mb-3">
+ &lt;div class="youtube mb-3"&gt;
  &lt;iframe
  width=""
  height=""
@@ -601,196 +601,196 @@
  title="YouTube video player"
  frameborder="0"
  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
- allowfullscreen>&lt;/iframe>
- &lt;/div>
+ allowfullscreen&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
 
- &lt;p>実行前に以下の事項を確認してください。&lt;/p>
- &lt;ul>
- &lt;li>トレジャーバッグに「ガバイトのウロコ」が入っていない&lt;/li>
- &lt;li>おせわやラッキーにタマゴを預けていない状態にする&lt;/li>
- &lt;li>
+ &lt;p&gt;実行前に以下の事項を確認してください。&lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;トレジャーバッグに「ガバイトのウロコ」が入っていない&lt;/li&gt;
+ &lt;li&gt;おせわやラッキーにタマゴを預けていない状態にする&lt;/li&gt;
+ &lt;li&gt;
  「めいきゅうのどうくつ」を解禁している
- &lt;ul>
- &lt;li>遠征終了（Chapter-10 ヨノワール）まで進めて公式依頼を実行&lt;/li>
- &lt;li>空の探検隊の場合、カフェに来るトゲチックの依頼でも可&lt;/li>
- &lt;/ul>
- &lt;/li>
- &lt;/ul>
- &lt;p>
+ &lt;ul&gt;
+ &lt;li&gt;遠征終了（Chapter-10 ヨノワール）まで進めて公式依頼を実行&lt;/li&gt;
+ &lt;li&gt;空の探検隊の場合、カフェに来るトゲチックの依頼でも可&lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;p&gt;
  パスワード入力後、「めいきゅうのどうくつ」をクリアすると依頼の報酬で貰えるタマゴを孵すことで、任意のポケモンが仲間になります。
- &lt;/p>
- &lt;p>
+ &lt;/p&gt;
+ &lt;p&gt;
  通常のふしぎなメール生成機は
- &lt;a href="https://laioxy.github.io/wondermail/">こちら&lt;/a>
- &lt;/p>
- &lt;/div>
+ &lt;a href="https://laioxy.github.io/wondermail/"&gt;こちら&lt;/a&gt;
+ &lt;/p&gt;
+ &lt;/div&gt;
 
  &lt;div
  class="card p-sm-4 p-3 my-3 border border-secondary-subtle"
- id="pass-form">
- &lt;div class="d-flex flex-column gap-3">
- &lt;div class="d-flex flex-column">
- &lt;p class="fs-5 mb-1">バージョン&lt;/p>
- &lt;div class="btn-group text-nowrap mb-3 mb-sm-0">
+ id="pass-form"&gt;
+ &lt;div class="d-flex flex-column gap-3"&gt;
+ &lt;div class="d-flex flex-column"&gt;
+ &lt;p class="fs-5 mb-1"&gt;バージョン&lt;/p&gt;
+ &lt;div class="btn-group text-nowrap mb-3 mb-sm-0"&gt;
  &lt;input
  class="btn-check"
  id="version-sky"
  type="radio"
  name="version"
  value="sky"
- checked />
- &lt;label class="btn btn-outline-primary" for="version-sky">空&lt;/label>
+ checked /&gt;
+ &lt;label class="btn btn-outline-primary" for="version-sky"&gt;空&lt;/label&gt;
  &lt;input
  class="btn-check"
  id="version-old"
  type="radio"
  name="version"
- value="old" />
- &lt;label class="btn btn-outline-primary" for="version-old">時/闇&lt;/label>
- &lt;/div>
- &lt;/div>
+ value="old" /&gt;
+ &lt;label class="btn btn-outline-primary" for="version-old"&gt;時/闇&lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div class="d-flex flex-column">
- &lt;p class="fs-5 mb-1">リージョン&lt;/p>
- &lt;div class="btn-group text-nowrap" id="group-region">
+ &lt;div class="d-flex flex-column"&gt;
+ &lt;p class="fs-5 mb-1"&gt;リージョン&lt;/p&gt;
+ &lt;div class="btn-group text-nowrap" id="group-region"&gt;
  &lt;input
  class="btn-check"
  id="region-jp"
  type="radio"
  name="region"
  value="jp"
- checked />
- &lt;label class="btn btn-outline-primary" for="region-jp">日本&lt;/label>
+ checked /&gt;
+ &lt;label class="btn btn-outline-primary" for="region-jp"&gt;日本&lt;/label&gt;
  &lt;input
  class="btn-check"
  id="region-na"
  type="radio"
  name="region"
- value="na" />
- &lt;label class="btn btn-outline-primary" for="region-na">北米&lt;/label>
+ value="na" /&gt;
+ &lt;label class="btn btn-outline-primary" for="region-na"&gt;北米&lt;/label&gt;
  &lt;input
  class="btn-check"
  id="region-eu"
  type="radio"
  name="region"
- value="eu" />
- &lt;label class="btn btn-outline-primary" for="region-eu">欧州&lt;/label>
- &lt;/div>
+ value="eu" /&gt;
+ &lt;label class="btn btn-outline-primary" for="region-eu"&gt;欧州&lt;/label&gt;
+ &lt;/div&gt;
  &lt;div
  class="text-primary mt-1"
  id="context-regionfree"
- style="display: none">
- &lt;i class="bi bi-info-circle-fill">&lt;/i>
+ style="display: none"&gt;
+ &lt;i class="bi bi-info-circle-fill"&gt;&lt;/i&gt;
  時/闇のパスワードはリージョンフリーなので指定は不要です。
- &lt;/div>
- &lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div>
- &lt;p class="fs-5 mb-1">欲しいポケモン&lt;/p>
- &lt;div class="row g-2">
- &lt;div class="item col-md-12">
- &lt;div class="form-floating">
- &lt;select id="pokemon" class="form-select">&lt;/select>
- &lt;label for="pokemon">ポケモン&lt;/label>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
+ &lt;div&gt;
+ &lt;p class="fs-5 mb-1"&gt;欲しいポケモン&lt;/p&gt;
+ &lt;div class="row g-2"&gt;
+ &lt;div class="item col-md-12"&gt;
+ &lt;div class="form-floating"&gt;
+ &lt;select id="pokemon" class="form-select"&gt;&lt;/select&gt;
+ &lt;label for="pokemon"&gt;ポケモン&lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div>
- &lt;div class="d-grid mb-0">
- &lt;button class="btn btn-primary btn-lg" id="pass-generate">
+ &lt;div&gt;
+ &lt;div class="d-grid mb-0"&gt;
+ &lt;button class="btn btn-primary btn-lg" id="pass-generate"&gt;
  パスワード生成
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div class="caution alert alert-warning" style="display: none">
- &lt;div class="text-wrap">&lt;/div>
- &lt;div class="fix-wrap" style="display: none">
- &lt;hr />
+ &lt;div class="caution alert alert-warning" style="display: none"&gt;
+ &lt;div class="text-wrap"&gt;&lt;/div&gt;
+ &lt;div class="fix-wrap" style="display: none"&gt;
+ &lt;hr /&gt;
  こちらの個体を推奨します:
- &lt;span class="fix-text">&lt;/span>
- &lt;div class="btn btn-sm btn-danger fix-pokemon">変更&lt;/div>
- &lt;/div>
- &lt;/div>
+ &lt;span class="fix-text"&gt;&lt;/span&gt;
+ &lt;div class="btn btn-sm btn-danger fix-pokemon"&gt;変更&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div>
- &lt;p class="fs-5 mb-1">パスワード&lt;/p></description></item><item><title>救助依頼ランダム生成</title><link>https://laioxy.github.io/rescue/random/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue/random/</guid><description/></item><item><title>救助依頼複製ツール</title><link>https://laioxy.github.io/rescue/duplicate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue/duplicate/</guid><description>&lt;script src="https://laioxy.github.io/js/rescue/password.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/js/rescue/duplicate.js">&lt;/script>
+ &lt;div&gt;
+ &lt;p class="fs-5 mb-1"&gt;パスワード&lt;/p&gt;</description></item><item><title>救助依頼ランダム生成</title><link>https://laioxy.github.io/rescue/random/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue/random/</guid><description/></item><item><title>救助依頼複製ツール</title><link>https://laioxy.github.io/rescue/duplicate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue/duplicate/</guid><description>&lt;script src="https://laioxy.github.io/js/rescue/password.js"&gt;&lt;/script&gt;
+&lt;script src="https://laioxy.github.io/js/rescue/duplicate.js"&gt;&lt;/script&gt;
 
-&lt;div class="container-md pb-3">
- &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
- &lt;h1 class="m-0">救助依頼複製ツール&lt;/h1>
- &lt;hr />
- &lt;p class="text-start m-0">
+&lt;div class="container-md pb-3"&gt;
+ &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle"&gt;
+ &lt;h1 class="m-0"&gt;救助依頼複製ツール&lt;/h1&gt;
+ &lt;hr /&gt;
+ &lt;p class="text-start m-0"&gt;
  救助依頼を中身そのまんま別の救助依頼として複製するツール。
- &lt;br />
+ &lt;br /&gt;
  パスワードを入力してボタンをクリックするだけ。約21億通り作れるので被ることはまず無いです。
- &lt;br />
+ &lt;br /&gt;
  有用な救助保存を何度もこなしたい時にどうぞ。
- &lt;/p>
- &lt;/div>
+ &lt;/p&gt;
+ &lt;/div&gt;
 
- &lt;div>
- &lt;div class="d-flex flex-column gap-3">
- &lt;div class="d-flex flex-md-row flex-column gap-3">
- &lt;div class="card card-body col-md border border-secondary-subtle">
- &lt;h4>パスワード入力&lt;/h4>
- &lt;div class="row d-flex flex-column gap-3">
- &lt;div>
+ &lt;div&gt;
+ &lt;div class="d-flex flex-column gap-3"&gt;
+ &lt;div class="d-flex flex-md-row flex-column gap-3"&gt;
+ &lt;div class="card card-body col-md border border-secondary-subtle"&gt;
+ &lt;h4&gt;パスワード入力&lt;/h4&gt;
+ &lt;div class="row d-flex flex-column gap-3"&gt;
+ &lt;div&gt;
  &lt;textarea
  class="form-control d-grid"
  rows="3"
  id="pass-area"
- placeholder="たすけてメールのパスワードを入力 (スペース・改行可)">&lt;/textarea>
- &lt;/div>
- &lt;div class="d-grid">
- &lt;button class="btn btn-primary btn-lg" id="pass-duplicate">
+ placeholder="たすけてメールのパスワードを入力 (スペース・改行可)"&gt;&lt;/textarea&gt;
+ &lt;/div&gt;
+ &lt;div class="d-grid"&gt;
+ &lt;button class="btn btn-primary btn-lg" id="pass-duplicate"&gt;
  パスワード複製
- &lt;/button>
- &lt;p class="form-text mb-0">押下する度にランダム生成します&lt;/p>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
+ &lt;/button&gt;
+ &lt;p class="form-text mb-0"&gt;押下する度にランダム生成します&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div class="d-flex flex-md-row flex-column gap-3">
- &lt;div class="card card-body col-md">
- &lt;h4>生成したパスワード&lt;/h4>
- &lt;div class="d-flex flex-column gap-3">
- &lt;div>
+ &lt;div class="d-flex flex-md-row flex-column gap-3"&gt;
+ &lt;div class="card card-body col-md"&gt;
+ &lt;h4&gt;生成したパスワード&lt;/h4&gt;
+ &lt;div class="d-flex flex-column gap-3"&gt;
+ &lt;div&gt;
  &lt;textarea
  id="pass-sos"
  class="form-control d-grid"
  rows="3"
- readonly>&lt;/textarea>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div></description></item><item><title>自演救助ツール</title><link>https://laioxy.github.io/rescue/self-rescue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue/self-rescue/</guid><description>&lt;script src="https://laioxy.github.io/js/json_script.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/js/rescue/password.js">&lt;/script>
-&lt;script src="https://laioxy.github.io/js/rescue/self-rescue.js">&lt;/script>
+ readonly&gt;&lt;/textarea&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>自演救助ツール</title><link>https://laioxy.github.io/rescue/self-rescue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://laioxy.github.io/rescue/self-rescue/</guid><description>&lt;script src="https://laioxy.github.io/js/json_script.js"&gt;&lt;/script&gt;
+&lt;script src="https://laioxy.github.io/js/rescue/password.js"&gt;&lt;/script&gt;
+&lt;script src="https://laioxy.github.io/js/rescue/self-rescue.js"&gt;&lt;/script&gt;
 
-&lt;div class="container-md pb-3">
- &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle">
- &lt;h1 class="m-0">自演救助ツール&lt;/h1>
- &lt;hr />
+&lt;div class="container-md pb-3"&gt;
+ &lt;div class="card p-sm-4 p-3 my-3 border border-secondary-subtle"&gt;
+ &lt;h1 class="m-0"&gt;自演救助ツール&lt;/h1&gt;
+ &lt;hr /&gt;
 
- &lt;p class="text-start">
+ &lt;p class="text-start"&gt;
  「ポケモン不思議のダンジョン
  時の探検隊/闇の探検隊/空の探検隊」の自演救助ツール。
- &lt;br />
+ &lt;br /&gt;
  たすけてメールのパスワードを入力するだけで即救助できます。ついでに道具も貰うことができます。
- &lt;br />
- &lt;b>救助を待つ必要は無し、そして人情も無し！&lt;/b>
- &lt;br />
- &lt;/p>
+ &lt;br /&gt;
+ &lt;b&gt;救助を待つ必要は無し、そして人情も無し！&lt;/b&gt;
+ &lt;br /&gt;
+ &lt;/p&gt;
 
- &lt;div class="youtube mb-3">
+ &lt;div class="youtube mb-3"&gt;
  &lt;iframe
  width=""
  height=""
@@ -798,104 +798,104 @@
  title="YouTube video player"
  frameborder="0"
  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
- allowfullscreen>&lt;/iframe>
- &lt;/div>
+ allowfullscreen&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
 
- &lt;p>
+ &lt;p&gt;
  ちなみに、ふっかつメールのパスワードを打ち込むとおれいのメールも生成できます。
- &lt;br />
+ &lt;br /&gt;
  お礼を貰いたくて仕方がない図々しい方は是非。
- &lt;/p>
- &lt;p>全バージョン(時/闇/空)、全リージョン(日本/北米/欧州)対応。&lt;/p>
- &lt;p>
+ &lt;/p&gt;
+ &lt;p&gt;全バージョン(時/闇/空)、全リージョン(日本/北米/欧州)対応。&lt;/p&gt;
+ &lt;p&gt;
  本来は贈ることができない「ゼロのしま せいぶ」「ゼロのしま なんぶ」でもお礼の道具を贈ることができます。
- &lt;/p>
- &lt;/div>
+ &lt;/p&gt;
+ &lt;/div&gt;
 
- &lt;div>
- &lt;div class="d-flex flex-column gap-3">
- &lt;div class="d-flex flex-md-row flex-column gap-3">
- &lt;div class="card card-body col-md">
- &lt;h4>パスワード入力&lt;/h4>
- &lt;div class="row d-flex flex-column gap-3">
- &lt;div>
+ &lt;div&gt;
+ &lt;div class="d-flex flex-column gap-3"&gt;
+ &lt;div class="d-flex flex-md-row flex-column gap-3"&gt;
+ &lt;div class="card card-body col-md"&gt;
+ &lt;h4&gt;パスワード入力&lt;/h4&gt;
+ &lt;div class="row d-flex flex-column gap-3"&gt;
+ &lt;div&gt;
  &lt;textarea
  class="form-control d-grid"
  rows="3"
  id="pass-area"
- placeholder="たすけてメール・ふっかつメールのパスワードを入力 (スペース・改行可)">&lt;/textarea>
- &lt;/div>
+ placeholder="たすけてメール・ふっかつメールのパスワードを入力 (スペース・改行可)"&gt;&lt;/textarea&gt;
+ &lt;/div&gt;
 
- &lt;div>
- &lt;div class="form-floating">
- &lt;select id="gift-item" class="form-select">&lt;/select>
- &lt;label for="gift-item">贈ってもらう道具&lt;/label>
- &lt;/div>
- &lt;/div>
+ &lt;div&gt;
+ &lt;div class="form-floating"&gt;
+ &lt;select id="gift-item" class="form-select"&gt;&lt;/select&gt;
+ &lt;label for="gift-item"&gt;贈ってもらう道具&lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div id="gift-item-count-wrap">
- &lt;div class="form-floating">
+ &lt;div id="gift-item-count-wrap"&gt;
+ &lt;div class="form-floating"&gt;
  &lt;input
  id="gift-item-count"
  class="form-control"
  type="number"
  value="1"
  min="0"
- max="99" />
- &lt;label for="gift-item-count">道具の個数&lt;/label>
- &lt;/div>
- &lt;/div>
- &lt;div id="gift-item-inner-wrap">
- &lt;div class="form-floating">
- &lt;select id="gift-item-inner" class="form-select">&lt;/select>
- &lt;label for="gift-item-inner">中身&lt;/label>
- &lt;/div>
- &lt;/div>
+ max="99" /&gt;
+ &lt;label for="gift-item-count"&gt;道具の個数&lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div id="gift-item-inner-wrap"&gt;
+ &lt;div class="form-floating"&gt;
+ &lt;select id="gift-item-inner" class="form-select"&gt;&lt;/select&gt;
+ &lt;label for="gift-item-inner"&gt;中身&lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div class="d-grid">
- &lt;button class="btn btn-primary btn-lg" id="pass-analysis">
+ &lt;div class="d-grid"&gt;
+ &lt;button class="btn btn-primary btn-lg" id="pass-analysis"&gt;
  ふっかつ/おれいのメール作成
- &lt;/button>
- &lt;/div>
+ &lt;/button&gt;
+ &lt;/div&gt;
 
- &lt;div id="caution">
- &lt;!-- エラーメッセージ -->
+ &lt;div id="caution"&gt;
+ &lt;!-- エラーメッセージ --&gt;
  &lt;div
  id="error-box"
  class="caution alert alert-danger"
- style="display: none">
- &lt;div id="error-text" class="text-wrap">&lt;/div>
- &lt;/div>
- &lt;!-- 警告メッセージ -->
+ style="display: none"&gt;
+ &lt;div id="error-text" class="text-wrap"&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;!-- 警告メッセージ --&gt;
  &lt;div
  id="warning-box"
  class="caution alert alert-warning"
- style="display: none">
- &lt;div id="warning-text" class="text-wrap">&lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
+ style="display: none"&gt;
+ &lt;div id="warning-text" class="text-wrap"&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
- &lt;div class="d-flex flex-md-row flex-column gap-3">
- &lt;div class="card card-body col-md">
- &lt;h4>生成した救助パスワード&lt;/h4>
- &lt;div class="d-flex flex-column gap-3">
- &lt;div>
+ &lt;div class="d-flex flex-md-row flex-column gap-3"&gt;
+ &lt;div class="card card-body col-md"&gt;
+ &lt;h4&gt;生成した救助パスワード&lt;/h4&gt;
+ &lt;div class="d-flex flex-column gap-3"&gt;
+ &lt;div&gt;
  &lt;textarea
  id="pass-result"
  class="form-control d-grid"
  rows="3"
- readonly>&lt;/textarea>
+ readonly&gt;&lt;/textarea&gt;
  &lt;label
  id="pass-result-label"
  class="form-label form-text"
- style="display: none">&lt;/label>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div></description></item></channel></rss>
+ style="display: none"&gt;&lt;/label&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>
