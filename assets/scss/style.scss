@@ -56,13 +56,13 @@ html {
   p:last-child {
     margin-bottom: 0; /* 最後の<p>だけmargin消す */
   }
-  @media only screen and (max-width: 768px) {
-    input[type="text"],
-    input[type="number"],
-    textarea {
-      font-size: 16px;
-    }
-  }
+  // @media only screen and (max-width: 768px) {
+  //   input[type="text"],
+  //   input[type="number"],
+  //   textarea {
+  //     font-size: 16px;
+  //   }
+  // }
 }
 
 h1,
@@ -461,14 +461,18 @@ label + a[data-bs-toggle="tooltip"] {
 }
 /* choices.js 選択している項目 */
 [data-bs-theme="light"] .choices {
+  .choices__list--dropdown .choices__item--selectable.is-selected,
   .choices__list--dropdown .choices__item--selectable.is-highlighted,
+  .choices__list[aria-expanded] .choices__item--selectable.is-selected,
   .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
     background-color: var(--bs-body-bg);
     filter: brightness(0.9);
   }
 }
 [data-bs-theme="dark"] .choices {
+  .choices__list--dropdown .choices__item--selectable.is-selected,
   .choices__list--dropdown .choices__item--selectable.is-highlighted,
+  .choices__list[aria-expanded] .choices__item--selectable.is-selected,
   .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
     background-color: var(--bs-body-bg);
     filter: brightness(1.4);
