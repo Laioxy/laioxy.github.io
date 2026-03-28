@@ -175,9 +175,9 @@ const checkPokemonData = [
   { baseId: 412, formId: 1, sortId: 412.0, imageSuffix: '-sandy' },
   { baseId: 412, formId: 0, sortId: 412.1, imageSuffix: '' },
   { baseId: 412, formId: 2, sortId: 412.2, imageSuffix: '-trash' },
-  { baseId: 413, formId: 1, sortId: 413.0, imageSuffix: '-sandy' },
+  { baseId: 10004, formId: 1, sortId: 413.0, imageSuffix: '' },
   { baseId: 413, formId: 0, sortId: 413.1, imageSuffix: '' },
-  { baseId: 413, formId: 2, sortId: 413.2, imageSuffix: '-trash' },
+  { baseId: 10005, formId: 2, sortId: 413.2, imageSuffix: '' },
   // Shellos/Gastrodon forms
   { baseId: 422, formId: 1, sortId: 422.0, imageSuffix: '-east' },
   { baseId: 422, formId: 0, sortId: 422.1, imageSuffix: '' },
