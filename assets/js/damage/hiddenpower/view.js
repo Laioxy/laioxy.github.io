@@ -493,6 +493,11 @@ function attackHiddenPower() {
   attackLogPointer = attackLog.length;
   updateAttackLogView();
   updateResultView();
+
+  // 与ダメ値・タイプ相性・急所をリセット
+  moveDamageElement.value = 0;
+  moveMatchupElement.value = 2;
+  moveCriticalElement.checked = false;
 }
 
 /**
