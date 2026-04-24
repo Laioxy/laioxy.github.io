@@ -156,6 +156,11 @@
                 {{ end }}
               </li>
               <li class="nav-item">
+                {{ with ref . "/damage/hiddenpower.md" }}
+                  <a class="nav-link" href="{{ . }}">めざめるパワー識別機</a>
+                {{ end }}
+              </li>
+              <li class="nav-item">
                 {{ with ref . "/checker/pokemon.md" }}
                   <a class="nav-link" href="{{ . }}">ポケモンチェッカー</a>
                 {{ end }}

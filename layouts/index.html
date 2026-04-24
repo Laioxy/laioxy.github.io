@@ -12,7 +12,7 @@
     </h3>
     <h5 class="top-icon text-light-emphasis">
       <img src="/img/item/item_12_1.png" />
-      データベース・計算機
+      ダンジョンツール
     </h5>
     <div class="card-flex">
       <div class="card">
@@ -23,6 +23,17 @@
             {{ end }}
           </h5>
           <p>ポケモンが与えるダメージを計算します。</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">
+            {{ with ref . "/damage/hiddenpower.md" }}
+              <a href="{{ . }}" class="stretched-link">めざめるパワー識別機</a>
+            {{ end }}
+          </h5>
+          <p>めざめるパワーのタイプと威力を判定します。</p>
         </div>
       </div>
 
