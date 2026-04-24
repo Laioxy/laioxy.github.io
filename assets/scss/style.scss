@@ -426,6 +426,7 @@ label + a[data-bs-toggle="tooltip"] {
     background-color: var(--bs-body-bg);
     border-bottom-color: var(--bs-border-color);
     padding: 8px;
+    width: 100% !important;
   }
   /* Select 下矢印 */
   &[data-type*="select-one"]::after {
