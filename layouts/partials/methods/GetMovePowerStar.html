@@ -1,0 +1,18 @@
+{{ $res := 0 }}
+{{ $input := int . }}
+
+{{ if ge $input 23 }}
+  {{ $res = 8 }}
+{{ else if ge $input 18 }}
+  {{ $res = 7 }}
+{{ else if ge $input 14 }}
+  {{ $res = 6 }}
+{{ else if ge $input 10 }}
+  {{ $res = 5 }}
+{{ else if ge $input 5 }}
+  {{ $res = 4 }}
+{{ else if ge $input 1 }}
+  {{ $res = 3 }}
+{{ end }}
+
+{{ return $res }}
