@@ -402,6 +402,19 @@ function parseHTML(html) {
 }
 
 /**
+ * 敵がスポーン可能な固定フロアであるかチェック
+ * @param {*} fixedFloorId 固定フロアID
+ * @returns true/false
+ */
+function isEnemySpawnableFixedFloor(fixedFloorId) {
+  return (
+    fixedFloorId == 0 ||
+    (0xaa <= fixedFloorId && fixedFloorId <= 0xc5) ||
+    (0xdc <= fixedFloorId && fixedFloorId <= 0xe5)
+  );
+}
+
+/**
  * [Select2] カスタム検索
  * IDや性別は含まず、項目の名称だけで検索できるようにするもの
  *

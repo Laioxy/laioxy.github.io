@@ -14,6 +14,7 @@ const jsonPathsArray = {
   message: '/data/message.min.json',
   type: '/data/type.min.json',
   iqgroup: '/data/iqgroup.min.json',
+  iqskill: '/data/iqskill.min.json',
   rescue: '/data/rescue.min.json',
 };
 

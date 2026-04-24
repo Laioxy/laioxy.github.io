@@ -1,0 +1,600 @@
+{{ define "main" }}
+  {{ partial "jsbuild" (dict "src" "js/damage/hiddenpower/view.js" "output" "bandle.js") }}
+
+  {{ $pokemon_json := resources.Get "data/pokemon.json" | transform.Unmarshal }}
+  {{ $item_json := resources.Get "data/item.json" | transform.Unmarshal }}
+  {{ $dungeon_json := resources.Get "data/dungeon.json" | transform.Unmarshal }}
+  {{ $floor_json := resources.Get "data/floor.json" | transform.Unmarshal }}
+  {{ $type_json := resources.Get "data/type.json" | transform.Unmarshal }}
+
+  {{/* 特性 */}}
+  {{ $abilities := slice }}
+  {{ range seq 123 }}
+    {{ $ability := partial "methods/GetAbilityById.html" . }}
+    {{ $abilities = $abilities | append $ability }}
+  {{ end }}
+  {{ $abilities = sort $abilities "Name" }}
+
+
+  <div class="container-xl py-3" id="damage-hiddenpower">
+    <div
+      class="d-flex align-items-start justify-content-between flex-column flex-sm-row mb-2">
+      <h1 class="mb-sm-1">めざめるパワー識別機</h1>
+      <button
+        type="button"
+        class="btn btn-sm btn-primary"
+        id="btn-changelog"
+        data-bs-toggle="modal"
+        data-bs-target="#modal-changelog">
+        更新履歴
+      </button>
+    </div>
+    <div class="my-3">
+      めざめるパワーのタイプと威力を与えたダメージから判定するツール。
+      <span class="text-body-tertiary">
+        不思議のダンジョン繋がりで「識別機」と名付けています。
+      </span>
+      <br />
+      与えたダメージの入力を繰り返すことで絞り込んで判定します。
+      <ul class="mt-3">
+        <li>
+          ダメ計ツールの処理を流用しているので特性・かしこさ・天候・フォルムによる補正は自動で適用されます。
+          <br>
+          攻撃側のタイプと特性は「詳細」から変更できます。
+        </li>
+        <li>
+          敵のステータスは選択時に自動でセットされます。（キトサンを飲まれた時用に変えられるようにしてます）
+          <ul>
+            <li>
+              しあわせのタネやふこうのタネによる敵のレベル上下はダメージに関係ないので対応していません。ステータス変動は手動で変えて下さい。
+            </li>
+          </ul>
+        </li>
+        <li>
+          敵のかしこさは自動で設定されます。こうげきてき・みがまえるによるランク変化も自動適用されます。
+        </li>
+        <li>
+          <span class="text-danger">
+            攻撃側のかしこさは全く考慮されていない
+          </span>
+          ので、こちらのこうげきてき・みがまえる等が有効な場合はその分手動でプラマイしてください。
+        </li>
+        <li>ボス、お尋ね者、挑戦状には対応していません。</li>
+        <li>
+          敵のへんしょく、スキルスワップ、なりきりには今の所対応していません。要望があればやる。
+        </li>
+      </ul>
+      <hr />
+      <details>
+        <summary>
+          ランクは直接変動しないけど内部で特攻・特防に影響がある要素メモ
+        </summary>
+        <h6 class="mt-2">特攻</h6>
+        <ul>
+          <li>特性「サンパワー」発動時、特攻ランク+1</li>
+          <li>特性「もらいび」は発動する度、炎技のみ特攻ランク+1（最大+2）</li>
+          <li>かしこさ「おうえん」持ちが隣にいる時、特攻ランク+1</li>
+          <li>かしこさ「かたならし」発動時、特攻ランク+1</li>
+          <li>かしこさ「こうげきてき」は常時、特攻ランク+1</li>
+          <li class="text-primary">
+            技「おきみやげ」を受けた時、特攻の半減ランク-2
+          </li>
+          <li class="text-primary">
+            かしこさ「みがまえる」は常時、特攻ランク-1
+          </li>
+        </ul>
+        <h6>特防</h6>
+        <ul>
+          <li>天候「すなあらし」で岩タイプのポケモンは、特防ランク+2</li>
+          <li>特性「フラワーギフト」持ちが仲間にいる時、特防ランク+1</li>
+          <li>かしこさ「みがまえる」は常時、特防ランク+1</li>
+          <li class="text-primary">
+            かしこさ「こうげきてき」は常時、特防ランク-1
+          </li>
+          <li class="text-danger">特防の半減ランクが下がる技は無い</li>
+        </ul>
+      </details>
+    </div>
+
+    <div class="row g-2">
+      <div class="col-12 vstack gap-2">
+        <!-- 攻撃側 -->
+        <div class="card-group">
+          <div class="card">
+            <div class="card-header">⚔️自分（攻撃側）</div>
+            <div class="card-body vstack gap-2">
+              <div class="row g-2">
+                <!-- ポケモン -->
+                <div class="col-12">
+                  <div class="d-flex gap-2">
+                    <div class="form-floating flex-grow-1">
+                      <select id="attacker-pokemon" data-choices></select>
+                      <label class="form-label" for="attacker-pokemon">
+                        ポケモン
+                      </label>
+                    </div>
+                    <button
+                      class="btn btn-secondary"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#attacker-detail"
+                      aria-expanded="false"
+                      aria-controls="attacker-detail">
+                      詳細
+                    </button>
+                  </div>
+                </div>
+                <div class="collapse" id="attacker-detail">
+                  <div class="row g-2">
+                    <!-- タイプ -->
+                    <div class="col-12">
+                      <div class="input-group">
+                        {{ range seq 1 2 }}
+                          <div class="form-floating">
+                            <select
+                              class="form-select"
+                              id="attacker-type-{{ . }}">
+                              {{ range $index, $type := $type_json }}
+                                {{ if eq $index 0 }}
+                                  <option value="0">-</option>
+                                {{ else }}
+                                  <option value="{{ $index }}">
+                                    {{ $type.Name }}
+                                  </option>
+                                {{ end }}
+                              {{ end }}
+                            </select>
+                            <label for="attacker-type-{{ . }}">タイプ</label>
+                          </div>
+                        {{ end }}
+                      </div>
+                    </div>
+
+                    <!-- 特性 -->
+                    <div class="col-12">
+                      <div class="input-group">
+                        {{ range seq 1 2 }}
+                          <div class="form-floating">
+                            <select
+                              class="form-select"
+                              id="attacker-ability-{{ . }}"
+                              data-choices>
+                              <option value="0">-</option>
+                              {{ range $abilities }}
+                                <option value="{{ .Id }}">
+                                  {{ .Name }}
+                                </option>
+                              {{ end }}
+                            </select>
+                            <label for="attacker-ability-{{ . }}">特性</label>
+                          </div>
+                        {{ end }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-2 g-md-3">
+                <div class="col-12">
+                  <!-- レベル -->
+                  <div class="row g-2">
+                    <div class="col-12">
+                      <div class="input-group">
+                        <div class="form-floating">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="attacker-lv"
+                            value="1"
+                            max="100"
+                            min="0" />
+                          <label for="attacker-lv">Lv</label>
+                        </div>
+                        <button
+                          class="btn-apply-status btn btn btn-outline-secondary"
+                          id="attacker-apply-status">
+                          ステータスに適用
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- 特攻 -->
+                    <div class="col-12">
+                      <div class="input-group">
+                        <div class="form-floating">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="attacker-c"
+                            value="0"
+                            max="255"
+                            min="0"
+                            step="1"
+                            inputmode="numeric" />
+                          <label for="attacker-c">特攻</label>
+                        </div>
+                        <div class="form-floating">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="attacker-c-stage"
+                            value="10"
+                            min="0"
+                            max="20" />
+                          <label for="attacker-c-stage">能力ランク</label>
+                        </div>
+                        <div class="form-floating">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="attacker-c-stage-half"
+                            value="0"
+                            min="-7"
+                            max="0" />
+                          <label for="attacker-c-stage-half">半減ランク</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-3 hstack">道具</div>
+                    <div class="col-9">
+                      <select
+                        class="form-select form-select"
+                        id="attacker-item">
+                        <option value="0">-</option>
+                        <option value="40">スペシャルリボン (+12)</option>
+                        <option value="50">ゴンべのハラマキ (+10)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <details>
+                  <summary>その他</summary>
+                  <div class="row my-2">
+                    <div class="col-3 hstack gap-1">
+                      もらいび
+                      {{ partial "tooltips" "特性「もらいび」が発動した回数。<br>次に使用する炎技のダメージ計算時にこの数値分だけ特攻ランクに補正が乗る。(最大2)" }}
+                    </div>
+                    <div class="col-9">
+                      <input
+                        type="number"
+                        id="attacker-flash-fire"
+                        class="form-control form-control"
+                        value="0"
+                        min="0"
+                        max="2" />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-6 col-md-12">
+                          <div class="form-check form-switch">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              role="switch"
+                              id="attacker-plus-minus" />
+                            <label
+                              class="form-check-label"
+                              for="attacker-plus-minus">
+                              プラス/マイナス
+                            </label>
+                          </div>
+
+                          <div class="form-check form-switch">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              role="switch"
+                              id="attacker-air-brade" />
+                            <label
+                              class="form-check-label"
+                              for="attacker-air-brade">
+                              エアーブレード
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- 防御側 -->
+          <div class="card">
+            <div class="card-header">🛡️相手（防御側）</div>
+            <div class="card-body vstack gap-2">
+              <div class="row g-2">
+                <!-- ダンジョン -->
+                <div class="col-8">
+                  <div class="form-floating">
+                    <select
+                      class="form-select"
+                      id="defender-dungeon"
+                      data-choices></select>
+                    <label for="defender-dungeon">ダンジョン</label>
+                  </div>
+                </div>
+                <!-- フロア -->
+                <div class="col-4">
+                  <div class="form-floating">
+                    <select class="form-select" id="defender-floor"></select>
+                    <label for="defender-floor">フロア</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row g-2">
+                <!-- 敵 -->
+                <div class="col-12">
+                  <div class="form-floating">
+                    <select class="form-select" id="defender-enemy"></select>
+                    <label for="defender-enemy">敵</label>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="input-group">
+                    <div class="form-floating">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="defender-d"
+                        value="0"
+                        max="999"
+                        min="0" />
+                      <label for="defender-d">特防</label>
+                    </div>
+                    <div class="form-floating">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="defender-d-stage"
+                        value="10"
+                        min="0"
+                        max="20" />
+                      <label for="defender-d-stage">能力ランク</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-floating">
+                    <input
+                      type="number"
+                      class="form-control-plaintext"
+                      id="defender-iq"
+                      value="0"
+                      max="999"
+                      min="0"
+                      readonly />
+                    <label for="defender-iq">かしこさ</label>
+                  </div>
+                </div>
+                <div class="col-12" id="defender-skill-wrap">
+                  <!-- 発動かしこさ -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">💥めざめるパワー</div>
+              <div class="card-body vstack gap-2">
+                <div class="row g-2">
+                  <div class="col-12 col-md-4">
+                    <div class="d-flex gap-2">
+                      <div class="input-group">
+                        <div class="form-floating">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="move-damage"
+                            value="0"
+                            min="0"
+                            max="65535" />
+                          <label for="move-damage">与ダメージ</label>
+                        </div>
+                        <div class="form-floating">
+                          {{ $matchupStr := slice "効果なし" "今ひとつ" "普通" "効果抜群" }}
+                          <select class="form-select" id="move-matchup">
+                            {{ range $index, $str := $matchupStr }}
+                              <option
+                                value="{{ $index }}"
+                                {{ if eq $index 2 }}selected{{ end }}>
+                                {{ . }}
+                              </option>
+                            {{ end }}
+                          </select>
+                          <label for="move-matchup">タイプ相性</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <div class="form-floating">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="move-ginseng"
+                        value="0"
+                        min="0"
+                        max="99" />
+                      <label for="move-ginseng">修正値 (カテキン)</label>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <div class="form-floating">
+                      <select class="form-select" id="move-weather"></select>
+                      <label for="move-weather">天候</label>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4 hstack gap-3">
+                    <label for="move-fixed-type" class="text-nowrap">
+                      タイプ固定
+                      {{ partial "tooltips" "めざめるパワーのタイプを固定する。<br>タイプを既に知っていて、威力だけ調べたい人向け。" }}
+                    </label>
+                    <select id="move-fixed-type" class="form-select">
+                      {{ range $index, $type := $type_json }}
+                        {{ if eq $index 0 }}
+                          <option value="0">-</option>
+                        {{ else }}
+                          <option value="{{ $index }}">
+                            {{ $type.Name }}
+                          </option>
+                        {{ end }}
+                      {{ end }}
+                    </select>
+                  </div>
+
+                  <div class="col-12 col-md-4 hstack">
+                    <div class="form-check form-switch">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="move-critical" />
+                      <label class="form-check-label" for="move-critical">
+                        急所
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary text-nowrap"
+                  id="move-btn-attack">
+                  攻撃
+                </button>
+              </div>
+              <div class="card-footer" id="result-wrap">
+                <!-- 結果 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ctrl-wrap hstack gap-2">
+        <button class="btn btn-secondary" id="ctrl-undo" disabled>
+          <i class="bi bi-arrow-counterclockwise"></i>
+          元に戻す
+        </button>
+        <button class="btn btn-secondary" id="ctrl-redo" disabled>
+          <i class="bi bi-arrow-clockwise"></i>
+          やり直し
+        </button>
+        <button
+          class="btn btn-danger"
+          id="ctrl-reset"
+          data-bs-toggle="modal"
+          data-bs-target="#modal-reset"
+          disabled>
+          <i class="bi bi-x-lg"></i>
+          リセット
+        </button>
+      </div>
+
+      <!-- 履歴 -->
+      <table class="table" id="table-attack-log">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>ダメージ</th>
+            <th>相性</th>
+            <th>敵</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- モーダル (リセット) -->
+    <div
+      class="modal modal-sm fade"
+      id="modal-reset"
+      tabindex="-1"
+      aria-labelledby="modal-reset-label"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">警告</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modal-reset-label">
+            リセットしますか？
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal">
+              Cancel
+            </button>
+            <button type="button" id="btn-modal-reset" class="btn btn-danger">
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      #table-attack-log {
+        th {
+          text-wrap: nowrap;
+        }
+        th:nth-child(1) {
+          width: 10%;
+          min-width: 1rem;
+        }
+        th:nth-child(2) {
+          width: 20%;
+          min-width: 4rem;
+        }
+        th:nth-child(3) {
+          width: 20%;
+          min-width: 5.5rem;
+        }
+        @media (max-width: 768px) {
+          th:nth-child(3),
+          td:nth-child(3) {
+            display: none;
+          }
+        }
+      }
+    </style>
+  </div>
+
+  <!-- 更新履歴モーダル -->
+  <div class="modal fade" id="modal-changelog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">更新履歴</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h5>2026/04/24</h5>
+          <ul>
+            <li>公開</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{{ end }}

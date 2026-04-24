@@ -45,7 +45,7 @@ import { Monster, DamageData, DungeonState, DamageCalcDiag, Move, NaturalGiftInf
  * @param {*} targetTypeIdx
  * @param {*} attackType
  */
-function getTypeMatchUp(dungeon, attacker, defender, targetTypeIdx, attackType) {
+export function getTypeMatchUp(dungeon, attacker, defender, targetTypeIdx, attackType) {
   if (!TypeData) {
     console.error('TypeData not found');
     return;

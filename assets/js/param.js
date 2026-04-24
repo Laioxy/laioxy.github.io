@@ -1,3 +1,6 @@
+/** 有効なダンジョンID最大値 */
+export const VALID_MAX_DUNGEON_ID = 0xbf;
+
 /** カフェ勧誘ポケモン */
 export const CAFE_RECRUIT_TABLE = [
   0x00a, 0x00d, 0x01b, 0x029, 0x02b, 0x02e, 0x036, 0x03c, 0x042, 0x048, 0x04a, 0x051, 0x053, 0x054, 0x056, 0x058, 0x05a,
@@ -19,3 +22,5 @@ export const SCENARIO_STRINGS = [
   'ギルド卒業後',
   'うみのリゾート解禁後',
 ];
+/** 天候文字列 */
+export const WEATHER_STRINGS = ['はれ', 'ひざしがつよい', 'すなあらし', 'くもり', 'あめ', 'あられ', 'きり', 'ゆき'];
