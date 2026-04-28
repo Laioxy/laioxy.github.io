@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /img/item/
-Disallow: /img/rank/
-Disallow: /img/sprites/
