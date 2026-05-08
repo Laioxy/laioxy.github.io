@@ -460,8 +460,8 @@
                   <div class="col-12 col-md-4 hstack gap-3">
                     <label for="move-fixed-type" class="text-nowrap">
                       タイプ固定
-                      {{ partial "tooltips" "めざめるパワーのタイプを固定する。<br>タイプを既に知っていて、威力だけ調べたい人向け。" }}
                     </label>
+                    {{ partial "tooltips" "めざめるパワーのタイプを固定する。<br>タイプを既に知っていて、威力だけ調べたい人向け。" }}
                     <select id="move-fixed-type" class="form-select">
                       {{ range $index, $type := $type_json }}
                         {{ if eq $index 0 }}
