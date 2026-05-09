@@ -41,105 +41,137 @@ const evolve2String = [
 const eventRectuit = [
   {
     id: 0x90,
+    type: ['boss', 0x4e],
     context: '「なだれやま ちょうじょう」でフリーザーを倒す (50%)',
   },
   {
     id: 0x96,
+    type: ['challenge', 0x53],
     context: 'ミュウツーからの挑戦状を受ける ※てんくうのかいだん要解禁',
   },
   {
     id: 0x97,
+    type: ['boss', 0x56],
     context: '「ミステリージャングル おくち」でミュウを倒す (50%)',
   },
   {
     id: 0x10e,
+    type: ['challenge', 0x5d],
     context: 'ライコウからの挑戦状を受ける ※なんとうしょとう要解禁',
   },
   {
     id: 0x10f,
+    type: ['challenge', 0x6e],
     context: 'エンテイからの挑戦状を受ける ※れっかのどうくつ要解禁',
   },
   {
     id: 0x110,
+    type: ['challenge', 0x6c],
     context: 'スイクンからの挑戦状を受ける ※まのかいいき要解禁',
   },
   {
     id: 0x199,
+    type: ['boss', 0x39],
     context: '2周目以降「ばんにんのどうくつ レジロックのま」でレジロックを倒す (50%)',
   },
   {
     id: 0x19a,
+    type: ['boss', 0x37],
     context: '2周目以降「ばんにんのどうくつ レジアイスのま」でレジアイスを倒す (50%)',
   },
   {
     id: 0x19b,
+    type: ['boss', 0x3b],
     context: '2周目以降「ばんにんのどうくつ レジスチルのま」でレジスチルを倒す (50%)',
   },
   {
     id: 0x19e,
+    type: ['boss', 0x4a],
     context: '「そこなしうみ おくそこ」でカイオーガを倒す (50%)',
   },
   {
     id: 0x19f,
+    type: ['boss', 0x4c],
     context: '「かげろうのさばく おくち」でグラードンを倒す (50%)',
   },
   {
     id: 0x1a0,
+    type: ['boss', 0x54],
     context: '「てんくうのかいだん ちょうじょう」でレックウザを倒す (50%)',
   },
   {
     id: 0x1a1,
+    type: ['challenge', 0xae],
     context: 'ジラーチからの挑戦状を受ける ※SE1「ビッパのねがいごと」要クリア',
   },
   {
     id: 0x20a,
+    type: ['boss', 0x10],
     context: '本編クリア後「ねっすいのどうくつ ちょうじょう」でユクシーを倒す',
   },
   {
     id: 0x20b,
+    type: ['boss', 0x17],
     context: '本編クリア後「ちていのみずうみ (りゅうさのどうくつ)」でエムリットを倒す',
   },
   {
     id: 0x20c,
+    type: ['boss', 0x1a],
     context: '本編クリア後「すいしょうのみずうみ (だいすいしょうのみち)」でアグノムを倒す',
   },
   {
     id: 0x20d,
+    type: ['boss', 0x2b],
     context: '本編クリア後「じげんのとう ちょうじょう」でディアルガを倒す',
   },
   {
     id: 0x20e,
+    type: ['boss', 0x42],
     context: 'ダークライ撃破後「そらのさけめ おくそこ」でパルキアを倒す',
   },
   {
     id: 0x20f,
+    type: ['boss', 0x50],
     context: '「きょだいかざん ちょうじょう」でヒードランを倒す (50%)',
   },
   {
     id: 0x210,
+    type: ['boss', 0x3d],
     context: '「ばんにんのどうくつ レジギガスのま」でレジギガスを倒す',
   },
   {
     id: 0x211,
+    type: ['boss', 0x52],
     context: '「せかいのおおあな おくそこ」でギラティナを倒す (50%)',
   },
   {
     id: 0x212,
+    type: ['event'],
     context: 'ダークライ撃破後、サメハダいわでクレセリアと話す',
   },
   {
     id: 0x213,
+    type: ['event'],
     context: 'きせきのうみクリア後、再度「きせきのうみ おくそこ」へ向かう',
   },
   {
     id: 0x214,
+    type: ['event'],
     context: 'ダークライ撃破後、依頼を3日分こなす',
   },
   {
     id: 0x216,
+    type: ['event'],
     context: 'そらのいただきクリア後、再度「そらのいただき ちょうじょう」へ向かう',
   },
 ];
+
+/** [ダンジョン] 勧誘不可仮ダンジョンID */
+const RECRUIT_NOT_RECRUITABLE_DUNGEON_ID = 300;
+/** [ダンジョン] 挑戦状仮ダンジョンID */
+const RECRUIT_CHALLENGE_DUNGEON_ID = 400;
+/** [ダンジョン] イベント勧誘仮ダンジョンID */
+const RECRUIT_EVENT_DUNGEON_ID = 500;
 
 function getUnownSuffix(index) {
   if (index < 25) {
@@ -825,6 +857,7 @@ function syncDetailsWithChecker() {
 function generateSpawnGroup() {
   const dungeonMap = new Map();
 
+  // スポーンデータから取得
   for (const item of spawnData) {
     if (!dungeonMap.has(item.dungeon)) {
       dungeonMap.set(item.dungeon, []);
@@ -832,9 +865,54 @@ function generateSpawnGroup() {
     dungeonMap.get(item.dungeon).push(item);
   }
 
+  // 勧誘不可ポケモンを取得
+  const usedIds = new Set();
+  spawnData.forEach((r) => usedIds.add(r.pokemonId)); // 勧誘可能ダンジョンに出現するポケモンを除外
+  eventRectuit.forEach((r) => usedIds.add(r.id)); // イベント勧誘ポケモンを除外
+  bannedPokemonIds.forEach((r) => usedIds.add(r)); // 除外ポケモンを除外
+  const missingIds = Array.from({ length: 534 }, (_, i) => i + 1).filter((id) => !usedIds.has(id));
+  for (const missingId of missingIds) {
+    const dungeonId = RECRUIT_NOT_RECRUITABLE_DUNGEON_ID;
+    if (!dungeonMap.has(dungeonId)) {
+      dungeonMap.set(dungeonId, []);
+    }
+    dungeonMap.get(dungeonId).push({
+      dungeon: dungeonId,
+      dungeonName: '勧誘不可',
+      floor: 0,
+      level: 0,
+      pokemonId: missingId,
+    });
+  }
+
+  // イベント勧誘ポケモンを取得
+  for (const event of eventRectuit) {
+    if (event.type.length > 0) {
+      const dungeonId =
+        event.type[0] == 'boss'
+          ? event.type[1]
+          : event.type[0] == 'challenge'
+            ? RECRUIT_CHALLENGE_DUNGEON_ID
+            : RECRUIT_EVENT_DUNGEON_ID;
+      const dungeonName =
+        event.type[0] == 'boss' ? DungeonData[dungeonId].Name : event.type[0] == 'challenge' ? '挑戦状' : 'イベント';
+
+      if (!dungeonMap.has(dungeonId)) {
+        dungeonMap.set(dungeonId, []);
+      }
+      dungeonMap.get(dungeonId).push({
+        dungeon: dungeonId,
+        dungeonName: dungeonName,
+        floor: 0,
+        level: 0,
+        pokemonId: event.id,
+      });
+    }
+  }
+
   const result = {};
 
-  for (const [dungeon, dungeonItems] of dungeonMap.entries()) {
+  for (const [dungeonId, dungeonItems] of dungeonMap.entries()) {
     const pokemonMap = new Map();
 
     // dungeon 内で pokemonId ごとにまとめる
@@ -891,7 +969,7 @@ function generateSpawnGroup() {
     }
 
     // dungeon をキーとして格納 (カクレオンを後ろにする)
-    result[dungeon] = pokemonGroups
+    result[dungeonId] = pokemonGroups
       .sort((a, b) => a.pokemonId - b.pokemonId)
       .filter((x) => x.pokemonId != 0x17f)
       .concat(pokemonGroups.filter((x) => x.pokemonId == 0x17f));
@@ -908,7 +986,16 @@ function createRecruitDungeon() {
 
   const recruitDungeonWrap = document.getElementById('recruit-dungeon');
   for (const dungeonId in spawnGroup) {
-    const dungeonName = DungeonData[dungeonId].InName;
+    let dungeonName = '';
+    if (dungeonId < DungeonData.length) {
+      dungeonName = DungeonData[dungeonId].InName;
+    } else if (dungeonId == RECRUIT_NOT_RECRUITABLE_DUNGEON_ID) {
+      dungeonName = '◆ 勧誘不可 (進化限定)';
+    } else if (dungeonId == RECRUIT_CHALLENGE_DUNGEON_ID) {
+      dungeonName = '◆ 挑戦状';
+    } else if (dungeonId == RECRUIT_EVENT_DUNGEON_ID) {
+      dungeonName = '◆ イベント';
+    }
 
     // ダンジョングリッド作成
     const dungeonGridHtml = `
