@@ -501,11 +501,11 @@ function filterDetailsFormVariants(excludeForm) {
  */
 function indexToPokemonId(indexId) {
   const formIds = [
-    [439, 0x1bf], // 砂ミノムッチ
-    [438, 0x1c0], // 草ミノムッチ
+    [438, 0x1bf], // 砂ミノムッチ
+    [439, 0x1c0], // 草ミノムッチ
     [440, 0x1c1], // 鋼ミノムッチ
-    [442, 0x1c2], // 砂ミノマダム
-    [441, 0x1c3], // 草ミノマダム
+    [441, 0x1c2], // 砂ミノマダム
+    [442, 0x1c3], // 草ミノマダム
     [443, 0x1c4], // 鋼ミノマダム
     [452, 0x1ce], // 東カラナクシ
     [453, 0x1cf], // 西カラナクシ
@@ -535,11 +535,11 @@ function indexToPokemonId(indexId) {
 function pokemonIdToIndex(pokemonId) {
   let id = pokemonId;
   const formIds = [
-    [439, 0x1bf], // 砂ミノムッチ
-    [438, 0x1c0], // 草ミノムッチ
+    [438, 0x1bf], // 砂ミノムッチ
+    [439, 0x1c0], // 草ミノムッチ
     [440, 0x1c1], // 鋼ミノムッチ
-    [442, 0x1c2], // 砂ミノマダム
-    [441, 0x1c3], // 草ミノマダム
+    [441, 0x1c2], // 砂ミノマダム
+    [442, 0x1c3], // 草ミノマダム
     [443, 0x1c4], // 鋼ミノマダム
     [452, 0x1ce], // 東カラナクシ
     [453, 0x1cf], // 西カラナクシ
