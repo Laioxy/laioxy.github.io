@@ -1,10 +1,12 @@
 <!-- 特性をIDで取得する -->
-{{ $message_json := resources.Get "data/message.json" | transform.Unmarshal }}
+{{ $messageJsonPath := printf "data/message.%s.json" site.Language.Lang }}
+{{ $message_json := resources.Get $messageJsonPath | transform.Unmarshal }}
+
 {{ $id := int . }}
 {{ $nameMsgId := add $id 18560 }}
 {{ $contextMsgId := add $id 18684 }}
-{{ $name := (index $message_json $nameMsgId).String }}
-{{ $context := (index $message_json $contextMsgId).String }}
+{{ $name := (index $message_json $nameMsgId) }}
+{{ $context := (index $message_json $contextMsgId) }}
 
 {{ $ability := dict "Id" $id "Name" $name "Context" $context }}
 {{ return $ability }}

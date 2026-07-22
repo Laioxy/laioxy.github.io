@@ -3,6 +3,7 @@ import * as Mechanics from './mechanics.js';
 import * as pokeParam from '../poke_param.js';
 import { RunCalcDamage } from './calc.js';
 import { Monster, DungeonState, DamageData, Move } from './structure.js';
+import { getJsonDatas } from '../json_script.js';
 
 const fighterClassNames = ['attacker', 'defender'];
 const moveCategoryNames = ['物理', '特殊', '変化'];
@@ -23,8 +24,14 @@ document.addEventListener('DOMContentLoaded', async function () {
   // tooltip初期化
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
   const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
-  // JSON読込
-  await fetchJsonData();
+  // JSONデータ読込
+  ({
+    pokemon: window.PokemonData,
+    move: window.MoveData,
+    iqgroup: window.IQGroupData,
+    type: window.TypeData,
+    message: window.MessageData,
+  } = await getJsonDatas(['pokemon', 'move', 'iqgroup', 'type', 'message']));
 
   // choices.js 初期化
   InitChoices();
@@ -873,26 +880,4 @@ function getMoveBaseAccuracy(accuracy1, accuracy2, maxGinseng = 0) {
   const acc2 = Math.min(accuracy2, 100);
   if (maxGinseng == 0) return acc1;
   else return (acc1 * acc2) / 100;
-}
-
-/**
- * JSONデータを取得
- */
-async function fetchJsonData() {
-  try {
-    const [pokemonData, moveData, messageData, iqgroupData, typeData] = await Promise.all([
-      getJsonData('pokemon'),
-      getJsonData('move'),
-      getJsonData('message'),
-      getJsonData('iqgroup'),
-      getJsonData('type'),
-    ]);
-    window.PokemonData = pokemonData;
-    window.MoveData = moveData;
-    window.MessageData = messageData;
-    window.IQGroupData = iqgroupData;
-    window.TypeData = typeData;
-  } catch (e) {
-    console.error(e);
-  }
 }

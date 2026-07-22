@@ -1,6 +1,6 @@
 import * as eos from '../const.js';
 import { WEATHER_STRINGS, VALID_MAX_DUNGEON_ID } from '../../param.js';
-import { getJsonData } from '../../json_script.js';
+import { getJsonData, getJsonDatas } from '../../json_script.js';
 // ダメージ計算関連import
 import { RunCalcDamage, getTypeMatchUp } from '../calc.js';
 import { TYPE_MATCHUP_COMBINATOR_TABLE } from '../mechanics.js';
@@ -94,7 +94,16 @@ document.addEventListener('DOMContentLoaded', async function () {
   const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
 
   // JSON読込
-  await fetchJsonData();
+  ({
+    pokemon: window.PokemonData,
+    move: window.MoveData,
+    dungeon: window.DungeonData,
+    floor: window.FloorData,
+    mappa_s: window.MappaSData,
+    type: window.TypeData,
+    iqgroup: window.IQGroupData,
+    iqskill: window.IQSkillData,
+  } = await getJsonDatas(['pokemon', 'move', 'dungeon', 'floor', 'mappa_s', 'type', 'iqgroup', 'iqskill']));
 
   // 要素キャッシュ
   mainElement = document.getElementById('damage-hiddenpower');
@@ -787,34 +796,5 @@ function InitChoices() {
     } else {
       choicesInstances[element.id] = new Choices(element, choicesOptions);
     }
-  }
-}
-
-/**
- * JSONデータを取得
- */
-async function fetchJsonData() {
-  try {
-    const [pokemonData, moveData, dungeonData, floorData, mappaSData, typeData, iqgroupData, iqskillData] =
-      await Promise.all([
-        getJsonData('pokemon'),
-        getJsonData('move'),
-        getJsonData('dungeon'),
-        getJsonData('floor'),
-        getJsonData('mappa_s'),
-        getJsonData('type'),
-        getJsonData('iqgroup'),
-        getJsonData('iqskill'),
-      ]);
-    window.PokemonData = pokemonData;
-    window.MoveData = moveData;
-    window.DungeonData = dungeonData;
-    window.FloorData = floorData;
-    window.MappaSData = mappaSData;
-    window.TypeData = typeData;
-    window.IQGroupData = iqgroupData;
-    window.IQSkillData = iqskillData;
-  } catch (e) {
-    console.error(e);
   }
 }

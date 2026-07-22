@@ -7,7 +7,6 @@
   {{ $abilityCount := 124 }}
 
 
-  <script src="/js/json_script.js"></script>
   <script src="/js/poke_param.js"></script>
 
   {{ partial "jsbuild" (dict "src" "js/damage/view.js" "output" "bandle.js") }}
@@ -23,7 +22,7 @@
     </div>
   </div>
 
-  <div class="container-xxl py-3" id="damage-calc">
+  <div class="container-xxl" id="damage-calc">
     <!-- トップボタン -->
     <div id="top-btn"><i class="bi bi-chevron-up"></i></div>
 
