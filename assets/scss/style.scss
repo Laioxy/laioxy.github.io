@@ -3,8 +3,7 @@ $navbar-height: 3.5rem;
 
 @font-face {
   font-family: "FixGenderSymbol";
-  src:
-    local("Segoe UI"), local("Hiragino Kaku Gothic ProN"),
+  src: local("Segoe UI"), local("Hiragino Kaku Gothic ProN"),
     local("Hiragino Sans");
   unicode-range: U+2640, U+2642;
 }
@@ -36,10 +35,9 @@ html {
   body {
     height: 100%;
     padding-top: $navbar-height;
-    font-family:
-      "Noto Sans JP", "FixGenderSymbol", "-apple-system", "BlinkMacSystemFont",
-      "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo",
-      sans-serif;
+    font-family: "Noto Sans JP", "FixGenderSymbol", "-apple-system",
+      "BlinkMacSystemFont", "Segoe UI", "Hiragino Kaku Gothic ProN",
+      "Hiragino Sans", "Meiryo", sans-serif;
   }
   select {
     option:disabled {
@@ -74,6 +72,11 @@ h4,
 h5,
 h6 {
   scroll-padding-top: $navbar-height;
+}
+
+/* alertの最終要素の下マージン削除 */
+.alert *:last-child {
+  margin-bottom: 0;
 }
 
 /* ヘッダー */
@@ -121,6 +124,10 @@ h6 {
       width: fit-content;
     }
   }
+}
+
+#lang-switch {
+  font-size: 0.9rem;
 }
 
 .small-text {
@@ -529,19 +536,24 @@ label + a[data-bs-toggle="tooltip"] {
         min-height: 3.5rem;
         line-height: 1.25;
         background-color: transparent;
-        background-image:
-          var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+        background-image: var(--bs-form-select-bg-img),
+          var(--bs-form-select-bg-icon, none);
         background-repeat: no-repeat;
         background-position: right 0.75rem center;
         background-size: 16px 12px;
       }
     }
     /* disabled */
-    &.is-disabled .choices__inner {
-      background-color: var(--bs-secondary-bg);
-      .choices__inner,
-      .choices__input {
-        background-color: unset;
+    &.is-disabled {
+      .choices__inner {
+        background-color: var(--bs-secondary-bg);
+        .choices__inner,
+        .choices__input {
+          background-color: unset;
+        }
+        .choices__item {
+          color: var(--bs-body-color);
+        }
       }
     }
   }

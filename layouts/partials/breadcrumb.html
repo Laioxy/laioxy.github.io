@@ -1,7 +1,7 @@
 <!-- パンくずリスト -->
 <!-- ※動的生成の為キャッシュ化はしないこと -->
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
+  <ol class="breadcrumb mb-4">
     {{ range .page.Ancestors.Reverse }}
       <li class="breadcrumb-item">
         <a href="{{ .Permalink }}">
