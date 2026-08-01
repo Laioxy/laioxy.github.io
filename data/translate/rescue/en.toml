@@ -1,0 +1,22 @@
+[itemWarning]
+item = ["", "This item cannot be sent.", "The selected item is invalid."]
+stackZero = "No quantity has been specified."
+stackOver = "The quantity cannot exceed 99."
+
+[passwordError]
+required = "Please enter a password."
+invalidLength = "The password length is invalid. Please enter exactly 54 characters."
+invalidCharacter = "The password contains invalid characters."
+canNotUseSOSMail = "SOS Mail cannot be used."
+canNotUseAOKMail = "AOK Mail cannot be used."
+canNotUseThankYouMail = "Thank-You Mail cannot be used."
+invalidRescueType = "Cannot generate because an invalid rescue mission password has been entered."
+checksumMismatch = """
+The password checksum does not match.<br>
+The password may be invalid.
+"""
+
+[success]
+generateAOK = "A-OK Mail generated!"
+generateThankYou = "Thank-You Mail generated!"
+generateDuplicate = "Password duplicated!"

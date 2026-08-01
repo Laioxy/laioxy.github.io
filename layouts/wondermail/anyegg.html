@@ -1,0 +1,145 @@
+{{ define "main" }}
+  {{ partial "jsbuild" (dict "src" "js/wondermail/anyegg.js") }}
+  {{ partial "methods/SetScssMinify" "wondermail" }}
+
+  {{/* 言語ごとのパラメータ・翻訳文言をJSに渡す */}}
+  {{ $params := index hugo.Data.params .Lang }}
+  {{ $translateAnyEgg := index hugo.Data.translate.wondermail.anyegg .Lang }}
+  {{ $translatePokemon := index hugo.Data.translate.pokemon .Lang }}
+  <script>
+    window.PARAMS = JSON.parse('{{ $params | jsonify }}');
+    window.translate = {
+      pokemon: JSON.parse('{{ $translatePokemon | jsonify }}'),
+      anyegg: JSON.parse('{{ $translateAnyEgg | jsonify }}'),
+    };
+  </script>
+
+  <div class="container-md">
+    <!-- パンくずリスト -->
+    {{ partial "breadcrumb.html" (dict "page" . "title" .Title) }}
+
+
+    <h1 class="my-3">{{ .Title }}</h1>
+    <!-- ツールまでジャンプ -->
+
+    <div>
+      {{ .Content }}
+    </div>
+    <hr />
+
+    <div class="d-flex gap-3 flex-column">
+      <div class="col">
+        <div
+          class="d-flex flex-sm-row column-gap-sm-3 row-gap-sm-0 gap-2 flex-column flex-wrap">
+          <!-- バージョン -->
+          {{ $versions := slice
+            (dict "value" "sky" "label" (T "version.sky"))
+            (dict "value" "old" "label" (T "version.td"))
+          }}
+          <div class="d-flex flex-column order-1">
+            <h6>{{ T "wondermail.version" }}</h6>
+            <div class="btn-group text-nowrap">
+              {{ range $index, $version := $versions }}
+                <input
+                  type="radio"
+                  class="btn-check"
+                  id="version-{{ .value }}"
+                  name="version"
+                  autocomplete="version"
+                  value="{{ .value }}"
+                  {{ if eq $index 0 }}checked{{ end }} />
+                <label
+                  class="btn btn-outline-primary"
+                  for="version-{{ .value }}">
+                  {{ .label }}
+                </label>
+              {{ end }}
+            </div>
+          </div>
+
+          <!-- リージョン -->
+          {{ $regions := slice
+            (dict "value" "jp" "label" (T "wondermail.language.JP"))
+            (dict "value" "na" "label" (T "wondermail.language.NA"))
+            (dict "value" "eu" "label" (T "wondermail.language.EU"))
+          }}
+          {{/* ページ言語に合わせてデフォルトリージョン切替 (デフォルトはJP) */}}
+          {{ $defaultRegions := dict
+            "ja" "jp"
+            "en" "na"
+          }}
+          {{ $defaultRegion := or (index $defaultRegions .Lang) "jp" }}
+          <div class="d-flex flex-column order-2">
+            <h6>{{ T "wondermail.region" }}</h6>
+            <div class="btn-group text-nowrap">
+              {{ range $region := $regions }}
+                <input
+                  type="radio"
+                  class="btn-check"
+                  id="region-{{ .value }}"
+                  name="region"
+                  autocomplete="region"
+                  value="{{ .value }}"
+                  {{ if eq .value $defaultRegion }}checked{{ end }} />
+                <label
+                  class="btn btn-outline-primary"
+                  for="region-{{ .value }}">
+                  {{ .label }}
+                </label>
+              {{ end }}
+            </div>
+          </div>
+
+          <!-- 時闇リージョンフリーテキスト -->
+          <div
+            class="text-primary d-none order-3 order-md-4 w-100"
+            id="region-old-info">
+            <i class="bi bi-info-circle-fill"></i>
+            {{ T "wondermail.body.regionFreeText" }}
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column gap-2">
+        <div class="col-12">
+          <h6>{{ T "wondermail.anyegg.pokemonToRecruit" }}</h6>
+          <div class="form-floating">
+            <select class="form-select" id="recruit-pokemon"></select>
+            <label for="recruit-pokemon">{{ T "pokemon" }}</label>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button class="btn btn-primary btn-lg w-100" id="pass-generate">
+            {{ T "wondermail.generatePassword" }}
+          </button>
+        </div>
+      </div>
+
+      <div class="col">
+        <h6>{{ T "wondermail.password" }}</h6>
+        {{ $placeholder := (T "wondermail.passwordPlaceholderReadonly") }}
+        <textarea
+          id="password"
+          class="form-control d-grid"
+          rows="2"
+          placeholder="{{ $placeholder }}"
+          readonly></textarea>
+      </div>
+    </div>
+
+    <!-- 関連 -->
+    <div class="row mt-4">
+      <div class="col">
+        <h4>{{ T "related" }}</h4>
+        <ul>
+          {{ with site.GetPage "/wondermail/generator" }}
+            <li>
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+{{ end }}

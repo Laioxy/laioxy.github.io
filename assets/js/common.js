@@ -74,6 +74,16 @@ window.choicesOptions = {
   });
 })();
 
+// 言語切替時にクエリパラメータを保持
+document.addEventListener('DOMContentLoaded', () => {
+  const langSwitchLinks = document.querySelectorAll('#lang-switch .lang-switch-link');
+  langSwitchLinks.forEach((link) => {
+    const url = new URL(link.href);
+    url.search = window.location.search;
+    link.href = url.toString();
+  });
+});
+
 /**
  * ローディング解除
  */

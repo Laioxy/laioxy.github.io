@@ -4,145 +4,62 @@
 
   <div class="top-contents container-md pb-4" id="top-page">
     <h2 class="display-3">Lai-brary</h2>
-    <p class="mb-4">ライねるの隠れ家です。</p>
+    <p class="mb-4">{{ T "toppage.hDescription" }}</p>
+
+    <!-- 日本語以外の場合、未翻訳の注意書きを表示 -->
+    {{ if ne .Lang "ja" }}
+      <div class="alert alert-primary" role="alert">
+        <p>
+          Only pages that have been translated are available here. To browse all
+          pages, please use the
+          {{ with (index (where .AllTranslations "Lang" "ja") 0) }}
+            <a href="{{ .RelPermalink }}" class="alert-link">
+              Japanese version
+            </a>
+          {{ end }}
+          of the site.
+        </p>
+        <p class="small-text">
+          Also, Laioxy is not fluent in English, so most of the translations on
+          this site were done using AI. As a result, some translations may be
+          inaccurate...
+        </p>
+      </div>
+    {{ end }}
+
 
     <h3 class="mb-3 d-inline-flex align-items-center gap-2">
       <img src="/img/icon_title_sky.png" />
-      <span>ポケダン時闇空</span>
+      <span>{{ T "toppage.hPmd" }}</span>
     </h3>
-    <h5 class="top-icon text-light-emphasis">
+
+    <h5 class="top-icon">
       <img src="/img/item/item_12_1.png" />
-      ダンジョンツール
+      {{ T "toppage.hPmdDungeonTool" }}
     </h5>
-    <div class="card-flex">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">
-            {{ with ref . "/damage/calc.md" }}
-              <a href="{{ . }}" class="stretched-link">ダメージ計算機</a>
-            {{ end }}
-          </h5>
-          <p>ポケモンが与えるダメージを計算します。</p>
-        </div>
-      </div>
 
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">
-            {{ with ref . "/damage/hiddenpower.md" }}
-              <a href="{{ . }}" class="stretched-link">めざめるパワー識別機</a>
-            {{ end }}
-          </h5>
-          <p>めざめるパワーのタイプと威力を判定します。</p>
-        </div>
-      </div>
+    <div class="row g-2 mb-3">
+      {{ partial "parts/linkBlock" "/damage/calc" }}
+      {{ partial "parts/linkBlock" "/damage/hiddenpower" }}
+      {{ partial "parts/linkBlock" "/checker/pokemon" }}
 
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">
-            {{ with ref . "/checker/pokemon.md" }}
-              <a href="{{ . }}" class="stretched-link">ポケモンチェッカー</a>
-            {{ end }}
-          </h5>
-          <p>
-            勧誘したポケモンをマークできます。
-            <br />
-            かつやくのあと埋めのお供に。
-          </p>
-        </div>
-      </div>
+      {{/* 英語ページは一時的に何も出さない */}}
+      {{ if ne .Lang "ja" }}
+        <p>Not translated</p>
+      {{ end }}
     </div>
 
-    <h5 class="top-icon text-light-emphasis">
+    <h5 class="top-icon">
       <img src="/img/rank/rank_12.png" />
-      捏造パス関連
+      {{ T "toppage.hPmdPasswordRelated" }}
     </h5>
-    <div class="card-flex">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">
-            {{ with ref . "/wondermail/wondermail.html" }}
-              <a href="{{ . }}" class="stretched-link">ふしぎなメール生成機</a>
-            {{ end }}
-          </h5>
-          <p>
-            あらゆる組み合わせのふしぎなメール(捏造パス)を作ります。
-            <br />
-            レア道具が貰える依頼を作ったり、難しい依頼を作ったり。
-          </p>
-        </div>
-      </div>
+    <div class="row g-2 mb-3">
+      <!-- ふしぎなメール関連 -->
+      {{ partial "parts/sectionBlock" "/wondermail" }}
 
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">
-            {{ with ref . "/wondermail/anydungeon.html" }}
-              <a href="{{ . }}" class="stretched-link">ダンジョン強制解禁</a>
-            {{ end }}
-          </h5>
-          <p>
-            任意のダンジョンを捏造パスで強制解禁します。
-            <br />
-            通常では行けないダンジョンも解禁できます。バグ技につき取扱注意。
-            <br />
-            <span class="text-danger">※空の探検隊限定</span>
-          </p>
-        </div>
-      </div>
 
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">
-            {{ with ref . "/wondermail/anyegg.html" }}
-              <a href="{{ . }}" class="stretched-link">任意タマゴ孵化</a>
-            {{ end }}
-          </h5>
-          <p>
-            任意のポケモンを捏造パスで入手します。
-            <br />
-            通常のポケモン、進化後、伝説、未使用ポケモンまでほぼすべて入手可能。
-          </p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">
-            {{ with ref . "/rescue/duplicate.html" }}
-              <a href="{{ . }}" class="stretched-link">救助依頼複製</a>
-            {{ end }}
-          </h5>
-          <p>救助依頼の複製をするツール。役に立つ救助保存の複製にどうぞ。</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">
-            {{ with ref . "/rescue/self-rescue.html" }}
-              <a href="{{ . }}" class="stretched-link">自演救助</a>
-            {{ end }}
-          </h5>
-          <p>
-            倒されてしまった時の救助を自演で行います。ついでに道具も貰えます。
-          </p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title fw-bold">
-            {{ with ref . "/rescue/random.md" }}
-              <a href="{{ . }}" class="stretched-link">救助依頼ランダム生成</a>
-            {{ end }}
-          </h5>
-          <p>
-            たすけてメールをランダムに生成します。
-            <br />
-            タイムアタックだったり、難しい救助に挑戦したり。
-          </p>
-        </div>
-      </div>
+      <!-- 救助依頼関連 -->
+      {{ partial "parts/sectionBlock" "/rescue" }}
     </div>
 
     <h3 class="top-icon">
@@ -158,7 +75,7 @@
             rel="noopener noreferrer">
             Twitter
           </a>
-          <p>ライねるの自我。</p>
+          <p>{{ T "toppage.dLinkTwitter" }}</p>
         </li>
         <li>
           <a
@@ -167,7 +84,7 @@
             rel="noopener noreferrer">
             YouTube
           </a>
-          <p>動画。1ヶ月に1本以下のペースで上げる。見て！</p>
+          <p>{{ T "toppage.dLinkYouTube" }}</p>
         </li>
         <li>
           <a
@@ -176,7 +93,7 @@
             rel="noopener noreferrer">
             Twitch
           </a>
-          <p>配信。不定期に気分で何かやる。</p>
+          <p>{{ T "toppage.dLinkTwitch" }}</p>
         </li>
         <li>
           <a
@@ -185,16 +102,16 @@
             rel="noopener noreferrer">
             GitHub
           </a>
-          <p>開発関連。主にここの更新。</p>
+          <p>{{ T "toppage.dLinkGitHub" }}</p>
         </li>
         <li>
           <a
             href="https://lainel.hatenablog.com/"
             target="_blank"
             rel="noopener noreferrer">
-            白銀のライねる (はてなブログ)
+            白銀のライねる ({{ T "toppage.hatenaBlog" }})
           </a>
-          <p>解析メモ代わりのブログ。ほぼ使ってない。</p>
+          <p>{{ T "toppage.dLinkHatena" }}</p>
         </li>
         <li>
           <a
@@ -204,9 +121,7 @@
             stat.ink
           </a>
           <p>
-            スプラトゥーン3の戦績。多分誰も興味ない。
-            <br />
-            ※s3sが実質更新停止の為、こちらも更新停止
+            {{ T "toppage.dLinkStatInk" }}
           </p>
         </li>
       </ul>

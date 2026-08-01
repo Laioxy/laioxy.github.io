@@ -7,6 +7,16 @@ const AbilityMsgId = 0x4880;
 const AbilityCount = 124;
 
 /**
+ * 値を16進数に変換
+ * @param {*} value 値
+ * @param {*} length 桁数
+ * @returns
+ */
+function toHex(value, length = 0) {
+  return value.toString(16).toUpperCase().padStart(length, '0');
+}
+
+/**
  * 値を符号なし16進数に変換
  * @param {*} value
  * @returns

@@ -1,6 +1,6 @@
 ---
 title: "めざめるパワー識別機"
-description: "めざめるパワーを判定します。"
+description: "めざめるパワーのタイプと威力を判定します。"
 layout: "hiddenpower"
 ---
 

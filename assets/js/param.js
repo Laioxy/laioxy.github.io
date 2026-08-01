@@ -1,5 +1,7 @@
 /** 有効なダンジョンID最大値 */
 export const VALID_MAX_DUNGEON_ID = 0xbf;
+/** 最大ポケモンデータ数 */
+export const MAX_POKEMON_COUNT = 600;
 
 /** カフェ勧誘ポケモン */
 export const CAFE_RECRUIT_TABLE = [

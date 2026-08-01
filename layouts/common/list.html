@@ -1,0 +1,30 @@
+{{ define "main" }}
+  <div class="container-md">
+    <!-- パンくずリスト -->
+    {{ partial "breadcrumb.html" (dict "page" . "title" .Title) }}
+
+    {{ with .Content }}
+      <p>{{ . }}</p>
+    {{ end }}
+
+
+    <div class="row g-3">
+      {{ range .RegularPages.ByWeight }}
+        <div class="col-12 col-md-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title m-0">
+                <a class="stretched-link" href="{{ .RelPermalink }}">
+                  {{ .Title }}
+                </a>
+              </h5>
+              {{ with .Description }}
+                <p class="card-text mt-3 mb-0">{{ . }}</p>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}

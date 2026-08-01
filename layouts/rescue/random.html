@@ -34,8 +34,10 @@
       <li class="text-danger">固定フロアの救助依頼は受けられない。</li>
       <li class="text-danger">
         テストダンジョンは
-        {{ with ref . "/wondermail/anydungeon.html" }}
-          <a href="{{ . }}">強制解禁</a>
+        {{ with site.GetPage "/wondermail/anydungeon" }}
+          <a href="{{ .RelPermalink }}">強制解禁</a>
+        {{ else }}
+          強制解禁
         {{ end }}
         して一度クリアしていないと受けられないので注意。
       </li>

@@ -1,0 +1,22 @@
+[itemWarning]
+item = ["", "贈ることができない道具です。", "無効な道具が選択されています。"]
+stackZero = "個数が設定されていません。"
+stackOver = "個数が99を超えています。"
+
+[passwordError]
+required = "パスワードを入力してください。"
+invalidLength = "パスワードの文字数が不正です。54文字で入力してください。"
+invalidCharacter = "パスワードに不正な文字が含まれています。"
+canNotUseSOSMail = "たすけてメールは使用できません。"
+canNotUseAOKMail = "ふっかつメールは使用できません。"
+canNotUseThankYouMail = "おれいのメールは使用できません。"
+invalidRescueType = "不正な救助依頼のパスワードが入力されているため、生成できません。"
+checksumMismatch = """
+パスワードのチェックサムが一致しません。<br>
+正しいパスワードではない可能性があります。
+"""
+
+[success]
+generateAOK = "ふっかつメールを生成しました！"
+generateThankYou = "おれいのメールを生成しました！"
+generateDuplicate = "パスワードを複製しました！"

@@ -1,0 +1,8 @@
+warningNothing = "This is an invalid Pokémon."
+warningGenderInvalid = "This Pokémon's gender is invalid."
+
+warningGenderInvalidMessage1 = """
+A Pokémon with an invalid secondary gender is selected.<br>
+This is not recommended, as it may behave differently from normal, such as not knowing any moves, having glitched moves, or not speaking.<br>
+"""
+warningGenderInvalidMessage2 = "It is recommended to switch to a Pokémon with a valid primary gender."

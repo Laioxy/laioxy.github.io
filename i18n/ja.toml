@@ -1,0 +1,206 @@
+# 汎用
+pokemon = 'ポケモン'
+type = 'タイプ'
+item = '道具'
+move = '技'
+dungeon = "ダンジョン"
+option = 'オプション'
+search = '検索'
+reset = 'リセット'
+name = '名称'
+random = "ランダム"
+cancel = "キャンセル"
+share = "共有"
+close = "閉じる"
+copy = "コピー"
+changelog = "更新履歴"
+related = "関連"
+
+copyright = """
+ポケットモンスター(ポケモン・Pokémon)の著作権及び商標、本サイトに掲載しているゲーム画面・キャラクターなどの画像は任天堂及び関連企業に帰属します。
+<br>
+当サイトは個人で作成した非公式ファンサイトであり、任天堂株式会社や株式会社スパイク・チュンソフト、およびその他の企業とは一切関係ありません。
+"""
+
+[theme]
+auto = "自動"
+light = "ライト"
+dark = "ダーク"
+
+[version]
+sky = "空"
+time = "時"
+darkness = "闇"
+td = "時/闇"
+
+[toppage]
+hDescription = "ライねるの隠れ家です。"
+hPmd = "ポケダン時闇空"
+hPmdDungeonTool = "ダンジョンツール"
+hPmdPasswordRelated = "捏造パス関連"
+hPmdDataBase = "データベース"
+dLinkTwitter = "ライねるの自我。"
+dLinkYouTube = "動画。月に1回以下のペースで上げます。"
+dLinkTwitch = "配信。不定期に気分で何かやる。"
+dLinkGitHub = "開発関連。主にここの更新。"
+dLinkHatena = "解析メモ代わりのブログ。"
+dLinkStatInk = "スプラトゥーン3の戦績。多分誰も興味ない。(※更新停止)"
+hatenaBlog = "はてなブログ"
+
+# ふしぎなメール生成機
+[wondermail]
+version = "バージョン"
+region = "リージョン"
+option = "オプション"
+checksumHeader = "チェックサム (読み取り専用)"
+checksumInPassword = "パスワード内"
+checksumGenerated = "計算結果"
+missionInfo = "依頼の内容"
+missionType = "依頼タイプ"
+missionFlag = "依頼フラグ"
+rewardType = "報酬タイプ"
+reward = "報酬"
+rewardValue = "報酬値"
+missionTarget = "依頼の対象"
+client = "依頼主"
+targetPokemon = "対象ポケモン"
+targetItem = "対象の道具"
+template = "テンプレート"
+floor = "フロア"
+fixedFloor = "固定フロア"
+others = "その他"
+restType = "制限タイプ"
+restValue = "制限"
+seed = "SEED"
+random = "ランダム"
+extract = "展開"
+generate = "生成"
+advanced = "上級者向け"
+passwordPlaceholder = "パスワードを入力..."
+generatePassword = "パスワード生成"
+password = "パスワード"
+passwordPlaceholderReadonly = "ここにパスワードが生成されます (読み取り専用)"
+
+# ROM言語
+[wondermail.language]
+JP = "日本"
+NA = "北米"
+EU = "欧州"
+# 報酬タイプ
+[wondermail.rewardTypes]
+poke = "ポケ"
+pokeItem = "ポケ+道具"
+item = "道具"
+itemOther = "道具+その他"
+itemHide = "道具(???表記)"
+egg = "タマゴ"
+recruit = "依頼主が仲間になる"
+# モード
+[wondermail.mode]
+ds = "DSモード"
+advanced = "Advancedモード"
+# オプション
+[wondermail.options]
+randomizeRewardValue = "報酬値を常にランダム化"
+randomizeSeed = "SEEDを常にランダム化"
+[wondermail.body]
+descriptionText = """
+「ポケモン不思議のダンジョン時/闇/空の探検隊」のふしぎなメール用依頼パスワードを作るツール。全リージョン対応。
+
+基本的に何でもできます。
+"""
+cautionTitle = "注意..."
+cautionText = """
+- ポケダン空のデータをベースにしているため、空限定の要素は時闇では使用できません。
+  例: オレソのみ、シェイミ、ぼうきゃくのもり 等...
+
+- 作成する依頼によってはゲームバランスを著しく損なう、またはセーブデータに影響を与える可能性があります。
+"""
+warningTitle = "必ずお読みください"
+warningText = """
+このツールで作成した依頼は「**捏造パス**」または「**改造パス**」と呼ばれるものとみなします。各種サイト・SNS・掲示板などへ掲載する際は、これらの依頼が掲載可能である場所のみで行ってください。
+
+正規の手段で得られた依頼として偽って掲載することを禁止します。また、このツールによって発生した問題について一切の責任を負いません。自己責任でご利用ください。
+***
+DS版のみ、依頼の内容によっては入力時にフリーズする依頼が作成できてしまうことがあり、データ破損のおそれがあります。
+
+DS版で利用する際は必ず「DSモード」を有効にしてください。これにより、フリーズ依頼が作れないように項目が制限されます。
+"""
+regionFreeText = "時/闇のパスワードはリージョンフリーなので指定は不要です。"
+descriptionDSMode = """
+一部の依頼で既存のテンプレートのみ選択できるように制限します(デフォルトでON)。
+OFFにすると制限なく依頼を作れますが、DS版でフリーズする依頼が作れるようになるため取り扱いには注意してください。 ※DS版以外ではフリーズしません。
+"""
+descriptionAdvancedMode = """
+入力制限を撤廃します。具体的には以下の機能が有効化されます。
+・非活性状態を強制解除
+・フロアの値を0～255まで選択できるようにする
+~~また、効率的に入力できるパスワードを総当たりで検索する機能を追加します。~~ (そのうち実装予定)
+"""
+shareText = "このURLをコピーして依頼の内容を共有できます。"
+# 任意タマゴ孵化
+[wondermail.anyegg]
+pokemonToRecruit = "欲しいポケモン"
+
+# 救助関連ツール
+[rescue]
+generatedPassword = "生成したパスワード"
+enterPassword = "パスワード入力"
+# 自演救助
+[rescue.selfRescue]
+enterPasswordPlaceholder = "たすけてメール・ふっかつメールのパスワードを入力 (スペース・改行可)"
+giftItem = "贈ってもらう道具"
+giftItemCount = "個数"
+giftItemInner = "宝箱の中身"
+generatePassword = "ふっかつ/おれいのメールを生成"
+# 救助複製
+[rescue.duplicate]
+duplicatePassword = "パスワード複製"
+enterPasswordPlaceholder = "たすけてメールのパスワードを入力 (スペース・改行可)"
+
+
+# リスト
+[listIdToHex]
+other = 'IDを16進数で表示'
+
+# 道具
+[itemBuyPrice]
+other = '買値'
+[itemSellPrice]
+other = '売値'
+[itemCategory]
+other = 'カテゴリ'
+[itemCategory_0]
+other = '投擲物(トゲ)'
+[itemCategory_1]
+other = '投擲物(石)'
+[itemCategory_2]
+other = 'きのみ/タネ/飲料'
+[itemCategory_3]
+other = '食料/グミ'
+[itemCategory_4]
+other = '装備品'
+[itemCategory_5]
+other = 'わざマシン'
+[itemCategory_6]
+other = 'ポケ'
+[itemCategory_7]
+other = '(未使用)'
+[itemCategory_8]
+other = 'その他'
+[itemCategory_9]
+other = 'ふしぎだま'
+[itemCategory_10]
+other = '連結箱'
+[itemCategory_11]
+other = 'しようごマシン'
+[itemCategory_12]
+other = '宝箱'
+[itemCategory_13]
+other = '宝箱2 (未使用？)'
+[itemCategory_14]
+other = '宝箱3 (未使用？)'
+[itemCategory_15]
+other = '専用道具'
+[itemIsValidOnly]
+other = '有効な道具のみ'
