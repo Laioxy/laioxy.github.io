@@ -11,7 +11,9 @@ This is a simplified version that implements only the essential features.
 
 Since the information on this page is based on EoS, some data may differ for Pokémon that do not exist in T/D, such as Shaymin.
 
-<!-- {{< youtube OfSTtRYuSis >}} -->
+<div class="youtube mb-3">
+  {{< youtube OfSTtRYuSis >}}
+</div>
 
 ##### Before You Begin
 

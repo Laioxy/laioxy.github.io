@@ -9,7 +9,7 @@ A self-rescue tool for Pokémon Mystery Dungeon: Explorers of Time, Explorers of
 Supports all game versions and regions.
 
 <div class="youtube mb-3">
-    <!-- {{< youtube DKzW5EaVlNE >}} -->
+    {{< youtube DKzW5EaVlNE >}}
 </div>
 
 ##### Steps

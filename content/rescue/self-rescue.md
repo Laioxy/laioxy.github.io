@@ -9,7 +9,7 @@ weight: 10
 全バージョン・全リージョン対応。
 
 <div class="youtube mb-3">
-    <!-- {{< youtube DKzW5EaVlNE >}} -->
+    {{< youtube DKzW5EaVlNE >}}
 </div>
 
 ##### 手順
