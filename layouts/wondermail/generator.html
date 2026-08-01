@@ -19,14 +19,17 @@
     {{ partial "breadcrumb.html" (dict "page" . "title" .Title) }}
 
 
-    <h1 class="my-3">{{ .Title }}</h1>
-    <button
-      type="button"
-      class="btn btn-primary btn-sm"
-      data-bs-toggle="modal"
-      data-bs-target="#changelog-modal">
-      {{ T "changelog" }}
-    </button>
+    <div
+      class="d-flex align-items-start justify-content-between flex-column flex-sm-row mb-2">
+      <h1 class="mb-sm-1">{{ .Title }}</h1>
+      <button
+        type="button"
+        class="btn btn-primary btn-sm"
+        data-bs-toggle="modal"
+        data-bs-target="#changelog-modal">
+        {{ T "changelog" }}
+      </button>
+    </div>
 
     <p>
       {{ T "wondermail.body.descriptionText" | markdownify }}
