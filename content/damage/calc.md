@@ -1,6 +1,7 @@
 ---
 title: "ダメージ計算機 for ポケダン空"
-layout: "calc"
+description: "ポケモンが与えるダメージを計算します。"
+layout: calc
 ---
 
 ##### 2026/01/27

@@ -1,0 +1,107 @@
+{{ define "main" }}
+  {{ partial "jsbuild" (dict "src" "js/rescue/self-rescue.js") }}
+  {{ partial "methods/SetScssMinify" "rescue" }}
+
+  {{/* 言語ごとのパラメータ・翻訳文言をJSに渡す */}}
+  {{ $params := index hugo.Data.params .Lang }}
+  {{ $translateRescue := index hugo.Data.translate.rescue .Lang }}
+
+  <script>
+    window.PARAMS = JSON.parse('{{ $params | jsonify }}');
+    window.translate = {
+      rescue: JSON.parse('{{ $translateRescue | jsonify }}'),
+    };
+  </script>
+
+  <div class="container-md">
+    <!-- パンくずリスト -->
+    {{ partial "breadcrumb.html" (dict "page" . "title" .Title) }}
+
+
+    <h1 class="my-3">{{ .Title }}</h1>
+    <div>
+      {{ .Content }}
+    </div>
+    <hr />
+
+    <div class="d-flex flex-column gap-3">
+      <div class="d-flex flex-md-row flex-column gap-3">
+        <div class="col-md">
+          <h4>{{ T "rescue.enterPassword" }}</h4>
+          <div class="row d-flex flex-column gap-3">
+            <!-- 入力したパスワード -->
+            <div>
+              {{ $passwordInputPlaceholder := (T "rescue.selfRescue.enterPasswordPlaceholder") }}
+              <textarea
+                class="form-control d-grid"
+                rows="3"
+                id="password-input"
+                placeholder="{{ $passwordInputPlaceholder }}"></textarea>
+            </div>
+
+            <!-- 贈ってもらう道具 -->
+            <div>
+              <div class="form-floating">
+                <select id="gift-item" class="form-select"></select>
+                <label for="gift-item">
+                  {{ T "rescue.selfRescue.giftItem" }}
+                </label>
+              </div>
+            </div>
+
+            <!-- 道具の個数 -->
+            <div id="gift-item-count-wrap" class="d-none">
+              <div class="form-floating">
+                <input
+                  id="gift-item-count"
+                  class="form-control"
+                  type="number"
+                  value="1"
+                  min="0"
+                  max="99" />
+                <label for="gift-item-count">
+                  {{ T "rescue.selfRescue.giftItemCount" }}
+                </label>
+              </div>
+            </div>
+            <!-- 宝箱の中身 -->
+            <div id="gift-item-inner-wrap" class="d-none">
+              <div class="form-floating">
+                <select id="gift-item-inner" class="form-select"></select>
+                <label for="gift-item-inner">
+                  {{ T "rescue.selfRescue.giftItemInner" }}
+                </label>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column gap-3">
+              <button
+                class="btn btn-primary btn-lg w-100"
+                id="password-generate">
+                {{ T "rescue.selfRescue.generatePassword" }}
+              </button>
+              <div id="error-msg-wrap">
+                <!-- エラーメッセージ -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex flex-md-row flex-column gap-3">
+        <div class="col-md">
+          <h4>{{ T "rescue.generatedPassword" }}</h4>
+          <div class="d-flex flex-column gap-3">
+            <div>
+              <textarea
+                id="password-output"
+                class="form-control d-grid"
+                rows="3"
+                readonly></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{ end }}

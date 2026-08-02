@@ -1,0 +1,10 @@
+.choices {
+  .choices__item[data-errortype="banned"],
+  .choices__item[data-errortype="invalid"] {
+    background-color: var(--bg-color-banned);
+  }
+}
+
+textarea {
+  resize: none;
+}

@@ -1,0 +1,14 @@
+{{ with site.GetPage . }}
+  {{ if or (eq .Site.Language.Lang "ja") (.IsTranslated) }}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title fw-bold">
+          <a href="{{ .RelPermalink }}" class="stretched-link">{{ .Title }}</a>
+        </h5>
+        <p>
+          {{ .Description }}
+        </p>
+      </div>
+    </div>
+  {{ end }}
+{{ end }}

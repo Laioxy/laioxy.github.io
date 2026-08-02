@@ -1,0 +1,72 @@
+{{ define "main" }}
+  {{ partial "jsbuild" (dict "src" "js/rescue/duplicate.js") }}
+  {{ partial "methods/SetScssMinify" "rescue" }}
+
+  {{/* 言語ごとのパラメータ・翻訳文言をJSに渡す */}}
+  {{ $translateRescue := index hugo.Data.translate.rescue .Lang }}
+  <script>
+    window.translate = {
+      rescue: JSON.parse('{{ $translateRescue | jsonify }}'),
+    };
+  </script>
+
+  <div class="container-md">
+    <!-- パンくずリスト -->
+    {{ partial "breadcrumb.html" (dict "page" . "title" .Title) }}
+
+
+    <h1 class="my-3">{{ .Title }}</h1>
+
+    <div>
+      {{ .Content }}
+    </div>
+    <hr />
+
+    <div class="d-flex flex-column gap-3">
+      <div class="d-flex flex-md-row flex-column gap-3">
+        <div class="col">
+          <h4>{{ T "rescue.enterPassword" }}</h4>
+          <div class="row d-flex flex-column gap-3">
+            <!-- パスワード入力 -->
+            <div>
+              {{ $placeholder := (T "rescue.duplicate.enterPasswordPlaceholder") }}
+              <textarea
+                class="form-control d-grid"
+                rows="3"
+                id="password-input"
+                placeholder="{{ $placeholder }}"></textarea>
+            </div>
+
+            <!-- 複製ボタン -->
+            <div class="d-flex flex-column gap-3">
+              <button
+                class="btn btn-primary btn-lg w-100"
+                id="password-duplicate-btn">
+                {{ T "rescue.duplicate.duplicatePassword" }}
+              </button>
+              <div id="error-msg-wrap">
+                <!-- エラーメッセージ -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 出力 -->
+      <div class="d-flex flex-md-row flex-column gap-3">
+        <div class="col">
+          <h4>{{ T "rescue.generatedPassword" }}</h4>
+          <div class="d-flex flex-column gap-3">
+            <div>
+              <textarea
+                id="password-output"
+                class="form-control d-grid"
+                rows="3"
+                readonly></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{ end }}

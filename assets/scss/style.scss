@@ -27,6 +27,10 @@ $navbar-height: 3.5rem;
   --type-dark-color: #705746;
   --type-steel-color: #b7b7ce;
   --type-fairy-color: #d685ad;
+
+  // 固定
+  --bg-color-banned: var(--bs-danger-border-subtle);
+  --bg-color-invalid: var(--bs-tertiary-color);
 }
 
 html {
@@ -135,11 +139,13 @@ h6 {
 }
 
 /* Select2 ダークモード対応 */
-.select2-container {
-  &.select2-container--bootstrap-5
-    .select2-selection--single
+.select2-container.select2-container--bootstrap-5 {
+  .select2-selection.select2-selection--single {
+    background-color: var(--bs-body-bg);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23adb5bd' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
     .select2-selection__rendered {
-    color: var(--bs-body-color);
+      color: var(--bs-body-color);
+    }
   }
   &.select2-container--disabled .select2-selection,
   &.select2-container--disabled.select2-container--focus .select2-selection {
@@ -150,31 +156,31 @@ h6 {
     background-color: var(--bs-body-bg);
     border-color: var(--bs-border-color);
 
-    // 検索欄
-    .select2-search .select2-search__field {
+    .select2-search.select2-search--dropdown {
       background-color: var(--bs-body-bg);
-      border-color: var(--bs-border-color);
-      color: var(--bs-body-color);
+      // 検索欄
+      .select2-search__field {
+        background-color: var(--bs-body-bg);
+        border-color: var(--bs-border-color);
+        color: var(--bs-body-color);
+      }
     }
     // hover
-    .select2-results__options
+    .select2-results__options {
       .select2-results__option.select2-results__option--highlighted {
-      background-color: var(--bs-body-bg);
-      color: var(--bs-body-color);
-      filter: brightness(1.4);
-    }
-    // 項目
-    .select2-results__options .select2-results__option {
-      color: var(--bs-body-color);
-    }
-    // 選択済み項目
-    .select2-results__options
-      .select2-results__option.select2-results__option--selected,
-    .select2-results__options
-      .select2-results__option[aria-selected="true"]:not(
-        .select2-results__option--highlighted
-      ) {
-      background-color: var(--bs-primary) !important;
+        background-color: var(--bs-body-bg);
+        color: var(--bs-body-color);
+        filter: brightness(1.4);
+      }
+      // 項目
+      .select2-results__option {
+        color: var(--bs-body-color);
+        // 選択済み項目
+        &.select2-results__option--selected,
+        &[aria-selected="true"]:not(.select2-results__option--highlighted) {
+          background-color: var(--bs-primary) !important;
+        }
+      }
     }
   }
 }

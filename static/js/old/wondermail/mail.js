@@ -1,4 +1,4 @@
-import { WonderMail, GetSwapTable } from '/js/wondermail/password.js';
+import { WonderMail, GetSwapTable } from './password.js';
 
 $(async function () {
   // JSONデータ格納用変数

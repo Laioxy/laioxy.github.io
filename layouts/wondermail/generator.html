@@ -1,0 +1,546 @@
+{{ define "main" }}
+  {{ partial "jsbuild" (dict "src" "js/wondermail/generator/view.js" "output" "bundle.js") }}
+  {{ partial "methods/SetScssMinify" "wondermail" }}
+
+  {{/* 言語ごとのパラメータ・翻訳文言をJSに渡す */}}
+  {{ $params := index hugo.Data.params .Lang }}
+  {{ $translateWondermail := index hugo.Data.translate.wondermail .Lang }}
+  {{ $translatePokemon := index hugo.Data.translate.pokemon .Lang }}
+  <script>
+    window.PARAMS = JSON.parse('{{ $params | jsonify }}');
+    window.translate = {
+      wondermail: JSON.parse('{{ $translateWondermail | jsonify }}'),
+      pokemon: JSON.parse('{{ $translatePokemon | jsonify }}'),
+    };
+  </script>
+
+  <div class="container-md" id="wondermail-generator">
+    <!-- パンくずリスト -->
+    {{ partial "breadcrumb.html" (dict "page" . "title" .Title) }}
+
+
+    <div
+      class="d-flex align-items-start justify-content-between flex-column flex-sm-row mb-2">
+      <h1 class="mb-sm-1">{{ .Title }}</h1>
+      <button
+        type="button"
+        class="btn btn-primary btn-sm"
+        data-bs-toggle="modal"
+        data-bs-target="#changelog-modal">
+        {{ T "changelog" }}
+      </button>
+    </div>
+
+    <p>
+      {{ T "wondermail.body.descriptionText" | markdownify }}
+    </p>
+
+    <!-- 注意書き -->
+    <div class="alert alert-warning" role="alert">
+      <h4>
+        <i class="bi bi-exclamation-diamond-fill"></i>
+        {{ T "wondermail.body.cautionTitle" }}
+      </h4>
+      {{ T "wondermail.body.cautionText" | markdownify }}
+    </div>
+
+    <!-- お読み下さい -->
+    <div class="alert alert-danger" role="alert">
+      <h4>
+        <i class="bi bi-exclamation-diamond-fill"></i>
+        {{ T "wondermail.body.warningTitle" }}
+      </h4>
+      {{ T "wondermail.body.warningText" | markdownify }}
+    </div>
+
+    <div class="d-flex gap-3 flex-column">
+      <div class="col">
+        <div
+          class="d-flex flex-sm-row column-gap-sm-3 row-gap-sm-0 gap-2 flex-column flex-wrap">
+          <!-- バージョン -->
+          {{ $versions := slice
+            (dict "value" "sky" "label" (T "version.sky"))
+            (dict "value" "old" "label" (T "version.td"))
+          }}
+          <div class="d-flex flex-column order-1">
+            <h6>{{ T "wondermail.version" }}</h6>
+            <div class="btn-group text-nowrap">
+              {{ range $index, $version := $versions }}
+                <input
+                  type="radio"
+                  class="btn-check"
+                  id="version-{{ .value }}"
+                  name="version"
+                  autocomplete="version"
+                  value="{{ .value }}"
+                  {{ if eq $index 0 }}checked{{ end }} />
+                <label
+                  class="btn btn-outline-primary"
+                  for="version-{{ .value }}">
+                  {{ .label }}
+                </label>
+              {{ end }}
+            </div>
+          </div>
+
+          <!-- リージョン -->
+          {{ $regions := slice
+            (dict "value" "jp" "label" (T "wondermail.language.JP"))
+            (dict "value" "na" "label" (T "wondermail.language.NA"))
+            (dict "value" "eu" "label" (T "wondermail.language.EU"))
+          }}
+          {{/* ページ言語に合わせてデフォルトリージョン切替 (デフォルトはJP) */}}
+          {{ $defaultRegions := dict
+            "ja" "jp"
+            "en" "na"
+          }}
+          {{ $defaultRegion := or (index $defaultRegions .Lang) "jp" }}
+          <div class="d-flex flex-column order-2">
+            <h6>{{ T "wondermail.region" }}</h6>
+            <div class="btn-group text-nowrap">
+              {{ range $region := $regions }}
+                <input
+                  type="radio"
+                  class="btn-check"
+                  id="region-{{ .value }}"
+                  name="region"
+                  autocomplete="region"
+                  value="{{ .value }}"
+                  {{ if eq .value $defaultRegion }}checked{{ end }} />
+                <label
+                  class="btn btn-outline-primary"
+                  for="region-{{ .value }}">
+                  {{ .label }}
+                </label>
+              {{ end }}
+            </div>
+          </div>
+
+          <!-- 時闇リージョンフリーテキスト -->
+          <div
+            class="text-primary d-none order-3 order-md-4 w-100"
+            id="region-old-info">
+            <i class="bi bi-info-circle-fill"></i>
+            {{ T "wondermail.body.regionFreeText" }}
+          </div>
+
+          <div class="d-flex flex-column order-4 order-md-3">
+            <h6>{{ T "wondermail.option" }}</h6>
+            <!-- 報酬値を常にランダム化 -->
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="mode-random-reward-value" />
+              <label class="form-check-label" for="mode-random-reward-value">
+                {{ T "wondermail.options.randomizeRewardValue" }}
+              </label>
+            </div>
+            <!-- SEEDを常にランダム化 -->
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="mode-random-seed" />
+              <label class="form-check-label" for="mode-random-seed">
+                {{ T "wondermail.options.randomizeSeed" }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <!-- advanced: チェックサム -->
+        <div class="advanced">
+          <h5>{{ T "wondermail.checksumHeader" }}</h5>
+          <div class="row g-2 mb-3">
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="mission-checksum-base"
+                  readonly />
+                <label for="mission-checksum-base">
+                  {{ T "wondermail.checksumInPassword" }}
+                </label>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="mission-checksum-generate"
+                  readonly />
+                <label for="mission-checksum-generate">
+                  {{ T "wondermail.checksumGenerated" }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 依頼の内容 -->
+        <h5>{{ T "wondermail.missionInfo" }}</h5>
+        <div class="row g-2 mb-3">
+          <!-- 依頼タイプ -->
+          <div class="col-12 col-md-6">
+            <div class="form-floating">
+              <select class="form-select" id="mission-type"></select>
+              <label for="mission-type">{{ T "wondermail.missionType" }}</label>
+            </div>
+          </div>
+          <!-- 依頼フラグ -->
+          <div class="col-12 col-md-6">
+            <div class="form-floating">
+              <select class="form-select" id="mission-flag"></select>
+              <label for="mission-flag">{{ T "wondermail.missionFlag" }}</label>
+            </div>
+          </div>
+          <!-- 報酬タイプ -->
+          {{ $rewardTypes := slice
+            (dict "mode" 0 "label" (T "wondermail.rewardTypes.poke"))
+            (dict "mode" 1 "label" (T "wondermail.rewardTypes.pokeItem"))
+            (dict "mode" 1 "label" (T "wondermail.rewardTypes.item"))
+            (dict "mode" 1 "label" (T "wondermail.rewardTypes.itemOther"))
+            (dict "mode" 1 "label" (T "wondermail.rewardTypes.itemHide"))
+            (dict "mode" 0 "label" (T "wondermail.rewardTypes.egg"))
+            (dict "mode" 2 "label" (T "wondermail.rewardTypes.recruit"))
+          }}
+          <div class="col-12 col-md-6">
+            <div class="form-floating">
+              <select class="form-select" id="mission-reward-type">
+                {{ range $index, $rewardType := $rewardTypes }}
+                  <option value="{{ $index }}" data-mode="{{ .mode }}">
+                    {{ printf "[%02X]" $index }}
+                    {{ .label }}
+                  </option>
+                {{ end }}
+              </select>
+              <label for="mission-reward-type">
+                {{ T "wondermail.rewardType" }}
+              </label>
+            </div>
+          </div>
+          <!-- 報酬値 (list) -->
+          <div class="col-12 col-md-6" id="mission-reward-value-list-wrap">
+            <div class="form-floating">
+              <select
+                class="form-select"
+                id="mission-reward-value-list"></select>
+              <label for="mission-reward-value-list">
+                {{ T "wondermail.reward" }}
+              </label>
+            </div>
+          </div>
+          <!-- 報酬値 (input) -->
+          <div class="col-12 col-md-6" id="mission-reward-value-input-wrap">
+            <div class="input-group">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="0"
+                  data-hex-max="7FF"
+                  id="mission-reward-value-input" />
+                <label for="mission-reward-value-input">
+                  {{ T "wondermail.rewardValue" }} (max: 0x7FF)
+                </label>
+              </div>
+              <button
+                class="btn btn-primary"
+                id="btn-mission-reward-value-random">
+                {{ T "random" }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 依頼の対象 -->
+        <h5>{{ T "wondermail.missionTarget" }}</h5>
+        <div class="row g-2">
+          <!-- テンプレート -->
+          <div class="col-12" id="mission-template-wrap">
+            <div class="form-floating">
+              <select class="form-select" id="mission-template"></select>
+              <label for="mission-template">
+                {{ T "wondermail.template" }}
+              </label>
+            </div>
+          </div>
+          <!-- 依頼主 -->
+          <div class="col-12 col-md-6" id="mission-client-wrap">
+            <div class="form-floating">
+              <select class="form-select" id="mission-client"></select>
+              <label for="mission-client">{{ T "wondermail.client" }}</label>
+            </div>
+          </div>
+        </div>
+        <div class="row g-2 mt-0 mb-3">
+          <!-- 対象1 -->
+          <div class="col-12 col-md-6" id="mission-target-1-wrap">
+            <div class="form-floating">
+              <select class="form-select" id="mission-target-1"></select>
+              <label for="mission-target-1">
+                {{ T "wondermail.targetPokemon" }}1
+              </label>
+            </div>
+          </div>
+          <!-- 対象2 -->
+          <div class="col-12 col-md-6" id="mission-target-2-wrap">
+            <div class="form-floating">
+              <select class="form-select" id="mission-target-2"></select>
+              <label for="mission-target-2">
+                {{ T "wondermail.targetPokemon" }}2
+              </label>
+            </div>
+          </div>
+          <!-- 対象の道具 -->
+          <div class="col-12 col-md-6">
+            <div class="form-floating">
+              <select class="form-select" id="mission-target-item"></select>
+              <label for="mission-target-item">
+                {{ T "wondermail.targetItem" }}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ダンジョン関連 -->
+        <h5>{{ T "dungeon" }}</h5>
+        <div class="row g-2 mb-3">
+          <!-- ダンジョン -->
+          <div class="col-12 col-md-6">
+            <div class="form-floating">
+              <select class="form-select" id="mission-dungeon"></select>
+              <label for="mission-dungeon">{{ T "dungeon" }}</label>
+            </div>
+          </div>
+          <!-- フロア -->
+          <div class="col-12 col-md-6">
+            <div class="form-floating">
+              <select class="form-select" id="mission-floor"></select>
+              <label for="mission-floor">{{ T "wondermail.floor" }}</label>
+            </div>
+          </div>
+          <!-- 固定フロア -->
+          <div class="col-12">
+            <div class="form-floating">
+              <select class="form-select" id="mission-fixed"></select>
+              <label for="mission-fixed">{{ T "wondermail.fixedFloor" }}</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- その他 -->
+        <h5>{{ T "wondermail.others" }}</h5>
+        <div class="row g-2 mb-3">
+          <!-- 制限タイプ -->
+          {{ $restTypes := slice (T "type") (T "pokemon") }}
+          <div class="col-12 col-md-6">
+            <div class="form-floating">
+              <select class="form-select" id="mission-rest-type">
+                {{ range $index, $restType := $restTypes }}
+                  <option value="{{ $index }}">
+                    {{ printf "[%02X]" $index }}
+                    {{ $restType }}
+                  </option>
+                {{ end }}
+              </select>
+              <label for="mission-rest-type">
+                {{ T "wondermail.restType" }}
+              </label>
+            </div>
+          </div>
+          <!-- 制限 -->
+          <div class="col-12 col-md-6">
+            <div class="form-floating">
+              <select class="form-select" id="mission-rest-value"></select>
+              <label for="mission-rest-value">
+                {{ T "wondermail.restValue" }}
+              </label>
+            </div>
+          </div>
+          <!-- SEED -->
+          <div class="col-12 col-md-6">
+            <div class="input-group">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="mission-seed"
+                  value="0"
+                  data-hex-max="FFFFFF" />
+                <label for="mission-seed">
+                  {{ T "wondermail.seed" }} (max: 0xFFFFFF)
+                </label>
+              </div>
+
+              <button class="btn btn-primary" id="btn-mission-seed-random">
+                {{ T "random" }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <h5>{{ T "wondermail.advanced" }}</h5>
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="mode-ds"
+            checked />
+          <label class="form-check-label" for="mode-ds">
+            {{ T "wondermail.mode.ds" }}
+          </label>
+        </div>
+        <p class="form-text">
+          {{ T "wondermail.body.descriptionDSMode" | markdownify }}
+        </p>
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="mode-advanced" />
+          <label class="form-check-label" for="mode-advanced">
+            {{ T "wondermail.mode.advanced" }}
+          </label>
+        </div>
+        <p class="form-text">
+          {{ T "wondermail.body.descriptionAdvancedMode" | markdownify }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="result-password" class="border-top border-1">
+    <div class="container-md my-2">
+      <div class="d-flex flex-column">
+        <div id="error-msg-wrap">
+          <!-- エラーメッセージ -->
+        </div>
+        <div class="d-flex flex-column flex-md-row gap-2">
+          <div class="flex-fill">
+            {{ $wondermailPlaceholder := T "wondermail.passwordPlaceholder" }}
+            <textarea
+              class="form-control"
+              id="password"
+              placeholder="{{ $wondermailPlaceholder }}"></textarea>
+          </div>
+          <div class="d-flex flex-row gap-2 btn-wrap">
+            <div class="input-group">
+              <!-- 展開ボタン -->
+              <button class="btn btn-primary" id="btn-deploy">
+                {{ T "wondermail.extract" }}
+              </button>
+              <!-- 生成ボタン -->
+              <button class="btn btn-danger" id="btn-generate">
+                {{ T "wondermail.generate" }}
+              </button>
+            </div>
+            <!-- 共有ボタン -->
+            <button class="btn btn-outline-secondary flex-fill" id="btn-share">
+              <i class="bi bi-share-fill"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 確認モーダル -->
+  <div class="modal fade" id="confirm-modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-secondary"
+            id="confirm-modal-cancel"
+            data-bs-dismiss="modal">
+            {{ T "cancel" }}
+          </button>
+          <button class="btn btn-primary" id="confirm-modal-ok">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 共有モーダル -->
+  <div class="modal fade" id="share-modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            {{ T "share" }}
+          </h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{ T "wondermail.body.shareText" }}</p>
+          <textarea
+            class="form-control"
+            id="share-url"
+            rows="4"
+            readonly></textarea>
+          <div class="d-flex justify-content-center mt-3">
+            <button class="btn btn-primary" id="share-copy-btn">
+              {{ T "copy" }}
+            </button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-secondary"
+            id="share-modal-close"
+            data-bs-dismiss="modal">
+            {{ T "close" }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 更新履歴モーダル -->
+  <div class="modal fade" id="changelog-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            {{ T "changelog" }}
+          </h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          {{ $oldPage := "/old/wondermail" | relURL }}
+          {{ if eq .Lang "ja" }}
+            <p>
+              旧ページは
+              <a href="{{ $oldPage }}">こちら</a>
+            </p>
+          {{ else }}
+            <p>
+              The old page is
+              <a href="{{ $oldPage }}">here</a>
+            </p>
+          {{ end }}
+          {{ .Content }}
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-secondary"
+            id="changelog-modal-close"
+            data-bs-dismiss="modal">
+            {{ T "close" }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+{{ end }}

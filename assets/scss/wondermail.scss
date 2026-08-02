@@ -1,0 +1,103 @@
+:root {
+  // 動的に切り替わる
+  --bg-color-banned-pokemon: var(--bs-danger-border-subtle);
+  --bg-color-invalid-pokemon: var(--bs-tertiary-color);
+  --bg-color-oversize-pokemon: var(--bs-danger-border-subtle);
+  --bg-color-banned-item: var(--bs-danger-border-subtle);
+  --bg-color-invalid-item: var(--bs-tertiary-color);
+  --bg-color-skyonly-item: var(--bs-danger-border-subtle);
+
+  // 固定
+  --bg-color-banned: var(--bs-danger-border-subtle);
+  --bg-color-invalid: var(--bs-tertiary-color);
+}
+
+// パスワード系テキストエリア
+textarea#password {
+  resize: none;
+}
+
+#wondermail-generator {
+  padding-bottom: 6rem;
+  @media only screen and (max-width: 768px) {
+    padding-bottom: 9rem;
+  }
+
+  .choices {
+    .choices__list--dropdown {
+      .choices__item[data-errortype="banned"][data-listtype="pokemon"] {
+        background-color: var(--bg-color-banned-pokemon);
+      }
+      .choices__item[data-errortype="invalid"][data-listtype="pokemon"] {
+        background-color: var(--bg-color-invalid-pokemon);
+      }
+      .choices__item[data-gender="0"][data-listtype="pokemon"] {
+        background-color: var(--bg-color-invalid) !important;
+      }
+      .choices__item[data-errortype="banned"][data-listtype="item"] {
+        background-color: var(--bg-color-banned-item) !important;
+      }
+      .choices__item[data-errortype="invalid"][data-listtype="item"] {
+        background-color: var(--bg-color-invalid-item) !important;
+      }
+      .choices__item[data-errortype="skyonly"][data-listtype="item"] {
+        background-color: var(--bg-color-skyonly-item) !important;
+      }
+      .choices__item[data-errortype="banned"] {
+        background-color: var(--bg-color-banned);
+      }
+    }
+    // 依頼主 (同行系依頼用)
+    &:has(#mission-client) .choices__list--dropdown {
+      .choices__item[data-oversize="true"][data-listtype="pokemon"] {
+        background-color: var(--bg-color-oversize-pokemon) !important;
+      }
+    }
+  }
+}
+
+#result-password {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  background-color: var(--bs-body-bg);
+  border-top: solid 1px var(--bs-border-color);
+  padding-bottom: env(safe-area-inset-bottom, 0); /* iphone */
+
+  .password-wrap {
+    padding: 1rem;
+  }
+  .btn-wrap {
+    // PCのみ
+    @media only screen and (min-width: 768px) {
+      width: 36%;
+    }
+  }
+  textarea {
+    resize: none;
+  }
+  .input-group {
+    flex-wrap: nowrap;
+    & > button {
+      flex: 1 1 0 !important;
+    }
+  }
+}
+
+#share-modal {
+  textarea {
+    resize: none;
+  }
+}
+
+/* 他関連ツール用 */
+.choices {
+  .choices__list--dropdown {
+    .choices__item[data-warningType="nothing"],
+    .choices__item[data-warningType="genderInvalid"] {
+      background-color: var(--bg-color-banned);
+    }
+  }
+}

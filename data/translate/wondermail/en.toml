@@ -1,0 +1,223 @@
+# 依頼タイプ
+missionTypes = [
+  "Rescue client",
+  "Rescue target",
+  "Escort to target",
+  "Explore with client",
+  "Prospect with client",
+  "Guide client",
+  "Find item",
+  "Deliver item",
+  "Search for target",
+  "Take item from outlaw",
+  "Arrest outlaw",
+  "Challenge request",
+  "Treasure Memo",
+  "(Unused)",
+  "Other (7 Treasures etc...)",
+]
+
+# 依頼フラグ (空)
+missionFlag = [
+  # 通常
+  [
+    "Normal",
+  ],
+  # 対象を救助する系の依頼
+  [
+    "Normal",
+    "Parent-Child",
+    "Best Friend",
+    "Couple Rivals Brthers",
+  ],
+  # 依頼主を連れて行く系の依頼
+  [
+    "Normal",
+    "Specific",
+  ],
+  # 探検系の依頼
+  [
+    "Normal",
+    "Sealed Chamber",
+    "Golden Chamber",
+    "New dungeon",
+  ],
+  # 道具を探す依頼
+  [
+    "Valuables",
+    "Treasures",
+    "Evolution",
+    "Favorites",
+    "Gabite",
+  ],
+  # 取り返す系の依頼
+  [
+    "Normal",
+    "Hidden",
+    "Fleeing",
+  ],
+  # 捕まえる系の依頼
+  [
+    "Scoundrel",
+    "Scoundrel of the blackest dye",
+    "Con artist",
+    "Cutie",
+    "Escort",
+    "Fleeing",
+    "Hideout",
+    "Monster House",
+  ],
+  # 挑戦状の依頼
+  [
+    "Normal",
+    "Mewtwo",
+    "Entei",
+    "Raikou",
+    "Suicune",
+    "Jirachi",
+  ],
+  # 7つの秘宝
+  [
+    "?",
+    "7 Treasures",
+    "(Debug) Unlock SE3",
+  ],
+]
+
+# 依頼フラグ (時闇)
+missionFlagOld = [
+  # 通常
+  [
+    "Normal",
+    "Normal (T/D only?)",
+  ],
+  # 対象を救助する系の依頼
+  [
+    "Normal",
+    "Parent-Child",
+    "Best Friend",
+    "Couple Rivals Brthers",
+  ],
+  # 依頼主を連れて行く系の依頼
+  [
+    "Normal",
+    "Specific",
+  ],
+  # 探検系の依頼
+  [
+    "Normal",
+    "Sealed Chamber",
+    "Golden Chamber",
+    "New dungeon",
+  ],
+  # 道具を探す依頼
+  [
+    "Valuables",
+    "Treasures",
+    "Evolution",
+    "Favorites",
+    "Gabite",
+  ],
+  # 取り返す系の依頼
+  [
+    "Hidden",
+  ],
+  # 捕まえる系の依頼
+  [
+    "Scoundrel",
+    "Scoundrel of the blackest dye",
+    "Con artist",
+    "Cutie",
+  ],
+  # 挑戦状の依頼 (時闇には無い)
+  [
+  ],
+  # 7つの秘宝
+  [
+    "?",
+    "Mt. Avalanche",
+    "Giant Volcano",
+    "Shimmer Desert",
+    "Bottomless Sea",
+    "World Abyss",
+    "Mystery Jungle",
+    "Sky Stairway",
+  ],
+]
+
+[fixedNames]
+0x1B_EMPTY_ROOM = "(Unused) Empty Room"
+0x2A_DEEP_STAR_CAVE_WITH_GUILD = "Deep Star Cave (Guild)"
+0x2B_BARREN_VALLEY_RE = "Re: Barren Valley Clearing"
+0x3F_TEST_ROOM = "(Unused) TEST"
+0x40_EMPTY_ROOM_2 = "(Unused) Re: Empty Room"
+0x68_MIDNIGHT_FOREST_COPY = "(Unused) Midnight Forest B25F - Copy"
+0x6F_GOLDEN_CHAMBER = "Golden Chamber"
+0x70_SECRET_BAZAAR = "Secret Bazaar"
+0x71_SECRET_ROOM = "Secret Room"
+0x91_CHALLENGE_MEWTWO = "Challenge letter Mewtwo"
+0x92_CHALLENGE_ENTEI = "Challenge letter Entei"
+0x93_CHALLENGE_RAIKOU = "Challenge letter Raikou"
+0x94_CHALLENGE_SUICUNE = "Challenge letter Suicune"
+0x95_CHALLENGE_JIRATI = "Challenge letter Jirati"
+0xA5_SEALED_CHAMBER = "Sealed Chamber"
+0xBB_KEY_UNUSED_GUMMI = "(Unused) Locked room - Wonder Gummi ×1"
+0xBD_KEY_UNUSED_GUMMI_SEED = "(Unused) Locked room - Wonder Gummi ×2 Joy Seed ×4"
+0xBE_KEY_UNUSED_WONDER = "(Unused) Locked room - Wonder Chest ×1"
+0xC5_UNUSED_SEALED = "(Unused) Locked room (No Key)"
+
+[other]
+FIXED_REVISIT = "Re"
+FIXED_TREASURE_MEMO = "Treasure memo"
+FIXED_CHALLENGE_LETTER = "Challenge letter"
+FIXED_HIDEOUT = "Hideout"
+DSMODE_WARNING_TITLE = "Warning"
+DSMODE_WARNING_BODYTEXT = """
+<p class="text-danger fw-bold">
+  <i class="bi bi-exclamation-circle-fill me-1"></i>
+  Disabling DS Mode removes these restrictions. However, passwords generated with DS Mode disabled may cause the DS version of EoS to crash, depending on the mission data.<br>
+  Use at your own risk, as this may result in save data corruption.
+</p>
+Passwords generated with DS Mode disabled can be used safely in non-DS versions of EoS without causing crashes.
+<hr>
+This will remove the restrictions on clients and targets for Challenge Letters and Hideout Missions, as well as the dungeon selection restrictions for Treasure Memos.<br>
+Disable DS Mode?
+"""
+
+[messages]
+pokemon = [
+  "",
+  "This Pokémon is prohibited for the mission.",
+  "This Pokémon cannot be used for the mission.",
+  "Pokémon with a body size of 2 or greater cannot be used in escort missions.",
+  "Alternate forms cannot be used.",
+  "This is an invalid Pokémon.",
+  "Index out of range.",
+]
+pokemonInvalidGender = "This Pokémon's gender is invalid."
+item = [
+  "",
+  "This item is prohibited for the mission.",
+  "This is an invalid item.",
+  "This item is exclusive to the Sky version.",
+]
+dungeon = ["", "Dojo dungeons cannot be used.", "This dungeon cannot be used."]
+floor = "This cannot be used because a fixed floor is already specified."
+template = "No matching template was found, so it has been replaced with an existing template."
+share = """
+There is no mission to share.<br>
+Please extract or generate a mission first.
+"""
+copied = "Copied!"
+[messages.password]
+errorRequired = "Please enter a Wonder Mail password."
+errorInvalidLength = "The password length is invalid."
+errorInvalidCharacter = "The password contains invalid characters."
+warningChecksumMismatch = """
+The password was extracted, but the checksums do not match.<br>
+The password may be invalid.
+"""
+successExtract = "The password was extracted successfully!"
+successGenerate = "The password was generated successfully!"
+passwordChecksum = "Password Checksum"
+calculatedChecksum = "Calculated Checksum"
