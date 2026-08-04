@@ -24,80 +24,128 @@
     </div>
     <hr />
 
-    <div class="d-flex flex-column gap-3">
-      <div class="d-flex flex-md-row flex-column gap-3">
-        <div class="col-md">
-          <h4>{{ T "rescue.enterPassword" }}</h4>
-          <div class="row d-flex flex-column gap-3">
-            <!-- 入力したパスワード -->
-            <div>
-              {{ $passwordInputPlaceholder := (T "rescue.selfRescue.enterPasswordPlaceholder") }}
-              <textarea
-                class="form-control d-grid"
-                rows="3"
-                id="password-input"
-                placeholder="{{ $passwordInputPlaceholder }}"></textarea>
-            </div>
+    <div class="d-flex gap-3 flex-column">
+      <div class="d-flex flex-column">
+        <h5>{{ T "wondermail.option" }}</h5>
 
-            <!-- 贈ってもらう道具 -->
-            <div>
-              <div class="form-floating">
-                <select id="gift-item" class="form-select"></select>
-                <label for="gift-item">
-                  {{ T "rescue.selfRescue.giftItem" }}
-                </label>
-              </div>
+        <div class="d-flex flex-column flex-md-row gap-md-3">
+          <div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="option-output-width"
+                id="option-output-full-width"
+                {{ if eq .Lang `ja` }}checked{{ end }} />
+              <label class="form-check-label" for="option-output-full-width">
+                {{ T "tools.outputFullWidth" }}
+              </label>
             </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="option-output-width"
+                id="option-output-half-width"
+                {{ if ne .Lang `ja` }}checked{{ end }} />
+              <label class="form-check-label" for="option-output-half-width">
+                {{ T "tools.outputHalfWidth" }}
+              </label>
+            </div>
+          </div>
 
-            <!-- 道具の個数 -->
-            <div id="gift-item-count-wrap" class="d-none">
-              <div class="form-floating">
-                <input
-                  id="gift-item-count"
-                  class="form-control"
-                  type="number"
-                  value="1"
-                  min="0"
-                  max="99" />
-                <label for="gift-item-count">
-                  {{ T "rescue.selfRescue.giftItemCount" }}
-                </label>
-              </div>
-            </div>
-            <!-- 宝箱の中身 -->
-            <div id="gift-item-inner-wrap" class="d-none">
-              <div class="form-floating">
-                <select id="gift-item-inner" class="form-select"></select>
-                <label for="gift-item-inner">
-                  {{ T "rescue.selfRescue.giftItemInner" }}
-                </label>
-              </div>
-            </div>
-
-            <div class="d-flex flex-column gap-3">
-              <button
-                class="btn btn-primary btn-lg w-100"
-                id="password-generate">
-                {{ T "rescue.selfRescue.generatePassword" }}
-              </button>
-              <div id="error-msg-wrap">
-                <!-- エラーメッセージ -->
-              </div>
+          <div>
+            <!-- スペース・改行を含めずに出力 -->
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="option-output-without-space-linebreak" />
+              <label
+                class="form-check-label"
+                for="option-output-without-space-linebreak">
+                {{ T "tools.outputWithoutSpaceLinebreak" }}
+              </label>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="d-flex flex-md-row flex-column gap-3">
-        <div class="col-md">
-          <h4>{{ T "rescue.generatedPassword" }}</h4>
-          <div class="d-flex flex-column gap-3">
-            <div>
-              <textarea
-                id="password-output"
-                class="form-control d-grid"
-                rows="3"
-                readonly></textarea>
+      <div class="d-flex flex-column gap-3">
+        <div class="d-flex flex-md-row flex-column gap-3">
+          <div class="col-md">
+            <h5>{{ T "rescue.enterPassword" }}</h5>
+            <div class="row d-flex flex-column gap-3">
+              <!-- 入力したパスワード -->
+              <div>
+                {{ $passwordInputPlaceholder := (T "rescue.selfRescue.enterPasswordPlaceholder") }}
+                <textarea
+                  class="form-control d-grid"
+                  rows="3"
+                  id="password-input"
+                  placeholder="{{ $passwordInputPlaceholder }}"></textarea>
+              </div>
+
+              <!-- 贈ってもらう道具 -->
+              <div>
+                <div class="form-floating">
+                  <select id="gift-item" class="form-select"></select>
+                  <label for="gift-item">
+                    {{ T "rescue.selfRescue.giftItem" }}
+                  </label>
+                </div>
+              </div>
+
+              <!-- 道具の個数 -->
+              <div id="gift-item-count-wrap" class="d-none">
+                <div class="form-floating">
+                  <input
+                    id="gift-item-count"
+                    class="form-control"
+                    type="number"
+                    value="1"
+                    min="0"
+                    max="99" />
+                  <label for="gift-item-count">
+                    {{ T "rescue.selfRescue.giftItemCount" }}
+                  </label>
+                </div>
+              </div>
+              <!-- 宝箱の中身 -->
+              <div id="gift-item-inner-wrap" class="d-none">
+                <div class="form-floating">
+                  <select id="gift-item-inner" class="form-select"></select>
+                  <label for="gift-item-inner">
+                    {{ T "rescue.selfRescue.giftItemInner" }}
+                  </label>
+                </div>
+              </div>
+
+              <div class="d-flex flex-column gap-3">
+                <button
+                  class="btn btn-primary btn-lg w-100"
+                  id="password-generate">
+                  {{ T "rescue.selfRescue.generatePassword" }}
+                </button>
+                <div id="error-msg-wrap">
+                  <!-- エラーメッセージ -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-md-row flex-column gap-3">
+          <div class="col-md">
+            <h5>{{ T "rescue.generatedPassword" }}</h5>
+            <div class="d-flex flex-column gap-3">
+              <div>
+                <textarea
+                  id="password-output"
+                  class="form-control d-grid"
+                  rows="3"
+                  readonly></textarea>
+              </div>
             </div>
           </div>
         </div>

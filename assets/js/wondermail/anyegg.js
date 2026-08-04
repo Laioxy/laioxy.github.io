@@ -11,6 +11,8 @@ let regionOldInfoElement = null;
 let recruitPokemonElement = null;
 let passwordElement = null;
 let passGenerateElement = null;
+let optionOutputHalfWidthElement = null;
+let optionOutputWithoutSpacesLinebreak = null;
 
 // choicesデータ
 let pokemonChoicesData = null;
@@ -26,6 +28,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   recruitPokemonElement = document.getElementById('recruit-pokemon');
   passwordElement = document.getElementById('password');
   passGenerateElement = document.getElementById('pass-generate');
+  optionOutputHalfWidthElement = document.getElementById('option-output-half-width');
+  optionOutputWithoutSpacesLinebreak = document.getElementById('option-output-without-space-linebreak');
 
   // JSONデータ読込
   ({ pokemon: window.PokemonData, message: window.MessageData } = await getJsonDatas(['pokemon', 'message']));
@@ -101,9 +105,9 @@ function setEvent() {
     wm.Seed = seed;
     wm.encode();
 
-    passwordElement.value = wm.Sky
-      ? ConvertToMultiFormat(wm.Password, 5, 7, 5)
-      : ConvertToMultiFormat(wm.Password, 4, 4, 4);
+    const widthType = optionOutputHalfWidthElement.checked ? 1 : 0;
+    const spaceBreak = !optionOutputWithoutSpacesLinebreak.checked;
+    passwordElement.value = wm.output(widthType, spaceBreak);
   });
 }
 

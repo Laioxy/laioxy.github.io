@@ -10,6 +10,8 @@ let giftItemInnerElement = null;
 let giftItemCountWrapElement = null;
 let giftItemInnerWrapElement = null;
 let passwordGenerateBtnElement = null;
+let optionOutputHalfWidthElement = null;
+let optionOutputWithoutSpacesLinebreak = null;
 let errorMsgWrapElement = null;
 
 // choicesデータ
@@ -30,6 +32,9 @@ document.addEventListener('DOMContentLoaded', async function () {
   passwordGenerateBtnElement = document.getElementById('password-generate');
   errorMsgWrapElement = document.getElementById('error-msg-wrap');
   passwordOutputElement = document.getElementById('password-output');
+  optionOutputHalfWidthElement = document.getElementById('option-output-half-width');
+  optionOutputWithoutSpacesLinebreak = document.getElementById('option-output-without-space-linebreak');
+
   validationElements = [giftItemElement, giftItemInnerElement, giftItemCountElement];
 
   // JSONデータ読込
@@ -387,7 +392,9 @@ function generateMail() {
     return;
   }
 
-  passwordOutputElement.textContent = ConvertToMultiFormat(result.Password, 6, 6, 6);
+  const widthType = optionOutputHalfWidthElement.checked ? 1 : 0;
+  const spaceBreak = !optionOutputWithoutSpacesLinebreak.checked;
+  passwordOutputElement.textContent = result.output(widthType, spaceBreak);
   showAlertMsg(2, message);
 }
 

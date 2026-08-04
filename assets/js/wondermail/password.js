@@ -246,6 +246,47 @@ export class WonderMail {
     // 整合性チェック用にチェックサムを生成
     this.Checksum2 = generateCheckSum(bitConvert.toHexList(), this.Sky);
   }
+
+  /**
+   * パスワード出力
+   * @param {*} widthType 文字タイプ (0=全角, 1=半角)
+   * @param {*} spaceBreak スペース・改行を含める
+   * @returns パスワード文字列
+   */
+  output(widthType = 0, spaceBreak = true) {
+    let res = this.Password;
+    if (widthType == 1 && !spaceBreak) return this.Password;
+
+    // 全角へ変換
+    if (widthType === 0) {
+      res = res.replace(/[\x21-\x7E]/g, (char) => {
+        return String.fromCharCode(char.charCodeAt(0) + 0xfee0);
+      });
+    }
+
+    if (spaceBreak) {
+      const lengths = this.Sky ? [5, 7, 5] : [4, 4, 4];
+      const lineLength = lengths.reduce((sum, length) => sum + length, 0);
+      const lines = [];
+
+      for (let i = 0; i < res.length; i += lineLength) {
+        const line = res.slice(i, i + lineLength);
+
+        let pos = 0;
+        const parts = lengths.map((length) => {
+          const part = line.slice(pos, pos + length);
+          pos += length;
+          return part;
+        });
+
+        lines.push(parts.join(widthType === 0 ? '　' : ' '));
+      }
+
+      res = lines.join('\n');
+    }
+
+    return res;
+  }
 }
 
 /**

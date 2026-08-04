@@ -20,7 +20,6 @@
 
 
     <h1 class="my-3">{{ .Title }}</h1>
-    <!-- ツールまでジャンプ -->
 
     <div>
       {{ .Content }}
@@ -29,14 +28,13 @@
 
     <div class="d-flex gap-3 flex-column">
       <div class="col">
-        <div
-          class="d-flex flex-sm-row column-gap-sm-3 row-gap-sm-0 gap-2 flex-column flex-wrap">
+        <div class="d-flex flex-sm-row gap-3 flex-column flex-wrap">
           <!-- バージョン -->
           {{ $versions := slice
             (dict "value" "sky" "label" (T "version.sky"))
             (dict "value" "old" "label" (T "version.td"))
           }}
-          <div class="d-flex flex-column order-1">
+          <div class="d-flex flex-column">
             <h6>{{ T "wondermail.version" }}</h6>
             <div class="btn-group text-nowrap">
               {{ range $index, $version := $versions }}
@@ -69,7 +67,7 @@
             "en" "na"
           }}
           {{ $defaultRegion := or (index $defaultRegions .Lang) "jp" }}
-          <div class="d-flex flex-column order-2">
+          <div class="d-flex flex-column">
             <h6>{{ T "wondermail.region" }}</h6>
             <div class="btn-group text-nowrap">
               {{ range $region := $regions }}
@@ -90,13 +88,62 @@
             </div>
           </div>
 
-          <!-- 時闇リージョンフリーテキスト -->
-          <div
-            class="text-primary d-none order-3 order-md-4 w-100"
-            id="region-old-info">
-            <i class="bi bi-info-circle-fill"></i>
-            {{ T "wondermail.body.regionFreeText" }}
+          <div class="d-flex flex-column">
+            <h6>{{ T "wondermail.option" }}</h6>
+
+            <div class="d-flex flex-column flex-md-row gap-md-3">
+              <!-- 全角・半角で出力 -->
+              <div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="option-output-width"
+                    id="option-output-full-width"
+                    {{ if eq .Lang `ja` }}checked{{ end }} />
+                  <label
+                    class="form-check-label"
+                    for="option-output-full-width">
+                    {{ T "tools.outputFullWidth" }}
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="option-output-width"
+                    id="option-output-half-width"
+                    {{ if ne .Lang `ja` }}checked{{ end }} />
+                  <label
+                    class="form-check-label"
+                    for="option-output-half-width">
+                    {{ T "tools.outputHalfWidth" }}
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <!-- スペース・改行を含めずに出力 -->
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="option-output-without-space-linebreak" />
+                  <label
+                    class="form-check-label"
+                    for="option-output-without-space-linebreak">
+                    {{ T "tools.outputWithoutSpaceLinebreak" }}
+                  </label>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <!-- 時闇リージョンフリーテキスト -->
+        <div class="text-primary d-none w-100 mt-1" id="region-old-info">
+          <i class="bi bi-info-circle-fill"></i>
+          {{ T "wondermail.body.regionFreeText" }}
         </div>
       </div>
 

@@ -47,6 +47,12 @@ dLinkHatena = "A blog where I keep my reverse engineering notes"
 dLinkStatInk = "Splatoon 3 stats nobody cares about (No longer updated)"
 hatenaBlog = "Hatena Blog"
 
+# ツール関連
+[tools]
+outputFullWidth = "Output in full-width"
+outputHalfWidth = "Output in half-width"
+outputWithoutSpaceLinebreak = "Output without spaces or line breaks"
+
 # ふしぎなメール生成機
 [wondermail]
 version = "Version"

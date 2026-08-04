@@ -38,8 +38,11 @@ let missionTemplateWrapElement = null;
 let missionTemplateElement = null;
 let btnMissionRewardValueRandomElement = null;
 let btnMissionSeedRandomElement = null;
-let modeRandomRewardValueElement = null;
-let modeRandomSeedElement = null;
+let optionOutputFullWidthElement = null;
+let optionOutputHalfWidthElement = null;
+let optionOutputWithoutSpacesLinebreak = null;
+let optionRandomRewardValueElement = null;
+let optionRandomSeedElement = null;
 let modeDSElement = null;
 let modeAdvancedElement = null;
 let advancedElements = null;
@@ -110,8 +113,11 @@ document.addEventListener('DOMContentLoaded', async function () {
   missionTemplateElement = document.getElementById('mission-template');
   btnMissionRewardValueRandomElement = document.getElementById('btn-mission-reward-value-random');
   btnMissionSeedRandomElement = document.getElementById('btn-mission-seed-random');
-  modeRandomRewardValueElement = document.getElementById('mode-random-reward-value');
-  modeRandomSeedElement = document.getElementById('mode-random-seed');
+  optionOutputFullWidthElement = document.getElementById('option-output-full-width');
+  optionOutputHalfWidthElement = document.getElementById('option-output-half-width');
+  optionOutputWithoutSpacesLinebreak = document.getElementById('option-output-without-space-linebreak');
+  optionRandomRewardValueElement = document.getElementById('option-random-reward-value');
+  optionRandomSeedElement = document.getElementById('option-random-seed');
   modeDSElement = document.getElementById('mode-ds');
   modeAdvancedElement = document.getElementById('mode-advanced');
   advancedElements = document.getElementsByClassName('advanced');
@@ -247,11 +253,11 @@ function setEvent() {
   });
 
   // オプション
-  modeRandomRewardValueElement.addEventListener('change', function () {
+  optionRandomRewardValueElement.addEventListener('change', function () {
     missionRewardValueInputElement.disabled = this.checked;
     btnMissionRewardValueRandomElement.disabled = this.checked;
   });
-  modeRandomSeedElement.addEventListener('click', function () {
+  optionRandomSeedElement.addEventListener('click', function () {
     missionSeedElement.disabled = this.checked;
     btnMissionSeedRandomElement.disabled = this.checked;
   });
@@ -442,12 +448,12 @@ function passwordGenerate() {
   const wm = new WonderMail();
 
   // 報酬値ランダム化
-  if (rewardMode == 0 && modeRandomRewardValueElement.checked) {
+  if (rewardMode == 0 && optionRandomRewardValueElement.checked) {
     setRandomHex(missionRewardValueInputElement);
   }
 
   // SEEDランダム化
-  if (modeRandomSeedElement.checked) {
+  if (optionRandomSeedElement.checked) {
     setRandomHex(missionSeedElement);
   }
 
@@ -472,9 +478,9 @@ function passwordGenerate() {
   wm.Seed = parseInt(missionSeedElement.value, 16);
 
   wm.encode();
-  passwordElement.value = wm.Sky
-    ? ConvertToMultiFormat(wm.Password, 5, 7, 5)
-    : ConvertToMultiFormat(wm.Password, 4, 4, 4);
+  const widthType = optionOutputHalfWidthElement.checked ? 1 : 0;
+  const spaceBreak = !optionOutputWithoutSpacesLinebreak.checked;
+  passwordElement.value = wm.output(widthType, spaceBreak);
 
   // [advanced] チェックサム更新 (生成なので同じもの)
   refreshChecksum(wm.Checksum1, wm.Checksum1);

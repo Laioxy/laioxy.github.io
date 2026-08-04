@@ -4,12 +4,16 @@ import { Rescue, RESCUE_TYPE_SOS, RESCUE_TYPE_AOK, RESCUE_TYPE_THANKYOU } from '
 let passwordInputElement = null;
 let passwordOutputElement = null;
 let passwordDuplicateBtnElement = null;
+let optionOutputHalfWidthElement = null;
+let optionOutputWithoutSpacesLinebreak = null;
 let errorMsgWrapElement = null;
 
 document.addEventListener('DOMContentLoaded', async function () {
   passwordInputElement = document.getElementById('password-input');
   passwordOutputElement = document.getElementById('password-output');
   passwordDuplicateBtnElement = document.getElementById('password-duplicate-btn');
+  optionOutputHalfWidthElement = document.getElementById('option-output-half-width');
+  optionOutputWithoutSpacesLinebreak = document.getElementById('option-output-without-space-linebreak');
   errorMsgWrapElement = document.getElementById('error-msg-wrap');
 
   setEvent();
@@ -83,7 +87,9 @@ function duplicatePassword() {
   result.SOSCheckKey = rand;
   result.encode(RESCUE_TYPE_SOS);
 
-  passwordOutputElement.textContent = ConvertToMultiFormat(result.Password, 6, 6, 6);
+  const widthType = optionOutputHalfWidthElement.checked ? 1 : 0;
+  const spaceBreak = !optionOutputWithoutSpacesLinebreak.checked;
+  passwordOutputElement.textContent = result.output(widthType, spaceBreak);
   showAlertMsg(2, window.translate.rescue.success.generateDuplicate);
 }
 

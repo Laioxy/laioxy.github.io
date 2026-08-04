@@ -47,6 +47,12 @@ dLinkHatena = "解析メモ代わりのブログ。"
 dLinkStatInk = "スプラトゥーン3の戦績。多分誰も興味ない。(※更新停止)"
 hatenaBlog = "はてなブログ"
 
+# ツール関連
+[tools]
+outputFullWidth = "全角文字で出力"
+outputHalfWidth = "半角文字で出力"
+outputWithoutSpaceLinebreak = "スペース・改行を含めずに出力"
+
 # ふしぎなメール生成機
 [wondermail]
 version = "バージョン"
