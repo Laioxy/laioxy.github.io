@@ -1,6 +1,5 @@
 ---
 title: ふしぎなメール関連
-type: common
 description: ふしぎなメール系のツールとか。捏造パスを作るならこちら。
 ---
 
