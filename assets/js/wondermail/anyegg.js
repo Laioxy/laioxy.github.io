@@ -71,11 +71,10 @@ function setEvent() {
     runValidation(recruitPokemonElement);
 
     const value = choicesInstances[recruitPokemonElement.id].getValue();
-    const collapse = bootstrap.Collapse.getOrCreateInstance(warningGenderInvalidElement);
     if (value.value > 600 && value.customProperties.warningType == 'genderInvalid') {
-      collapse.show();
+      warningGenderInvalidElement.classList.remove('d-none');
     } else {
-      collapse.hide();
+      warningGenderInvalidElement.classList.add('d-none');
     }
   });
 
