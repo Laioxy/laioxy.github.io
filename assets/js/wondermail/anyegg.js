@@ -92,7 +92,7 @@ function setEvent() {
     wm.MissionType = 0x6;
     wm.MissionFlag = 0x0;
     wm.RewardType = 0x5;
-    wm.RewardValue = recruitPokemonElement.value ?? 0;
+    wm.RewardValue = parseInt(recruitPokemonElement?.value ?? 0);
     wm.Client = 0x11e; // ミズゴロウ
     wm.Target1 = 0x11e; // ミズゴロウ
     wm.Target2 = 0x000;
