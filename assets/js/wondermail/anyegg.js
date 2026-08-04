@@ -1,6 +1,5 @@
 import { getJsonDatas } from '../json_script.js';
 import { WonderMail } from './password.js';
-import { checkPasswordString } from '../utils/passwordConverter.js';
 
 let versionSkyElement = null;
 let versionOldElement = null;
@@ -9,6 +8,8 @@ let regionNAElement = null;
 let regionEUElement = null;
 let regionOldInfoElement = null;
 let recruitPokemonElement = null;
+let warningGenderInvalidElement = null;
+let genderChangeBtnElement = null;
 let passwordElement = null;
 let passGenerateElement = null;
 let optionOutputHalfWidthElement = null;
@@ -26,6 +27,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   regionEUElement = document.getElementById('region-eu');
   regionOldInfoElement = document.getElementById('region-old-info');
   recruitPokemonElement = document.getElementById('recruit-pokemon');
+  warningGenderInvalidElement = document.getElementById('warning-invalid-gender');
+  genderChangeBtnElement = document.getElementById('gender-change-btn');
   passwordElement = document.getElementById('password');
   passGenerateElement = document.getElementById('pass-generate');
   optionOutputHalfWidthElement = document.getElementById('option-output-half-width');
@@ -68,9 +71,23 @@ function setEvent() {
     runValidation(recruitPokemonElement);
 
     const value = choicesInstances[recruitPokemonElement.id].getValue();
+    const collapse = bootstrap.Collapse.getOrCreateInstance(warningGenderInvalidElement);
     if (value.value > 600 && value.customProperties.warningType == 'genderInvalid') {
-      console.log('!');
+      collapse.show();
+    } else {
+      collapse.hide();
     }
+  });
+
+  genderChangeBtnElement.addEventListener('click', () => {
+    const value = parseInt(recruitPokemonElement.value) - 600;
+    if (value < 0) return;
+    choicesInstances[recruitPokemonElement.id].setChoiceByValue(value);
+    recruitPokemonElement.dispatchEvent(
+      new Event('change', {
+        bubbles: true,
+      }),
+    );
   });
 
   passGenerateElement.addEventListener('click', () => {

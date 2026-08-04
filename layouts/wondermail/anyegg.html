@@ -147,12 +147,27 @@
         </div>
       </div>
 
+      <!-- 第二性別無効の警告テキスト -->
       <div class="d-flex flex-column gap-2">
         <div class="col-12">
           <h6>{{ T "wondermail.anyegg.pokemonToRecruit" }}</h6>
           <div class="form-floating">
             <select class="form-select" id="recruit-pokemon"></select>
             <label for="recruit-pokemon">{{ T "pokemon" }}</label>
+          </div>
+          <div
+            class="alert alert-warning my-2 collapse"
+            id="warning-invalid-gender">
+            <p>
+              <i class="bi bi-exclamation-circle-fill me-1"></i>
+              {{ T "wondermail.anyegg.warningInvalidGender1" }}
+            </p>
+            <p>
+              {{ T "wondermail.anyegg.warningInvalidGender2" }}
+              <button class="btn btn-danger ms-1" id="gender-change-btn">
+                {{ T "change" }}
+              </button>
+            </p>
           </div>
         </div>
 

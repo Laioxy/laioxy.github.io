@@ -5,6 +5,7 @@ item = "Item"
 move = "Move"
 dungeon = "Dungeon"
 option = "Option"
+change = 'Change'
 search = "Search"
 reset = "Reset"
 name = "Name"
@@ -146,6 +147,8 @@ shareText = "Copy this URL to share the mission details."
 # 任意タマゴ孵化
 [wondermail.anyegg]
 pokemonToRecruit = "Pokémon to Recruit"
+warningInvalidGender1 = "A Pokémon with an invalid secondary gender is selected. The password can still be generated, but it may cause issues such as not speaking, not knowing any moves from the start, form-specific effects not being applied, or learning glitched moves (T/D only)."
+warningInvalidGender2 = "Using a Pokémon with a normal gender is recommended."
 
 # 救助関連ツール
 [rescue]
