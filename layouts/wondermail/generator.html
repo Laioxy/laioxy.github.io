@@ -8,10 +8,10 @@
   {{ $translatePokemon := index hugo.Data.translate.pokemon .Lang }}
   <script>
     window.PARAMS = JSON.parse('{{ $params | jsonify }}');
-    window.translate = {
+    Object.assign(window.translate, {
       wondermail: JSON.parse('{{ $translateWondermail | jsonify }}'),
       pokemon: JSON.parse('{{ $translatePokemon | jsonify }}'),
-    };
+    });
   </script>
 
   <div class="container-md" id="wondermail-generator">

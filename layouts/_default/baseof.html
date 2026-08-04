@@ -85,6 +85,16 @@
 
     {{ partial "methods/SetScssMinify.html" "style" }}
 
+
+    <!-- JS用翻訳テキスト -->
+    {{ $translateCommon := index hugo.Data.translate.common .Lang }}
+    <script>
+      window.translate = {
+        common: JSON.parse('{{ $translateCommon | jsonify }}'),
+      };
+    </script>
+
+    <!-- 共通JS -->
     {{ with resources.Get "js/utils.js" }}
       <script src="{{ .RelPermalink }}"></script>
     {{ end }}

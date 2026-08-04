@@ -17,14 +17,14 @@ window.RescueData = null;
 
 window.choicesOptions = {
   placeholder: false,
-  placeholderValue: '選択...',
-  searchPlaceholderValue: '検索...',
+  placeholderValue: window.translate.common.choices.placeholderValue,
+  searchPlaceholderValue: window.translate.common.choices.searchPlaceholderValue,
   loadingText: 'Loading...',
-  noResultsText: '結果なし',
-  noChoicesText: '項目なし',
+  noResultsText: window.translate.common.choices.noResultsText,
+  noChoicesText: window.translate.common.choices.noChoicesText,
   itemSelectText: '',
-  uniqueItemText: '同じ項目は追加できません',
-  customAddItemText: '特定の条件に合う項目のみ追加できます',
+  uniqueItemText: window.translate.common.choices.uniqueItemText,
+  customAddItemText: window.translate.common.choices.customAddItemText,
   classNames: {},
   searchResultLimit: -1, // 検索全件表示
   shouldSort: false,

@@ -1,0 +1,7 @@
+[choices]
+placeholderValue = "Select..."
+searchPlaceholderValue = "Search..."
+noResultsText = "No results"
+noChoicesText = "No choices"
+uniqueItemText = "The same item cannot be added more than once."
+customAddItemText = "Only items that meet specific criteria can be added."

@@ -8,9 +8,9 @@
 
   <script>
     window.PARAMS = JSON.parse('{{ $params | jsonify }}');
-    window.translate = {
+    Object.assign(window.translate, {
       rescue: JSON.parse('{{ $translateRescue | jsonify }}'),
-    };
+    });
   </script>
 
   <div class="container-md">

@@ -8,10 +8,10 @@
   {{ $translatePokemon := index hugo.Data.translate.pokemon .Lang }}
   <script>
     window.PARAMS = JSON.parse('{{ $params | jsonify }}');
-    window.translate = {
+    Object.assign(window.translate, {
       pokemon: JSON.parse('{{ $translatePokemon | jsonify }}'),
       anyegg: JSON.parse('{{ $translateAnyEgg | jsonify }}'),
-    };
+    });
   </script>
 
   <!-- ※そのうち消す※ 一時的にリダイレクト -->

@@ -1,0 +1,7 @@
+[choices]
+placeholderValue = "選択..."
+searchPlaceholderValue = "検索..."
+noResultsText = "結果なし"
+noChoicesText = "項目なし"
+uniqueItemText = "同じ項目は追加できません"
+customAddItemText = "特定の条件に合う項目のみ追加できます"
