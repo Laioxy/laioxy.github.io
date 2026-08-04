@@ -64,7 +64,7 @@ function setEvent() {
     wm.Target1 = 0x1a1; // ジラーチ
     wm.Target2 = 0x000;
     wm.TargetItem = 0x046; // オレンのみ
-    wm.Dungeon = dungeonElement.value;
+    wm.Dungeon = parseInt(dungeonElement?.value ?? 0);
     wm.Floor = 0x00; // 0F
     wm.Fixed = 0x95; // ジラーチ挑戦状
     wm.RestType = 0x00;
