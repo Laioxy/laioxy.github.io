@@ -169,7 +169,7 @@ export class PasswordConverter {
     // おそらく元々は依頼と救助で共通だったが空でパラメータが追加された影響で
     // このような処理でないと合わなくなった？
     let maxLoopCount = decList.length;
-    if (decList.length != 54 && decList[decList.length - 1] == 0) {
+    if (this.swapLength != 54 && decList[decList.length - 1] == 0) {
       maxLoopCount--;
     }
 
