@@ -5,6 +5,10 @@ description: "Generate Wonder Mail passwords"
 weight: 1
 ---
 
+##### 2026/10/18
+
+- Fixed an issue where Event Mission (0xF) was missing from the T/D Mission Flags.
+
 ##### 2026/08/04
 
 - Corrected translations on the English pages:

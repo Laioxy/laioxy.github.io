@@ -144,6 +144,7 @@ missionFlagOld = [
     "てんくうのかいだん用",
   ],
 ]
+missionFlagOld0xF = "イベント依頼"
 
 [fixedNames]
 0x1B_EMPTY_ROOM = "(未使用) 空部屋"

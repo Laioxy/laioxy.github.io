@@ -144,6 +144,7 @@ missionFlagOld = [
     "Sky Stairway",
   ],
 ]
+missionFlagOld0xF = "Event Mission"
 
 [fixedNames]
 0x1B_EMPTY_ROOM = "(Unused) Empty Room"

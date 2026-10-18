@@ -956,12 +956,17 @@ function applyMissionFlagOptions(keep = false) {
 
   // 要素作成
   let elements = '';
-  for (let i = 0; i < flags.length; i++) {
+  const flagIds = Array.from({ length: flags.length }, (_, i) => i);
+  // 時闇の場合0xFを追加する
+  if (!isSky) flagIds.push(15);
+  for (const flag of flagIds) {
     elements += `
-      <option value="${i}">[${i.toString(16).padStart(2, '0').toUpperCase()}] ${
+      <option value="${flag}">[${flag.toString(16).padStart(2, '0').toUpperCase()}] ${
         isSky
-          ? window.translate.wondermail.missionFlag[missionType.flag][i]
-          : window.translate.wondermail.missionFlagOld[missionType.flag][i]
+          ? window.translate.wondermail.missionFlag[missionType.flag][flag]
+          : flag === 15
+            ? window.translate.wondermail.missionFlagOld0xF
+            : window.translate.wondermail.missionFlagOld[missionType.flag][flag]
       }</option>
     `;
   }
