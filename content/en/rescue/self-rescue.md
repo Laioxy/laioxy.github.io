@@ -8,6 +8,9 @@ weight: 10
 A self-rescue tool for Pokémon Mystery Dungeon: Explorers of Time, Explorers of Darkness, and Explorers of Sky.
 Supports all game versions and regions.
 
+<p class="fw-bold m-0">2026/10/31</p>
+<p>Fixed an issue where the contents of a Treasure Box sent as a gift were not reflected when converting SOS to AOK.</p>
+
 <div class="youtube mb-3">
     {{< youtube DKzW5EaVlNE >}}
 </div>

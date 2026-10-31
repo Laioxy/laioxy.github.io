@@ -360,6 +360,19 @@ function generateMail() {
   const item = ItemData[Number(giftItemElement.value)];
 
   result.GiftItemId = Number(giftItemElement.value);
+  // 投擲物(0,1)の個数をセット
+  if (item.Category == 0 || item.Category == 1) {
+    result.GiftItemCount = Number(giftItemCountElement.value);
+  }
+  // 宝箱(12-14)の中身をセット
+  else if (item.Category >= 12 && item.Category <= 14) {
+    console.log(giftItemInnerElement.value);
+    result.GiftItemCount = Number(giftItemInnerElement.value);
+  }
+  // それ以外は0をセット
+  else {
+    result.GiftItemCount = 0;
+  }
   result.TeamName = 'じえん';
   if (rescue.RescueType == RESCUE_TYPE_SOS) {
     // たすけて -> ふっかつ
@@ -371,18 +384,6 @@ function generateMail() {
   } else if (rescue.RescueType == RESCUE_TYPE_AOK) {
     // ふっかつ -> おれい
     result.RescueType = RESCUE_TYPE_THANKYOU;
-    // 投擲物(0,1)の個数をセット
-    if (item.Category == 0 || item.Category == 1) {
-      result.GiftItemCount = Number(giftItemCountElement.value);
-    }
-    // 宝箱(12-14)の中身をセット
-    else if (item.Category >= 12 && item.Category <= 14) {
-      result.GiftItemCount = Number(giftItemInnerElement.value);
-    }
-    // それ以外は0をセット
-    else {
-      result.GiftItemCount = 0;
-    }
     result.encode(RESCUE_TYPE_THANKYOU);
     message = window.translate.rescue.success.generateThankYou;
   } else {
