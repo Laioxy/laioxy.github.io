@@ -1,11 +1,8 @@
 <!-- SCSSファイルをminifyしてセット -->
 {{ $css := printf "css/%s.css" . }}
 {{ $scss := printf "scss/%s.scss" . }}
-{{ with (dict "targetPath" $css) }}
+{{ with (dict "targetPath" $css "transpiler" "dartsass") }}
   {{ with resources.Get $scss | toCSS . | minify | fingerprint }}
-    <link
-      href="{{ .RelPermalink }}"
-      rel="stylesheet"
-      type="text/css" />
+    <link href="{{ .RelPermalink }}" rel="stylesheet" type="text/css" />
   {{ end }}
 {{ end }}
