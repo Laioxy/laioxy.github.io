@@ -10,6 +10,10 @@
     "sourceMap" (cond hugo.IsDevelopment "inline" "")
   }}
 
+  {{/* ファイル名未指定の場合md5ハッシュ化する */}}
+  {{ if not $output }}
+    {{ $output = printf "%s.js" (md5 $src) }}
+  {{ end }}
   {{ with $output }}
     {{ $opts = merge $opts (dict
       "targetPath" (print (path.Dir $res) "/" .)

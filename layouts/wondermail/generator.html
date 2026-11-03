@@ -1,5 +1,5 @@
 {{ define "main" }}
-  {{ partial "jsbuild" (dict "src" "js/wondermail/generator/view.js" "output" "bundle.js") }}
+  {{ partial "jsbuild" (dict "src" "js/wondermail/generator/view.js") }}
   {{ partial "methods/SetScssMinify" "wondermail" }}
 
   {{/* 言語ごとのパラメータ・翻訳文言をJSに渡す */}}

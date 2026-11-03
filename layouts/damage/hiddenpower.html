@@ -1,5 +1,5 @@
 {{ define "main" }}
-  {{ partial "jsbuild" (dict "src" "js/damage/hiddenpower/view.js" "output" "bandle.js") }}
+  {{ partial "jsbuild" (dict "src" "js/damage/hiddenpower/view.js") }}
 
   {{ $pokemon_json := resources.Get "data/pokemon.json" | transform.Unmarshal }}
   {{ $item_json := resources.Get "data/item.json" | transform.Unmarshal }}
