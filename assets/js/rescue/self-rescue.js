@@ -370,7 +370,6 @@ function generateMail() {
   }
   // 宝箱(12-14)の中身をセット
   else if (item.Category >= 12 && item.Category <= 14) {
-    console.log(giftItemInnerElement.value);
     result.GiftItemCount = Number(giftItemInnerElement.value);
   }
   // それ以外は0をセット
