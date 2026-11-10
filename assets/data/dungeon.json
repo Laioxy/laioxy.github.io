@@ -1,8 +1,6 @@
 [
   {
-    "ListName": "テストダンジョン",
-    "InName": "テストダンジョン",
-    "FixedName": "[M:D1]テストダンジョン",
+    "Id": 0,
     "FloorCount": 3,
     "MappaIndex": 0,
     "FloorPrev": 0,
@@ -25,14 +23,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 0,
-    "Name": "テストダンジョン"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "かいがんのどうくつ",
-    "InName": "かいがんのどうくつ",
-    "FixedName": "[M:D1]かいがんのどうくつ",
+    "Id": 1,
     "FloorCount": 4,
     "MappaIndex": 1,
     "FloorPrev": 0,
@@ -55,14 +49,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 1,
-    "Name": "かいがんのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "かいがんのどうくつ",
-    "InName": "かいがんのどうくつ おくそこ",
-    "FixedName": "かいがんのどうくつ おくそこ",
+    "Id": 2,
     "FloorCount": 1,
     "MappaIndex": 1,
     "FloorPrev": 4,
@@ -85,14 +75,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 2,
-    "Name": "かいがんのどうくつ おくそこ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "しめったいわば",
-    "InName": "しめったいわば",
-    "FixedName": "しめったいわば B7F",
+    "Id": 3,
     "FloorCount": 6,
     "MappaIndex": 2,
     "FloorPrev": 0,
@@ -115,14 +101,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 3,
-    "Name": "しめったいわば"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "トゲトゲやま",
-    "InName": "トゲトゲやま",
-    "FixedName": "[M:D1]トゲトゲやま",
+    "Id": 4,
     "FloorCount": 9,
     "MappaIndex": 3,
     "FloorPrev": 0,
@@ -145,14 +127,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 4,
-    "Name": "トゲトゲやま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "トゲトゲやま",
-    "InName": "トゲトゲやま ちょうじょう",
-    "FixedName": "トゲトゲやま ちょうじょう",
+    "Id": 5,
     "FloorCount": 1,
     "MappaIndex": 3,
     "FloorPrev": 9,
@@ -175,14 +153,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 5,
-    "Name": "トゲトゲやま ちょうじょう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "たきつぼのどうくつ",
-    "InName": "たきつぼのどうくつ",
-    "FixedName": "[M:D1]たきつぼのどうくつ",
+    "Id": 6,
     "FloorCount": 8,
     "MappaIndex": 4,
     "FloorPrev": 0,
@@ -205,14 +179,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 6,
-    "Name": "たきつぼのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "リンゴのもり",
-    "InName": "リンゴのもり",
-    "FixedName": "リンゴのもり おくち",
+    "Id": 7,
     "FloorCount": 12,
     "MappaIndex": 5,
     "FloorPrev": 0,
@@ -235,14 +205,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 7,
-    "Name": "リンゴのもり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "えんがんのいわば",
-    "InName": "えんがんのいわば",
-    "FixedName": "[M:D1]えんがんのいわば",
+    "Id": 8,
     "FloorCount": 9,
     "MappaIndex": 6,
     "FloorPrev": 0,
@@ -265,14 +231,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 8,
-    "Name": "えんがんのいわば"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ちいさなよこあな",
-    "InName": "ちいさなよこあな",
-    "FixedName": "[M:D1]ちいさなよこあな",
+    "Id": 9,
     "FloorCount": 5,
     "MappaIndex": 7,
     "FloorPrev": 0,
@@ -295,14 +257,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 9,
-    "Name": "ちいさなよこあな"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ツノやま",
-    "InName": "ツノやま",
-    "FixedName": "[M:D1]ツノやま",
+    "Id": 10,
     "FloorCount": 14,
     "MappaIndex": 8,
     "FloorPrev": 0,
@@ -325,14 +283,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 10,
-    "Name": "ツノやま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "いわのよこあな",
-    "InName": "いわのよこあな",
-    "FixedName": "[M:D1]いわのよこあな",
+    "Id": 11,
     "FloorCount": 5,
     "MappaIndex": 9,
     "FloorPrev": 0,
@@ -355,14 +309,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 11,
-    "Name": "いわのよこあな"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "のうむのもり",
-    "InName": "のうむのもり",
-    "FixedName": "[M:D1]のうむのもり",
+    "Id": 12,
     "FloorCount": 11,
     "MappaIndex": 10,
     "FloorPrev": 0,
@@ -385,14 +335,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 12,
-    "Name": "のうむのもり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "もりのよこみち",
-    "InName": "もりのよこみち",
-    "FixedName": "[M:D1]もりのよこみち",
+    "Id": 13,
     "FloorCount": 5,
     "MappaIndex": 11,
     "FloorPrev": 0,
@@ -415,14 +361,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 13,
-    "Name": "もりのよこみち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ねっすいのどうくつ",
-    "InName": "ねっすいのどうくつ",
-    "FixedName": "[M:D1]ねっすいのどうくつ",
+    "Id": 14,
     "FloorCount": 8,
     "MappaIndex": 12,
     "FloorPrev": 0,
@@ -445,14 +387,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 14,
-    "Name": "ねっすいのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ねっすいのどうくつ",
-    "InName": "ねっすいのどうくつ さいじょうぶ",
-    "FixedName": "[M:D1]ねっすいのどうくつ さいじょうぶ",
+    "Id": 15,
     "FloorCount": 7,
     "MappaIndex": 12,
     "FloorPrev": 8,
@@ -475,14 +413,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 15,
-    "Name": "ねっすいのどうくつ さいじょうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ねっすいのどうくつ",
-    "InName": "ねっすいのどうくつ ちょうじょう",
-    "FixedName": "ねっすいのどうくつ ちょうじょう",
+    "Id": 16,
     "FloorCount": 1,
     "MappaIndex": 12,
     "FloorPrev": 15,
@@ -505,14 +439,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 16,
-    "Name": "ねっすいのどうくつ ちょうじょう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "エレキへいげん",
-    "InName": "エレキへいげん",
-    "FixedName": "[M:D1]エレキへいげん",
+    "Id": 17,
     "FloorCount": 10,
     "MappaIndex": 13,
     "FloorPrev": 0,
@@ -535,14 +465,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 17,
-    "Name": "エレキへいげん"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "エレキへいげん",
-    "InName": "エレキへいげん おくち",
-    "FixedName": "[M:D1]エレキへいげん おくち",
+    "Id": 18,
     "FloorCount": 9,
     "MappaIndex": 13,
     "FloorPrev": 10,
@@ -565,14 +491,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 18,
-    "Name": "エレキへいげん おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "エレキへいげん",
-    "InName": "エレキへいげん さいおうぶ",
-    "FixedName": "エレキへいげん さいおうぶ",
+    "Id": 19,
     "FloorCount": 1,
     "MappaIndex": 13,
     "FloorPrev": 19,
@@ -595,14 +517,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 19,
-    "Name": "エレキへいげん さいおうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "きたのさばく",
-    "InName": "きたのさばく",
-    "FixedName": "[M:D1]きたのさばく",
+    "Id": 20,
     "FloorCount": 15,
     "MappaIndex": 14,
     "FloorPrev": 0,
@@ -625,14 +543,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 20,
-    "Name": "きたのさばく"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "りゅうさのどうくつ",
-    "InName": "りゅうさのどうくつ",
-    "FixedName": "[M:D1]りゅうさのどうくつ",
+    "Id": 21,
     "FloorCount": 10,
     "MappaIndex": 15,
     "FloorPrev": 0,
@@ -655,14 +569,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 21,
-    "Name": "りゅうさのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "りゅうさのどうくつ",
-    "InName": "りゅうさのどうくつ さいしんぶ",
-    "FixedName": "[M:D1]りゅうさのどうくつ さいかそう",
+    "Id": 22,
     "FloorCount": 10,
     "MappaIndex": 15,
     "FloorPrev": 10,
@@ -685,14 +595,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 22,
-    "Name": "りゅうさのどうくつ さいしんぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ちていのみずうみ",
-    "InName": "ちていのみずうみ",
-    "FixedName": "ちていのみずうみ",
+    "Id": 23,
     "FloorCount": 1,
     "MappaIndex": 15,
     "FloorPrev": 20,
@@ -715,14 +621,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 23,
-    "Name": "ちていのみずうみ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "すいしょうのどうくつ",
-    "InName": "すいしょうのどうくつ",
-    "FixedName": "すいしょうのどうくつ おくそこ",
+    "Id": 24,
     "FloorCount": 11,
     "MappaIndex": 16,
     "FloorPrev": 0,
@@ -745,14 +647,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 24,
-    "Name": "すいしょうのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "だいすいしょうのみち",
-    "InName": "だいすいしょうのみち",
-    "FixedName": "[M:D1]だいすいしょうのみち",
+    "Id": 25,
     "FloorCount": 13,
     "MappaIndex": 17,
     "FloorPrev": 0,
@@ -775,14 +673,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 25,
-    "Name": "だいすいしょうのみち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "すいしょうのみずうみ",
-    "InName": "すいしょうのみずうみ",
-    "FixedName": "すいしょうのみずうみ",
+    "Id": 26,
     "FloorCount": 1,
     "MappaIndex": 17,
     "FloorPrev": 13,
@@ -805,14 +699,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 26,
-    "Name": "すいしょうのみずうみ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "くうかんのどうくつ",
-    "InName": "くうかんのどうくつ",
-    "FixedName": "[M:D1]くうかんのどうくつ",
+    "Id": 27,
     "FloorCount": 8,
     "MappaIndex": 18,
     "FloorPrev": 0,
@@ -835,14 +725,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 27,
-    "Name": "くうかんのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "くらやみのおか",
-    "InName": "くらやみのおか",
-    "FixedName": "[M:D1]くらやみのおか",
+    "Id": 28,
     "FloorCount": 15,
     "MappaIndex": 19,
     "FloorPrev": 0,
@@ -865,14 +751,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 28,
-    "Name": "くらやみのおか"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ふういんのいわば",
-    "InName": "ふういんのいわば",
-    "FixedName": "[M:D1]ふういんのいわば",
+    "Id": 29,
     "FloorCount": 8,
     "MappaIndex": 20,
     "FloorPrev": 0,
@@ -895,14 +777,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 29,
-    "Name": "ふういんのいわば"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ふういんのいわば",
-    "InName": "ふういんのいわば おくち",
-    "FixedName": "[M:D1]ふういんのいわば おくち",
+    "Id": 30,
     "FloorCount": 6,
     "MappaIndex": 20,
     "FloorPrev": 8,
@@ -925,14 +803,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 30,
-    "Name": "ふういんのいわば おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ふういんのいわば",
-    "InName": "ふういんのいわば さいおうぶ",
-    "FixedName": "ふういんのいわば さいおうぶ",
+    "Id": 31,
     "FloorCount": 1,
     "MappaIndex": 20,
     "FloorPrev": 14,
@@ -955,14 +829,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 31,
-    "Name": "ふういんのいわば さいおうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "くろのもり",
-    "InName": "くろのもり",
-    "FixedName": "くろのもり おくち",
+    "Id": 32,
     "FloorCount": 8,
     "MappaIndex": 21,
     "FloorPrev": 0,
@@ -985,14 +855,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 32,
-    "Name": "くろのもり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "もりのたかだい",
-    "InName": "もりのたかだい",
-    "FixedName": "[M:D1]もりのたかだい",
+    "Id": 33,
     "FloorCount": 12,
     "MappaIndex": 22,
     "FloorPrev": 0,
@@ -1015,14 +881,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 33,
-    "Name": "もりのたかだい"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "キザキのもり",
-    "InName": "キザキのもり",
-    "FixedName": "キザキのもり おくち",
+    "Id": 34,
     "FloorCount": 20,
     "MappaIndex": 23,
     "FloorPrev": 0,
@@ -1045,14 +907,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 34,
-    "Name": "キザキのもり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "いそのどうくつ",
-    "InName": "いそのどうくつ",
-    "FixedName": "[M:D1]いそのどうくつ",
+    "Id": 35,
     "FloorCount": 9,
     "MappaIndex": 24,
     "FloorPrev": 0,
@@ -1075,14 +933,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 35,
-    "Name": "いそのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "いそのどうくつ",
-    "InName": "いそのどうくつ さいしんぶ",
-    "FixedName": "[M:D1]いそのどうくつ さいしんぶ",
+    "Id": 36,
     "FloorCount": 5,
     "MappaIndex": 24,
     "FloorPrev": 9,
@@ -1105,14 +959,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 36,
-    "Name": "いそのどうくつ さいしんぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "いそのどうくつ",
-    "InName": "いそのどうくつ おくそこ",
-    "FixedName": "いそのどうくつ おくそこ",
+    "Id": 37,
     "FloorCount": 1,
     "MappaIndex": 24,
     "FloorPrev": 14,
@@ -1135,14 +985,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 37,
-    "Name": "いそのどうくつ おくそこ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "まぼろしのだいち",
-    "InName": "まぼろしのだいち",
-    "FixedName": "[M:D1]まぼろしのだいち",
+    "Id": 38,
     "FloorCount": 15,
     "MappaIndex": 25,
     "FloorPrev": 0,
@@ -1165,14 +1011,10 @@
     "MaxMember": 2,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 38,
-    "Name": "まぼろしのだいち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "まぼろしのだいち",
-    "InName": "まぼろしのだいち おくち",
-    "FixedName": "[M:D1]まぼろしのだいち おくち",
+    "Id": 39,
     "FloorCount": 8,
     "MappaIndex": 25,
     "FloorPrev": 15,
@@ -1195,14 +1037,10 @@
     "MaxMember": 2,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 39,
-    "Name": "まぼろしのだいち おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "こだいのいせき",
-    "InName": "こだいのいせき",
-    "FixedName": "こだいのいせき",
+    "Id": 40,
     "FloorCount": 1,
     "MappaIndex": 25,
     "FloorPrev": 23,
@@ -1225,14 +1063,10 @@
     "MaxMember": 2,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 40,
-    "Name": "こだいのいせき"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "じげんのとう",
-    "InName": "じげんのとう",
-    "FixedName": "[M:D1]じげんのとう",
+    "Id": 41,
     "FloorCount": 13,
     "MappaIndex": 26,
     "FloorPrev": 0,
@@ -1255,14 +1089,10 @@
     "MaxMember": 2,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 41,
-    "Name": "じげんのとう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "じげんのとう",
-    "InName": "じげんのとう さいじょうぶ",
-    "FixedName": "[M:D1]じげんのとう さいじょうぶ",
+    "Id": 42,
     "FloorCount": 10,
     "MappaIndex": 26,
     "FloorPrev": 13,
@@ -1285,14 +1115,10 @@
     "MaxMember": 2,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 42,
-    "Name": "じげんのとう さいじょうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "じげんのとう",
-    "InName": "じげんのとう ちょうじょう",
-    "FixedName": "じげんのとう ちょうじょう",
+    "Id": 43,
     "FloorCount": 1,
     "MappaIndex": 26,
     "FloorPrev": 23,
@@ -1315,14 +1141,10 @@
     "MaxMember": 2,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 43,
-    "Name": "じげんのとう ちょうじょう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "しんぴのもり",
-    "InName": "しんぴのもり",
-    "FixedName": "[M:D1]しんぴのもり",
+    "Id": 44,
     "FloorCount": 13,
     "MappaIndex": 27,
     "FloorPrev": 0,
@@ -1345,14 +1167,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 44,
-    "Name": "しんぴのもり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "しんぴのもり",
-    "InName": "しんぴのもり おくち",
-    "FixedName": "しんぴのもり おくち",
+    "Id": 45,
     "FloorCount": 1,
     "MappaIndex": 27,
     "FloorPrev": 13,
@@ -1375,14 +1193,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 45,
-    "Name": "しんぴのもり おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ふぶきのしま",
-    "InName": "ふぶきのしま",
-    "FixedName": "[M:D1]ふぶきのしま",
+    "Id": 46,
     "FloorCount": 20,
     "MappaIndex": 41,
     "FloorPrev": 0,
@@ -1405,14 +1219,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 46,
-    "Name": "ふぶきのしま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "クレバスのどうくつ",
-    "InName": "クレバスのどうくつ",
-    "FixedName": "[M:D1]クレバスのどうくつ",
+    "Id": 47,
     "FloorCount": 10,
     "MappaIndex": 43,
     "FloorPrev": 0,
@@ -1435,14 +1245,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 47,
-    "Name": "クレバスのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "クレバスのどうくつ",
-    "InName": "クレバスのどうくつ さいしんぶ",
-    "FixedName": "[M:D1]クレバスのどうくつ おくち",
+    "Id": 48,
     "FloorCount": 4,
     "MappaIndex": 43,
     "FloorPrev": 10,
@@ -1465,14 +1271,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 48,
-    "Name": "クレバスのどうくつ さいしんぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "クレバスのどうくつ",
-    "InName": "クレバスのどうくつ おくそこ",
-    "FixedName": "クレバスのどうくつ おくそこ",
+    "Id": 49,
     "FloorCount": 1,
     "MappaIndex": 43,
     "FloorPrev": 14,
@@ -1495,14 +1297,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 49,
-    "Name": "クレバスのどうくつ おくそこ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "とざされたうみ",
-    "InName": "とざされたうみ",
-    "FixedName": "[M:D1]とざされたうみ",
+    "Id": 50,
     "FloorCount": 20,
     "MappaIndex": 33,
     "FloorPrev": 0,
@@ -1525,14 +1323,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 50,
-    "Name": "とざされたうみ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "きせきのうみ",
-    "InName": "きせきのうみ",
-    "FixedName": "[M:D1]きせきのうみ",
+    "Id": 51,
     "FloorCount": 18,
     "MappaIndex": 34,
     "FloorPrev": 0,
@@ -1555,14 +1349,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 51,
-    "Name": "きせきのうみ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "きせきのうみ",
-    "InName": "きせきのうみ さいしんぶ",
-    "FixedName": "[M:D1]きせきのうみ さいしんぶ",
+    "Id": 52,
     "FloorCount": 4,
     "MappaIndex": 34,
     "FloorPrev": 18,
@@ -1585,14 +1375,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 52,
-    "Name": "きせきのうみ さいしんぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "きせきのうみ",
-    "InName": "きせきのうみ おくそこ",
-    "FixedName": "きせきのうみ おくそこ",
+    "Id": 53,
     "FloorCount": 1,
     "MappaIndex": 34,
     "FloorPrev": 22,
@@ -1615,14 +1401,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 53,
-    "Name": "きせきのうみ おくそこ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ばんにんのどうくつ",
-    "InName": "ばんにんのどうくつ アイスのま",
-    "FixedName": "[M:D1]ばんにんのどうくつ アイスのま",
+    "Id": 54,
     "FloorCount": 3,
     "MappaIndex": 52,
     "FloorPrev": 0,
@@ -1645,14 +1427,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 54,
-    "Name": "ばんにんのどうくつ アイスのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "レジアイスのま",
-    "InName": "レジアイスのま",
-    "FixedName": "レジアイスのま",
+    "Id": 55,
     "FloorCount": 1,
     "MappaIndex": 52,
     "FloorPrev": 3,
@@ -1675,14 +1453,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 55,
-    "Name": "レジアイスのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ばんにんのどうくつ",
-    "InName": "ばんにんのどうくつ ロックのま",
-    "FixedName": "[M:D1]ばんにんのどうくつ ロックのま",
+    "Id": 56,
     "FloorCount": 3,
     "MappaIndex": 52,
     "FloorPrev": 4,
@@ -1705,14 +1479,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 56,
-    "Name": "ばんにんのどうくつ ロックのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "レジロックのま",
-    "InName": "レジロックのま",
-    "FixedName": "レジロックのま",
+    "Id": 57,
     "FloorCount": 1,
     "MappaIndex": 52,
     "FloorPrev": 7,
@@ -1735,14 +1505,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 57,
-    "Name": "レジロックのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ばんにんのどうくつ",
-    "InName": "ばんにんのどうくつ スチルのま",
-    "FixedName": "[M:D1]ばんにんのどうくつ スチルのま",
+    "Id": 58,
     "FloorCount": 4,
     "MappaIndex": 52,
     "FloorPrev": 8,
@@ -1765,14 +1531,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 58,
-    "Name": "ばんにんのどうくつ スチルのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "レジスチルのま",
-    "InName": "レジスチルのま",
-    "FixedName": "レジスチルのま",
+    "Id": 59,
     "FloorCount": 1,
     "MappaIndex": 52,
     "FloorPrev": 12,
@@ -1795,14 +1557,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 59,
-    "Name": "レジスチルのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ばんにんのどうくつ",
-    "InName": "ばんにんのどうくつ さいしんぶ",
-    "FixedName": "[M:D1]ばんにんのどうくつ おくち",
+    "Id": 60,
     "FloorCount": 5,
     "MappaIndex": 52,
     "FloorPrev": 13,
@@ -1825,14 +1583,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 60,
-    "Name": "ばんにんのどうくつ さいしんぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "レジギガスのま",
-    "InName": "レジギガスのま",
-    "FixedName": "レジギガスのま",
+    "Id": 61,
     "FloorCount": 1,
     "MappaIndex": 52,
     "FloorPrev": 18,
@@ -1855,14 +1609,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 61,
-    "Name": "レジギガスのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "しゅぎょうのやま",
-    "InName": "しゅぎょうのやま",
-    "FixedName": "しゅぎょうのやま ちょうじょう",
+    "Id": 62,
     "FloorCount": 19,
     "MappaIndex": 56,
     "FloorPrev": 0,
@@ -1885,14 +1635,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 62,
-    "Name": "しゅぎょうのやま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "あくむのなか",
-    "InName": "あくむのなか",
-    "FixedName": "あくむのなか おくそこ",
+    "Id": 63,
     "FloorCount": 17,
     "MappaIndex": 57,
     "FloorPrev": 0,
@@ -1915,14 +1661,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 63,
-    "Name": "あくむのなか"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのさけめ",
-    "InName": "そらのさけめ",
-    "FixedName": "[M:D1]そらのさけめ",
+    "Id": 64,
     "FloorCount": 15,
     "MappaIndex": 58,
     "FloorPrev": 0,
@@ -1945,14 +1687,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 64,
-    "Name": "そらのさけめ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのさけめ",
-    "InName": "そらのさけめ さいしんぶ",
-    "FixedName": "[M:D1]そらのさけめ おくち",
+    "Id": 65,
     "FloorCount": 9,
     "MappaIndex": 58,
     "FloorPrev": 15,
@@ -1975,14 +1713,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 65,
-    "Name": "そらのさけめ さいしんぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのさけめ",
-    "InName": "そらのさけめ おくそこ",
-    "FixedName": "そらのさけめ おくそこ",
+    "Id": 66,
     "FloorCount": 1,
     "MappaIndex": 58,
     "FloorPrev": 24,
@@ -2005,14 +1739,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 66,
-    "Name": "そらのさけめ おくそこ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "やみのかこう",
-    "InName": "やみのかこう",
-    "FixedName": "[M:D1]やみのかこう",
+    "Id": 67,
     "FloorCount": 15,
     "MappaIndex": 54,
     "FloorPrev": 0,
@@ -2035,14 +1765,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 67,
-    "Name": "やみのかこう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "やみのかこう",
-    "InName": "やみのかこう さいしんぶ",
-    "FixedName": "[M:D1]やみのかこう さいしんぶ",
+    "Id": 68,
     "FloorCount": 14,
     "MappaIndex": 54,
     "FloorPrev": 15,
@@ -2065,14 +1791,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 68,
-    "Name": "やみのかこう さいしんぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "やみのかこう",
-    "InName": "やみのかこう おくそこ",
-    "FixedName": "やみのかこう おくそこ",
+    "Id": 69,
     "FloorCount": 1,
     "MappaIndex": 54,
     "FloorPrev": 29,
@@ -2095,14 +1817,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 69,
-    "Name": "やみのかこう おくそこ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "かくされたいせき",
-    "InName": "かくされたいせき",
-    "FixedName": "[M:D1]かくされたいせき",
+    "Id": 70,
     "FloorCount": 30,
     "MappaIndex": 35,
     "FloorPrev": 0,
@@ -2125,14 +1843,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 70,
-    "Name": "かくされたいせき"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "かくされたいせき",
-    "InName": "かくされたいせき おくそこ",
-    "FixedName": "[M:D1]かくされたいせき",
+    "Id": 71,
     "FloorCount": 1,
     "MappaIndex": 35,
     "FloorPrev": 30,
@@ -2155,14 +1869,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 71,
-    "Name": "かくされたいせき おくそこ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "うみのリゾート",
-    "InName": "うみのリゾート",
-    "FixedName": "[M:D1]うみのリゾート",
+    "Id": 72,
     "FloorCount": 19,
     "MappaIndex": 55,
     "FloorPrev": 0,
@@ -2185,14 +1895,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 72,
-    "Name": "うみのリゾート"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そこなしうみ",
-    "InName": "そこなしうみ",
-    "FixedName": "[M:D1]そこなしうみ",
+    "Id": 73,
     "FloorCount": 49,
     "MappaIndex": 32,
     "FloorPrev": 0,
@@ -2215,14 +1921,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 73,
-    "Name": "そこなしうみ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そこなしうみ",
-    "InName": "そこなしうみ おくそこ",
-    "FixedName": "そこなしうみ おくそこ",
+    "Id": 74,
     "FloorCount": 1,
     "MappaIndex": 32,
     "FloorPrev": 49,
@@ -2245,14 +1947,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 74,
-    "Name": "そこなしうみ おくそこ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "かげろうのさばく",
-    "InName": "かげろうのさばく",
-    "FixedName": "[M:D1]かげろうのさばく",
+    "Id": 75,
     "FloorCount": 9,
     "MappaIndex": 42,
     "FloorPrev": 0,
@@ -2275,14 +1973,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 75,
-    "Name": "かげろうのさばく"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "かげろうのさばく",
-    "InName": "かげろうのさばく おくち",
-    "FixedName": "かげろうのさばく おくち",
+    "Id": 76,
     "FloorCount": 1,
     "MappaIndex": 42,
     "FloorPrev": 9,
@@ -2305,44 +1999,36 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 76,
-    "Name": "かげろうのさばく おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "なだれやま",
-    "InName": "なだれやま",
-    "FixedName": "[M:D1]なだれやま",
-    "FloorCount": 19,
-    "MappaIndex": 44,
-    "FloorPrev": 0,
-    "FloorTotal": 20,
-    "Terrain": 0,
-    "FlagStairs": true,
-    "FlagCanEvol": false,
-    "FlagExp": true,
-    "FlagRecruit": true,
-    "FlagLv1Start": false,
-    "FlagMoney": true,
-    "FlagLeader": false,
-    "FlagSave": true,
-    "FlagNoIQ": false,
-    "FlagCantChkTrap": false,
-    "FlagDropChest": true,
-    "BitFlag": 1197,
-    "MaxRescue": 10,
-    "MaxItem": 48,
-    "MaxMember": 4,
-    "Unk07": 0,
-    "MaxTurn": 1000,
-    "RandomMovementChance": 0,
     "Id": 77,
-    "Name": "なだれやま"
+    "FloorCount": 19,
+    "MappaIndex": 44,
+    "FloorPrev": 0,
+    "FloorTotal": 20,
+    "Terrain": 0,
+    "FlagStairs": true,
+    "FlagCanEvol": false,
+    "FlagExp": true,
+    "FlagRecruit": true,
+    "FlagLv1Start": false,
+    "FlagMoney": true,
+    "FlagLeader": false,
+    "FlagSave": true,
+    "FlagNoIQ": false,
+    "FlagCantChkTrap": false,
+    "FlagDropChest": true,
+    "BitFlag": 1197,
+    "MaxRescue": 10,
+    "MaxItem": 48,
+    "MaxMember": 4,
+    "Unk07": 0,
+    "MaxTurn": 1000,
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "なだれやま",
-    "InName": "なだれやま ちょうじょう",
-    "FixedName": "なだれやま ちょうじょう",
+    "Id": 78,
     "FloorCount": 1,
     "MappaIndex": 44,
     "FloorPrev": 19,
@@ -2365,14 +2051,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 78,
-    "Name": "なだれやま ちょうじょう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "きょだいかざん",
-    "InName": "きょだいかざん",
-    "FixedName": "[M:D1]きょだいかざん",
+    "Id": 79,
     "FloorCount": 19,
     "MappaIndex": 45,
     "FloorPrev": 0,
@@ -2395,14 +2077,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 79,
-    "Name": "きょだいかざん"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "きょだいかざん",
-    "InName": "きょだいかざん ちょうじょう",
-    "FixedName": "きょだいかざん ちょうじょう",
+    "Id": 80,
     "FloorCount": 1,
     "MappaIndex": 45,
     "FloorPrev": 19,
@@ -2425,14 +2103,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 80,
-    "Name": "きょだいかざん ちょうじょう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "せかいのおおあな",
-    "InName": "せかいのおおあな",
-    "FixedName": "[M:D1]せかいのおおあな",
+    "Id": 81,
     "FloorCount": 29,
     "MappaIndex": 46,
     "FloorPrev": 0,
@@ -2455,14 +2129,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 81,
-    "Name": "せかいのおおあな"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "せかいのおおあな",
-    "InName": "せかいのおおあな おくそこ",
-    "FixedName": "せかいのおおあな おくそこ",
+    "Id": 82,
     "FloorCount": 1,
     "MappaIndex": 46,
     "FloorPrev": 29,
@@ -2485,14 +2155,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 82,
-    "Name": "せかいのおおあな おくそこ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "てんくうのかいだん",
-    "InName": "てんくうのかいだん",
-    "FixedName": "[M:D1]てんくうのかいだん",
+    "Id": 83,
     "FloorCount": 49,
     "MappaIndex": 51,
     "FloorPrev": 0,
@@ -2515,14 +2181,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 83,
-    "Name": "てんくうのかいだん"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "てんくうのかいだん",
-    "InName": "てんくうのかいだん ちょうじょう",
-    "FixedName": "てんくうのかいだん ちょうじょう",
+    "Id": 84,
     "FloorCount": 1,
     "MappaIndex": 51,
     "FloorPrev": 49,
@@ -2545,14 +2207,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 84,
-    "Name": "てんくうのかいだん ちょうじょう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ミステリージャングル",
-    "InName": "ミステリージャングル",
-    "FixedName": "[M:D1]ミステリージャングル",
+    "Id": 85,
     "FloorCount": 29,
     "MappaIndex": 37,
     "FloorPrev": 0,
@@ -2575,14 +2233,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 85,
-    "Name": "ミステリージャングル"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ミステリージャングル",
-    "InName": "ミステリージャングル おくち",
-    "FixedName": "ミステリージャングル おくち",
+    "Id": 86,
     "FloorCount": 1,
     "MappaIndex": 37,
     "FloorPrev": 29,
@@ -2605,14 +2259,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 86,
-    "Name": "ミステリージャングル おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "しずかなかわ",
-    "InName": "しずかなかわ",
-    "FixedName": "[M:D1]しずかなかわ",
+    "Id": 87,
     "FloorCount": 8,
     "MappaIndex": 39,
     "FloorPrev": 0,
@@ -2635,14 +2285,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 87,
-    "Name": "しずかなかわ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "コロコロどうくつ",
-    "InName": "コロコロどうくつ",
-    "FixedName": "[M:D1]コロコロどうくつ",
+    "Id": 88,
     "FloorCount": 13,
     "MappaIndex": 40,
     "FloorPrev": 0,
@@ -2665,14 +2311,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 88,
-    "Name": "コロコロどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "みどりのそうげん",
-    "InName": "みどりのそうげん",
-    "FixedName": "[M:D1]みどりのそうげん",
+    "Id": 89,
     "FloorCount": 6,
     "MappaIndex": 47,
     "FloorPrev": 0,
@@ -2695,14 +2337,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 89,
-    "Name": "みどりのそうげん"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ちいさなはらっぱ",
-    "InName": "ちいさなはらっぱ",
-    "FixedName": "[M:D1]ちいさなはらっぱ",
+    "Id": 90,
     "FloorCount": 5,
     "MappaIndex": 48,
     "FloorPrev": 0,
@@ -2725,14 +2363,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 90,
-    "Name": "ちいさなはらっぱ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "めいきゅうのどうくつ",
-    "InName": "めいきゅうのどうくつ",
-    "FixedName": "[M:D1]めいきゅうのどうくつ",
+    "Id": 91,
     "FloorCount": 10,
     "MappaIndex": 49,
     "FloorPrev": 0,
@@ -2755,14 +2389,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 91,
-    "Name": "めいきゅうのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "オレンのもり",
-    "InName": "オレンのもり",
-    "FixedName": "[M:D1]オレンのもり",
+    "Id": 92,
     "FloorCount": 5,
     "MappaIndex": 50,
     "FloorPrev": 0,
@@ -2785,14 +2415,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 92,
-    "Name": "オレンのもり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "はてのみずうみ",
-    "InName": "はてのみずうみ",
-    "FixedName": "[M:D1]はてのみずうみ",
+    "Id": 93,
     "FloorCount": 25,
     "MappaIndex": 29,
     "FloorPrev": 0,
@@ -2815,14 +2441,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 93,
-    "Name": "はてのみずうみ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "しあわせみさき",
-    "InName": "しあわせみさき",
-    "FixedName": "[M:D1]しあわせみさき",
+    "Id": 94,
     "FloorCount": 20,
     "MappaIndex": 38,
     "FloorPrev": 0,
@@ -2845,14 +2467,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 94,
-    "Name": "しあわせみさき"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "かぜのれいほう",
-    "InName": "かぜのれいほう",
-    "FixedName": "[M:D1]かぜのれいほう",
+    "Id": 95,
     "FloorCount": 20,
     "MappaIndex": 30,
     "FloorPrev": 0,
@@ -2875,14 +2493,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 95,
-    "Name": "かぜのれいほう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "かがやきのおか",
-    "InName": "かがやきのおか",
-    "FixedName": "[M:D1]かがやきのおか",
+    "Id": 96,
     "FloorCount": 18,
     "MappaIndex": 31,
     "FloorPrev": 0,
@@ -2905,14 +2519,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 96,
-    "Name": "かがやきのおか"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "みかいのこうや",
-    "InName": "みかいのこうや",
-    "FixedName": "[M:D1]みかいのこうや",
+    "Id": 97,
     "FloorCount": 18,
     "MappaIndex": 36,
     "FloorPrev": 0,
@@ -2935,14 +2545,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 97,
-    "Name": "みかいのこうや"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "あんやのもり",
-    "InName": "あんやのもり",
-    "FixedName": "[M:D1]あんやのもり",
+    "Id": 98,
     "FloorCount": 25,
     "MappaIndex": 28,
     "FloorPrev": 0,
@@ -2965,14 +2571,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 98,
-    "Name": "あんやのもり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ゼロのしま ほくぶ",
-    "InName": "ゼロのしま ほくぶ",
-    "FixedName": "[M:D1]ゼロのしま ほくぶ",
+    "Id": 99,
     "FloorCount": 75,
     "MappaIndex": 59,
     "FloorPrev": 0,
@@ -2995,14 +2597,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 99,
-    "Name": "ゼロのしま ほくぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ゼロのしま とうぶ",
-    "InName": "ゼロのしま とうぶ",
-    "FixedName": "[M:D1]ゼロのしま とうぶ",
+    "Id": 100,
     "FloorCount": 40,
     "MappaIndex": 61,
     "FloorPrev": 0,
@@ -3025,14 +2623,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
-    "Id": 100,
-    "Name": "ゼロのしま とうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ゼロのしま せいぶ",
-    "InName": "ゼロのしま せいぶ",
-    "FixedName": "[M:D1]ゼロのしま せいぶ",
+    "Id": 101,
     "FloorCount": 40,
     "MappaIndex": 60,
     "FloorPrev": 0,
@@ -3055,14 +2649,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
-    "Id": 101,
-    "Name": "ゼロのしま せいぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ゼロのしま なんぶ",
-    "InName": "ゼロのしま なんぶ",
-    "FixedName": "[M:D1]ゼロのしま なんぶ",
+    "Id": 102,
     "FloorCount": 99,
     "MappaIndex": 62,
     "FloorPrev": 0,
@@ -3085,14 +2675,10 @@
     "MaxMember": 1,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
-    "Id": 102,
-    "Name": "ゼロのしま なんぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ゼロのしま ちゅうおうぶ",
-    "InName": "ゼロのしま ちゅうおうぶ",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 103,
     "FloorCount": 50,
     "MappaIndex": 64,
     "FloorPrev": 0,
@@ -3115,14 +2701,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
-    "Id": 103,
-    "Name": "ゼロのしま ちゅうおうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "うんめいのとう",
-    "InName": "うんめいのとう",
-    "FixedName": "うんめいのとう さいじょうかい",
+    "Id": 104,
     "FloorCount": 99,
     "MappaIndex": 65,
     "FloorPrev": 0,
@@ -3145,14 +2727,10 @@
     "MaxMember": 1,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
-    "Id": 104,
-    "Name": "うんめいのとう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 105,
     "FloorCount": 10,
     "MappaIndex": 66,
     "FloorPrev": 0,
@@ -3175,14 +2753,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
-    "Id": 105,
-    "Name": "[M:D1]ダミー"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 106,
     "FloorCount": 5,
     "MappaIndex": 67,
     "FloorPrev": 0,
@@ -3205,14 +2779,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 106,
-    "Name": "[M:D1]ダミー"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ぼうきゃくのもり",
-    "InName": "ぼうきゃくのもり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 107,
     "FloorCount": 15,
     "MappaIndex": 68,
     "FloorPrev": 0,
@@ -3235,14 +2805,10 @@
     "MaxMember": 2,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 107,
-    "Name": "ぼうきゃくのもり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "まのかいいき",
-    "InName": "まのかいいき",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 108,
     "FloorCount": 20,
     "MappaIndex": 69,
     "FloorPrev": 0,
@@ -3265,14 +2831,10 @@
     "MaxMember": 2,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 108,
-    "Name": "まのかいいき"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "なんとうしょとう",
-    "InName": "なんとうしょとう",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 109,
     "FloorCount": 25,
     "MappaIndex": 70,
     "FloorPrev": 0,
@@ -3295,14 +2857,10 @@
     "MaxMember": 1,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 109,
-    "Name": "なんとうしょとう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "れっかのどうくつ",
-    "InName": "れっかのどうくつ",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 110,
     "FloorCount": 30,
     "MappaIndex": 71,
     "FloorPrev": 0,
@@ -3325,14 +2883,10 @@
     "MaxMember": 1,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 110,
-    "Name": "れっかのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのいただき",
-    "InName": "１ごうめまでの みちのり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 111,
     "FloorCount": 3,
     "MappaIndex": 72,
     "FloorPrev": 0,
@@ -3355,14 +2909,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 111,
-    "Name": "１ごうめまでの みちのり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのいただき",
-    "InName": "２ごうめまでの みちのり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 112,
     "FloorCount": 3,
     "MappaIndex": 72,
     "FloorPrev": 3,
@@ -3385,14 +2935,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 112,
-    "Name": "２ごうめまでの みちのり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのいただき",
-    "InName": "３ごうめまでの みちのり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 113,
     "FloorCount": 3,
     "MappaIndex": 72,
     "FloorPrev": 6,
@@ -3415,14 +2961,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 113,
-    "Name": "３ごうめまでの みちのり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのいただき",
-    "InName": "４ごうめまでの みちのり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 114,
     "FloorCount": 3,
     "MappaIndex": 72,
     "FloorPrev": 9,
@@ -3445,14 +2987,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 114,
-    "Name": "４ごうめまでの みちのり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのいただき",
-    "InName": "５ごうめまでの みちのり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 115,
     "FloorCount": 4,
     "MappaIndex": 72,
     "FloorPrev": 12,
@@ -3475,14 +3013,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 115,
-    "Name": "５ごうめまでの みちのり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのいただき",
-    "InName": "６ごうめまでの みちのり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 116,
     "FloorCount": 4,
     "MappaIndex": 72,
     "FloorPrev": 16,
@@ -3505,14 +3039,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 116,
-    "Name": "６ごうめまでの みちのり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのいただき",
-    "InName": "７ごうめまでの みちのり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 117,
     "FloorCount": 4,
     "MappaIndex": 72,
     "FloorPrev": 20,
@@ -3535,14 +3065,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 117,
-    "Name": "７ごうめまでの みちのり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのいただき",
-    "InName": "８ごうめまでの みちのり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 118,
     "FloorCount": 4,
     "MappaIndex": 72,
     "FloorPrev": 24,
@@ -3565,14 +3091,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 118,
-    "Name": "８ごうめまでの みちのり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのいただき",
-    "InName": "９ごうめまでの みちのり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 119,
     "FloorCount": 5,
     "MappaIndex": 72,
     "FloorPrev": 28,
@@ -3595,14 +3117,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 119,
-    "Name": "９ごうめまでの みちのり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのいただき",
-    "InName": "ちょうじょうまでの みちのり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 120,
     "FloorCount": 5,
     "MappaIndex": 72,
     "FloorPrev": 33,
@@ -3625,14 +3143,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 120,
-    "Name": "ちょうじょうまでの みちのり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのいただき",
-    "InName": "５ごうめ",
-    "FixedName": "そらのいただき ５ごうめ",
+    "Id": 121,
     "FloorCount": 1,
     "MappaIndex": 72,
     "FloorPrev": 38,
@@ -3655,14 +3169,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 121,
-    "Name": "５ごうめ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "そらのいただき",
-    "InName": "ちょうじょう",
-    "FixedName": "そらのいただき ちょうじょう",
+    "Id": 122,
     "FloorCount": 1,
     "MappaIndex": 72,
     "FloorPrev": 39,
@@ -3685,14 +3195,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 122,
-    "Name": "ちょうじょう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ほしのどうくつ",
-    "InName": "ほしのどうくつ",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 123,
     "FloorCount": 7,
     "MappaIndex": 73,
     "FloorPrev": 0,
@@ -3715,14 +3221,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 888,
-    "RandomMovementChance": 0,
-    "Id": 123,
-    "Name": "ほしのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ほしのどうくつ",
-    "InName": "ほしのどうくつ おくち",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 124,
     "FloorCount": 4,
     "MappaIndex": 73,
     "FloorPrev": 7,
@@ -3745,14 +3247,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 888,
-    "RandomMovementChance": 0,
-    "Id": 124,
-    "Name": "ほしのどうくつ おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ほしのどうくつ",
-    "InName": "ほしのどうくつ おくち",
-    "FixedName": "ほしのどうくつ おくち",
+    "Id": 125,
     "FloorCount": 1,
     "MappaIndex": 73,
     "FloorPrev": 11,
@@ -3775,14 +3273,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 888,
-    "RandomMovementChance": 0,
-    "Id": 125,
-    "Name": "ほしのどうくつ おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ほしのどうくつ",
-    "InName": "ほしのどうくつ さらに おくち",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 126,
     "FloorCount": 4,
     "MappaIndex": 73,
     "FloorPrev": 12,
@@ -3805,14 +3299,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 888,
-    "RandomMovementChance": 0,
-    "Id": 126,
-    "Name": "ほしのどうくつ さらに おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ほしのどうくつ",
-    "InName": "ほしのどうくつ さいおうぶ",
-    "FixedName": "ほしのどうくつ さいおうぶ",
+    "Id": 127,
     "FloorCount": 1,
     "MappaIndex": 73,
     "FloorPrev": 16,
@@ -3835,14 +3325,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 888,
-    "RandomMovementChance": 0,
-    "Id": 127,
-    "Name": "ほしのどうくつ さいおうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "アンコクのもり",
-    "InName": "アンコクのもり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 128,
     "FloorCount": 7,
     "MappaIndex": 74,
     "FloorPrev": 0,
@@ -3865,14 +3351,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 128,
-    "Name": "アンコクのもり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ひがしのほらあな",
-    "InName": "ひがしのほらあな",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 129,
     "FloorCount": 10,
     "MappaIndex": 75,
     "FloorPrev": 0,
@@ -3895,14 +3377,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 129,
-    "Name": "ひがしのほらあな"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ざいほうのいわば",
-    "InName": "ざいほうのいわば",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 130,
     "FloorCount": 8,
     "MappaIndex": 76,
     "FloorPrev": 0,
@@ -3925,14 +3403,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 130,
-    "Name": "ざいほうのいわば"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ざいほうのいわば",
-    "InName": "ざいほうのいわば おくち",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 131,
     "FloorCount": 6,
     "MappaIndex": 76,
     "FloorPrev": 8,
@@ -3955,14 +3429,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 131,
-    "Name": "ざいほうのいわば おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ざいほうのいわば",
-    "InName": "ざいほうのいわば さいおうぶ",
-    "FixedName": "ざいほうのいわば さいおうぶ",
+    "Id": 132,
     "FloorCount": 1,
     "MappaIndex": 76,
     "FloorPrev": 14,
@@ -3985,14 +3455,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 132,
-    "Name": "ざいほうのいわば さいおうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "こかつのたに",
-    "InName": "こかつのたに",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 133,
     "FloorCount": 5,
     "MappaIndex": 77,
     "FloorPrev": 0,
@@ -4015,14 +3481,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 133,
-    "Name": "こかつのたに"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "こかつのたに",
-    "InName": "こかつのたに おくち",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 134,
     "FloorCount": 5,
     "MappaIndex": 77,
     "FloorPrev": 5,
@@ -4045,14 +3507,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 134,
-    "Name": "こかつのたに おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "こかつのたに",
-    "InName": "こかつのたに さいおうぶ",
-    "FixedName": "こかつのたに さいおうぶ",
+    "Id": 135,
     "FloorCount": 1,
     "MappaIndex": 77,
     "FloorPrev": 10,
@@ -4075,14 +3533,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 135,
-    "Name": "こかつのたに さいおうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "くらがりのこうや",
-    "InName": "くらがりのこうや",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 136,
     "FloorCount": 4,
     "MappaIndex": 78,
     "FloorPrev": 0,
@@ -4105,14 +3559,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 136,
-    "Name": "くらがりのこうや"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "じげんのとう",
-    "InName": "じげんのとう",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 137,
     "FloorCount": 10,
     "MappaIndex": 79,
     "FloorPrev": 0,
@@ -4135,14 +3585,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 137,
-    "Name": "じげんのとう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "じげんのとう",
-    "InName": "じげんのとう さいじょうぶ",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 138,
     "FloorCount": 10,
     "MappaIndex": 79,
     "FloorPrev": 10,
@@ -4165,14 +3611,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 138,
-    "Name": "じげんのとう さいじょうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "くろのもり",
-    "InName": "くろのもり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 139,
     "FloorCount": 7,
     "MappaIndex": 80,
     "FloorPrev": 0,
@@ -4195,14 +3637,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 139,
-    "Name": "くろのもり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "くろのしっちたい",
-    "InName": "くろのしっちたい",
-    "FixedName": "くろのしっちたい",
+    "Id": 140,
     "FloorCount": 1,
     "MappaIndex": 80,
     "FloorPrev": 7,
@@ -4225,14 +3663,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 140,
-    "Name": "くろのしっちたい"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "くうかんのがんぺき",
-    "InName": "くうかんのがんぺき",
-    "FixedName": "くらやみのひょうざん さいじょうぶ",
+    "Id": 141,
     "FloorCount": 10,
     "MappaIndex": 81,
     "FloorPrev": 0,
@@ -4255,14 +3689,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 141,
-    "Name": "くうかんのがんぺき"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "くらやみのひょうざん",
-    "InName": "くらやみのひょうざん",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 142,
     "FloorCount": 10,
     "MappaIndex": 82,
     "FloorPrev": 0,
@@ -4285,14 +3715,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 142,
-    "Name": "くらやみのひょうざん"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "くらやみのひょうざん",
-    "InName": "くらやみのひょうざん さいじょうぶ",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 143,
     "FloorCount": 4,
     "MappaIndex": 82,
     "FloorPrev": 10,
@@ -4315,14 +3741,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 143,
-    "Name": "くらやみのひょうざん さいじょうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "くらやみのひょうざん",
-    "InName": "くらやみのひょうざん ちょうじょう",
-    "FixedName": "くらやみのひょうざん ちょうじょう",
+    "Id": 144,
     "FloorCount": 1,
     "MappaIndex": 82,
     "FloorPrev": 14,
@@ -4345,14 +3767,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 144,
-    "Name": "くらやみのひょうざん ちょうじょう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ひょうちゅうのもり",
-    "InName": "ひょうちゅうのもり",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 145,
     "FloorCount": 10,
     "MappaIndex": 83,
     "FloorPrev": 0,
@@ -4375,14 +3793,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 145,
-    "Name": "ひょうちゅうのもり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "だいひょうざん",
-    "InName": "だいひょうざん",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 146,
     "FloorCount": 9,
     "MappaIndex": 84,
     "FloorPrev": 0,
@@ -4405,14 +3819,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 146,
-    "Name": "だいひょうざん"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "だいひょうざん",
-    "InName": "だいひょうざん さいじょうぶ",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 147,
     "FloorCount": 8,
     "MappaIndex": 84,
     "FloorPrev": 9,
@@ -4435,14 +3845,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 147,
-    "Name": "だいひょうざん さいじょうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "だいひょうざん",
-    "InName": "だいひょうざん ちょうじょう",
-    "FixedName": "だいひょうざん ちょうじょう",
+    "Id": 148,
     "FloorCount": 1,
     "MappaIndex": 84,
     "FloorPrev": 17,
@@ -4465,14 +3871,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 148,
-    "Name": "だいひょうざん ちょうじょう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "みなみのジャングル",
-    "InName": "みなみのジャングル",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 149,
     "FloorCount": 10,
     "MappaIndex": 85,
     "FloorPrev": 0,
@@ -4495,14 +3897,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 149,
-    "Name": "みなみのジャングル"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "きょだいがんせきぐん",
-    "InName": "きょだいがんせきぐん",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 150,
     "FloorCount": 5,
     "MappaIndex": 86,
     "FloorPrev": 0,
@@ -4525,14 +3923,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 150,
-    "Name": "きょだいがんせきぐん"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "きょだいがんせきぐん",
-    "InName": "きょだいがんせきぐん おくち",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 151,
     "FloorCount": 5,
     "MappaIndex": 86,
     "FloorPrev": 5,
@@ -4555,14 +3949,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 151,
-    "Name": "きょだいがんせきぐん おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "きょだいがんせきぐん",
-    "InName": "きょだいがんせきぐん さいおうぶ",
-    "FixedName": "きょだいがんせきぐん さいおうぶ",
+    "Id": 152,
     "FloorCount": 1,
     "MappaIndex": 86,
     "FloorPrev": 10,
@@ -4585,14 +3975,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 152,
-    "Name": "きょだいがんせきぐん さいおうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "みぎがわのほらあな",
-    "InName": "みぎがわのほらあな",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 153,
     "FloorCount": 5,
     "MappaIndex": 87,
     "FloorPrev": 0,
@@ -4615,14 +4001,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 153,
-    "Name": "みぎがわのほらあな"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ひだりがわのほらあな",
-    "InName": "ひだりがわのほらあな",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 154,
     "FloorCount": 5,
     "MappaIndex": 88,
     "FloorPrev": 0,
@@ -4645,14 +4027,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 154,
-    "Name": "ひだりがわのほらあな"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "だいしょうにゅうどう",
-    "InName": "だいしょうにゅうどう",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 155,
     "FloorCount": 5,
     "MappaIndex": 89,
     "FloorPrev": 0,
@@ -4675,14 +4053,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 155,
-    "Name": "だいしょうにゅうどう"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "だいしょうにゅうどう",
-    "InName": "だいしょうにゅうどう おくち",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 156,
     "FloorCount": 5,
     "MappaIndex": 89,
     "FloorPrev": 5,
@@ -4705,14 +4079,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 156,
-    "Name": "だいしょうにゅうどう おくち"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "だいしょうにゅうどう",
-    "InName": "だいしょうにゅうどう さいおうぶ",
-    "FixedName": "だいしょうにゅうどう さいおうぶ",
+    "Id": 157,
     "FloorCount": 1,
     "MappaIndex": 89,
     "FloorPrev": 10,
@@ -4735,14 +4105,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 157,
-    "Name": "だいしょうにゅうどう さいおうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "げんせんのどうくつ",
-    "InName": "げんせんのどうくつ",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 158,
     "FloorCount": 4,
     "MappaIndex": 90,
     "FloorPrev": 0,
@@ -4765,14 +4131,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 158,
-    "Name": "げんせんのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "げんせんのどうくつ",
-    "InName": "げんせんのどうくつ じょうそうぶ",
-    "FixedName": "げんせんのどうくつ じょうそうぶ",
+    "Id": 159,
     "FloorCount": 1,
     "MappaIndex": 90,
     "FloorPrev": 4,
@@ -4795,14 +4157,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 159,
-    "Name": "げんせんのどうくつ じょうそうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "げんせんのどうくつ",
-    "InName": "げんせんのどうくつ じょうそうぶ",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 160,
     "FloorCount": 4,
     "MappaIndex": 90,
     "FloorPrev": 5,
@@ -4825,14 +4183,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 160,
-    "Name": "げんせんのどうくつ じょうそうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "げんせんのどうくつ",
-    "InName": "げんせんのどうくつ ちゅうそうぶ",
-    "FixedName": "げんせんのどうくつ ちゅうそうぶ",
+    "Id": 161,
     "FloorCount": 1,
     "MappaIndex": 90,
     "FloorPrev": 9,
@@ -4855,14 +4209,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 161,
-    "Name": "げんせんのどうくつ ちゅうそうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "げんせんのどうくつ",
-    "InName": "げんせんのどうくつ かそうぶ",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 162,
     "FloorCount": 4,
     "MappaIndex": 90,
     "FloorPrev": 10,
@@ -4885,14 +4235,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 162,
-    "Name": "げんせんのどうくつ かそうぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "げんせんのどうくつ",
-    "InName": "げんせんのどうくつ さいしんぶ",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 163,
     "FloorCount": 4,
     "MappaIndex": 90,
     "FloorPrev": 14,
@@ -4915,14 +4261,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 163,
-    "Name": "げんせんのどうくつ さいしんぶ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "げんせんのどうくつ",
-    "InName": "げんせんのどうくつ おくそこ",
-    "FixedName": "げんせんのどうくつ おくそこ",
+    "Id": 164,
     "FloorCount": 1,
     "MappaIndex": 90,
     "FloorPrev": 18,
@@ -4945,14 +4287,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 164,
-    "Name": "げんせんのどうくつ おくそこ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ちょこっとへいげん",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 165,
     "FloorCount": 5,
     "MappaIndex": 92,
     "FloorPrev": 0,
@@ -4975,14 +4313,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 165,
-    "Name": "ちょこっとへいげん"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "クリアざん",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 166,
     "FloorCount": 6,
     "MappaIndex": 93,
     "FloorPrev": 0,
@@ -5005,14 +4339,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 166,
-    "Name": "クリアざん"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "チャレンジリバー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 167,
     "FloorCount": 7,
     "MappaIndex": 94,
     "FloorPrev": 0,
@@ -5035,14 +4365,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 167,
-    "Name": "チャレンジリバー"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "おためしのもり",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 168,
     "FloorCount": 6,
     "MappaIndex": 95,
     "FloorPrev": 0,
@@ -5065,14 +4391,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 168,
-    "Name": "おためしのもり"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "いざないのうみ",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 169,
     "FloorCount": 5,
     "MappaIndex": 96,
     "FloorPrev": 0,
@@ -5095,14 +4417,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 169,
-    "Name": "いざないのうみ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "てんしゅのかくれざと",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 170,
     "FloorCount": 5,
     "MappaIndex": 97,
     "FloorPrev": 0,
@@ -5125,14 +4443,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 170,
-    "Name": "てんしゅのかくれざと"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 171,
     "FloorCount": 5,
     "MappaIndex": 98,
     "FloorPrev": 0,
@@ -5155,14 +4469,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 171,
-    "Name": "[M:D1]ダミー"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 172,
     "FloorCount": 5,
     "MappaIndex": 99,
     "FloorPrev": 0,
@@ -5185,14 +4495,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 172,
-    "Name": "[M:D1]ダミー"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 173,
     "FloorCount": 5,
     "MappaIndex": 99,
     "FloorPrev": 5,
@@ -5215,14 +4521,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 173,
-    "Name": "[M:D1]ダミー"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ほしのどうくつ",
-    "InName": "ほしのどうくつ",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 174,
     "FloorCount": 16,
     "MappaIndex": 91,
     "FloorPrev": 0,
@@ -5245,14 +4547,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 888,
-    "RandomMovementChance": 0,
-    "Id": 174,
-    "Name": "ほしのどうくつ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "シェイミのさと",
-    "InName": "シェイミのさと",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 175,
     "FloorCount": 3,
     "MappaIndex": 79,
     "FloorPrev": 0,
@@ -5275,14 +4573,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 175,
-    "Name": "シェイミのさと"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "アーマルドのすみか",
-    "InName": "アーマルドのすみか",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 176,
     "FloorCount": 3,
     "MappaIndex": 79,
     "FloorPrev": 3,
@@ -5305,14 +4599,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 176,
-    "Name": "アーマルドのすみか"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ひかりのいずみ",
-    "InName": "ひかりのいずみ",
-    "FixedName": "ひかりのいずみ",
+    "Id": 177,
     "FloorCount": 3,
     "MappaIndex": 79,
     "FloorPrev": 6,
@@ -5335,14 +4625,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 177,
-    "Name": "ひかりのいずみ"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "おんせん",
-    "InName": "おんせん",
-    "FixedName": "おんせん",
+    "Id": 178,
     "FloorCount": 6,
     "MappaIndex": 79,
     "FloorPrev": 9,
@@ -5365,14 +4651,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 178,
-    "Name": "おんせん"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "きゅうじょ",
-    "InName": "きゅうじょ",
-    "FixedName": "[M:D1]ダミー",
+    "Id": 179,
     "FloorCount": 1,
     "MappaIndex": 63,
     "FloorPrev": 0,
@@ -5395,14 +4677,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
-    "Id": 179,
-    "Name": "[M:D1]きゅうじょダンジョン"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ノーマル ひこうのま",
-    "InName": "ノーマル ひこうのま",
-    "FixedName": "[M:D1]ノーマル ひこうのま",
+    "Id": 180,
     "FloorCount": 5,
     "MappaIndex": 53,
     "FloorPrev": 0,
@@ -5425,14 +4703,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 500,
-    "RandomMovementChance": 0,
-    "Id": 180,
-    "Name": "ノーマル ひこうのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "あく ほのおのま",
-    "InName": "あく ほのおのま",
-    "FixedName": "[M:D1]あく ほのおのま",
+    "Id": 181,
     "FloorCount": 5,
     "MappaIndex": 53,
     "FloorPrev": 5,
@@ -5455,14 +4729,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 500,
-    "RandomMovementChance": 0,
-    "Id": 181,
-    "Name": "あく ほのおのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "いわ みずのま",
-    "InName": "いわ みずのま",
-    "FixedName": "[M:D1]いわ みずのま",
+    "Id": 182,
     "FloorCount": 5,
     "MappaIndex": 53,
     "FloorPrev": 10,
@@ -5485,14 +4755,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 500,
-    "RandomMovementChance": 0,
-    "Id": 182,
-    "Name": "いわ みずのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "くさのま",
-    "InName": "くさのま",
-    "FixedName": "[M:D1]くさのま",
+    "Id": 183,
     "FloorCount": 5,
     "MappaIndex": 53,
     "FloorPrev": 15,
@@ -5515,14 +4781,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 500,
-    "RandomMovementChance": 0,
-    "Id": 183,
-    "Name": "くさのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "でんき はがねのま",
-    "InName": "でんき はがねのま",
-    "FixedName": "[M:D1]でんき はがねのま",
+    "Id": 184,
     "FloorCount": 5,
     "MappaIndex": 53,
     "FloorPrev": 20,
@@ -5545,14 +4807,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 500,
-    "RandomMovementChance": 0,
-    "Id": 184,
-    "Name": "でんき はがねのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "こおり じめんのま",
-    "InName": "こおり じめんのま",
-    "FixedName": "[M:D1]こおり じめんのま",
+    "Id": 185,
     "FloorCount": 5,
     "MappaIndex": 53,
     "FloorPrev": 25,
@@ -5575,14 +4833,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 500,
-    "RandomMovementChance": 0,
-    "Id": 185,
-    "Name": "こおり じめんのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "かくとう エスパーのま",
-    "InName": "かくとう エスパーのま",
-    "FixedName": "[M:D1]かくとう エスパーのま",
+    "Id": 186,
     "FloorCount": 5,
     "MappaIndex": 53,
     "FloorPrev": 30,
@@ -5605,14 +4859,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 500,
-    "RandomMovementChance": 0,
-    "Id": 186,
-    "Name": "かくとう エスパーのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "どく むしのま",
-    "InName": "どく むしのま",
-    "FixedName": "[M:D1]どく むしのま",
+    "Id": 187,
     "FloorCount": 5,
     "MappaIndex": 53,
     "FloorPrev": 35,
@@ -5635,14 +4885,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 500,
-    "RandomMovementChance": 0,
-    "Id": 187,
-    "Name": "どく むしのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ドラゴンのま",
-    "InName": "ドラゴンのま",
-    "FixedName": "[M:D1]ドラゴンのま",
+    "Id": 188,
     "FloorCount": 5,
     "MappaIndex": 53,
     "FloorPrev": 40,
@@ -5665,14 +4911,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 500,
-    "RandomMovementChance": 0,
-    "Id": 188,
-    "Name": "ドラゴンのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "ゴーストのま",
-    "InName": "ゴーストのま",
-    "FixedName": "[M:D1]ゴーストのま",
+    "Id": 189,
     "FloorCount": 5,
     "MappaIndex": 53,
     "FloorPrev": 45,
@@ -5695,14 +4937,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 500,
-    "RandomMovementChance": 0,
-    "Id": 189,
-    "Name": "ゴーストのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "たんけんたいのま",
-    "InName": "たんけんたいのま",
-    "FixedName": "[M:D1]たんけんたいのま",
+    "Id": 190,
     "FloorCount": 1,
     "MappaIndex": 53,
     "FloorPrev": 50,
@@ -5725,14 +4963,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 190,
-    "Name": "たんけんたいのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "さいごのま",
-    "InName": "さいごのま",
-    "FixedName": "[M:D1]さいごのま",
+    "Id": 191,
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -5755,44 +4989,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
-    "Id": 191,
-    "Name": "さいごのま"
+    "RandomMovementChance": 0
   },
   {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
-    "FloorCount": 48,
-    "MappaIndex": 53,
-    "FloorPrev": 51,
-    "FloorTotal": 99,
-    "Terrain": 0,
-    "FlagStairs": false,
-    "FlagCanEvol": false,
-    "FlagExp": true,
-    "FlagRecruit": false,
-    "FlagLv1Start": false,
-    "FlagMoney": true,
-    "FlagLeader": false,
-    "FlagSave": true,
-    "FlagNoIQ": false,
-    "FlagCantChkTrap": false,
-    "FlagDropChest": true,
-    "BitFlag": 1188,
-    "MaxRescue": 255,
-    "MaxItem": 48,
-    "MaxMember": 4,
-    "Unk07": 0,
-    "MaxTurn": 1000,
-    "RandomMovementChance": 0,
     "Id": 192,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -5815,14 +5015,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 193,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -5845,14 +5041,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 194,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -5875,14 +5067,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 195,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -5905,14 +5093,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 196,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -5935,14 +5119,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 197,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -5965,14 +5145,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 198,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -5995,14 +5171,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 199,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6025,14 +5197,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 200,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6055,14 +5223,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 201,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6085,14 +5249,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 202,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6115,14 +5275,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 203,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6145,14 +5301,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 204,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6175,14 +5327,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 205,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6205,14 +5353,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 206,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6235,14 +5379,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 207,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6265,14 +5405,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 208,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6295,14 +5431,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 209,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6325,14 +5457,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 210,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]くんれんじょ",
-    "InName": "[M:D1]くんれんじょ",
-    "FixedName": "[M:D1]くんれんじょ",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6355,14 +5483,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 211,
-    "Name": "[M:D1]くんれんじょ"
-  },
-  {
-    "ListName": "[M:D1]きゅうじょダンジョン",
-    "InName": "[M:D1]きゅうじょダンジョン",
-    "FixedName": "[M:D1]きゅうじょダンジョン",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6385,14 +5509,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 212,
-    "Name": "[M:D1]きゅうじょダンジョン"
-  },
-  {
-    "ListName": "[M:D1]きち",
-    "InName": "[M:D1]きち",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6415,14 +5535,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 213,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "？？？",
-    "InName": "？？？",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6445,14 +5561,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 214,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "かいがん",
-    "InName": "かいがん",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6475,14 +5587,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 215,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "ふめい",
-    "InName": "ふめい",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6505,14 +5613,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 216,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ビッパ",
-    "InName": "[M:D1]ビッパ",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6535,14 +5639,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 217,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ジュプトル",
-    "InName": "[M:D1]ジュプトル",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6565,14 +5665,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 218,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]セレビィ",
-    "InName": "[M:D1]セレビィ",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6595,14 +5691,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 219,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ペラップ",
-    "InName": "[M:D1]ペラップ",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6625,14 +5717,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 220,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]クレセリア",
-    "InName": "[M:D1]クレセリア",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6655,14 +5743,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 221,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6685,14 +5769,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 222,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6715,14 +5795,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 223,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6745,14 +5821,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 1000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 224,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6761,28 +5833,24 @@
     "FlagStairs": false,
     "FlagCanEvol": false,
     "FlagExp": true,
-    "FlagRecruit": true,
+    "FlagRecruit": false,
     "FlagLv1Start": false,
     "FlagMoney": true,
     "FlagLeader": false,
-    "FlagSave": false,
+    "FlagSave": true,
     "FlagNoIQ": false,
     "FlagCantChkTrap": false,
     "FlagDropChest": true,
-    "BitFlag": 1068,
-    "MaxRescue": 10,
+    "BitFlag": 1188,
+    "MaxRescue": 255,
     "MaxItem": 48,
     "MaxMember": 4,
     "Unk07": 0,
-    "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "MaxTurn": 1000,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 225,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6805,14 +5873,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 226,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6835,14 +5899,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 227,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6865,14 +5925,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 228,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6895,14 +5951,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 229,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6925,14 +5977,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 230,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6955,14 +6003,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 231,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -6985,14 +6029,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 232,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7015,14 +6055,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 233,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7045,14 +6081,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 234,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7075,14 +6107,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 235,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "アーマルドのすみか",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7105,14 +6133,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 236,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "こかつのたに",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7135,14 +6159,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 237,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "ふめい",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7165,14 +6185,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 238,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "ふめい",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7195,14 +6211,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 239,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "ふめい",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7225,14 +6237,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 240,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "サメハダいわ",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7255,14 +6263,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 241,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "サメハダいわ",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7285,14 +6289,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 242,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "そらのいただき",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7315,14 +6315,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 243,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7345,14 +6341,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 244,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7375,14 +6367,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 245,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7405,14 +6393,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 246,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "トレジャータウン",
-    "InName": "トレジャータウン",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7435,14 +6419,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 247,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "トレジャータウン",
-    "InName": "トレジャータウン",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7465,14 +6445,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 248,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ちじょうで",
-    "InName": "[M:D1]ちじょうで",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7495,14 +6471,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 249,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]いらいしゃ",
-    "InName": "[M:D1]いらいしゃ",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7525,14 +6497,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 250,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7555,14 +6523,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 251,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7585,14 +6549,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 252,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7615,14 +6575,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 253,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7645,14 +6601,10 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 254,
-    "Name": "[M:D1]"
-  },
-  {
-    "ListName": "[M:D1]ダミー",
-    "InName": "[M:D1]ダミー",
-    "FixedName": "[M:D1]",
     "FloorCount": 48,
     "MappaIndex": 53,
     "FloorPrev": 51,
@@ -7675,8 +6627,32 @@
     "MaxMember": 4,
     "Unk07": 0,
     "MaxTurn": 2000,
-    "RandomMovementChance": 0,
+    "RandomMovementChance": 0
+  },
+  {
     "Id": 255,
-    "Name": "[M:D1]"
+    "FloorCount": 48,
+    "MappaIndex": 53,
+    "FloorPrev": 51,
+    "FloorTotal": 99,
+    "Terrain": 0,
+    "FlagStairs": false,
+    "FlagCanEvol": false,
+    "FlagExp": true,
+    "FlagRecruit": true,
+    "FlagLv1Start": false,
+    "FlagMoney": true,
+    "FlagLeader": false,
+    "FlagSave": false,
+    "FlagNoIQ": false,
+    "FlagCantChkTrap": false,
+    "FlagDropChest": true,
+    "BitFlag": 1068,
+    "MaxRescue": 10,
+    "MaxItem": 48,
+    "MaxMember": 4,
+    "Unk07": 0,
+    "MaxTurn": 2000,
+    "RandomMovementChance": 0
   }
 ]

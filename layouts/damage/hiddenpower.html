@@ -4,7 +4,7 @@
   {{ $pokemon_json := resources.Get "data/pokemon.json" | transform.Unmarshal }}
   {{ $item_json := resources.Get "data/item.json" | transform.Unmarshal }}
   {{ $dungeon_json := resources.Get "data/dungeon.json" | transform.Unmarshal }}
-  {{ $floor_json := resources.Get "data/floor.json" | transform.Unmarshal }}
+  {{ $floor_json := resources.Get "data/floor_info_s.json" | transform.Unmarshal }}
   {{ $type_json := resources.Get "data/type.json" | transform.Unmarshal }}
 
   {{/* 特性 */}}
@@ -15,6 +15,15 @@
   {{ end }}
   {{ $abilities = sort $abilities "Name" }}
 
+  {{/* 言語ごとのパラメータ・翻訳文言をJSに渡す */}}
+  {{ $params := index hugo.Data.params .Lang }}
+  {{ $translatePokemon := index hugo.Data.translate.pokemon .Lang }}
+  <script>
+    window.PARAMS = JSON.parse('{{ $params | jsonify }}');
+    Object.assign(window.translate, {
+      pokemon: JSON.parse('{{ $translatePokemon | jsonify }}'),
+    });
+  </script>
 
   <div class="container-lg mb-3" id="damage-hiddenpower">
     <div

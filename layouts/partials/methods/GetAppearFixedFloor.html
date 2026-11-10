@@ -5,7 +5,7 @@
 {{ $fixeds := partial "methods/SearchFixedFloorByPokemonId" $pokemonId }}
 
 {{ $dungeon_json := resources.Get "data/dungeon.json" | transform.Unmarshal }}
-{{ $floor_json := resources.Get "data/floor.json" | transform.Unmarshal }}
+{{ $floor_json := resources.Get "data/floor_info_s.json" | transform.Unmarshal }}
 
 
 <!-- モードで時・闇・空を切替 -->
@@ -18,11 +18,11 @@
 
 {{ $mappa := false }}
 {{ if or (eq $mode "t") (eq $mode "time") }}
-  {{ $mappa = resources.Get "data/mappa_t.json" | transform.Unmarshal }}
+  {{ $mappa = resources.Get "data/floor_table_t.json" | transform.Unmarshal }}
 {{ else if or (eq $mode "d") (eq $mode "darkness") }}
-  {{ $mappa = resources.Get "data/mappa_d.json" | transform.Unmarshal }}
+  {{ $mappa = resources.Get "data/floor_table_y.json" | transform.Unmarshal }}
 {{ else }}
-  {{ $mappa = resources.Get "data/mappa_s.json" | transform.Unmarshal }}
+  {{ $mappa = resources.Get "data/floor_table_s.json" | transform.Unmarshal }}
 {{ end }}
 
 

@@ -33,6 +33,7 @@
 
 import * as eos from './const.js';
 import { NaturalGiftInfo } from './structure.js';
+import { jsonData } from '../json_store.js';
 
 export const CONST_0_25 = 0x40 / 256;
 export const CONST_0_50 = 0x80 / 256;
@@ -497,11 +498,12 @@ export const FRUSTRATION_FIXED_DAMAGE_TABLE = [
  * @returns
  */
 export function getMoveType(moveId) {
-  if (!MoveData) {
+  const moveData = jsonData.get('move');
+  if (!moveData) {
     console.error('MoveData not found');
     return;
   }
-  return MoveData[moveId].Type;
+  return moveData[moveId].Type;
 }
 
 /**
@@ -537,11 +539,12 @@ export function typeIneffectiveAgainstGhost(typeId) {
  * @returns
  */
 export function getMoveBasePower(moveId, timeDarkness) {
-  if (!MoveData) {
+  const moveData = jsonData.get('move');
+  if (!moveData) {
     console.error('MoveData not found');
     return;
   }
-  const move = MoveData[moveId];
+  const move = moveData[moveId];
   if (timeDarkness) {
     const tdBasePower = getMoveBasePowerTimeDarkness(moveId);
     if (tdBasePower) return tdBasePower;
@@ -556,11 +559,12 @@ export function getMoveBasePower(moveId, timeDarkness) {
  * @returns
  */
 export function getMoveAccuracy(moveId, accuracy2) {
-  if (!MoveData) {
+  const moveData = jsonData.get('move');
+  if (!moveData) {
     console.error('MoveData not found');
     return;
   }
-  const move = MoveData[moveId];
+  const move = moveData[moveId];
   if (accuracy2) {
     return move.Accuracy2;
   }
@@ -573,11 +577,12 @@ export function getMoveAccuracy(moveId, accuracy2) {
  * @returns
  */
 export function getMoveCritChance(moveId) {
-  if (!MoveData) {
+  const moveData = jsonData.get('move');
+  if (!moveData) {
     console.error('MoveData not found');
     return;
   }
-  const move = MoveData[moveId];
+  const move = moveData[moveId];
   return move.Critical;
 }
 
@@ -602,10 +607,12 @@ export function getMoveBasePowerTimeDarkness(moveId) {
  * @returns
  */
 export function getMoveMaxPP(moveId) {
-  if (!MoveData) {
+  const moveData = jsonData.get('move');
+  if (!moveData) {
     console.error('MoveData not found');
+    return;
   }
-  return MoveData[moveId].PP;
+  return moveData[moveId].PP;
 }
 
 /**
@@ -679,11 +686,12 @@ export function isSoundMove(moveId) {
  * @returns
  */
 export function getMonsterWeight(pokemonId) {
-  if (!PokemonData) {
+  const pokemonData = jsonData.get('pokemon');
+  if (!pokemonData) {
     console.error('PokemonData not found');
     return;
   }
-  const pokemon = PokemonData[pokemonId];
+  const pokemon = pokemonData[pokemonId];
   const raw = pokemon.Weight;
   return ((raw >> 8) + (raw & 0xff)) / 0x100;
 }

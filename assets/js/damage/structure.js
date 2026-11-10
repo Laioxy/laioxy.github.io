@@ -34,6 +34,8 @@
 import * as eos from './const.js';
 import * as Mechanics from './mechanics.js';
 
+import { jsonData } from '../json_store.js';
+
 /**
  * ポケモン構造体
  */
@@ -425,11 +427,12 @@ export class Monster {
    * @returns
    */
   getSize() {
-    if (!PokemonData) {
+    const pokemonData = jsonData.get('pokemon');
+    if (!pokemonData) {
       console.error('PokemonData not found');
       return false;
     }
-    return PokemonData[this.id].Size;
+    return pokemonData[this.id].Size;
   }
 }
 

@@ -1,5 +1,8 @@
-import { getJsonDatas } from '../json_script.js';
+import { jsonData } from '../json_store.js';
 import { WonderMail } from './password.js';
+
+let DungeonData;
+let MessageData;
 
 let dungeonElement = null;
 let passwordElement = null;
@@ -19,7 +22,9 @@ document.addEventListener('DOMContentLoaded', async function () {
   optionOutputWithoutSpacesLinebreak = document.getElementById('option-output-without-space-linebreak');
 
   // JSONデータ読込
-  ({ dungeon: window.DungeonData, message: window.MessageData } = await getJsonDatas(['dungeon', 'message']));
+  const data = await jsonData.load(['dungeon', 'message']);
+  DungeonData = data.dungeon;
+  MessageData = data.message;
 
   // イベント
   setEvent();

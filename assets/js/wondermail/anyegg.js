@@ -1,5 +1,8 @@
-import { getJsonDatas } from '../json_script.js';
+import { jsonData } from '../json_store.js';
 import { WonderMail } from './password.js';
+
+let PokemonData;
+let MessageData;
 
 let versionSkyElement = null;
 let versionOldElement = null;
@@ -35,7 +38,9 @@ document.addEventListener('DOMContentLoaded', async function () {
   optionOutputWithoutSpacesLinebreak = document.getElementById('option-output-without-space-linebreak');
 
   // JSONデータ読込
-  ({ pokemon: window.PokemonData, message: window.MessageData } = await getJsonDatas(['pokemon', 'message']));
+  const data = await jsonData.load(['pokemon', 'message']);
+  PokemonData = data.pokemon;
+  MessageData = data.message;
 
   // イベント
   setEvent();
@@ -270,7 +275,7 @@ function getPokemonChoicesData(isClient = false, filter = []) {
     const pokemonName = MessageData[window.PARAMS['MESSAGE_POKEMON_NAME_INDEX'] + (i % PokemonData.length)];
     const pokemonSubName = window.translate.pokemon.subname[i % 600] ?? '';
     const genderIdx = Math.floor(i / 600);
-    const genderId = pokemon.Genders[genderIdx];
+    const genderId = pokemon.Genders[genderIdx].Gender;
     const genderTranslates = [
       window.translate.pokemon.gender['invalid'],
       window.translate.pokemon.gender['male'],

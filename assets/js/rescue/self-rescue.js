@@ -1,4 +1,4 @@
-import { getJsonDatas } from '../json_script.js';
+import { jsonData } from '../json_store.js';
 import { checkPasswordString } from '../utils/passwordConverter.js';
 import { Rescue, RESCUE_TYPE_SOS, RESCUE_TYPE_AOK, RESCUE_TYPE_THANKYOU } from './password.js';
 
@@ -20,6 +20,8 @@ const choicesInstances = [];
 
 // その他
 let validationElements = null;
+let ItemData;
+let MessageData;
 
 document.addEventListener('DOMContentLoaded', async function () {
   passwordInputElement = document.getElementById('password-input');
@@ -38,7 +40,9 @@ document.addEventListener('DOMContentLoaded', async function () {
   validationElements = [giftItemElement, giftItemInnerElement, giftItemCountElement];
 
   // JSONデータ読込
-  ({ item: window.ItemData, message: window.MessageData } = await getJsonDatas(['item', 'message']));
+  const data = await jsonData.load(['item', 'message']);
+  ItemData = data.item;
+  MessageData = data.message;
 
   // イベント
   setEvent();

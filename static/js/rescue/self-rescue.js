@@ -1,3 +1,5 @@
+import { jsonData } from '../json_store.js';
+
 $(async function () {
   // 蓋 (Dateの第二引数は0～11で指定すること)
   // const now = new Date();
@@ -9,7 +11,7 @@ $(async function () {
   //   return;
   // }
 
-  var ItemData = await getJsonData('item');
+  const { item: ItemData } = await jsonData.load(['item']);
 
   var e_pass_area = $('#pass-area');
   var e_pass_result = $('#pass-result');

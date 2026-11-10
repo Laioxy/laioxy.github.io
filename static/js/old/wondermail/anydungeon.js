@@ -1,8 +1,8 @@
 import { WonderMail } from './password.js';
+import { jsonData } from '../../json_store.js';
 
 $(async function () {
   var DungeonData;
-  var FloorData;
 
   // 要素キャッシュ
   var e_pass_area = $('#pass-area');
@@ -24,14 +24,9 @@ $(async function () {
   // }
 
   // JSON取得
-  await Promise.all([getJsonData('dungeon'), getJsonData('floor')])
-    .then((results) => {
-      DungeonData = results[0];
-      FloorData = results[1];
-    })
-    .catch((e) => {
-      console.error(e);
-    });
+  const data = await jsonData.load(['dungeon', 'message']);
+  DungeonData = data.dungeon;
+  const dungeonNameIndex = window.PARAMS['MESSAGE_DUNGEON_FULL_NAME_INDEX'];
 
   // Select2
   e_dungeon.select2(select2Config);
@@ -64,9 +59,9 @@ $(async function () {
       // シェイミのさと除外
       if (i == 0xaf) continue;
 
-      elem.append(
-        `<option value="${i}" data-search="${DungeonData[i].Name}">[${('00' + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`,
-      );
+      const dungeonName = formatRemoveTagString(data.message[dungeonNameIndex + i]);
+      const dungeonId = i.toString(16).padStart(2, '0').toUpperCase();
+      elem.append($('<option>').val(i).attr('data-search', dungeonName).text(`[${dungeonId}] ${dungeonName}`));
     }
     // ダミー(0xAD)を選択不可にする
     //$(`select#dungeon option[value="${0xad}"]`).prop("disabled", true);

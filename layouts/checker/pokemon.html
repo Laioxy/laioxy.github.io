@@ -1,4 +1,11 @@
 {{ define "main" }}
+  {{ $params := index hugo.Data.params .Lang }}
+  {{ $translatePokemon := index hugo.Data.translate.pokemon .Lang }}
+  <script>
+    window.PARAMS = JSON.parse('{{ $params | jsonify }}');
+    window.translate.pokemon = JSON.parse('{{ $translatePokemon | jsonify }}');
+  </script>
+
   <div class="container-lg" id="pokemon-checker">
     <script>
       window.ITEM_SPRITE_URL = '{{ (resources.Get "img/sprites/sheet_itemsprite.png").RelPermalink }}';

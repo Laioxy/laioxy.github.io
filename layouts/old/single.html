@@ -18,5 +18,19 @@
     {{ partial "breadcrumb.html" (dict "page" . "title" .Title) }}
   </div>
 
+  {{ $pokemonPages := slice "/old/wondermail/anyegg" "/old/wondermail/wondermail" }}
+  {{ if or (eq .Path "/old/wondermail/anydungeon") (in $pokemonPages .Path) }}
+    {{ $params := index hugo.Data.params .Lang }}
+    <script>
+      window.PARAMS = JSON.parse('{{ $params | jsonify }}');
+    </script>
+  {{ end }}
+  {{ if in $pokemonPages .Path }}
+    {{ $translatePokemon := index hugo.Data.translate.pokemon .Lang }}
+    <script>
+      window.translate.pokemon = JSON.parse('{{ $translatePokemon | jsonify }}');
+    </script>
+  {{ end }}
+
   {{ .Content }}
 {{ end }}

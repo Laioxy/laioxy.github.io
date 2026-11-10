@@ -1,9 +1,16 @@
 {{ define "main" }}
+  {{ $lang := site.Language.Lang }}
+
   {{ $dungeon_json := resources.Get "data/dungeon.json" | transform.Unmarshal }}
-  {{ $floor_json := resources.Get "data/floor.json" | transform.Unmarshal }}
+  {{ $floor_json := resources.Get "data/floor_info_s.json" | transform.Unmarshal }}
+
   {{ $dungeons := first 192 $dungeon_json }}
   {{ $dungeons := where $dungeons "MaxRescue" "!=" 255 }}
   {{ $dungeons := where $dungeons "FloorPrev" "=" 0 }}
+
+  {{ $params := index hugo.Data.params .Lang }}
+  {{ $messageJsonPath := printf "data/message.%s.json" $lang }}
+  {{ $message_json := resources.Get $messageJsonPath | transform.Unmarshal }}
 
 
   <script src="/js/rescue/password.js"></script>
@@ -147,15 +154,17 @@
                   {{ end }}
                   {{ $dataFixed := delimit $hasFixed "," }}
 
-
+                  {{/* ダンジョン名取得 */}}
+                  {{ $dungeonNameIdx := $params.MESSAGE_DUNGEON_FULL_NAME_INDEX }}
+                  {{ $dungeonName := index $message_json (add $dungeonNameIdx (int .Id)) }}
                   <option
                     value="{{ .Id }}"
                     data-stairs="{{ .FlagStairs }}"
-                    data-search="{{ .Name }}"
+                    data-search="{{ $dungeonName }}"
                     data-maxfloor="{{ .FloorCount }}"
                     data-fixed="{{ $dataFixed }}"
                     {{ if eq (int .Id) 102 }}selected{{ end }}>
-                    {{ $name := replaceRE "\\[.*?\\]" "" .Name }}
+                    {{ $name := replaceRE "\\[.*?\\]" "" $dungeonName }}
                     {{ printf "[%02X] %s" (int .Id) $name }}
                   </option>
                 {{ end }}

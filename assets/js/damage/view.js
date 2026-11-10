@@ -3,11 +3,21 @@ import * as Mechanics from './mechanics.js';
 import * as pokeParam from '../poke_param.js';
 import { RunCalcDamage } from './calc.js';
 import { Monster, DungeonState, DamageData, Move } from './structure.js';
-import { getJsonDatas } from '../json_script.js';
+import { jsonData } from '../json_store.js';
+import { Pokemon } from 'js/structure/pokemon.js';
+import { MessageUtils } from 'js/utils/messageUtils.js';
 
 const fighterClassNames = ['attacker', 'defender'];
 const moveCategoryNames = ['物理', '特殊', '変化'];
 const choicesInstances = [];
+
+let messageUtils;
+
+let PokemonData;
+let MoveData;
+let IQGroupData;
+let TypeData;
+let MessageData;
 
 /**
  * memo:
@@ -25,13 +35,16 @@ document.addEventListener('DOMContentLoaded', async function () {
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
   const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
   // JSONデータ読込
-  ({
-    pokemon: window.PokemonData,
-    move: window.MoveData,
-    iqgroup: window.IQGroupData,
-    type: window.TypeData,
-    message: window.MessageData,
-  } = await getJsonDatas(['pokemon', 'move', 'iqgroup', 'type', 'message']));
+  const data = await jsonData.load([
+    'pokemon', 'move', 'iqgroup', 'type', 'message',
+    'pokemon-stats.sky'
+  ]);
+  PokemonData = data.pokemon;
+  MoveData = data.move;
+  IQGroupData = data.iqgroup;
+  TypeData = data.type;
+  MessageData = data.message;
+  messageUtils = MessageUtils.create();
 
   // choices.js 初期化
   InitChoices();
@@ -252,18 +265,25 @@ function ApplyGenderControl(fighterName, pokemonId, genderId = -1, calc = true) 
   );
 
   let changed = false;
+  const genderTranslates = [
+    window.translate.pokemon.gender['invalid'],
+    window.translate.pokemon.gender['male'],
+    window.translate.pokemon.gender['female'],
+    window.translate.pokemon.gender['genderless'],
+  ];
   for (let i = 0; i < 2; i++) {
     if (pokemon.Genders.length > i) {
+      const gender = pokemon.Genders[i].Gender;
       const baseGenderValue = genderElements[i].value;
       // 性別をセット
       genderElements[i].value = pokemon.Genders[i];
       genderElements[i].disabled = false;
-      genderLabelElements[i].textContent = pokeParam.pokeGender[pokemon.Genders[i]].name;
-      if (genderId > 0 && pokemon.Genders[i] == genderId) {
+      genderLabelElements[i].textContent = genderTranslates[gender];
+      if (genderId > 0 && gender == genderId) {
         genderElements[i].checked = true; // 一致する性別を選択する
       }
       // 初回(value='on')以外、かつ性別の値に変更がある
-      if (baseGenderValue.value != 'on' && baseGenderValue != pokemon.Genders[i]) {
+      if (baseGenderValue.value != 'on' && baseGenderValue != gender) {
         changed = true;
       }
     } else {
@@ -304,15 +324,24 @@ function LevelApplyStatus(target, calc = true) {
     const pokemonId = pokemonElement.value;
     const levelElement = fighter.querySelector('.status-lv');
     const level = levelElement.value;
-    const pokemon = PokemonData[pokemonId];
+    const pokemon = Pokemon.create(pokemonId);
+    const stats = pokemon.getStats();
     const result = { H: 0, A: 0, B: 0, C: 0, D: 0 };
-    for (let i = 0; i < level && i < pokemon.Stats.length && i < levelElement.max; i++) {
-      const stat = pokemon.Stats[i];
-      result.H += stat.H;
-      result.A += stat.A;
-      result.B += stat.B;
-      result.C += stat.C;
-      result.D += stat.D;
+    for (let i = 0; i < level && i < Math.max(1, stats.length) && i < levelElement.max; i++) {
+      if (i == 0) {
+        result.H += pokemon.BaseH;
+        result.A += pokemon.BaseA;
+        result.B += pokemon.BaseB;
+        result.C += pokemon.BaseC;
+        result.D += pokemon.BaseD;
+      } else {
+        const stat = stats[i];
+        result.H += stat.H;
+        result.A += stat.A;
+        result.B += stat.B;
+        result.C += stat.C;
+        result.D += stat.D;
+      }
     }
 
     const HPElement = fighter.querySelector('.status-hp');
@@ -710,16 +739,16 @@ function Calculation() {
 
   // モーダルに詳細表示
   const modalElement = document.querySelector('#modal-damage');
-  modalElement.querySelector('#attacker-name').textContent = PokemonData[attacker.id].Name;
+  modalElement.querySelector('#attacker-name').textContent = messageUtils.getPokemonName(attacker.id, true);
   modalElement.querySelector('#attacker-level').textContent = `Lv${attacker.level}`;
   modalElement.querySelector('#attacker-status').textContent = `${
     MoveData[move.id].Category == eos.CATEGORY_PHYSICAL ? '攻撃' : '特攻'
   }${result.details.calc.offenseCalc}`;
-  modalElement.querySelector('#defender-name').textContent = PokemonData[defender.id].Name;
+  modalElement.querySelector('#defender-name').textContent = messageUtils.getPokemonName(defender.id, true);
   modalElement.querySelector('#defender-level').textContent = `Lv${defender.level}`;
   modalElement.querySelector('#defender-status').textContent =
     `${MoveData[move.id].Category == eos.CATEGORY_PHYSICAL ? '防御' : '特防'}${result.details.calc.defenseCalc}`;
-  const moveName = `${MoveData[move.id].Name}${move.ginseng > 0 ? `+${move.ginseng}` : ''}`;
+  const moveName = `${messageUtils.getMoveName(move.id)}${move.ginseng > 0 ? `+${move.ginseng}` : ''}`;
   modalElement.querySelector('.move-name').textContent =
     `${moveName} ${move.id == 0x195 ? ` (${moveElement.options[moveElement.selectedIndex].text})` : ''}`;
   modalElement.querySelector('.damage-min').textContent = result.minDamage;
@@ -818,7 +847,7 @@ function Calculation() {
     { label: '通常攻撃 x0.5', multiplier: 0.5, value: move.id == 0x163 },
     { label: '投擲物 x0.5', multiplier: 0.5, value: move.id == 0x195 },
     {
-      label: `${MoveData[move.id].Name} x${dungeon.damageDetailLog.damageMult}`,
+      label: `${messageUtils.getMoveName(move.id)} x${dungeon.damageDetailLog.damageMult}`,
       multiplier: dungeon.damageDetailLog.damageMult,
       value: dungeon.damageDetailLog.damageMult != 1 && move.id != 0x163 && move.id != 0x195,
     },

@@ -2,7 +2,7 @@
 <!-- dict "id" {ポケモンID} "mode" {s(空), t(時), d(闇)} -->
 
 {{ $dungeon_json := resources.Get "data/dungeon.json" | transform.Unmarshal }}
-{{ $floor_json := resources.Get "data/floor.json" | transform.Unmarshal }}
+{{ $floor_json := resources.Get "data/floor_info_s.json" | transform.Unmarshal }}
 
 {{ $pokemonId := int .id }}
 {{ $pokemon := partial "methods/GetPokemonById" $pokemonId }}
@@ -17,11 +17,11 @@
 <!-- モードで時・闇・空を切替 -->
 {{ $mappa := false }}
 {{ if or (eq $mode "t") (eq $mode "time") }}
-  {{ $mappa = resources.Get "data/mappa_t.json" | transform.Unmarshal }}
+  {{ $mappa = resources.Get "data/floor_table_t.json" | transform.Unmarshal }}
 {{ else if or (eq $mode "d") (eq $mode "darkness") }}
-  {{ $mappa = resources.Get "data/mappa_d.json" | transform.Unmarshal }}
+  {{ $mappa = resources.Get "data/floor_table_y.json" | transform.Unmarshal }}
 {{ else }}
-  {{ $mappa = resources.Get "data/mappa_s.json" | transform.Unmarshal }}
+  {{ $mappa = resources.Get "data/floor_table_s.json" | transform.Unmarshal }}
 {{ end }}
 
 
@@ -51,7 +51,7 @@
 
       <!-- 第二性別含む出現フロアを取得 -->
       <!-- フロアの敵 -->
-      {{ $enemies := index $mappa.EnemyData (int $floor.IndexGroup.SpawnEnemy) }}
+      {{ $enemies := index $mappa.Enemies (int $floor.IndexGroup.SpawnEnemy) }}
       {{ with $enemies }}
         {{ $enemy := where $enemies "PokemonId" $pokemon.Id }}
         <!-- 出現するフロアであれば整形して取得 -->

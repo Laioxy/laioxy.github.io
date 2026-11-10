@@ -37,6 +37,8 @@ import * as Mechanics from './mechanics.js';
 import * as MathUtil from './mathutil.js';
 import { Monster, DamageData, DungeonState, DamageCalcDiag, Move, NaturalGiftInfo } from './structure.js';
 
+import { jsonData } from '../json_store.js';
+
 /**
  * 防御側に対して攻撃した時のタイプ相性を取得
  * @param {DungeonState} dungeon
@@ -46,7 +48,8 @@ import { Monster, DamageData, DungeonState, DamageCalcDiag, Move, NaturalGiftInf
  * @param {*} attackType
  */
 export function getTypeMatchUp(dungeon, attacker, defender, targetTypeIdx, attackType) {
-  if (!TypeData) {
+  const typeData = jsonData.get('type');
+  if (!typeData) {
     console.error('TypeData not found');
     return;
   }
@@ -68,7 +71,7 @@ export function getTypeMatchUp(dungeon, attacker, defender, targetTypeIdx, attac
       return eos.MATCHUP_IMMUNE;
     }
   }
-  return TypeData[attackType].MatchUp[defender.types[targetTypeIdx]];
+  return typeData[attackType].MatchUp[defender.types[targetTypeIdx]];
 }
 
 /**
@@ -125,7 +128,7 @@ function CalcTypeBasedDamageEffects(dungeon, attacker, defender, attackPower, at
     return true;
   }
 
-  if (!TypeData) {
+  if (!jsonData.get('type')) {
     console.error('TypeData not found');
     return null;
   }
@@ -1757,8 +1760,9 @@ export function simulateDamageCalcProjectile(damageData, dungeon, attacker, defe
  * @returns
  */
 function getMoveCategory(moveId) {
+  const moveData = jsonData.get('move');
   let res = null;
-  if (MoveData) res = MoveData[moveId].Category;
+  if (moveData) res = moveData[moveId].Category;
   else console.error('MoveData Not Found');
   return res;
 }
@@ -1877,11 +1881,13 @@ class CalcDamageResult {
  * @returns 計算結果
  */
 export function RunCalcDamage(dungeon, attacker, defender, move, attackPower) {
-  if (!MoveData) {
+  const moveData = jsonData.get('move');
+  const typeData = jsonData.get('type');
+  if (!moveData) {
     console.error('MoveData not found');
     return;
   }
-  if (!TypeData) {
+  if (!typeData) {
     console.error('TypeData not found');
     return;
   }
@@ -1949,7 +1955,7 @@ export function RunCalcDamage(dungeon, attacker, defender, move, attackPower) {
   resDetails.typeMatchup = ids.TYPE_MATCHUP[details.typeMatchup];
   resDetails.indivTypeMatchup1 = ids.TYPE_MATCHUP[calc.moveIndivTypeMatchups[0]];
   resDetails.indivTypeMatchup2 = ids.TYPE_MATCHUP[calc.moveIndivTypeMatchups[1]];
-  resDetails.moveType = TypeData[details.type];
+  resDetails.moveType = typeData[details.type];
   resDetails.moveCategory = ids.MOVE_CATEGORY[details.category];
   resDetails.criticalHit = details.criticalHit;
   resDetails.fullTypeImmunity = details.fullTypeImmunity;

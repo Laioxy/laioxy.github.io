@@ -1,19 +1,17 @@
 import * as params from './params.js';
-import { getJsonData } from '../../json_script.js';
+import { jsonData } from '../../json_store.js';
 
 /**
  * ポケモンデータ取得
  * @returns
  */
 async function getPokemonData() {
-  if (!window.PokemonData) {
-    window.PokemonData = await getJsonData('pokemon');
-    if (!window.PokemonData) {
-      console.error('undefined pokemonData');
-      return null;
-    }
+  const pokemonData = jsonData.get('pokemon');
+  if (!pokemonData) {
+    console.error('undefined pokemonData');
+    return null;
   }
-  return window.PokemonData;
+  return pokemonData;
 }
 
 /**
@@ -105,12 +103,13 @@ function isMonsterValid(pokemonId) {
  * @returns
  */
 function getMonsterGender(pokemonId) {
-  if (!PokemonData) {
+  const pokemonData = jsonData.get('pokemon');
+  if (!pokemonData) {
     console.error('PokemonData not found');
     return -1;
   }
   const genderIdx = Math.floor(pokemonId / 600);
-  return PokemonData[pokemonId % 600].Genders[genderIdx];
+  return pokemonData[pokemonId % 600].Genders[genderIdx];
 }
 
 /**
@@ -120,11 +119,12 @@ function getMonsterGender(pokemonId) {
  * @returns
  */
 function getBodySize(pokemonId) {
-  if (!PokemonData) {
+  const pokemonData = jsonData.get('pokemon');
+  if (!pokemonData) {
     console.error('PokemonData not found');
     return -1;
   }
-  return parseInt(PokemonData[pokemonId % 600].BodySize);
+  return parseInt(pokemonData[pokemonId % 600].BodySize);
 }
 
 /**

@@ -1,12 +1,24 @@
 {{ define "main" }}
+  {{ $lang := site.Language.Lang }}
+
   {{ $pokemon_json := resources.Get "data/pokemon.json" | transform.Unmarshal }}
   {{ $move_json := resources.Get "data/move.json" | transform.Unmarshal }}
   {{ $type_json := resources.Get "data/type.json" | transform.Unmarshal }}
   {{ $item_json := resources.Get "data/item.json" | transform.Unmarshal }}
   {{ $iqskill_json := resources.Get "data/iqskill.json" | transform.Unmarshal }}
+  {{ $messageJsonPath := printf "data/message.%s.json" $lang }}
+  {{ $message_json := resources.Get $messageJsonPath | transform.Unmarshal }}
   {{ $abilityCount := 124 }}
 
-
+  {{/* 言語ごとのパラメータ・翻訳文言をJSに渡す */}}
+  {{ $params := index hugo.Data.params .Lang }}
+  {{ $translatePokemon := index hugo.Data.translate.pokemon .Lang }}
+  <script>
+    window.PARAMS = JSON.parse('{{ $params | jsonify }}');
+    Object.assign(window.translate, {
+      pokemon: JSON.parse('{{ $translatePokemon | jsonify }}'),
+    });
+  </script>
   <script src="/js/poke_param.js"></script>
 
   {{ partial "jsbuild" (dict "src" "js/damage/view.js" "output" "bandle.js") }}
@@ -345,7 +357,7 @@
                               {{ $valid := partial "methods/IsValidMove.html" (int .Id) }}
                               {{ if and (not $valid) (ne (int .Category) 2) (not (in $exclusionMoves (int .Id))) }}
                                 <option value="{{ .Id }}">
-                                  {{ .Name }}
+                                  {{ index $message_json (add (index $params "MESSAGE_MOVE_NAME_INDEX") (int .Id)) }}
                                 </option>
                               {{ end }}
                             {{ end }}
@@ -359,7 +371,7 @@
                                 <option
                                   value="{{ .Id }}"
                                   data-no-support="true">
-                                  {{ .Name }}
+                                  {{ index $message_json (add (index $params "MESSAGE_MOVE_NAME_INDEX") (int .Id)) }}
                                 </option>
                               {{ end }}
                             {{ end }}
@@ -713,12 +725,14 @@
                             class="pokemon form-select"
                             id="pokemon-{{ $fighter }}"
                             data-choices="true">
-                            {{ range $index, $pokemon := $pokemon_json }}
+                            {{ range seq 0 599 }}
+                              {{ $pokemon := partial "methods/GetPokemonById" . }}
                               <option
-                                value="{{ $index }}"
-                                {{ if eq $index 1 }}selected{{ end }}>
-                                {{ .Name }}
-                                {{ with .SubName }}({{ . }}){{ end }}
+                                value="{{ . }}"
+                                {{ if eq . 1 }}selected{{ end }}>
+                                {{ $pokemon.Name }}
+
+                                {{ with $pokemon.SubName }}({{ . }}){{ end }}
                               </option>
                             {{ end }}
                           </select>
@@ -1379,7 +1393,8 @@
                                   {{ if $target }}
                                     {{ $output := slice }}
                                     {{ range $i := $target }}
-                                      {{ $output = $output | append $i.Name }}
+                                      {{ $itemName := index $message_json (add (int $i.Id) $params.MESSAGE_ITEM_NAME_INDEX) }}
+                                      {{ $output = $output | append $itemName }}
                                     {{ end }}
                                     {{ delimit $output "、" }}
                                   {{ else }}

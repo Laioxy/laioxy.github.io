@@ -1,6 +1,6 @@
 import * as params from './params.js';
 import * as mechanics from './mechanics.js';
-import { getJsonDatas } from '../../json_script.js';
+import { jsonData } from '../../json_store.js';
 import { WonderMail } from '../password.js';
 import { checkPasswordString } from '../../utils/passwordConverter.js';
 
@@ -69,6 +69,13 @@ let shareModal = null;
 // その他
 let latestMissionData = null; // 最後に作成した依頼データ
 let validationElements = null;
+let PokemonData;
+let ItemData;
+let DungeonData;
+let FloorData;
+let TypeData;
+let RescueData;
+let MessageData;
 let advanced = false;
 let prevMissionType = -1;
 const filteringItem = []; // 絞り込み中の項目
@@ -138,15 +145,14 @@ document.addEventListener('DOMContentLoaded', async function () {
   shareModal = new bootstrap.Modal('#share-modal');
 
   // JSONデータ読込
-  ({
-    pokemon: window.PokemonData,
-    item: window.ItemData,
-    dungeon: window.DungeonData,
-    floor: window.FloorData,
-    type: window.TypeData,
-    rescue: window.RescueData,
-    message: window.MessageData,
-  } = await getJsonDatas(['pokemon', 'item', 'dungeon', 'floor', 'type', 'rescue', 'message']));
+  const data = await jsonData.load(['pokemon', 'item', 'dungeon', 'floor_info_s', 'type', 'rescue', 'message']);
+  PokemonData = data.pokemon;
+  ItemData = data.item;
+  DungeonData = data.dungeon;
+  FloorData = data.floor_info_s;
+  TypeData = data.type;
+  RescueData = data.rescue;
+  MessageData = data.message;
 
   // イベント
   setEvent();
@@ -712,7 +718,7 @@ function getPokemonChoicesData(isClient = false, filter = []) {
     const pokemonName = MessageData[window.PARAMS['MESSAGE_POKEMON_NAME_INDEX'] + (i % PokemonData.length)];
     const pokemonSubName = window.translate.pokemon.subname[i % 600] ?? '';
     const genderIdx = Math.floor(i / 600);
-    const genderId = pokemon.Genders[genderIdx];
+    const genderId = pokemon.Genders[genderIdx].Gender;
     const genderTranslates = [
       window.translate.pokemon.gender['invalid'],
       window.translate.pokemon.gender['male'],

@@ -1,4 +1,5 @@
 import { WonderMail, GetSwapTable } from './password.js';
+import { jsonData } from '../../json_store.js';
 
 $(async function () {
   // JSONデータ格納用変数
@@ -63,23 +64,15 @@ $(async function () {
   if (advanced) e_advanced.show();
   else e_advanced.hide();
 
-  await Promise.all([
-    getJsonData('pokemon'),
-    getJsonData('item'),
-    getJsonData('dungeon'),
-    getJsonData('floor'),
-    getJsonData('fixed'),
-  ])
-    .then((results) => {
-      PokemonData = results[0];
-      ItemData = results[1];
-      DungeonData = results[2];
-      FloorData = results[3];
-      FixedData = results[4];
-    })
-    .catch((e) => {
-      console.error(e);
-    });
+  const data = await jsonData.load(['pokemon', 'item', 'dungeon', 'floor_info_s', 'fixed', 'message']);
+  PokemonData = data.pokemon;
+  ItemData = data.item;
+  DungeonData = data.dungeon;
+  FloorData = data.floor_info_s;
+  FixedData = data.fixed;
+  const message = data.message;
+  const pokemonSubNames = window.translate.pokemon.subname;
+  const { MESSAGE_POKEMON_NAME_INDEX, MESSAGE_ITEM_NAME_INDEX, MESSAGE_DUNGEON_FULL_NAME_INDEX } = window.PARAMS;
 
   // Select2
   e_reward_value_select.select2(select2Config);
@@ -364,23 +357,21 @@ $(async function () {
   });
 
   // 初期化
-  let init = new Promise(async function () {
-    AppendMissionType(e_mission_type);
-    AppendMissionFlag(e_mission_flag);
-    AppendRewardType(e_reward_type);
-    AppendPokemon(e_client);
-    AppendPokemon(e_target_1);
-    AppendPokemon(e_target_2);
-    AppendItem(e_target_item);
-    AppendDungeon(e_dungeon);
-    AppendFixedFloor();
-    AppendRestrictionType();
+  AppendMissionType(e_mission_type);
+  AppendMissionFlag(e_mission_flag);
+  AppendRewardType(e_reward_type);
+  AppendPokemon(e_client);
+  AppendPokemon(e_target_1);
+  AppendPokemon(e_target_2);
+  AppendItem(e_target_item);
+  AppendDungeon(e_dungeon);
+  AppendFixedFloor();
+  AppendRestrictionType();
 
-    // 初期値
-    e_client.val(1).change();
-    e_target_item.val(0x46).change();
-    e_dungeon.val(1).change();
-  });
+  // 初期値
+  e_client.val(1).change();
+  e_target_item.val(0x46).change();
+  e_dungeon.val(1).change();
 
   // ロード完了後、イベントトリガー
   $('select').trigger('change');
@@ -720,21 +711,24 @@ $(async function () {
     let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
     for (let i = 0; i < PokemonData.length * 2; i++) {
-      if (PokemonData[i % 600].Genders[Math.floor(i / 600)] == null) break;
+      const pokemonId = i % 600;
+      const gender = PokemonData[pokemonId].Genders[Math.floor(i / 600)]?.Gender;
+      if (gender == null) continue;
 
-      // 性別
-      let gender = PokemonData[i % 600].Genders[Math.floor(i / 600)];
-      // 禁止ポケモン (禁止リスト or シェイミ(0x216)以降)
-      //let banned = banned_poke.includes(i % 600) || i % 600 >= 0x216 || i % 600 == 0x1cd;
-      let banned = IsBannedPokemon(i) > 0;
-
-      let pokeName = PokemonData[i % 600].Name;
-      let subName = PokemonData[i % 600].SubName;
-      if (subName.length > 0 && subName != null) pokeName += ` - ${subName}`;
+      const name = message[MESSAGE_POKEMON_NAME_INDEX + pokemonId];
+      const subName = pokemonSubNames[pokemonId];
+      const pokeName = subName ? `${name} - ${subName}` : name;
+      const id = i.toString(16).padStart(3, '0').toUpperCase();
       elem.append(
-        `<option value="${i}" data-search="${pokeName}" data-pokeid="${i % 600}" data-gender="${gender}" data-banned="${banned}">` +
-          `[${('000' + i.toString(16)).slice(-3).toUpperCase()}] ${pokeName} (${poke_gender[gender].name})` +
-          `</option>`,
+        $('<option>')
+          .val(i)
+          .attr({
+            'data-search': pokeName,
+            'data-pokeid': pokemonId,
+            'data-gender': gender,
+            'data-banned': IsBannedPokemon(i) > 0,
+          })
+          .text(`[${id}] ${pokeName} (${poke_gender[gender].name})`),
       );
     }
     // 値を再度セット
@@ -749,11 +743,10 @@ $(async function () {
     let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
     for (let i = 0; i < ItemData.length; i++) {
-      let itemName = ItemData[i].Name.replace(/\[+[^\[*\]]*\]+/g, '');
+      const itemName = formatRemoveTagString(message[MESSAGE_ITEM_NAME_INDEX + i]);
+      const id = i.toString(16).padStart(3, '0').toUpperCase();
       elem.append(
-        `<option value="${i}" data-search="${itemName}" data-valid="${ItemData[i].IsValid}">[${('000' + i.toString(16))
-          .slice(-3)
-          .toUpperCase()}] ${itemName}</option>`,
+        $('<option>').val(i).attr({ 'data-search': itemName, 'data-valid': ItemData[i].IsValid }).text(`[${id}] ${itemName}`),
       );
     }
     // 値を再度セット
@@ -767,9 +760,10 @@ $(async function () {
     let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
     for (let i = 0; i < DungeonData.length; i++) {
-      // 追加
+      const dungeonName = formatRemoveTagString(message[MESSAGE_DUNGEON_FULL_NAME_INDEX + i]);
+      const id = i.toString(16).padStart(2, '0').toUpperCase();
       elem.append(
-        `<option value="${i}" data-search="${DungeonData[i].Name}">[${('00' + i.toString(16)).slice(-2).toUpperCase()}] ${DungeonData[i].Name}</option>`,
+        $('<option>').val(i).attr('data-search', dungeonName).text(`[${id}] ${dungeonName}`),
       );
     }
     // ダミー(0xAD)を選択不可にする
@@ -790,10 +784,7 @@ $(async function () {
     let start = !advanced ? dun.FloorPrev + 1 : dun.FloorPrev;
     for (let i = start; (!advanced && i - dun.FloorPrev <= dun.FloorCount) || (advanced && i <= start + 0xff); i++) {
       if (e_mission_type.val() != null) {
-        let diff = -1;
-
-        // 難易度セット
-        if (FloorData[dun.MappaIndex][i] != undefined) diff = FloorData[dun.MappaIndex][i].MissionRankId;
+        let diff = FloorData[dun.MappaIndex]?.[i]?.MissionRankId ?? -1;
 
         if (diff != -1) {
           // 難易度が上がる依頼タイプの場合、難易度を上げる
@@ -1027,7 +1018,7 @@ $(async function () {
       const threshold = 10; // 何%ごとにプログレスバーを更新するか
 
       // Worker処理
-      worker = new Worker('/js/wondermail/mail_worker.js', { type: 'module' });
+      worker = new Worker(new URL('./mail_worker.js', import.meta.url), { type: 'module' });
       let workerMsg = new Promise((resolve, reject) => {
         worker.onmessage = (e) => {
           if (e.data.type == 'progress') {
@@ -1267,7 +1258,8 @@ $(async function () {
     if (PokemonData != undefined) {
       for (let i = 0; i < 0x482; i++) {
         let allow = 0;
-        if (PokemonData[i % 600].Genders[Math.floor(i / 600)] > 0 && !IsBannedPokemon(i % 600)) {
+        const gender = PokemonData[i % 600].Genders[Math.floor(i / 600)]?.Gender;
+        if (gender > 0 && !IsBannedPokemon(i % 600)) {
           allow = 1;
         }
         res.push(allow);

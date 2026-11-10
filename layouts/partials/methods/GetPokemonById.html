@@ -1,3 +1,66 @@
 <!-- ポケモンを取得する -->
+{{ $id := int . }}
+{{ $lang := site.Language.Lang }}
 {{ $pokemon_json := resources.Get "data/pokemon.json" | transform.Unmarshal }}
-{{ return index $pokemon_json (int .) }}
+{{ $messageJsonPath := printf "data/message.%s.json" $lang }}
+{{ $message_json := resources.Get $messageJsonPath | transform.Unmarshal }}
+
+{{/* 名称データの取得 */}}
+{{ $translatePokemon := index hugo.Data.translate.pokemon $lang }}
+{{ $params := index hugo.Data.params $lang }}
+{{ $msgPokemonNameIdx := index $params "MESSAGE_POKEMON_NAME_INDEX" }}
+
+{{/* 成長率データの取得 */}}
+{{ $statsSky_json := resources.Get "data/sky/pokemon-stats.json" | transform.Unmarshal }}
+{{ $statsOld_json := slice }}
+
+{{/* 習得技データの取得 */}}
+{{ $learnSky_json := resources.Get "data/sky/pokemon-movesets.json" | transform.Unmarshal }}
+{{ $learnOld_json := slice }}
+
+{{ if and (ge $id 0) (lt $id (len $pokemon_json)) }}
+  {{ $pokemon := index $pokemon_json $id }}
+
+  {{/* 名称 */}}
+  {{ $name := index $message_json (add $msgPokemonNameIdx $id) }}
+
+  {{/* 姿名 */}}
+  {{ $subName := "" }}
+  {{ with index $translatePokemon.subname (printf "%d" $id) }}
+    {{ $subName = . }}
+  {{ end }}
+
+  {{/* 成長率 */}}
+  {{ $statsId := sub $id 1 }}
+  {{ $statsSky := slice }}
+  {{ $statsOld := slice }}
+  {{ if and (ge $statsId 0) (lt $statsId (len $statsSky_json)) }}
+    {{ $statsSky = index $statsSky_json $statsId }}
+  {{ end }}
+  {{ $stats := dict
+    "sky" $statsSky
+    "old" $statsOld
+  }}
+
+  {{/* 習得技 */}}
+  {{ $learnSky := slice }}
+  {{ $learnOld := slice }}
+  {{ if and (ge $id 0) (lt $id (len $learnSky_json)) }}
+    {{ $learnSky = index $learnSky_json $id }}
+  {{ end }}
+  {{ $learn := dict
+    "sky" $learnSky
+    "old" $learnOld
+  }}
+
+  {{ $pokemon = merge $pokemon (dict
+    "Name" $name
+    "SubName" $subName
+    "Stats" $stats
+    "Learn" $learn
+    )
+  }}
+  {{ return $pokemon }}
+{{ end }}
+
+{{ return nil }}

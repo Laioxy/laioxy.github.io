@@ -1,8 +1,14 @@
-import { getJsonData } from './../json_script';
+import { MessageUtils } from 'js/utils/messageUtils.js';
+import { jsonData } from './../json_store.js';
 import * as params from './../param';
 
 // スポーンデータ (ポケモン・ダンジョンタブ用)
 let spawnData;
+let PokemonData;
+let DungeonData;
+let FloorData;
+let MappaSData;
+let messageUtils;
 
 /** 除外するポケモンのID */
 const bannedPokemonIds = [
@@ -220,6 +226,7 @@ const checkPokemonData = [
 async function loadPokemon() {
   // JSON読込
   await fetchJsonData();
+  messageUtils = MessageUtils.create();
 
   const container = document.getElementById('pokemon-list');
   container.innerHTML = '';
@@ -576,7 +583,6 @@ function generateSpawnData() {
   );
 
   for (const dungeon of dungeons) {
-    const dungeonName = dungeon.InName;
     const mappaIndex = parseInt(dungeon.MappaIndex);
     const floorPrev = parseInt(dungeon.FloorPrev);
     const floorCount = parseInt(dungeon.FloorCount);
@@ -588,7 +594,7 @@ function generateSpawnData() {
     if (floors.length > 0) {
       for (const floor of floors) {
         const enemyTableId = parseInt(floor.IndexGroup.SpawnEnemy);
-        const enemies = MappaSData.EnemyData[enemyTableId];
+        const enemies = MappaSData.Enemies[enemyTableId].Data;
 
         // 敵ポケモンデータをセット (カクレオンを後ろにする)
         for (const enemy of enemies) {
@@ -610,7 +616,6 @@ function generateSpawnData() {
 
           data.push({
             dungeon: parseInt(dungeon.Id),
-            dungeonName: dungeonName,
             floor: parseInt(floor.FloorNo) - floorPrev,
             level: parseInt(enemy.Level),
             pokemonId: pokemonId,
@@ -632,8 +637,7 @@ function generateRecruitData() {
     const id = indexToPokemonId(i);
     const data = {
       id: id,
-      name: PokemonData[id].Name,
-      subname: PokemonData[id].SubName,
+      name: messageUtils.getPokemonName(id, true),
       evolText: getEvolTextData(id),
       recruit: spawnData.filter((r) => r.pokemonId == id),
     };
@@ -662,7 +666,7 @@ function createGuide() {
         <div class="recruit-pokemon-grid-inner">
           <h6>
             <img class="recruit-pokemon-img" src="${getPokemonSpriteUrl(i)}">
-            <span>${pokemon.Name}${pokemon.SubName ? `(${pokemon.SubName})` : ''}</span>
+            <span>${spawn.name}</span>
           </h6>
           <p class="recruit-rate small-text">
             <span>基礎勧誘率: ${(pokemon.RecruitRate1 / 10).toFixed(1)}%${pokemon.RecruitRate1 != pokemon.RecruitRate2 ? ` (${(pokemon.RecruitRate2 / 10).toFixed(1)}%)` : ''}
@@ -719,9 +723,9 @@ function createGuide() {
           <span class="badge text-bg-primary me-1">勧誘</span>
           ${
             // 道具必須の場合なぞのパーツアイコン表示
-            pokemon.Bit_ItemRequiredSpawning ? '<span class="item-sprite sprite-18-3"></span>' : ''
+            pokemon.ItemRequiredSpawning ? '<span class="item-sprite sprite-18-3"></span>' : ''
           }
-          ${dungeon.InName}
+          ${getDungeonDisplayName(dungeonId)}
         </p>
       `;
       const element = parseHTML(elementHtml);
@@ -878,7 +882,6 @@ function generateSpawnGroup() {
     }
     dungeonMap.get(dungeonId).push({
       dungeon: dungeonId,
-      dungeonName: '勧誘不可',
       floor: 0,
       level: 0,
       pokemonId: missingId,
@@ -894,15 +897,11 @@ function generateSpawnGroup() {
           : event.type[0] == 'challenge'
             ? RECRUIT_CHALLENGE_DUNGEON_ID
             : RECRUIT_EVENT_DUNGEON_ID;
-      const dungeonName =
-        event.type[0] == 'boss' ? DungeonData[dungeonId].Name : event.type[0] == 'challenge' ? '挑戦状' : 'イベント';
-
       if (!dungeonMap.has(dungeonId)) {
         dungeonMap.set(dungeonId, []);
       }
       dungeonMap.get(dungeonId).push({
         dungeon: dungeonId,
-        dungeonName: dungeonName,
         floor: 0,
         level: 0,
         pokemonId: event.id,
@@ -920,7 +919,6 @@ function generateSpawnGroup() {
       if (!pokemonMap.has(item.pokemonId)) {
         pokemonMap.set(item.pokemonId, {
           pokemonId: item.pokemonId,
-          dungeonName: item.dungeonName,
           items: [],
         });
       }
@@ -962,7 +960,6 @@ function generateSpawnGroup() {
 
       pokemonGroups.push({
         pokemonId: group.pokemonId,
-        dungeonName: group.dungeonName,
         floors,
         levelRanges,
       });
@@ -988,7 +985,7 @@ function createRecruitDungeon() {
   for (const dungeonId in spawnGroup) {
     let dungeonName = '';
     if (dungeonId < DungeonData.length) {
-      dungeonName = DungeonData[dungeonId].InName;
+      dungeonName = getDungeonDisplayName(dungeonId);
     } else if (dungeonId == RECRUIT_NOT_RECRUITABLE_DUNGEON_ID) {
       dungeonName = '◆ 勧誘不可 (進化限定)';
     } else if (dungeonId == RECRUIT_CHALLENGE_DUNGEON_ID) {
@@ -1120,13 +1117,13 @@ function syncDungeonWithChecker() {
  */
 function getEvolTextData(id) {
   const pokemon = PokemonData[id];
-  const prevEvol = PokemonData[parseInt(pokemon.PreEvoIndex)];
+  const prevEvolId = Number(pokemon.PreEvoIndex);
   const evolMethod = parseInt(pokemon.EvoMethod);
   const evolParam = [parseInt(pokemon.EvoParam1), parseInt(pokemon.EvoParam2)];
 
   let text = '';
-  if (prevEvol.Id > 0) {
-    const prevEvolName = prevEvol.Name;
+  if (prevEvolId > 0) {
+    const prevEvolName = messageUtils.getPokemonName(prevEvolId);
     let evolStr = '';
     switch (evolMethod) {
       case 0: // ヌケニン用
@@ -1139,12 +1136,10 @@ function getEvolTextData(id) {
         evolStr = `かしこさ★${getIQStarCount(evolParam[0]).toFixed(1)}(${evolParam[0]})以上`;
         break;
       case 3: // 道具
-        const itemStr = ItemData[evolParam[0]].Name;
-        evolStr = `${itemStr}`;
+        evolStr = formatRemoveTagString(jsonData.get('message')[window.PARAMS.MESSAGE_ITEM_NAME_INDEX + evolParam[0]]);
         break;
       case 4: // タマンタ用
-        const targetStr = PokemonData[evolParam[0]].Name;
-        evolStr = `${targetStr}が仲間にいる`;
+        evolStr = `${messageUtils.getPokemonName(evolParam[0])}が仲間にいる`;
         break;
       case 5: // つうしんケーブル
         evolStr = `つうしんケーブル`;
@@ -1157,9 +1152,12 @@ function getEvolTextData(id) {
     }
 
     text = `${prevEvolName} (${evolStr})`;
-    //console.log(`${pokemon.Name}: ${text}`, evolMethod, evolParam);
   }
   return text;
+}
+
+function getDungeonDisplayName(id) {
+  return formatRemoveTagString(messageUtils.getDungeonName(id)).replace(/\r?\n/g, ' ');
 }
 
 /**
@@ -1177,22 +1175,11 @@ function getPokemonSpriteUrl(indexId) {
  * JSONデータを取得
  */
 async function fetchJsonData() {
-  try {
-    const [pokemonData, itemData, dungeonData, floorData, mappaSData] = await Promise.all([
-      getJsonData('pokemon'),
-      getJsonData('item'),
-      getJsonData('dungeon'),
-      getJsonData('floor'),
-      getJsonData('mappa_s'),
-    ]);
-    window.PokemonData = pokemonData;
-    window.ItemData = itemData;
-    window.DungeonData = dungeonData;
-    window.FloorData = floorData;
-    window.MappaSData = mappaSData;
-  } catch (e) {
-    console.error(e);
-  }
+  const data = await jsonData.load(['pokemon', 'dungeon', 'floor_info_s', 'floor_table_s', 'message']);
+  PokemonData = data.pokemon;
+  DungeonData = data.dungeon;
+  FloorData = data.floor_info_s;
+  MappaSData = data.floor_table_s;
 }
 
 loadPokemon();

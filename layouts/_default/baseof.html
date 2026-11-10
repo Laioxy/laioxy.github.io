@@ -1,5 +1,8 @@
 <!-- JSONファイル生成 -->
-{{ $jsonFiles := resources.Match "data/*.json" }}
+{{ $jsonFiles := union
+  (resources.Match "data/*.json")
+  (resources.Match "data/**/*.json")
+}}
 {{ range $jsonFiles }}
   {{ $minify := . | resources.Minify }}
   {{ $minify.Publish }}

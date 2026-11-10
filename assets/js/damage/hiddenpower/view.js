@@ -1,10 +1,12 @@
 import * as eos from '../const.js';
 import { WEATHER_STRINGS, VALID_MAX_DUNGEON_ID } from '../../param.js';
-import { getJsonData, getJsonDatas } from '../../json_script.js';
+import { jsonData } from '../../json_store.js';
 // ダメージ計算関連import
 import { RunCalcDamage, getTypeMatchUp } from '../calc.js';
 import { TYPE_MATCHUP_COMBINATOR_TABLE } from '../mechanics.js';
 import { Monster, DungeonState, DamageData, Move } from '../structure.js';
+import { MessageUtils } from 'js/utils/messageUtils.js';
+import { Pokemon } from 'js/structure/pokemon.js';
 
 /**
  * 機能実装予定メモ
@@ -35,6 +37,15 @@ class Attack {
 }
 
 const choicesInstances = [];
+let PokemonData;
+let MoveData;
+let DungeonData;
+let FloorData;
+let MappaSData;
+let TypeData;
+let IQGroupData;
+let IQSkillData;
+let messageUtils;
 
 /** デフォルトのポケモンID */
 const DEFAULT_POKEMON_ID = 1;
@@ -94,16 +105,27 @@ document.addEventListener('DOMContentLoaded', async function () {
   const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
 
   // JSON読込
-  ({
-    pokemon: window.PokemonData,
-    move: window.MoveData,
-    dungeon: window.DungeonData,
-    floor: window.FloorData,
-    mappa_s: window.MappaSData,
-    type: window.TypeData,
-    iqgroup: window.IQGroupData,
-    iqskill: window.IQSkillData,
-  } = await getJsonDatas(['pokemon', 'move', 'dungeon', 'floor', 'mappa_s', 'type', 'iqgroup', 'iqskill']));
+  const data = await jsonData.load([
+    'pokemon',
+    'move',
+    'dungeon',
+    'floor_info_s',
+    'floor_table_s',
+    'type',
+    'iqgroup',
+    'iqskill',
+    'message',
+    'pokemon-stats.sky',
+  ]);
+  PokemonData = data.pokemon;
+  MoveData = data.move;
+  DungeonData = data.dungeon;
+  FloorData = data.floor_info_s;
+  MappaSData = data.floor_table_s;
+  TypeData = data.type;
+  IQGroupData = data.iqgroup;
+  IQSkillData = data.iqskill;
+  messageUtils = MessageUtils.create();
 
   // 要素キャッシュ
   mainElement = document.getElementById('damage-hiddenpower');
@@ -222,7 +244,7 @@ function updatePokemonTypeAbility(pokemonId = -1) {
     return;
   }
   if (pokemonId < 0) {
-    pokemonId = attackerPokemonElement.value;
+    pokemonId = Number(attackerPokemonElement.value);
   }
 
   const pokemon = PokemonData[pokemonId];
@@ -294,16 +316,24 @@ function getLevelStatus(pokemonId, level) {
     return;
   }
 
-  const pokemon = PokemonData[pokemonId];
+  const pokemon = Pokemon.create(pokemonId);
+  const stats = pokemon.getStats('sky');
 
   // 成長率データ数、レベル数、100のうち最も近い値でループ
   let res = { a: 0, b: 0, c: 0, d: 0 };
-  for (let i = 0; i < Math.min(...[pokemon.Stats.length, level, 100]); i++) {
-    const stat = pokemon.Stats[i];
-    res.a += Number(stat.A);
-    res.b += Number(stat.B);
-    res.c += Number(stat.C);
-    res.d += Number(stat.D);
+  for (let i = 0; i < Math.min(...[stats.length, level, 100]); i++) {
+    if (i == 0) {
+      res.a += Number(pokemon.BaseA);
+      res.b += Number(pokemon.BaseB);
+      res.c += Number(pokemon.BaseC);
+      res.d += Number(pokemon.BaseD);
+    } else {
+      const stat = stats[i];
+      res.a += Number(stat.A);
+      res.b += Number(stat.B);
+      res.c += Number(stat.C);
+      res.d += Number(stat.D);
+    }
   }
   // 上限処理
   if (res.a > 255) res.a = 255;
@@ -489,7 +519,7 @@ function attackHiddenPower() {
   attack.damage = damage;
   attack.matchup = matchup;
   attack.ginseng = move.ginseng;
-  attack.enemy = `Lv${defender.level} ${PokemonData[defender.id].Name}`;
+  attack.enemy = `Lv${defender.level} ${messageUtils.getPokemonName(defender.id)}`;
   attack.damageDatas = damageDatas;
   attack.candidateType = allowType;
   attack.attacker = attacker;
@@ -626,10 +656,10 @@ function setOptionsPokemon() {
   }
 
   let res = '';
-  for (const pokemon of PokemonData) {
+  for (let i = 0; i < PokemonData.length; i++) {
     res += `
-      <option value="${pokemon.Id}" ${pokemon.Id == DEFAULT_POKEMON_ID ? 'selected' : ''}>
-        ${pokemon.Name}${pokemon.SubName ? ` - ${pokemon.SubName}` : ''}
+      <option value="${i}" ${i == DEFAULT_POKEMON_ID ? 'selected' : ''}>
+        ${messageUtils.getPokemonName(i, true)}
       </option>`;
   }
   attackerPokemonElement.innerHTML = res;
@@ -658,7 +688,7 @@ function setOptionsDungeon() {
 
     res += `
       <option value="${dungeon.Id}" ${dungeon.Id == DEFAULT_DUNGEON_ID ? 'selected' : ''}>
-        ${formatRemoveTagString(dungeon.Name)}
+        ${formatRemoveTagString(messageUtils.getDungeonName(dungeon.Id))}
       </option>`;
   }
   defenderDungeonElement.innerHTML = res;
@@ -718,15 +748,15 @@ function setOptionsEnemy() {
 
   // mappaデータから敵テーブル取得
   const mappaId = Number(defenderFloorElement.options[defenderFloorElement.selectedIndex].dataset.enemy);
-  const mappa = MappaSData.EnemyData[mappaId];
+  const enemies = MappaSData.Enemies[mappaId];
 
   // データセット作成
   const dataset = [];
-  for (const enemy of mappa) {
+  for (const enemy of enemies.Data) {
     const pokemonId = enemy.PokemonId;
     // なにかを除外
     if (pokemonId != POKEMON_DUMMY_ID) {
-      dataset.push({ id: pokemonId, name: PokemonData[pokemonId].Name, level: enemy.Level });
+      dataset.push({ id: pokemonId, name: messageUtils.getPokemonName(pokemonId), level: enemy.Level });
     }
   }
 

@@ -1,8 +1,7 @@
 import { WonderMail } from './password.js';
+import { jsonData } from '../../json_store.js';
 
-console.log('a');
 $(async function () {
-  var PokemonData;
 
   // 要素キャッシュ
   var e_pass_area = $('#pass-area');
@@ -31,13 +30,9 @@ $(async function () {
   // }
 
   // JSON取得
-  await Promise.all([getJsonData('pokemon'), getJsonData('floor')])
-    .then((results) => {
-      PokemonData = results[0];
-    })
-    .catch((e) => {
-      console.error(e);
-    });
+  const { pokemon: PokemonData, message: MessageData } = await jsonData.load(['pokemon', 'message']);
+  const pokemonNameIndex = window.PARAMS['MESSAGE_POKEMON_NAME_INDEX'];
+  const pokemonSubNames = window.translate.pokemon.subname;
 
   // Select2
   e_pokemon.select2(select2Config);
@@ -68,15 +63,19 @@ $(async function () {
     CheckPokemonSelection();
   });
 
-  let init = new Promise(async function () {
-    AppendPokemon(e_pokemon);
-    e_pokemon.val(1).change();
-  });
+  AppendPokemon(e_pokemon);
+  e_pokemon.val(1).change();
 
   $('.fix-pokemon').on('click', function () {
     let id = e_pokemon.val() % 600;
     e_pokemon.val(id).change();
   });
+
+  function getPokemonName(id) {
+    const name = MessageData[pokemonNameIndex + id];
+    const subName = pokemonSubNames[id];
+    return subName ? `${name} - ${subName}` : name;
+  }
 
   /**
    * ポケモンチェック処理
@@ -86,6 +85,7 @@ $(async function () {
     let fix = '';
     let pokemonIdx = e_pokemon.val() % 600;
     let genderIdx = Math.floor(e_pokemon.val() / 600);
+    const genders = PokemonData[pokemonIdx].Genders;
     if (e_pokemon.val() == 0) {
       msg = `
       「なにものか」が選択されています。<br>
@@ -107,15 +107,14 @@ $(async function () {
       時闇の場合、ソフトロックや技関連のバグの要因になるため、非推奨です。
       `;
     } else if (
-      (PokemonData[pokemonIdx].Genders[genderIdx] == 0 || PokemonData[pokemonIdx].Genders[genderIdx] == 3) &&
-      genderIdx == 1
+      genderIdx === 1 && (genders[genderIdx].Gender === 0 || genders[genderIdx].Gender === 3)
     ) {
       msg = `
       本来存在しない第二性別のポケモンが選択されています。<br>
       技を覚えていない・技がバグる・喋らない等といった本来とは異なる挙動を起こす場合があるため非推奨です。
       `;
-      fix = `[${('000' + pokemonIdx.toString(16)).slice(-3).toUpperCase()}] ${PokemonData[pokemonIdx].Name} (${
-        poke_gender[PokemonData[pokemonIdx].Genders[0]].name
+      fix = `[${('000' + pokemonIdx.toString(16)).slice(-3).toUpperCase()}] ${getPokemonName(pokemonIdx)} (${
+        poke_gender[genders[0].Gender].name
       })`;
     }
 
@@ -129,7 +128,7 @@ $(async function () {
 
     // FIX
     if (fix.length > 0) {
-      e_fix_text.html(fix);
+      e_fix_text.text(fix);
       e_fix_wrap.show();
     } else {
       e_fix_wrap.hide();
@@ -141,26 +140,19 @@ $(async function () {
    * @param {*} elem
    */
   function AppendPokemon(elem) {
-    let prev = elem.val() != undefined ? elem.val() : 0;
     elem.empty();
     for (let i = 0; i < PokemonData.length * 2; i++) {
-      if (PokemonData[i % 600].Genders[Math.floor(i / 600)] == null) break;
+      const pokemonId = i % 600;
+      const gender = PokemonData[pokemonId].Genders[Math.floor(i / 600)]?.Gender;
+      if (gender == null) continue;
 
-      // 性別
-      let gender = PokemonData[i % 600].Genders[Math.floor(i / 600)];
-
-      let pokeName = PokemonData[i % 600].Name;
-      let subName = PokemonData[i % 600].SubName;
-      if (subName.length > 0 && subName != null) pokeName += ` - ${subName}`;
+      const name = getPokemonName(pokemonId);
+      const id = i.toString(16).padStart(3, '0').toUpperCase();
       elem.append(
-        `<option value="${i}" data-search="${pokeName}" data-pokeid="${i % 600}" >` +
-          `[${('000' + i.toString(16)).slice(-3).toUpperCase()}] ${pokeName} (${poke_gender[gender].name})` +
-          `</option>`,
+        $('<option>').val(i).attr('data-search', name).attr('data-pokeid', pokemonId)
+          .text(`[${id}] ${name} (${poke_gender[gender].name})`),
       );
     }
-    // 値を再度セット
-    if (prev >= elem.children().length || prev == undefined) prev = 0;
-    elem.val(prev);
   }
 
   /**

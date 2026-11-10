@@ -160,7 +160,8 @@ function formatRemoveTagString(str) {
 function isLearnMoves(pokemonId, moveId, unusedTM = false, unusedEgg = false) {
   let res = false;
   let array = [];
-  if (PokemonData) {
+  const pokemonData = globalThis.jsonStore?.get('pokemon');
+  if (pokemonData) {
     if (!Array.isArray(moveId) && isNaN(moveId)) {
       array.push(moveId);
     } else if (Array.isArray(moveId)) {
@@ -168,8 +169,7 @@ function isLearnMoves(pokemonId, moveId, unusedTM = false, unusedEgg = false) {
     }
 
     if (array.length > 0) {
-      const poke = PokemonData[pokemonId];
-      console.log(poke);
+      const poke = pokemonData[pokemonId];
 
       // レベル技
       if (poke.Learning.LearningLv) {
@@ -206,7 +206,10 @@ function isLearnMoves(pokemonId, moveId, unusedTM = false, unusedEgg = false) {
 function isLearnIQSkills(pokemonId, skillId) {
   let res = false;
   let array = [];
-  if (PokemonData && IQGroupData) {
+  const store = globalThis.jsonStore;
+  const pokemonData = store?.get('pokemon');
+  const iqGroupData = store?.get('iqgroup');
+  if (pokemonData && iqGroupData) {
     if (!Array.isArray(skillId) && isNaN(skillId)) {
       array.push(skillId);
     } else if (Array.isArray(skillId)) {
@@ -214,8 +217,8 @@ function isLearnIQSkills(pokemonId, skillId) {
     }
 
     if (array.length > 0) {
-      const poke = PokemonData[pokemonId];
-      const group = IQGroupData[poke.IQGroup];
+      const poke = pokemonData[pokemonId];
+      const group = iqGroupData[poke.IQGroup];
       res = array.every((item) => group.includes(Number(item)));
     }
   } else {

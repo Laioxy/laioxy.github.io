@@ -5,16 +5,6 @@
 
 window.select2Config = { theme: 'bootstrap-5', matcher: Select2CustomMatcher, templateResult: Select2FormatState };
 
-window.PokemonData = null;
-window.ItemData = null;
-window.MoveData = null;
-window.DungeonData = null;
-window.FloorData = null;
-window.IQGroupData = null;
-window.IQSkillData = null;
-window.TypeData = null;
-window.RescueData = null;
-
 window.choicesOptions = {
   placeholder: false,
   placeholderValue: window.translate.common.choices.placeholderValue,
