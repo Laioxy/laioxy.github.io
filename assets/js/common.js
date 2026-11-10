@@ -1,9 +1,6 @@
 // 優先度低めの細かいメモ:
-// ・Vanilla JS, Choices.jsへの移行 (=> jQuery, Select2 の削除予定)
 // ・varは使わず, なるべくconst, letで変数を定義
 //   過去に使っていたvarはconstやletに変更予定
-
-window.select2Config = { theme: 'bootstrap-5', matcher: Select2CustomMatcher, templateResult: Select2FormatState };
 
 window.choicesOptions = {
   placeholder: false,
