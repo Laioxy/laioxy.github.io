@@ -1139,16 +1139,22 @@
                           {{ $heldItemsNature := where $item_json "Id" "in" (apply $heldItemsNatureIds "float" ".") }}
                           {{ $heldItemsRibbon := where $item_json "Id" "in" (apply $heldItemsRibbonIds "float" ".") }}
                           {{ $heldItemGroups := slice
-                            (dict "label" "装備品" "slice" (sort $heldItemsNormal "Name"))
-                            (dict "label" "しぜんのめぐみ" "slice" (sort $heldItemsNature "Name"))
-                            (dict "label" "波動色リボン" "slice" (sort $heldItemsRibbon "Name"))
+                            (dict "label" "装備品" "slice" $heldItemsNormal)
+                            (dict "label" "しぜんのめぐみ" "slice" $heldItemsNature)
+                            (dict "label" "波動色リボン" "slice" $heldItemsRibbon)
                           }}
 
                           {{ range $heldItemGroups }}
+                            {{ $items := slice }}
+                            {{ range .slice }}
+                              {{ $name := index $message_json (add (int .Id) $params.MESSAGE_ITEM_NAME_INDEX) }}
+                              {{ $items = $items | append (merge . (dict "SortName" $name)) }}
+                            {{ end }}
+                            {{ $items = sort $items "SortName" }}
                             <optgroup label="{{ .label }}">
-                              {{ range .slice }}
+                              {{ range $items }}
                                 <option value="{{ .Id }}">
-                                  {{ .Name }}
+                                  {{ .SortName }}
                                 </option>
                               {{ end }}
                             </optgroup>
