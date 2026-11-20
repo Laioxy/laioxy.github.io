@@ -5,6 +5,10 @@ description: "Generate Wonder Mail passwords"
 weight: 1
 ---
 
+##### 2026/11/20
+
+- Fix an issue where the client becomes blank when selecting Mission Type "[0A] Arrest outlaw", preventing the mission from being generated correctly.
+
 ##### 2026/11/10
 
 - Reduced page size (from approximately 10 MB to 6.8 MB)

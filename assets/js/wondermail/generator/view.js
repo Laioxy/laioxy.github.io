@@ -711,7 +711,7 @@ function getPokemonChoicesData(isClient = false, filter = []) {
   const missionFlag = parseInt(missionFlagElement.value);
   const result = [];
   for (let i = 0; i < PokemonData.length * 2 && i < 0x483; i++) {
-    if (filter.length > 0 && (!filter.includes(i % 600) || !PokemonData.some((x) => filter.includes(x.Id)))) {
+    if (filter.length > 0 && !filter.includes(i % 600)) {
       continue;
     }
     const pokemon = PokemonData[i % PokemonData.length];
