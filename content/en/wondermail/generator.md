@@ -5,6 +5,10 @@ description: "Generate Wonder Mail passwords"
 weight: 1
 ---
 
+##### 2026/11/21
+
+- Fixed an issue where all Pokémon with a secondary gender were incorrectly marked as ineligible for missions.
+
 ##### 2026/11/20
 
 - Fix an issue where the client becomes blank when selecting Mission Type "[0A] Arrest outlaw", preventing the mission from being generated correctly.

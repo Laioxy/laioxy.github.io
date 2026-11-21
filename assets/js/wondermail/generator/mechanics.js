@@ -38,7 +38,7 @@ export function isMissionUsablePokemon(pokemonId, missionType, isClient, isSky) 
   const baseForm = getBaseForm(pokemonId);
   if (pokemonId == baseForm) {
     // 依頼使用不可
-    if (isMonsterIllegalForMissions(pokemonId)) {
+    if (isMonsterIllegalForMissions(pokemonId % 600)) {
       //console.log(`[ID: ${pokemonId} ${pokemon.Name}] illegal`);
       return 2;
     }
