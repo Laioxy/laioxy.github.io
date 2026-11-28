@@ -93,7 +93,9 @@
           margin-bottom: 0;
         }
       }
-      animation: fadeOutCollapse 0.5s ease forwards;
+      & {
+        animation: fadeOutCollapse 0.5s ease forwards;
+      }
     }
     .recruit-pokemon-grid-inner {
       padding: 1rem;
