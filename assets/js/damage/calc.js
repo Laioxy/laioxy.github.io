@@ -2101,7 +2101,7 @@ function calcDamageFixedApplyEffects(damageData, dungeon, attacker, defender, at
   const effect = CalcTypeBasedDamageEffects(dungeon, attacker, defender, damage, attackType, damageData, false);
 
   // 計算
-  const fixedDamage = Math.ceil(damage * effect.damageMultOut);
+  const fixedDamage = Math.floor(damage * effect.damageMultOut + 0.5);
   return fixedDamage;
 }
 
